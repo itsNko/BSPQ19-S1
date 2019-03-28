@@ -35,7 +35,7 @@ public class VentanaRegistroSencilla extends JFrame {
 	/**
 	 * Variables ajenas a la ventana
 	 */
-	
+
 	// Hasta que se implemente todo lo relacionado con la BDD utilizaremos colecciones de objetos para ir asegurando las funcionalidades 
 	private HashMap<String, String> registro = new HashMap<String, String>();
 
@@ -105,25 +105,39 @@ public class VentanaRegistroSencilla extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String nombreUsuario = textField.getText();
 				String pass = String.valueOf(passField.getPassword());
+				boolean mayus = false;
 				
+				// Comprobación de si la contraseña tiene al menos una mayúscula
+				for(int i = 0; i < pass.length(); i++) {
+					if(Character.isUpperCase(pass.charAt(i))) {
+						mayus = true;
+						break;
+					}
+				}
+
 				// Comprobación de si algún campo está vacio
 				if(nombreUsuario.equals("") || pass.equals("") || nombreUsuario == null || pass == null) {
 					JOptionPane.showMessageDialog(null, "Alguno de los campos está vacio, por favor introduce un nombre de usuario y contraseña correctos", "Aviso", JOptionPane.WARNING_MESSAGE);
 				} else {
 					// Comprobación de si los campos tienen el tamaño adecuado
 					if((nombreUsuario.length() >= 4 && nombreUsuario.length() <= 20) && (pass.length() >= 8 && pass.length() <= 16)) {
-						// Comprobación de si existe un socio con el nombre de usuario introducido en el JTextField
-						if(!registro.containsKey(nombreUsuario)) {
-							registro.put(nombreUsuario, pass);
-							JOptionPane.showMessageDialog(null, "Te has registrado correctamente :)", "Registro", JOptionPane.INFORMATION_MESSAGE);
-							textField.setText(""); passField.setText("");
+						if(mayus) {
+							// Comprobación de si existe un socio con el nombre de usuario introducido en el JTextField
+							if(!registro.containsKey(nombreUsuario)) {
+								registro.put(nombreUsuario, pass);
+								JOptionPane.showMessageDialog(null, "Te has registrado correctamente :)", "Registro", JOptionPane.INFORMATION_MESSAGE);
+								textField.setText(""); passField.setText("");
+							} else {
+								JOptionPane.showMessageDialog(null, "El nombre de usuario introducido ya existe, por favor introduzca otro nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+							}
 						} else {
-							JOptionPane.showMessageDialog(null, "El nombre de usuario introducido ya existe, por favor introduzca otro nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "La contraseña debe contener al menos una letra mayúscula", "Aviso", JOptionPane.WARNING_MESSAGE);
 						}
+						
 					} else {
 						JOptionPane.showMessageDialog(null, "El nombre de usuario tiene que tener entre 4 y 20 carácteres, y la contraseña entre 8 y 16.", "Aviso", JOptionPane.WARNING_MESSAGE);
 					}
-					
+
 
 				}
 
