@@ -62,6 +62,10 @@ public class VentanaRegistroSencilla extends JFrame {
 	 * Crea la ventana.
 	 */
 	public VentanaRegistroSencilla() {
+		// Datos de prueba precargados en el hashmap
+		registro.put("prueba", "1234");
+		registro.put("admin", "admin");
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -128,17 +132,28 @@ public class VentanaRegistroSencilla extends JFrame {
 				} else {
 					// Comprobación de si los campos tienen el tamaño adecuado
 					if((nombreUsuario.length() >= 4 && nombreUsuario.length() <= 20) && (pass.length() >= 8 && pass.length() <= 16)) {
-						if(mayus) {
-							// Comprobación de si existe un socio con el nombre de usuario introducido en el JTextField
-							if(!registro.containsKey(nombreUsuario)) {
-								registro.put(nombreUsuario, pass);
-								JOptionPane.showMessageDialog(null, "Te has registrado correctamente :)", "Registro", JOptionPane.INFORMATION_MESSAGE);
-								textField.setText(""); passField.setText("");
+						// Comprobación de si el nombre de usuario es el mismo que la contraseña
+						if(!nombreUsuario.equals(pass)) {
+							// Comprobación de si la contraseña tiene al menos una letra mayúscula
+							if(mayus) {
+								// Comprobación de si la contraseña introducida contiene tanto letras como números
+								if(contieneLetrasYNumeros(pass)) {
+									// Comprobación de si existe un socio con el nombre de usuario introducido en el JTextField
+									if(!registro.containsKey(nombreUsuario)) {
+										registro.put(nombreUsuario, pass);
+										JOptionPane.showMessageDialog(null, "Te has registrado correctamente :)", "Registro", JOptionPane.INFORMATION_MESSAGE);
+										textField.setText(""); passField.setText("");
+									} else {
+										JOptionPane.showMessageDialog(null, "El nombre de usuario introducido ya existe, por favor introduzca otro nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+									}
+								} else {
+									JOptionPane.showMessageDialog(null, "La contraseña debe contener tanto letras como números.", "Aviso", JOptionPane.WARNING_MESSAGE);
+								}
 							} else {
-								JOptionPane.showMessageDialog(null, "El nombre de usuario introducido ya existe, por favor introduzca otro nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null, "La contraseña debe contener al menos una letra mayúscula", "Aviso", JOptionPane.WARNING_MESSAGE);
 							}
 						} else {
-							JOptionPane.showMessageDialog(null, "La contraseña debe contener al menos una letra mayúscula", "Aviso", JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "El nombre y la contraseña no pueden ser iguales, por favor introduce otro nombre o contraseña.", "Aviso", JOptionPane.WARNING_MESSAGE);
 						}
 
 					} else {
@@ -165,4 +180,12 @@ public class VentanaRegistroSencilla extends JFrame {
 		panel_3.add(button_1);
 	}
 
+	public boolean contieneLetrasYNumeros(String s) {
+		String n = ".*[0-9].*";
+		String l = ".*[A-Z].*";
+		return s.matches(n) && s.matches(l);
+	}
+
 }
+
+
