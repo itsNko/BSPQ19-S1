@@ -108,8 +108,12 @@ public class VentanaInicio extends JFrame {
 		candadoVerde.setVisible(false);
 		candadoRojo.setVisible(false);
 		
-		
+		ImageIcon botonInicioSesion = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"botonLogin.png");
+		im = botonInicioSesion.getImage();
+		im = getScaledImage(im,208,62);
+		botonInicioSesion = new ImageIcon(im);
 		JButton boton = new JButton("Login");
+		boton.setIcon(botonInicioSesion);
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				candadoNegro.setVisible(false);
@@ -121,10 +125,17 @@ public class VentanaInicio extends JFrame {
 				
 			}
 		});
-		boton.setBounds(400,400,175,70);
+		boton.setBounds(400,400,200,65);
 		background.add(boton);
 		
+		
+		ImageIcon botonRegistro = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"botonRegister.png");
+		im = botonRegistro.getImage();
+		im = getScaledImage(im,227,63);
+		botonRegistro = new ImageIcon(im);
+		
 		JButton boton2 = new JButton("Register");
+		boton2.setIcon(botonRegistro);
 		boton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				candadoNegro.setVisible(false);
@@ -136,8 +147,10 @@ public class VentanaInicio extends JFrame {
 				
 			}
 		});
-		boton2.setBounds(600,400,175,70);
+		boton2.setBounds(630,403,220,55);
 		background.add(boton2);
+		
+		
 		
 	}
 
