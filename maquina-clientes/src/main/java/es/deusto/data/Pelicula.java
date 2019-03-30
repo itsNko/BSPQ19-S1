@@ -1,27 +1,18 @@
 package es.deusto.data;
 
-public class Pelicula {
+public class Pelicula extends Articulo {
 
-	private String titulo;
 	private String sinopsis;
 	private String genero;
 	private String fecha_estr;
 	private double puntuacion;
 	
-	public Pelicula(String titulo, String sinopsis, String genero, String fecha_estr, double puntuacion) {
-		this.titulo = titulo;
+	public Pelicula(String nombre, String sinopsis, String genero, String fecha_estr, double puntuacion) {
+		super(nombre);
 		this.sinopsis = sinopsis;
 		this.genero = genero;
 		this.fecha_estr = fecha_estr;
 		this.puntuacion = puntuacion;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
 	}
 
 	public String getSinopsis() {

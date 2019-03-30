@@ -81,7 +81,7 @@ public class VentanaListaArticulosSencilla extends JFrame {
 		String col[] = {"Nombre", "Sinopsis", "Género", "Fecha de estreno", "Puntuación"};
 		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
 		for(int i = 0; i < peliculas.size(); i++) {
-			Object[] data = {peliculas.get(i).getTitulo(), peliculas.get(i).getSinopsis(),
+			Object[] data = {peliculas.get(i).getNombre(), peliculas.get(i).getSinopsis(),
 					peliculas.get(i).getGenero(), peliculas.get(i).getFecha_estr(),
 					peliculas.get(i).getPuntuacion()};
 			tableModel.addRow(data);
