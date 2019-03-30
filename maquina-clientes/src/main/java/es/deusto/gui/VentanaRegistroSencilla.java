@@ -1,4 +1,4 @@
-package es.deusto.app;
+package es.deusto.gui;
 
 import java.awt.EventQueue;
 
