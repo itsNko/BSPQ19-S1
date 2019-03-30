@@ -30,11 +30,6 @@ public class VentanaRegistroSencilla extends JFrame {
 	private JPanel panel;
 	private JPanel panel_1;
 	private JButton btnNewButton;
-
-	/**
-	 * Variables ajenas a la ventana
-	 */
-
 	// Hasta que se implemente todo lo relacionado con la BDD utilizaremos colecciones de objetos para ir asegurando las funcionalidades 
 	private HashMap<String, String> registro = new HashMap<String, String>();
 	private JPanel panel_2;
