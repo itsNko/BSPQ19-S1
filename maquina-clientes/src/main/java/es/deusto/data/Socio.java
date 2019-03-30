@@ -4,10 +4,12 @@ public class Socio {
 
 	private String nombre;
 	private String password;
+	private int monedero;
 	
-	public Socio(String nombre, String password) {
+	public Socio(String nombre, String password, int monedero) {
 		this.nombre = nombre;
 		this.password = password;
+		this.monedero = monedero;
 	}
 
 	public String getNombre() {
@@ -25,6 +27,15 @@ public class Socio {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public int getMonedero() {
+		return monedero;
+	}
+	
+	public void setMonedero(int monedero) {
+		this.monedero = monedero;
+	}
+	
 	
 	
 	
