@@ -131,7 +131,7 @@ public class VentanaInicio extends JFrame {
 		
 		ImageIcon botonRegistro = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"botonRegister.png");
 		im = botonRegistro.getImage();
-		im = getScaledImage(im,227,63);
+		im = getScaledImage(im,230,63);
 		botonRegistro = new ImageIcon(im);
 		
 		JButton boton2 = new JButton("Register");
