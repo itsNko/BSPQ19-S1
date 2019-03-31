@@ -1,6 +1,9 @@
 package es.deusto.gui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,8 +20,10 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.font.TextAttribute;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.text.AttributedString;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -69,11 +74,11 @@ public class VentanaAlquileres extends JFrame {
 		setTitle("Tu historial de artículos alquilados/devueltos");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 960, 640);
+		setBounds(100, 100, 960, 540);
 		final JLabel background;
 		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"historialAlquileres.png");
 		Image im = img.getImage();
-		im = getScaledImage(im, 960, 640);
+		im = getScaledImage(im, 960, 540);
 		ImageIcon finalImg= new ImageIcon(im);
 		background = new JLabel("", finalImg, JLabel.CENTER);
 		background.setBounds(100,100,450, 300);
@@ -82,21 +87,64 @@ public class VentanaAlquileres extends JFrame {
 
 		JPanel panel = new JPanel(new GridLayout(0, 1));
 		JScrollPane scrollEnCurso = new JScrollPane(panel);
+		panel.setOpaque(false);
 		background.add(scrollEnCurso);
-		scrollEnCurso.setBounds(87, 135, 342, 450);
+		scrollEnCurso.setBounds(64, 124, 323, 360);
+		scrollEnCurso.setOpaque(false);
+		scrollEnCurso.getViewport().setOpaque(false);
 
 		JPanel panel2 = new JPanel(new GridLayout(0, 1));
+		panel2.setOpaque(false);
 		JScrollPane scrollDevueltos = new JScrollPane(panel2);
 		background.add(scrollDevueltos);
-		scrollDevueltos.setBounds(524, 135, 342, 450);
+		scrollDevueltos.setBounds(473, 124, 323, 360);
+		scrollDevueltos.setOpaque(false);
+		scrollDevueltos.getViewport().setOpaque(false);
+		
+		
+		String titulo = "";
+		String fecha = "";
+		Font fuente = new Font("Times New Roman", Font.BOLD, 18);
+		Font fuente2 = new Font("Times New Roman", Font.PLAIN, 15);
 		
 		for(int i = 0; i < alquileres.size(); i++) {
 			if(alquileres.get(i).isEnCurso()) {
-				panel.add(new JLabel(alquileres.get(i).getAlquilado().getNombre() + ": *" +
-						alquileres.get(i).getFecha_inicio() + "-" + alquileres.get(i).getFecha_fin() + "*", JLabel.CENTER));
+				titulo = alquileres.get(i).getAlquilado().getNombre();
+				fecha = "[" + alquileres.get(i).getFecha_inicio() + " - " + alquileres.get(i).getFecha_fin() + "]";
+				JPanel jp = new JPanel(new FlowLayout());
+				jp.setOpaque(false);
+				
+				JLabel label = new JLabel(titulo, JLabel.CENTER);
+				label.setFont(fuente);
+				label.setForeground(Color.WHITE);
+				
+				JLabel label2 = new JLabel(": " + fecha, JLabel.CENTER);
+				label2.setFont(fuente2);
+				label2.setForeground(Color.WHITE);
+				
+				jp.add(label);
+				jp.add(label2);
+				panel.add(jp);
 			} else {
-				panel2.add(new JLabel(alquileres.get(i).getAlquilado().getNombre() + ": *" +
-						alquileres.get(i).getFecha_inicio() + "-" + alquileres.get(i).getFecha_fin() + "*", JLabel.CENTER));
+				titulo = alquileres.get(i).getAlquilado().getNombre();
+				fecha = "[" + alquileres.get(i).getFecha_inicio() + " - " + alquileres.get(i).getFecha_fin() + "]";
+				JPanel jp = new JPanel(new FlowLayout());
+				jp.setOpaque(false);
+				
+				JLabel label = new JLabel(titulo, JLabel.CENTER);
+				label.setFont(fuente);
+				label.setForeground(Color.WHITE);
+				
+				JLabel label2 = new JLabel(": " + fecha, JLabel.CENTER);
+				label2.setFont(fuente2);
+				label2.setForeground(Color.WHITE);
+				
+				label2.setOpaque(false);
+				
+				
+				jp.add(label);
+				jp.add(label2);
+				panel2.add(jp);
 			}
 		}
 		
@@ -107,11 +155,12 @@ public class VentanaAlquileres extends JFrame {
 				
 			}
 		});
-		botonVolver.setBounds(40, 18, 100, 50);
+		botonVolver.setBounds(836, 453, 100, 50);
 		botonVolver.setOpaque(false);
 		botonVolver.setContentAreaFilled(false);
 		botonVolver.setBorderPainted(false);
 		background.add(botonVolver);
+		
 
 	}
 
