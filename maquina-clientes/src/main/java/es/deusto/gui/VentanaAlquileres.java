@@ -1,34 +1,29 @@
 package es.deusto.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 
 import es.deusto.data.Alquiler;
 import es.deusto.data.Pelicula;
 import es.deusto.data.Videojuego;
 
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import java.awt.Font;
+
 import java.awt.Graphics2D;
 
 public class VentanaAlquileres extends JFrame {
@@ -36,8 +31,6 @@ public class VentanaAlquileres extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private ArrayList<Alquiler> alquileres = new ArrayList<Alquiler>();
-	private JTable table;
-	private JTable table_1;
 
 	/**
 	 * Lanza la ventana.
@@ -76,103 +69,49 @@ public class VentanaAlquileres extends JFrame {
 		setTitle("Tu historial de artículos alquilados/devueltos");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 400);
+		setBounds(100, 100, 960, 640);
 		final JLabel background;
-		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"fondoAzul1.jpg");
+		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"historialAlquileres.png");
 		Image im = img.getImage();
-		im = getScaledImage(im, 800, 400);
+		im = getScaledImage(im, 960, 640);
 		ImageIcon finalImg= new ImageIcon(im);
 		background = new JLabel("", finalImg, JLabel.CENTER);
 		background.setBounds(100,100,450, 300);
 		getContentPane().add(background);
-		background.setBorder(new EmptyBorder(5, 5, 5, 5));
-		background.setLayout(new BorderLayout(0, 0));
+		background.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("HISTORIAL DE TUS ALQUILERES");
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		background.add(lblNewLabel, BorderLayout.NORTH);
+		JPanel panel = new JPanel(new GridLayout(0, 1));
+		JScrollPane scrollEnCurso = new JScrollPane(panel);
+		background.add(scrollEnCurso);
+		scrollEnCurso.setBounds(87, 135, 342, 450);
 
-		JPanel panel = new JPanel();
-		background.add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(1, 2, 0, 0));
-
-		JPanel panel_1 = new JPanel();
-		panel.add(panel_1);
-		panel_1.setLayout(new BorderLayout(0, 0));
-
-		JScrollPane scrollPane = new JScrollPane();
-		panel_1.add(scrollPane);
-
-		JPanel panel_2 = new JPanel();
-		panel.add(panel_2);
-		panel_2.setLayout(new BorderLayout(0, 0));
-
-		JScrollPane scrollPane_1 = new JScrollPane();
-		panel_2.add(scrollPane_1);
-
-		String col[] = {"Artículo", "Precio", "Fecha inicio", "Fecha fin"};
-		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
-		DefaultTableModel tableModel2 = new DefaultTableModel(col, 0);
+		JPanel panel2 = new JPanel(new GridLayout(0, 1));
+		JScrollPane scrollDevueltos = new JScrollPane(panel2);
+		background.add(scrollDevueltos);
+		scrollDevueltos.setBounds(524, 135, 342, 450);
+		
 		for(int i = 0; i < alquileres.size(); i++) {
 			if(alquileres.get(i).isEnCurso()) {
-				Object[] data = {alquileres.get(i).getAlquilado().getNombre(),
-						alquileres.get(i).getCoste(), alquileres.get(i).getFecha_inicio(),
-						alquileres.get(i).getFecha_fin()};
-				tableModel.addRow(data);
+				panel.add(new JLabel(alquileres.get(i).getAlquilado().getNombre() + ": *" +
+						alquileres.get(i).getFecha_inicio() + "-" + alquileres.get(i).getFecha_fin() + "*", JLabel.CENTER));
 			} else {
-				Object[] data = {alquileres.get(i).getAlquilado().getNombre(),
-						alquileres.get(i).getCoste(), alquileres.get(i).getFecha_inicio(),
-						alquileres.get(i).getFecha_fin()};
-				tableModel2.addRow(data);
+				panel2.add(new JLabel(alquileres.get(i).getAlquilado().getNombre() + ": *" +
+						alquileres.get(i).getFecha_inicio() + "-" + alquileres.get(i).getFecha_fin() + "*", JLabel.CENTER));
 			}
-
 		}
-
-		table = new JTable(tableModel)
-		{
-
-			private static final long serialVersionUID = 1L;
-
-			public Component prepareRenderer(
-					TableCellRenderer renderer, int row, int column)
-			{
-				Component returnComp = super.prepareRenderer(renderer, row, column);
-				Color colorFuerte = new Color(137, 144, 255);
-				Color colorSuave = new Color(168, 194, 255);
-				if (!returnComp.getBackground().equals(getSelectionBackground())){
-					Color bg = (row % 2 == 0 ? colorFuerte : colorSuave);
-					returnComp .setBackground(bg);
-					bg = null;
-				}
-				return returnComp;
+		
+		JButton botonVolver = new JButton();
+		botonVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Volver");
+				
 			}
-		};
-		table.setEnabled(false);
-		scrollPane.setViewportView(table);
-
-		table_1 = new JTable(tableModel2)
-		{
-
-			private static final long serialVersionUID = 1L;
-
-			public Component prepareRenderer(
-					TableCellRenderer renderer, int row, int column)
-			{
-				Component returnComp = super.prepareRenderer(renderer, row, column);
-				Color colorSuave = new Color(168, 194, 255);
-				Color colorFuerte = new Color(137, 144, 255);
-				if (!returnComp.getBackground().equals(getSelectionBackground())){
-					Color bg = (row % 2 == 0 ? colorSuave : colorFuerte);
-					returnComp .setBackground(bg);
-					bg = null;
-				}
-				return returnComp;
-			}
-		};
-		table_1.setEnabled(false);
-		scrollPane_1.setViewportView(table_1);
+		});
+		botonVolver.setBounds(40, 18, 100, 50);
+		botonVolver.setOpaque(false);
+		botonVolver.setContentAreaFilled(false);
+		botonVolver.setBorderPainted(false);
+		background.add(botonVolver);
 
 	}
 
@@ -190,7 +129,7 @@ public class VentanaAlquileres extends JFrame {
 		Random random = new Random();
 		int r;
 		int j = 0;
-		while(j < 30) {
+		while(j < 75) {
 			r = random.nextInt(5);
 			if(r == 0) {
 				alquileres.add(a1);
