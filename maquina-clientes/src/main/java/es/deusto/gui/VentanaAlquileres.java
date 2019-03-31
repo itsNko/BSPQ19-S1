@@ -104,8 +104,8 @@ public class VentanaAlquileres extends JFrame {
 		
 		String titulo = "";
 		String fecha = "";
-		Font fuente = new Font("Times New Roman", Font.BOLD, 18);
-		Font fuente2 = new Font("Times New Roman", Font.PLAIN, 15);
+		Font fuente = new Font("Times New Roman", Font.BOLD, 16);
+		Font fuente2 = new Font("Times New Roman", Font.PLAIN, 14);
 		
 		for(int i = 0; i < alquileres.size(); i++) {
 			if(alquileres.get(i).isEnCurso()) {
