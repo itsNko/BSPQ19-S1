@@ -7,11 +7,13 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -21,7 +23,7 @@ import java.awt.event.ActionEvent;
 public class VentanaInicio extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private HashMap<String, String> registro = new HashMap<String, String>();
 
 	/**
 	 * Launch the application.
@@ -66,11 +68,11 @@ public class VentanaInicio extends JFrame {
 		getContentPane().add(background);
 		background.setLayout(null);
 		
-		JTextField textfield = new JTextField(10);
+		final JTextField textfield = new JTextField(10);
 		textfield.setBounds(400,100,250,40);
 		background.add(textfield);
 		
-		JPasswordField passwordField = new JPasswordField(10);
+		final JPasswordField passwordField = new JPasswordField(10);
 		passwordField.setBounds(400,200,250,40);
 		background.add(passwordField);
 		
@@ -122,6 +124,26 @@ public class VentanaInicio extends JFrame {
 				background.revalidate();
 				background.repaint();
 				
+				String nombreUsuario = textfield.getText();
+				String pass = String.valueOf(passwordField.getPassword());
+				// Comprobaciónd de si hay algún campo vacio
+				if(nombreUsuario.equals("") || pass.equals("") || nombreUsuario == null || pass == null) {
+					JOptionPane.showMessageDialog(null, "Alguno de los campos está vacio, por favor introduce un nombre de usuario y contraseña correctos.", "Aviso", JOptionPane.WARNING_MESSAGE);
+				} else {
+					// Comprobación de si existe un usuario registrado con el nombre introducido
+					if(registro.containsKey(nombreUsuario)) {
+						// Comprobación de si la contraseña coincide con la del nombre de usuario registrado
+						if(registro.get(nombreUsuario).equals(pass)) {
+							System.out.println("Has iniciado sesión correctamente, bienvenido!");
+							textfield.setText(""); passwordField.setText("");
+						} else {
+							JOptionPane.showMessageDialog(null, "Contraseña incorrecta, vuelve a intentarlo.", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "No existe ningún usuario con ese nombre, por favor prueba con otro.", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				
 				
 			}
 		});
@@ -145,6 +167,55 @@ public class VentanaInicio extends JFrame {
 				background.repaint();
 				
 				
+				String nombreUsuario = textfield.getText();
+				String pass = String.valueOf(passwordField.getPassword());
+				boolean mayus = false;
+
+				// Comprobación de si la contraseña tiene al menos una mayúscula
+				for(int i = 0; i < pass.length(); i++) {
+					if(Character.isUpperCase(pass.charAt(i))) {
+						mayus = true;
+						break;
+					}
+				}
+
+				// Comprobación de si algún campo está vacio
+				if(nombreUsuario.equals("") || pass.equals("") || nombreUsuario == null || pass == null) {
+					JOptionPane.showMessageDialog(null, "Alguno de los campos está vacio, por favor introduce un nombre de usuario y contraseña correctos.", "Aviso", JOptionPane.WARNING_MESSAGE);
+				} else {
+					// Comprobación de si los campos tienen el tamaño adecuado
+					if((nombreUsuario.length() >= 4 && nombreUsuario.length() <= 20) && (pass.length() >= 8 && pass.length() <= 16)) {
+						// Comprobación de si el nombre de usuario es el mismo que la contraseña
+						if(!nombreUsuario.equals(pass)) {
+							// Comprobación de si la contraseña tiene al menos una letra mayúscula
+							if(mayus) {
+								// Comprobación de si la contraseña introducida contiene tanto letras como números
+								if(contieneLetrasYNumeros(pass)) {
+									// Comprobación de si existe un socio con el nombre de usuario introducido en el JTextField
+									if(!registro.containsKey(nombreUsuario)) {
+										registro.put(nombreUsuario, pass);
+										JOptionPane.showMessageDialog(null, "Te has registrado correctamente :)", "Registro", JOptionPane.INFORMATION_MESSAGE);
+										textfield.setText(""); passwordField.setText("");
+									} else {
+										JOptionPane.showMessageDialog(null, "El nombre de usuario introducido ya existe, por favor introduzca otro nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+									}
+								} else {
+									JOptionPane.showMessageDialog(null, "La contraseña debe contener tanto letras como números.", "Aviso", JOptionPane.WARNING_MESSAGE);
+								}
+							} else {
+								JOptionPane.showMessageDialog(null, "La contraseña debe contener al menos una letra mayúscula", "Aviso", JOptionPane.WARNING_MESSAGE);
+							}
+						} else {
+							JOptionPane.showMessageDialog(null, "El nombre y la contraseña no pueden ser iguales, por favor introduce otro nombre o contraseña.", "Aviso", JOptionPane.WARNING_MESSAGE);
+						}
+
+					} else {
+						JOptionPane.showMessageDialog(null, "El nombre de usuario tiene que tener entre 4 y 20 carácteres, y la contraseña entre 8 y 16.", "Aviso", JOptionPane.WARNING_MESSAGE);
+					}
+
+				}
+				
+				
 			}
 		});
 		boton2.setBounds(630,403,220,55);
@@ -153,6 +224,10 @@ public class VentanaInicio extends JFrame {
 		
 		
 	}
-
+	public boolean contieneLetrasYNumeros(String s) {
+		String n = ".*[0-9].*";
+		String l = ".*[A-Z].*";
+		return s.matches(n) && s.matches(l);
+	}
 	
 }
