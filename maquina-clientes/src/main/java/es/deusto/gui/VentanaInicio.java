@@ -11,6 +11,7 @@ import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -54,6 +55,7 @@ public class VentanaInicio extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaInicio() {
+		registro.put("a", "a");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 540);
 		
@@ -118,11 +120,6 @@ public class VentanaInicio extends JFrame {
 		boton.setIcon(botonInicioSesion);
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				candadoNegro.setVisible(false);
-				candadoRojo.setVisible(false);
-				candadoVerde.setVisible(true);
-				background.revalidate();
-				background.repaint();
 				
 				String nombreUsuario = textfield.getText();
 				String pass = String.valueOf(passwordField.getPassword());
@@ -136,6 +133,20 @@ public class VentanaInicio extends JFrame {
 						if(registro.get(nombreUsuario).equals(pass)) {
 							System.out.println("Has iniciado sesión correctamente, bienvenido!");
 							textfield.setText(""); passwordField.setText("");
+							 
+								System.out.println("hola?");
+								candadoNegro.setVisible(false);
+								candadoRojo.setVisible(false);
+								candadoVerde.setVisible(true);
+	
+								background.revalidate();
+								background.repaint();
+								JOptionPane.showMessageDialog(null, "Has iniciado sesión correctamente!!", "", JOptionPane.INFORMATION_MESSAGE);
+								
+								MenuSocio ms = new MenuSocio(VentanaInicio.this);
+								ms.setVisible(true);
+								VentanaInicio.this.setVisible(false);
+							
 						} else {
 							JOptionPane.showMessageDialog(null, "Contraseña incorrecta, vuelve a intentarlo.", "Error", JOptionPane.ERROR_MESSAGE);
 						}

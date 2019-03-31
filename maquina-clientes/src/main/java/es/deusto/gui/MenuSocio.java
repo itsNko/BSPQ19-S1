@@ -24,27 +24,29 @@ import java.awt.Font;
 public class MenuSocio extends JFrame {
 
 	private JFrame frame;
+	private JFrame ventanaInicio;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MenuSocio frame = new MenuSocio();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					MenuSocio frame = new MenuSocio();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
-	public MenuSocio() {
+	public MenuSocio(JFrame ventanaAnterior) {
+		ventanaInicio = ventanaAnterior;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 540);
@@ -112,6 +114,8 @@ public class MenuSocio extends JFrame {
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Salir");
+				ventanaInicio.setVisible(true);
+				MenuSocio.this.dispose();
 			}
 		});
 		btnSalir.setBounds(590, 430, 180, 55);
