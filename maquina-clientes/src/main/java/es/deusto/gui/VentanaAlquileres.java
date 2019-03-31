@@ -1,12 +1,16 @@
 package es.deusto.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 import es.deusto.data.Alquiler;
 import es.deusto.data.Pelicula;
@@ -15,18 +19,21 @@ import es.deusto.data.Videojuego;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.Font;
+import java.awt.Graphics2D;
 
 public class VentanaAlquileres extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-
-	private JPanel contentPane;
 
 	private ArrayList<Alquiler> alquileres = new ArrayList<Alquiler>();
 	private JTable table;
@@ -48,6 +55,17 @@ public class VentanaAlquileres extends JFrame {
 		});
 	}
 
+	private Image getScaledImage(Image srcImg, int w, int h){
+		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2 = resizedImg.createGraphics();
+
+		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g2.drawImage(srcImg, 0, 0, w, h, null);
+		g2.dispose();
+
+		return resizedImg;
+	}
+
 	/**
 	 * Crea la ventana.
 	 */
@@ -55,20 +73,29 @@ public class VentanaAlquileres extends JFrame {
 
 		cargaArticulos();
 
+		setTitle("Tu historial de artículos alquilados/devueltos");
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 400);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		final JLabel background;
+		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"fondoAzul1.jpg");
+		Image im = img.getImage();
+		im = getScaledImage(im, 800, 400);
+		ImageIcon finalImg= new ImageIcon(im);
+		background = new JLabel("", finalImg, JLabel.CENTER);
+		background.setBounds(100,100,450, 300);
+		getContentPane().add(background);
+		background.setBorder(new EmptyBorder(5, 5, 5, 5));
+		background.setLayout(new BorderLayout(0, 0));
 
 		JLabel lblNewLabel = new JLabel("HISTORIAL DE TUS ALQUILERES");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(lblNewLabel, BorderLayout.NORTH);
+		background.add(lblNewLabel, BorderLayout.NORTH);
 
 		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
+		background.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(1, 2, 0, 0));
 
 		JPanel panel_1 = new JPanel();
@@ -78,20 +105,12 @@ public class VentanaAlquileres extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		panel_1.add(scrollPane);
 
-		JLabel lblNewLabel_1 = new JLabel("ALQUILERES EN CURSO");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(lblNewLabel_1, BorderLayout.NORTH);
-
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
 		panel_2.setLayout(new BorderLayout(0, 0));
 
 		JScrollPane scrollPane_1 = new JScrollPane();
 		panel_2.add(scrollPane_1);
-
-		JLabel lblNewLabel_2 = new JLabel("ALQUILERES DEVUELTOS/FINALIZADOS");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_2.add(lblNewLabel_2, BorderLayout.NORTH);
 
 		String col[] = {"Artículo", "Precio", "Fecha inicio", "Fecha fin"};
 		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
@@ -111,11 +130,47 @@ public class VentanaAlquileres extends JFrame {
 
 		}
 
-		table = new JTable(tableModel);
+		table = new JTable(tableModel)
+		{
+
+			private static final long serialVersionUID = 1L;
+
+			public Component prepareRenderer(
+					TableCellRenderer renderer, int row, int column)
+			{
+				Component returnComp = super.prepareRenderer(renderer, row, column);
+				Color colorFuerte = new Color(137, 144, 255);
+				Color colorSuave = new Color(168, 194, 255);
+				if (!returnComp.getBackground().equals(getSelectionBackground())){
+					Color bg = (row % 2 == 0 ? colorFuerte : colorSuave);
+					returnComp .setBackground(bg);
+					bg = null;
+				}
+				return returnComp;
+			}
+		};
 		table.setEnabled(false);
 		scrollPane.setViewportView(table);
 
-		table_1 = new JTable(tableModel2);
+		table_1 = new JTable(tableModel2)
+		{
+
+			private static final long serialVersionUID = 1L;
+
+			public Component prepareRenderer(
+					TableCellRenderer renderer, int row, int column)
+			{
+				Component returnComp = super.prepareRenderer(renderer, row, column);
+				Color colorSuave = new Color(168, 194, 255);
+				Color colorFuerte = new Color(137, 144, 255);
+				if (!returnComp.getBackground().equals(getSelectionBackground())){
+					Color bg = (row % 2 == 0 ? colorSuave : colorFuerte);
+					returnComp .setBackground(bg);
+					bg = null;
+				}
+				return returnComp;
+			}
+		};
 		table_1.setEnabled(false);
 		scrollPane_1.setViewportView(table_1);
 
