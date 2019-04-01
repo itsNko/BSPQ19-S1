@@ -1,20 +1,7 @@
 package es.deusto.gui;
 
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.Font;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import es.deusto.data.Alquiler;
-import es.deusto.data.Pelicula;
-import es.deusto.data.Videojuego;
-
-import javax.swing.JLabel;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -25,11 +12,18 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import java.awt.Graphics2D;
+import es.deusto.data.Alquiler;
+import es.deusto.data.Pelicula;
+import es.deusto.data.Videojuego;
 
-public class VentanaAlquileres extends JFrame {
+public class VentanaDevolucion extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
@@ -42,7 +36,7 @@ public class VentanaAlquileres extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaAlquileres frame = new VentanaAlquileres();
+					VentanaDevolucion frame = new VentanaDevolucion();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,11 +59,11 @@ public class VentanaAlquileres extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaAlquileres() {
+	public VentanaDevolucion() {
 
 		cargaArticulos();
 
-		setTitle("Tu historial de artículos alquilados/devueltos");
+		setTitle("Devolución de artículos");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 540);
@@ -83,7 +77,7 @@ public class VentanaAlquileres extends JFrame {
 		getContentPane().add(background);
 		background.setLayout(null);
 
-		JPanel panel = new JPanel(new GridLayout(0, 1));
+		final JPanel panel = new JPanel(new GridLayout(0, 1));
 		JScrollPane scrollEnCurso = new JScrollPane(panel);
 		panel.setOpaque(false);
 		background.add(scrollEnCurso);
@@ -91,7 +85,7 @@ public class VentanaAlquileres extends JFrame {
 		scrollEnCurso.setOpaque(false);
 		scrollEnCurso.getViewport().setOpaque(false);
 
-		JPanel panel2 = new JPanel(new GridLayout(0, 1));
+		final JPanel panel2 = new JPanel(new GridLayout(0, 1));
 		panel2.setOpaque(false);
 		JScrollPane scrollDevueltos = new JScrollPane(panel2);
 		background.add(scrollDevueltos);
@@ -100,50 +94,16 @@ public class VentanaAlquileres extends JFrame {
 		scrollDevueltos.getViewport().setOpaque(false);
 
 
-		String titulo = "";
-		String fecha = "";
-		Font fuente = new Font("Times New Roman", Font.BOLD, 16);
-		Font fuente2 = new Font("Times New Roman", Font.PLAIN, 14);
-
+		JButton dinamico = null;
 		for(int i = 0; i < alquileres.size(); i++) {
 			if(alquileres.get(i).isEnCurso()) {
-				titulo = alquileres.get(i).getAlquilado().getNombre();
-				fecha = "[" + alquileres.get(i).getFecha_inicio() + " - " + alquileres.get(i).getFecha_fin() + "]";
-				JPanel jp = new JPanel(new FlowLayout());
-				jp.setOpaque(false);
-
-				JLabel label = new JLabel(titulo, JLabel.CENTER);
-				label.setFont(fuente);
-				label.setForeground(Color.WHITE);
-
-				JLabel label2 = new JLabel(": " + fecha, JLabel.CENTER);
-				label2.setFont(fuente2);
-				label2.setForeground(Color.WHITE);
-
-				jp.add(label);
-				jp.add(label2);
-				panel.add(jp);
-			} else {
-				titulo = alquileres.get(i).getAlquilado().getNombre();
-				fecha = "[" + alquileres.get(i).getFecha_inicio() + " - " + alquileres.get(i).getFecha_fin() + "]";
-				JPanel jp = new JPanel(new FlowLayout());
-				jp.setOpaque(false);
-
-				JLabel label = new JLabel(titulo, JLabel.CENTER);
-				label.setFont(fuente);
-				label.setForeground(Color.WHITE);
-
-				JLabel label2 = new JLabel(": " + fecha, JLabel.CENTER);
-				label2.setFont(fuente2);
-				label2.setForeground(Color.WHITE);
-
-				label2.setOpaque(false);
-
-
-				jp.add(label);
-				jp.add(label2);
-				panel2.add(jp);
-			}
+				dinamico = new JButton(alquileres.get(i).getAlquilado().getNombre() + " [" +
+						alquileres.get(i).getCoste() + " €]");
+				
+				panel.add(dinamico);
+				
+				
+			} 
 		}
 
 		JButton botonVolver = new JButton();
@@ -158,7 +118,8 @@ public class VentanaAlquileres extends JFrame {
 		botonVolver.setContentAreaFilled(false);
 		botonVolver.setBorderPainted(false);
 		background.add(botonVolver);
-
+		
+		
 	}
 
 	// Método que carga datos de prueba aleatoriamente en el ArrayList
@@ -192,4 +153,5 @@ public class VentanaAlquileres extends JFrame {
 		}
 
 	}
+
 }
