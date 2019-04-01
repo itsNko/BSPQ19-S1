@@ -14,6 +14,13 @@ public class Videojuego extends Articulo {
 		this.fecha_lan = fecha_lan;
 		this.puntuacion = puntuacion;
 	}
+	public Videojuego(String nombre, String caratula, String descripcion, String categoria, String fecha_lan, double puntuacion) {
+		super(nombre, caratula);
+		this.descripcion = descripcion;
+		this.categoria = categoria;
+		this.fecha_lan = fecha_lan;
+		this.puntuacion = puntuacion;
+	}
 
 	public String getDescripcion() {
 		return descripcion;

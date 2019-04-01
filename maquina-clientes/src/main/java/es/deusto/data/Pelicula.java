@@ -14,6 +14,15 @@ public class Pelicula extends Articulo {
 		this.fecha_estr = fecha_estr;
 		this.puntuacion = puntuacion;
 	}
+	
+	public Pelicula(String nombre, String caratula, String sinopsis, String genero, String fecha_estr, double puntuacion) {
+		super(nombre, caratula);
+		this.sinopsis = sinopsis;
+		this.genero = genero;
+		this.fecha_estr = fecha_estr;
+		this.puntuacion = puntuacion;
+	}
+	
 
 	public String getSinopsis() {
 		return sinopsis;
