@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import es.deusto.data.Socio;
+
 import java.awt.Color;
 import java.awt.Font;
 
@@ -40,8 +42,9 @@ public class MenuSocio extends JFrame {
 
 	/**
 	 * Create the application.
+	 * @param iniciado 
 	 */
-	public MenuSocio(JFrame ventanaAnterior) {
+	public MenuSocio(JFrame ventanaAnterior, Socio iniciado) {
 		ventanaInicio = ventanaAnterior;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -130,13 +133,13 @@ public class MenuSocio extends JFrame {
 		fotoPerfil.setBounds(25,220,450, 300);
 		background.add(fotoPerfil);
 
-		JLabel lblHola = new JLabel("¡Hola Nacho!");
+		JLabel lblHola = new JLabel("¡Hola "+iniciado.getNombre()+"!");
 		lblHola.setFont(new Font("AppleGothic", Font.PLAIN, 22));
 		lblHola.setForeground(Color.WHITE);
 		lblHola.setBounds(170, 159, 180, 60);
 		background.add(lblHola);
 
-		JLabel lblSaldo = new JLabel("Tu saldo actual es de X €");
+		JLabel lblSaldo = new JLabel("Tu saldo actual es de "+iniciado.getMonedero()+" €");
 		lblSaldo.setFont(new Font("AppleGothic", Font.PLAIN, 18));
 		lblSaldo.setForeground(Color.WHITE);
 		lblSaldo.setBounds(135, 200, 250, 60);
