@@ -16,13 +16,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import es.deusto.data.Socio;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class VentanaInicio extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private HashMap<String, String> registro = new HashMap<String, String>();
+	private HashMap<String, Socio> socio = new HashMap<String, Socio>();
 
 	/**
 	 * Launch the application.
@@ -53,7 +56,7 @@ public class VentanaInicio extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaInicio() {
-		registro.put("a", "a");
+		//socio.put("a", "a");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 540);
 
@@ -121,14 +124,14 @@ public class VentanaInicio extends JFrame {
 
 				String nombreUsuario = textfield.getText();
 				String pass = String.valueOf(passwordField.getPassword());
-				// Comprobaciónd de si hay algún campo vacio
+				// Comprobación de si hay algún campo vacio
 				if(nombreUsuario.equals("") || pass.equals("") || nombreUsuario == null || pass == null) {
 					JOptionPane.showMessageDialog(null, "Alguno de los campos está vacio, por favor introduce un nombre de usuario y contraseña correctos.", "Aviso", JOptionPane.WARNING_MESSAGE);
 				} else {
 					// Comprobación de si existe un usuario registrado con el nombre introducido
-					if(registro.containsKey(nombreUsuario)) {
+					if(socio.containsKey(nombreUsuario)) {
 						// Comprobación de si la contraseña coincide con la del nombre de usuario registrado
-						if(registro.get(nombreUsuario).equals(pass)) {
+						if(socio.get(nombreUsuario).getPassword().equals(pass)) {
 							System.out.println("Has iniciado sesión correctamente, bienvenido!");
 							textfield.setText(""); passwordField.setText("");
 
@@ -140,8 +143,8 @@ public class VentanaInicio extends JFrame {
 							background.revalidate();
 							background.repaint();
 							JOptionPane.showMessageDialog(null, "Has iniciado sesión correctamente!!", "", JOptionPane.INFORMATION_MESSAGE);
-
-							MenuSocio ms = new MenuSocio(VentanaInicio.this);
+							Socio iniciado = socio.get(nombreUsuario);
+							MenuSocio ms = new MenuSocio(VentanaInicio.this, iniciado);
 							ms.setVisible(true);
 							VentanaInicio.this.setVisible(false);
 
@@ -201,8 +204,9 @@ public class VentanaInicio extends JFrame {
 								// Comprobación de si la contraseña introducida contiene tanto letras como números
 								if(contieneLetrasYNumeros(pass)) {
 									// Comprobación de si existe un socio con el nombre de usuario introducido en el JTextField
-									if(!registro.containsKey(nombreUsuario)) {
-										registro.put(nombreUsuario, pass);
+									if(!socio.containsKey(nombreUsuario)) {
+										Socio cliente= new Socio(nombreUsuario, pass, 0);
+										socio.put(nombreUsuario, cliente);
 										JOptionPane.showMessageDialog(null, "Te has registrado correctamente :)", "Registro", JOptionPane.INFORMATION_MESSAGE);
 										textfield.setText(""); passwordField.setText("");
 									} else {

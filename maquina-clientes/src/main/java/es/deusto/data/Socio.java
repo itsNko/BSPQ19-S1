@@ -5,11 +5,13 @@ public class Socio {
 	private String nombre;
 	private String password;
 	private int monedero;
+	private String imagen;
 	
 	public Socio(String nombre, String password, int monedero) {
 		this.nombre = nombre;
 		this.password = password;
 		this.monedero = monedero;
+		this.imagen = null;
 	}
 
 	public String getNombre() {
@@ -35,6 +37,14 @@ public class Socio {
 	public void setMonedero(int monedero) {
 		this.monedero = monedero;
 	}
+	
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+	public String getImagen() {
+		return imagen;
+	}
+	
 	
 	
 	
