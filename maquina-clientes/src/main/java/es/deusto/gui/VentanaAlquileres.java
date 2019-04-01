@@ -11,8 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import es.deusto.data.Alquiler;
-import es.deusto.data.Pelicula;
-import es.deusto.data.Videojuego;
 
 import javax.swing.JLabel;
 import java.awt.GridLayout;
@@ -23,7 +21,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.swing.JScrollPane;
 
@@ -33,7 +30,7 @@ public class VentanaAlquileres extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	private ArrayList<Alquiler> alquileres = new ArrayList<Alquiler>();
+	private JFrame ventanaQueMeLlama;
 
 	/**
 	 * Launch the application.
@@ -42,7 +39,7 @@ public class VentanaAlquileres extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaAlquileres frame = new VentanaAlquileres();
+					VentanaAlquileres frame = new VentanaAlquileres(null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,9 +62,8 @@ public class VentanaAlquileres extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaAlquileres() {
-
-		cargaArticulos();
+	public VentanaAlquileres(JFrame ventanaAnterior, ArrayList<Alquiler> alquileres) {
+		ventanaQueMeLlama = ventanaAnterior;
 
 		setTitle("Tu historial de artículos alquilados/devueltos");
 		setResizable(false);
@@ -109,8 +105,13 @@ public class VentanaAlquileres extends JFrame {
 			if(alquileres.get(i).isEnCurso()) {
 				titulo = alquileres.get(i).getAlquilado().getNombre();
 				fecha = "[" + alquileres.get(i).getFecha_inicio() + " - " + alquileres.get(i).getFecha_fin() + "]";
-				JPanel jp = new JPanel(new FlowLayout());
+				
+				JPanel jp = new JPanel(new GridLayout(0, 1));
 				jp.setOpaque(false);
+				JPanel caratula = new JPanel(new FlowLayout());
+				caratula.setOpaque(false);
+				JPanel info = new JPanel(new FlowLayout());
+				info.setOpaque(false);
 
 				JLabel label = new JLabel(titulo, JLabel.CENTER);
 				label.setFont(fuente);
@@ -120,14 +121,30 @@ public class VentanaAlquileres extends JFrame {
 				label2.setFont(fuente2);
 				label2.setForeground(Color.WHITE);
 
-				jp.add(label);
-				jp.add(label2);
+				JLabel caratulaLabel;
+				ImageIcon img1 = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+alquileres.get(i).getAlquilado().getCaratula());
+
+				Image image = img1.getImage();
+				image = getScaledImage(image, 87, 120);
+				ImageIcon finalImage = new ImageIcon(image);
+				caratulaLabel = new JLabel(finalImage);
+				
+				caratula.add(caratulaLabel);
+				info.add(label); info.add(label2);
+
+				jp.add(caratula); jp.add(info);
 				panel.add(jp);
+
 			} else {
 				titulo = alquileres.get(i).getAlquilado().getNombre();
 				fecha = "[" + alquileres.get(i).getFecha_inicio() + " - " + alquileres.get(i).getFecha_fin() + "]";
-				JPanel jp = new JPanel(new FlowLayout());
+				
+				JPanel jp = new JPanel(new GridLayout(0, 1));
 				jp.setOpaque(false);
+				JPanel caratula = new JPanel(new FlowLayout());
+				caratula.setOpaque(false);
+				JPanel info = new JPanel(new FlowLayout());
+				info.setOpaque(false);
 
 				JLabel label = new JLabel(titulo, JLabel.CENTER);
 				label.setFont(fuente);
@@ -137,11 +154,18 @@ public class VentanaAlquileres extends JFrame {
 				label2.setFont(fuente2);
 				label2.setForeground(Color.WHITE);
 
-				label2.setOpaque(false);
+				JLabel caratulaLabel;
+				ImageIcon img1 = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+alquileres.get(i).getAlquilado().getCaratula());
 
+				Image image = img1.getImage();
+				image = getScaledImage(image, 87, 120);
+				ImageIcon finalImage = new ImageIcon(image);
+				caratulaLabel = new JLabel(finalImage);
+				
+				caratula.add(caratulaLabel);
+				info.add(label); info.add(label2);
 
-				jp.add(label);
-				jp.add(label2);
+				jp.add(caratula); jp.add(info);
 				panel2.add(jp);
 			}
 		}
@@ -149,8 +173,8 @@ public class VentanaAlquileres extends JFrame {
 		JButton botonVolver = new JButton();
 		botonVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Volver");
-
+				ventanaQueMeLlama.setVisible(true);
+				VentanaAlquileres.this.dispose();
 			}
 		});
 		botonVolver.setBounds(836, 453, 100, 50);
@@ -161,35 +185,4 @@ public class VentanaAlquileres extends JFrame {
 
 	}
 
-	// Método que carga datos de prueba aleatoriamente en el ArrayList
-	public void cargaArticulos() {
-		Pelicula p1 = new Pelicula("Los Vengadores", "Sinopsis Los Vengadores", "Acción", "30/11/2010", 2);
-		Videojuego v1 = new Videojuego("GTA V", "Descripción GTA V", "Acción", "20/09/2014", 9);
-
-		Alquiler a1 = new Alquiler(p1, 20.25 , "20/03/2019", "30/03/2019", true);
-		Alquiler a2 = new Alquiler(v1, 50 , "15/02/2019", "03/04/2019", false);
-		Alquiler a3 = new Alquiler(v1, 5.5 , "01/31/2018", "12/31/2018", true);
-		Alquiler a4 = new Alquiler(p1, 25.15 , "29/03/2019", "11/04/2019", false);
-		Alquiler a5 = new Alquiler(v1, 10.50 , "01/02/2019", "12/02/2019", false);
-
-		Random random = new Random();
-		int r;
-		int j = 0;
-		while(j < 75) {
-			r = random.nextInt(5);
-			if(r == 0) {
-				alquileres.add(a1);
-			} else if(r == 1) {
-				alquileres.add(a2);
-			} else if(r == 2) {
-				alquileres.add(a3);
-			} else if(r == 3) {
-				alquileres.add(a4);
-			} else {
-				alquileres.add(a5);
-			}
-			j++;
-		}
-
-	}
 }

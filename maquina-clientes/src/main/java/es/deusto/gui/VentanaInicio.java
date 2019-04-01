@@ -25,7 +25,8 @@ import java.awt.event.ActionEvent;
 public class VentanaInicio extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private HashMap<String, Socio> socio = new HashMap<String, Socio>();
+	
+	private HashMap<String, Socio> socios = new HashMap<String, Socio>();
 
 	/**
 	 * Launch the application.
@@ -56,7 +57,9 @@ public class VentanaInicio extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaInicio() {
-		//socio.put("a", "a");
+		Socio s = new Socio("a", "a", 0);
+		socios.put(s.getNombre(), s);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 540);
 
@@ -129,9 +132,9 @@ public class VentanaInicio extends JFrame {
 					JOptionPane.showMessageDialog(null, "Alguno de los campos está vacio, por favor introduce un nombre de usuario y contraseña correctos.", "Aviso", JOptionPane.WARNING_MESSAGE);
 				} else {
 					// Comprobación de si existe un usuario registrado con el nombre introducido
-					if(socio.containsKey(nombreUsuario)) {
+					if(socios.containsKey(nombreUsuario)) {
 						// Comprobación de si la contraseña coincide con la del nombre de usuario registrado
-						if(socio.get(nombreUsuario).getPassword().equals(pass)) {
+						if(socios.get(nombreUsuario).getPassword().equals(pass)) {
 							System.out.println("Has iniciado sesión correctamente, bienvenido!");
 							textfield.setText(""); passwordField.setText("");
 
@@ -143,7 +146,7 @@ public class VentanaInicio extends JFrame {
 							background.revalidate();
 							background.repaint();
 							JOptionPane.showMessageDialog(null, "Has iniciado sesión correctamente!!", "", JOptionPane.INFORMATION_MESSAGE);
-							Socio iniciado = socio.get(nombreUsuario);
+							Socio iniciado = socios.get(nombreUsuario);
 							MenuSocio ms = new MenuSocio(VentanaInicio.this, iniciado);
 							ms.setVisible(true);
 							VentanaInicio.this.setVisible(false);
@@ -204,9 +207,9 @@ public class VentanaInicio extends JFrame {
 								// Comprobación de si la contraseña introducida contiene tanto letras como números
 								if(contieneLetrasYNumeros(pass)) {
 									// Comprobación de si existe un socio con el nombre de usuario introducido en el JTextField
-									if(!socio.containsKey(nombreUsuario)) {
+									if(!socios.containsKey(nombreUsuario)) {
 										Socio cliente= new Socio(nombreUsuario, pass, 0);
-										socio.put(nombreUsuario, cliente);
+										socios.put(nombreUsuario, cliente);
 										JOptionPane.showMessageDialog(null, "Te has registrado correctamente :)", "Registro", JOptionPane.INFORMATION_MESSAGE);
 										textfield.setText(""); passwordField.setText("");
 									} else {

@@ -7,16 +7,16 @@ public class Pelicula extends Articulo {
 	private String fecha_estr;
 	private double puntuacion;
 	
-	public Pelicula(String nombre, String sinopsis, String genero, String fecha_estr, double puntuacion) {
-		super(nombre);
+	public Pelicula(String nombre, String sinopsis, String genero, String fecha_estr, double puntuacion, boolean disponible) {
+		super(nombre, disponible);
 		this.sinopsis = sinopsis;
 		this.genero = genero;
 		this.fecha_estr = fecha_estr;
 		this.puntuacion = puntuacion;
 	}
 	
-	public Pelicula(String nombre, String caratula, String sinopsis, String genero, String fecha_estr, double puntuacion) {
-		super(nombre, caratula);
+	public Pelicula(String nombre, String sinopsis, String genero, String fecha_estr, double puntuacion, boolean disponible, String caratula) {
+		super(nombre, disponible, caratula);
 		this.sinopsis = sinopsis;
 		this.genero = genero;
 		this.fecha_estr = fecha_estr;

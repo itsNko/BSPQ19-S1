@@ -7,13 +7,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import es.deusto.data.Alquiler;
+import es.deusto.data.Articulo;
+import es.deusto.data.Pelicula;
 import es.deusto.data.Socio;
+import es.deusto.data.Videojuego;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -23,6 +28,9 @@ public class MenuSocio extends JFrame {
 	private static final long serialVersionUID = 1L;
 	// private JFrame frame;
 	private JFrame ventanaInicio;
+	
+	private ArrayList<Articulo> articulos = new ArrayList<Articulo>();
+	private ArrayList<Alquiler> alquileres = new ArrayList<Alquiler>();
 
 	/**
 	 * Launch the application.
@@ -45,6 +53,10 @@ public class MenuSocio extends JFrame {
 	 * @param iniciado 
 	 */
 	public MenuSocio(JFrame ventanaAnterior, Socio iniciado) {
+		
+		cargarArticulosPrueba();
+		cargarAlquileresPrueba();
+		
 		ventanaInicio = ventanaAnterior;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,7 +76,7 @@ public class MenuSocio extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Alquilar");
-				ListadoArticulos ls = new ListadoArticulos(MenuSocio.this);
+				ListadoArticulos ls = new ListadoArticulos(MenuSocio.this, articulos, alquileres);
 				ls.setVisible(true);
 				MenuSocio.this.setVisible(false);
 			}
@@ -80,6 +92,9 @@ public class MenuSocio extends JFrame {
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Consultar alquileres");
+				VentanaAlquileres va = new VentanaAlquileres(MenuSocio.this, alquileres);
+				va.setVisible(true);
+				MenuSocio.this.setVisible(false);
 			}
 		});
 		background.add(btnConsultar);
@@ -104,6 +119,9 @@ public class MenuSocio extends JFrame {
 		btnDevolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Devolver artículos");
+				VentanaDevolucion vd = new VentanaDevolucion(MenuSocio.this, alquileres);
+				vd.setVisible(true);
+				MenuSocio.this.setVisible(false);
 			}
 		});
 		btnDevolver.setBounds(490, 240, 170, 50);
@@ -159,5 +177,54 @@ public class MenuSocio extends JFrame {
 		g2.dispose();
 
 		return resizedImg;
+	}
+	
+	private void cargarArticulosPrueba() {
+		Videojuego a1 = new Videojuego("Sonic", "Descripcion de Sonic", "Plataformas","10/02/2004", 7, true, "sonic.JPG");
+		Pelicula a2 = new Pelicula("Los vengadores", "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, true, "vengadores.jpg");
+		Videojuego a3 = new Videojuego("Mario Bros", "Descripcion de Mario", "Aventura","31/03/2008", 8.5, true, "mario.jpg");
+		
+		articulos.add(a1);
+		articulos.add(a2);
+		articulos.add(a3);
+		
+	}
+	
+	private void cargarAlquileresPrueba() {
+		Pelicula p1 = new Pelicula("Los vengadores", "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, true, "vengadores.jpg");
+		Videojuego v1 = new Videojuego("Mario Bros", "Descripcion de Mario", "Aventura","31/03/2008", 8.5, true, "mario.jpg");
+		
+
+		Alquiler a1 = new Alquiler(p1, 6.25, "20/03/2019", "30/03/2019", true);
+		Alquiler a2 = new Alquiler(v1, 5, "15/02/2019", "03/04/2019", false);
+		Alquiler a3 = new Alquiler(v1, 5.5, "01/31/2018", "12/31/2018", true);
+		Alquiler a4 = new Alquiler(p1, 25.15, "29/03/2019", "11/04/2019", false);
+		Alquiler a5 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", false);
+		Alquiler a6 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", true);
+		Alquiler a7 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", true);
+		Alquiler a8 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", false);
+		Alquiler a9 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", true);
+		Alquiler a10 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", true);
+		Alquiler a11 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", true);
+		Alquiler a12 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", true);
+		Alquiler a13 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", true);
+		Alquiler a14 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", true);
+		
+		alquileres.add(a1);
+		alquileres.add(a2);
+		alquileres.add(a3);
+		alquileres.add(a4);
+		alquileres.add(a5);
+		alquileres.add(a6);
+		alquileres.add(a7);
+		alquileres.add(a8);
+		alquileres.add(a9);
+		alquileres.add(a10);
+		alquileres.add(a11);
+		alquileres.add(a12);
+		alquileres.add(a13);
+		alquileres.add(a14);
+		
+		
 	}
 }

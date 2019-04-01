@@ -6,15 +6,14 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import es.deusto.data.Alquiler;
 import es.deusto.data.Articulo;
-import es.deusto.data.Socio;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -22,10 +21,9 @@ import java.awt.event.ActionEvent;
 
 public class ListadoArticulos extends JFrame {
 
-	private JFrame frame;
-	private JFrame MenuSocio;
+	private static final long serialVersionUID = 1L;
 	
-	Articulo a1 = new Articulo("Sonic", "sonic.JPG");
+	private JFrame MenuSocio;
 
 	/**
 	 * Launch the application.
@@ -34,7 +32,7 @@ public class ListadoArticulos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ListadoArticulos window = new ListadoArticulos(null);
+					ListadoArticulos window = new ListadoArticulos(null, null, null);
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +44,7 @@ public class ListadoArticulos extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public ListadoArticulos(JFrame VentanaAnterior) {
+	public ListadoArticulos(JFrame VentanaAnterior, ArrayList<Articulo> articulos, ArrayList<Alquiler> alquileres) {
 		MenuSocio = VentanaAnterior;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,13 +75,21 @@ public class ListadoArticulos extends JFrame {
 		btnVolver.setBorderPainted(false);
 		
 		int distancia = 128;
-		for (int i = 0; i<6;i++) {
-			JButton btnJuego = new JButton();
-			btnJuego.setBounds(distancia, 200, 87, 120);
-			background.add(btnJuego);
-			ImageIcon img1 = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+a1.getCaratula());
-			btnJuego.setIcon(img1);
-			distancia = distancia+120;
+		for (int i = 0; i < articulos.size(); i++) {
+			if(articulos.get(i).isDisponible()) {
+				JButton btnJuego = new JButton();
+				btnJuego.setBounds(distancia, 200, 87, 120);
+				background.add(btnJuego);
+				ImageIcon img1 = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+articulos.get(i).getCaratula());
+				
+				Image image = img1.getImage();
+				image = getScaledImage(image, 87, 120);
+				ImageIcon finalImage = new ImageIcon(image);
+				
+				btnJuego.setIcon(finalImage);
+				distancia = distancia+120;
+			}
+			
 		}
 		
 	}
