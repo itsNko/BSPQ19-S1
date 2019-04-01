@@ -1,6 +1,5 @@
 package es.deusto.gui;
 
-import java.awt.EventQueue;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -13,34 +12,31 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 
 public class MenuSocio extends JFrame {
 
-	private JFrame frame;
+	private static final long serialVersionUID = 1L;
+	// private JFrame frame;
 	private JFrame ventanaInicio;
 
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					MenuSocio frame = new MenuSocio();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	//	public static void main(String[] args) {
+	//		EventQueue.invokeLater(new Runnable() {
+	//			public void run() {
+	//				try {
+	//					MenuSocio frame = new MenuSocio();
+	//					frame.setVisible(true);
+	//				} catch (Exception e) {
+	//					e.printStackTrace();
+	//				}
+	//			}
+	//		});
+	//	}
 
 	/**
 	 * Create the application.
@@ -60,7 +56,7 @@ public class MenuSocio extends JFrame {
 		background.setBounds(0,0,960, 518);
 		getContentPane().add(background);
 		background.setLayout(null);
-		
+
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -72,8 +68,8 @@ public class MenuSocio extends JFrame {
 		btnNewButton.setOpaque(false);
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.setBorderPainted(false);
-		
-		
+
+
 		JButton btnConsultar = new JButton("");
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -85,7 +81,7 @@ public class MenuSocio extends JFrame {
 		btnConsultar.setOpaque(false);
 		btnConsultar.setContentAreaFilled(false);
 		btnConsultar.setBorderPainted(false);
-		
+
 		JButton btnRecargar = new JButton("");
 		btnRecargar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
@@ -97,7 +93,7 @@ public class MenuSocio extends JFrame {
 		btnRecargar.setOpaque(false);
 		btnRecargar.setContentAreaFilled(false);
 		btnRecargar.setBorderPainted(false);
-		
+
 		JButton btnDevolver = new JButton("");
 		btnDevolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -109,7 +105,7 @@ public class MenuSocio extends JFrame {
 		btnDevolver.setOpaque(false);
 		btnDevolver.setContentAreaFilled(false);
 		btnDevolver.setBorderPainted(false);
-		
+
 		JButton btnSalir = new JButton("");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -123,40 +119,40 @@ public class MenuSocio extends JFrame {
 		btnSalir.setOpaque(false);
 		btnSalir.setContentAreaFilled(false);
 		btnSalir.setBorderPainted(false);
-		
+
 		final JLabel fotoPerfil;
 		ImageIcon defaultProfile = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"default-profile.png");
 		im = defaultProfile.getImage();
 		im = getScaledImage(im,200,200);
 		defaultProfile = new ImageIcon(im);
-		
+
 		fotoPerfil = new JLabel("", defaultProfile, JLabel.CENTER);
 		fotoPerfil.setBounds(25,220,450, 300);
 		background.add(fotoPerfil);
-		
+
 		JLabel lblHola = new JLabel("¡Hola Nacho!");
 		lblHola.setFont(new Font("AppleGothic", Font.PLAIN, 22));
 		lblHola.setForeground(Color.WHITE);
 		lblHola.setBounds(170, 159, 180, 60);
 		background.add(lblHola);
-		
+
 		JLabel lblSaldo = new JLabel("Tu saldo actual es de X €");
 		lblSaldo.setFont(new Font("AppleGothic", Font.PLAIN, 18));
 		lblSaldo.setForeground(Color.WHITE);
 		lblSaldo.setBounds(135, 200, 250, 60);
 		background.add(lblSaldo);
-		
+
 
 	}
-	
+
 	private Image getScaledImage(Image srcImg, int w, int h){
-	    BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-	    Graphics2D g2 = resizedImg.createGraphics();
+		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2 = resizedImg.createGraphics();
 
-	    g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-	    g2.drawImage(srcImg, 0, 0, w, h, null);
-	    g2.dispose();
+		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g2.drawImage(srcImg, 0, 0, w, h, null);
+		g2.dispose();
 
-	    return resizedImg;
+		return resizedImg;
 	}
 }
