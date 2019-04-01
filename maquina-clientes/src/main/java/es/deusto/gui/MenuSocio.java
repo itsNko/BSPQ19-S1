@@ -105,7 +105,6 @@ public class MenuSocio extends JFrame {
 		btnDevolver.setOpaque(false);
 		btnDevolver.setContentAreaFilled(false);
 		btnDevolver.setBorderPainted(false);
-
 		JButton btnSalir = new JButton("");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
