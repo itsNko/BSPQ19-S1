@@ -70,115 +70,84 @@ public class VentanaConfirmacion extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 504, 241);
+		setBounds(100, 100, 962, 540);
 		
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		final JLabel background;
-		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"fondoAzul1.jpg");
+		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"confirmarAlquiler.png");
 		Image im = img.getImage();
-		im = getScaledImage(im, 504, 241);
+		im = getScaledImage(im, 960, 540);
 		ImageIcon finalImg= new ImageIcon(im);
 		background = new JLabel("", finalImg, JLabel.CENTER);
-		background.setBounds(0,0,504, 241);
-		getContentPane().add(background);
-		background.setBorder(new EmptyBorder(5, 5, 5, 5));
-		background.setLayout(new BorderLayout(0, 0));
+		background.setBounds(100,100,450, 300);
 		
 		
-		JLabel lblNewLabel = new JLabel("CONFIRMACIÓN DE ALQUILER");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		background.add(lblNewLabel, BorderLayout.NORTH);
-		
-		JPanel panel = new JPanel();
-		background.add(panel, BorderLayout.CENTER);
 		
 		JLabel lblArtculo = new JLabel("Artículo: ");
+		lblArtculo.setBounds(100,70,150,150);
+		lblArtculo.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		lblArtculo.setForeground(Color.WHITE);;
+		background.add(lblArtculo);
 		
 		JLabel lblPrecio = new JLabel("Precio: ");
+		lblPrecio.setBounds(100,150,150,150);
+		lblPrecio.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		lblPrecio.setForeground(Color.WHITE);;
+		background.add(lblPrecio);
 		
 		JLabel lblFechaDevolucin = new JLabel("Fecha devolución: ");
+		lblFechaDevolucin.setBounds(100,230,300,150);
+		lblFechaDevolucin.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		lblFechaDevolucin.setForeground(Color.WHITE);;
+		background.add(lblFechaDevolucin);
 		
 		JLabel lblMonedero = new JLabel("Monedero: ");
+		lblMonedero.setBounds(500,150,300,150);
+		lblMonedero.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		lblMonedero.setForeground(Color.WHITE);;
+		background.add(lblMonedero);
 		
 		JLabel lblSaldo = new JLabel("Saldo restante: ");
+		lblSaldo.setBounds(500,230,300,150);
+		lblSaldo.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		lblSaldo.setForeground(Color.WHITE);;
+		background.add(lblSaldo);
 		
 		JLabel label = new JLabel("" + a1.getAlquilado().getNombre());
+		label.setBounds(190,70,500,150);
+		label.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		label.setForeground(Color.WHITE);;
+		background.add(label);
 		
-		
-		JLabel label_1 = new JLabel("" + a1.getCoste());
+		JLabel label_1 = new JLabel("" + a1.getCoste() + "€");
+		label_1.setBounds(180,150,500,150);
+		label_1.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		label_1.setForeground(Color.WHITE);;
+		background.add(label_1);
 		
 		JLabel label_2 = new JLabel("" + a1.getFecha_fin());
+		label_2.setBounds(280,230,500,150);
+		label_2.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		label_2.setForeground(Color.WHITE);;
+		background.add(label_2);
 		
-		JLabel label_3 = new JLabel("" + tester.getMonedero());
+		JLabel label_3 = new JLabel("" + tester.getMonedero()+ "€");
+		label_3.setBounds(615,150,500,150);
+		label_3.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		label_3.setForeground(Color.WHITE);;
+		background.add(label_3);
 		
-		JLabel label_4 = new JLabel("" + (tester.getMonedero() - a1.getCoste() ) );
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblArtculo)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(label))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-								.addComponent(label_1)
-								.addComponent(lblFechaDevolucin))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(label_2))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblPrecio)
-							.addPreferredGap(ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(lblSaldo)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(label_4))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(lblMonedero)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(label_3)))))
-					.addContainerGap())
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblArtculo)
-						.addComponent(label))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblPrecio)
-						.addComponent(label_1)
-						.addComponent(lblMonedero)
-						.addComponent(label_3))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblFechaDevolucin)
-						.addComponent(label_2))
-					.addGap(26)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblSaldo)
-						.addComponent(label_4))
-					.addContainerGap(51, Short.MAX_VALUE))
-		);
-		panel.setLayout(gl_panel);
-		
-		JPanel panelBotones = new JPanel();
-		background.add(panelBotones, BorderLayout.SOUTH);
+		JLabel label_4 = new JLabel("" + (tester.getMonedero() - a1.getCoste() ) + "€" );
+		label_4.setBounds(650,230,500,150);
+		label_4.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		label_4.setForeground(Color.WHITE);;
+		background.add(label_4);
 		
 		
-		JButton bConfirmar = new JButton("Confirmar");
+		JButton bConfirmar = new JButton("");
 		bConfirmar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -194,8 +163,34 @@ public class VentanaConfirmacion extends JFrame {
 				
 			}
 		});
-		panelBotones.add(bConfirmar);
+		bConfirmar.setBounds(735,452,142,50);
+		bConfirmar.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		bConfirmar.setForeground(Color.WHITE);
+		bConfirmar.setOpaque(false);
+		bConfirmar.setContentAreaFilled(false);
+		bConfirmar.setBorderPainted(false);
+		background.add(bConfirmar);
 		
+		JButton bCancelar = new JButton("");
+		
+		bCancelar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Para mas acciones
+				System.out.println("Página anterior.");				
+			}
+		});
+		bCancelar.setBounds(80,452,142,50);
+		bCancelar.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		bCancelar.setForeground(Color.WHITE);
+		bCancelar.setOpaque(false);
+		bCancelar.setContentAreaFilled(false);
+		bCancelar.setBorderPainted(false);
+		background.add(bCancelar);
+		
+		getContentPane().add(background);
+		background.setBorder(new EmptyBorder(5, 5, 5, 5));
+		background.setLayout(new BorderLayout(0, 0));
 		
 	}
 	
