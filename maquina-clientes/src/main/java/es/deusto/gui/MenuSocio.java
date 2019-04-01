@@ -64,6 +64,9 @@ public class MenuSocio extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Alquilar");
+				ListadoArticulos ls = new ListadoArticulos(MenuSocio.this);
+				ls.setVisible(true);
+				MenuSocio.this.setVisible(false);
 			}
 		});
 		btnNewButton.setBounds(490, 159, 170, 50);
