@@ -56,7 +56,7 @@ public class MenuSocio extends JFrame {
 		
 		cargarArticulosPrueba();
 		cargarAlquileresPrueba();
-		
+		setTitle("Menú principal");
 		ventanaInicio = ventanaAnterior;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
