@@ -52,7 +52,7 @@ public class MenuSocio extends JFrame {
 	 * Create the application.
 	 * @param iniciado 
 	 */
-	public MenuSocio(JFrame ventanaAnterior, Socio iniciado) {
+	public MenuSocio(JFrame ventanaAnterior, final Socio iniciado) {
 		
 		cargarArticulosPrueba();
 		cargarAlquileresPrueba();
@@ -76,7 +76,7 @@ public class MenuSocio extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Alquilar");
-				ListadoArticulos ls = new ListadoArticulos(MenuSocio.this, articulos, alquileres);
+				ListadoArticulos ls = new ListadoArticulos(MenuSocio.this, articulos, alquileres, iniciado);
 				ls.setVisible(true);
 				MenuSocio.this.setVisible(false);
 			}

@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 
 import es.deusto.data.Alquiler;
 import es.deusto.data.Articulo;
+import es.deusto.data.Socio;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -32,7 +33,7 @@ public class ListadoArticulos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ListadoArticulos window = new ListadoArticulos(null, null, null);
+					ListadoArticulos window = new ListadoArticulos(null, null, null, null);
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +45,7 @@ public class ListadoArticulos extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public ListadoArticulos(JFrame VentanaAnterior, ArrayList<Articulo> articulos, ArrayList<Alquiler> alquileres) {
+	public ListadoArticulos(JFrame VentanaAnterior, final ArrayList<Articulo> articulos, ArrayList<Alquiler> alquileres, final Socio iniciado) {
 		MenuSocio = VentanaAnterior;
 		setTitle("Artículos disponibles para alquilar");
 		setResizable(false);
@@ -79,6 +80,17 @@ public class ListadoArticulos extends JFrame {
 		for (int i = 0; i < articulos.size(); i++) {
 			if(articulos.get(i).isDisponible()) {
 				JButton btnJuego = new JButton();
+				final Articulo a1 = articulos.get(i);
+				btnJuego.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Alquiler a = new Alquiler(a1, 10 , "20/03/2019", "30/03/2019", false);
+						
+						VentanaConfirmacion confirm = new VentanaConfirmacion(iniciado, a);
+						confirm.setVisible(true);
+						setVisible(false);
+					}
+				});
 				btnJuego.setBounds(distancia, 200, 87, 120);
 				background.add(btnJuego);
 				ImageIcon img1 = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+articulos.get(i).getCaratula());

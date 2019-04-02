@@ -17,22 +17,19 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import es.deusto.data.Alquiler;
+import es.deusto.data.Articulo;
 import es.deusto.data.Pelicula;
 import es.deusto.data.Socio;
 import java.awt.Color;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class VentanaConfirmacion extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	Pelicula p1 = new Pelicula("Los Vengadores", "Sinopsis Los Vengadores", "Acción", "30/11/2010", 2, true);
+	Pelicula p1 = new Pelicula("Los Vengadores", "Sinopsis Los Vengadores", "Acción", "30/11/2010", 2, true, "vengadores.jpg");
 
 	
 	private Alquiler a1 = new Alquiler(p1, 20.25 , "20/03/2019", "30/03/2019", false);
@@ -44,7 +41,7 @@ public class VentanaConfirmacion extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaConfirmacion frame = new VentanaConfirmacion();
+					VentanaConfirmacion frame = new VentanaConfirmacion(null,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,7 +61,7 @@ public class VentanaConfirmacion extends JFrame {
 		return resizedImg;
 	}
 	
-	public VentanaConfirmacion() {
+	public VentanaConfirmacion(final Socio s1, final Alquiler a) {
 		setResizable(false);
 		setTitle("Confirmación");
 		
@@ -86,63 +83,76 @@ public class VentanaConfirmacion extends JFrame {
 		
 		
 		
+		JLabel imagen;
+		ImageIcon imge = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+a.getAlquilado().getCaratula());
+		Image imgen = imge.getImage();
+		imgen = getScaledImage(imgen, 200, 270);
+		ImageIcon finalImgen = new ImageIcon(imgen);
+		imagen = new JLabel("", finalImgen, JLabel.CENTER);
+		imagen.setBounds(150, 125, 200, 270);
+		background.add(imagen);
+		
+		
+		
 		JLabel lblArtculo = new JLabel("Artículo: ");
-		lblArtculo.setBounds(100,70,150,150);
-		lblArtculo.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		lblArtculo.setBounds(450,70,150,150);
+		lblArtculo.setFont(new Font("Times New Roman", Font.BOLD, 22));
 		lblArtculo.setForeground(Color.WHITE);;
 		background.add(lblArtculo);
 		
+		JLabel label = new JLabel("" + a.getAlquilado().getNombre());
+		label.setBounds(540,70,500,150);
+		label.setFont(new Font("Times New Roman", Font.BOLD, 22));
+		label.setForeground(Color.WHITE);
+		background.add(label);
+		
 		JLabel lblPrecio = new JLabel("Precio: ");
-		lblPrecio.setBounds(100,150,150,150);
-		lblPrecio.setFont(new Font("AppleGothic", Font.PLAIN, 22));
-		lblPrecio.setForeground(Color.WHITE);;
+		lblPrecio.setBounds(450,120,150,150);
+		lblPrecio.setFont(new Font("Times New Roman", Font.BOLD, 22));
+		lblPrecio.setForeground(Color.WHITE);
 		background.add(lblPrecio);
 		
+		JLabel label_1 = new JLabel("" + a.getCoste() + "€");
+		label_1.setBounds(530,120,500,150);
+		label_1.setFont(new Font("Times New Roman", Font.BOLD, 22));
+		label_1.setForeground(Color.WHITE);
+		background.add(label_1);
+		
 		JLabel lblFechaDevolucin = new JLabel("Fecha devolución: ");
-		lblFechaDevolucin.setBounds(100,230,300,150);
-		lblFechaDevolucin.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		lblFechaDevolucin.setBounds(450,170,300,150);
+		lblFechaDevolucin.setFont(new Font("Times New Roman", Font.BOLD, 22));
 		lblFechaDevolucin.setForeground(Color.WHITE);;
 		background.add(lblFechaDevolucin);
 		
-		JLabel lblMonedero = new JLabel("Monedero: ");
-		lblMonedero.setBounds(500,150,300,150);
-		lblMonedero.setFont(new Font("AppleGothic", Font.PLAIN, 22));
-		lblMonedero.setForeground(Color.WHITE);;
-		background.add(lblMonedero);
-		
-		JLabel lblSaldo = new JLabel("Saldo restante: ");
-		lblSaldo.setBounds(500,230,300,150);
-		lblSaldo.setFont(new Font("AppleGothic", Font.PLAIN, 22));
-		lblSaldo.setForeground(Color.WHITE);;
-		background.add(lblSaldo);
-		
-		JLabel label = new JLabel("" + a1.getAlquilado().getNombre());
-		label.setBounds(190,70,500,150);
-		label.setFont(new Font("AppleGothic", Font.PLAIN, 22));
-		label.setForeground(Color.WHITE);;
-		background.add(label);
-		
-		JLabel label_1 = new JLabel("" + a1.getCoste() + "€");
-		label_1.setBounds(180,150,500,150);
-		label_1.setFont(new Font("AppleGothic", Font.PLAIN, 22));
-		label_1.setForeground(Color.WHITE);;
-		background.add(label_1);
-		
-		JLabel label_2 = new JLabel("" + a1.getFecha_fin());
-		label_2.setBounds(280,230,500,150);
-		label_2.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		JLabel label_2 = new JLabel("" + a.getFecha_fin());
+		label_2.setBounds(630,170,500,150);
+		label_2.setFont(new Font("Times New Roman", Font.BOLD, 22));
 		label_2.setForeground(Color.WHITE);;
 		background.add(label_2);
 		
-		JLabel label_3 = new JLabel("" + tester.getMonedero()+ "€");
-		label_3.setBounds(615,150,500,150);
-		label_3.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		JLabel lblMonedero = new JLabel("Monedero: ");
+		lblMonedero.setBounds(450,220,300,150);
+		lblMonedero.setFont(new Font("Times New Roman", Font.BOLD, 22));
+		lblMonedero.setForeground(Color.WHITE);
+		background.add(lblMonedero);
+		
+		JLabel label_3 = new JLabel("" + s1.getMonedero()+ "€");
+		label_3.setBounds(560,220,500,150);
+		label_3.setFont(new Font("Times New Roman", Font.BOLD, 22));
 		label_3.setForeground(Color.WHITE);;
 		background.add(label_3);
 		
-		JLabel label_4 = new JLabel("" + (tester.getMonedero() - a1.getCoste() ) + "€" );
-		label_4.setBounds(650,230,500,150);
-		label_4.setFont(new Font("AppleGothic", Font.PLAIN, 22));
+		
+		JLabel lblSaldo = new JLabel("Saldo restante: ");
+		lblSaldo.setBounds(450,270,300,150);
+		lblSaldo.setFont(new Font("Times New Roman", Font.BOLD, 22));
+		lblSaldo.setForeground(Color.WHITE);
+		background.add(lblSaldo);		
+		
+		
+		JLabel label_4 = new JLabel("" + (s1.getMonedero() - a.getCoste() ) + "€" );
+		label_4.setBounds(600,270,500,150);
+		label_4.setFont(new Font("Times New Roman", Font.BOLD, 22));
 		label_4.setForeground(Color.WHITE);;
 		background.add(label_4);
 		
@@ -152,7 +162,7 @@ public class VentanaConfirmacion extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Para mas acciones
-				if(a1.getCoste() > tester.getMonedero()) {
+				if(a.getCoste() > s1.getMonedero()) {
 					JOptionPane.showMessageDialog(null, "No tiene suficiente dinero en el monedero, porfavor introduzca más para seguir con la compra",
 							"Saldo insuficiente", JOptionPane.ERROR_MESSAGE);
 					repaint();
