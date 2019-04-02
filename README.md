@@ -1,3 +1,5 @@
+# Descripción
+
 Proyecto de un software para la gestión de un videoclub desarrollado en Java.
 Permite a usuarios, empleados y el director del videoclub realizar las acciones que deban llevar a cabo.
 Los clientes pueden hacerse socios del videoclub para poder alquilar artículos (películas y videojuegos), además de recibir ofertas.

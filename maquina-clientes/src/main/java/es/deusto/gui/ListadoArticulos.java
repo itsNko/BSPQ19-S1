@@ -46,6 +46,7 @@ public class ListadoArticulos extends JFrame {
 	 */
 	public ListadoArticulos(JFrame VentanaAnterior, ArrayList<Articulo> articulos, ArrayList<Alquiler> alquileres) {
 		MenuSocio = VentanaAnterior;
+		setTitle("Artículos disponibles para alquilar");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 540);
