@@ -1,6 +1,5 @@
 package es.deusto.gui;
 
-import java.awt.EventQueue;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -29,18 +28,18 @@ public class ListadoArticulos extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ListadoArticulos window = new ListadoArticulos(null, null, null, null);
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					ListadoArticulos window = new ListadoArticulos(null, null, null, null);
+//					window.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -86,7 +85,7 @@ public class ListadoArticulos extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						Alquiler a = new Alquiler(a1, 10 , "20/03/2019", "30/03/2019", false);
 						
-						VentanaConfirmacion confirm = new VentanaConfirmacion(iniciado, a);
+						VentanaConfirmacion confirm = new VentanaConfirmacion(ListadoArticulos.this, iniciado, a);
 						confirm.setVisible(true);
 						setVisible(false);
 					}

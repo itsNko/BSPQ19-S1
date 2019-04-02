@@ -200,38 +200,17 @@ public class MenuSocio extends JFrame {
 	private void cargarAlquileresPrueba() {
 		Pelicula p1 = new Pelicula("Los vengadores", "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, true, "vengadores.jpg");
 		Videojuego v1 = new Videojuego("Mario Bros", "Descripcion de Mario", "Aventura","31/03/2008", 8.5, true, "mario.jpg");
+		Videojuego v2 = new Videojuego("GTA V", "Descripcion de GTA V", "Acción","10/07/2012", 6, true, "GTAV.jpg");
 		
 
 		Alquiler a1 = new Alquiler(p1, 6.25, "20/03/2019", "30/03/2019", true);
 		Alquiler a2 = new Alquiler(v1, 5, "15/02/2019", "03/04/2019", false);
-		Alquiler a3 = new Alquiler(v1, 5.5, "01/31/2018", "12/31/2018", true);
-		Alquiler a4 = new Alquiler(p1, 25.15, "29/03/2019", "11/04/2019", false);
-		Alquiler a5 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", false);
-		Alquiler a6 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", true);
-		Alquiler a7 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", true);
-		Alquiler a8 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", false);
-		Alquiler a9 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", true);
-		Alquiler a10 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", true);
-		Alquiler a11 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", true);
-		Alquiler a12 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", true);
-		Alquiler a13 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", true);
-		Alquiler a14 = new Alquiler(v1, 10.50, "01/02/2019", "12/02/2019", true);
+		Alquiler a3 = new Alquiler(v2, 5.5, "01/31/2018", "12/31/2018", true);
+		
 		
 		alquileres.add(a1);
 		alquileres.add(a2);
 		alquileres.add(a3);
-		alquileres.add(a4);
-		alquileres.add(a5);
-		alquileres.add(a6);
-		alquileres.add(a7);
-		alquileres.add(a8);
-		alquileres.add(a9);
-		alquileres.add(a10);
-		alquileres.add(a11);
-		alquileres.add(a12);
-		alquileres.add(a13);
-		alquileres.add(a14);
-		
 		
 	}
 }

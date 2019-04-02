@@ -29,6 +29,8 @@ public class VentanaConfirmacion extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JFrame ventanaQueMeLlama;
+	
 	Pelicula p1 = new Pelicula("Los Vengadores", "Sinopsis Los Vengadores", "Acción", "30/11/2010", 2, true, "vengadores.jpg");
 
 	
@@ -37,18 +39,18 @@ public class VentanaConfirmacion extends JFrame {
 	//Socio de prueba
 	private Socio tester = new Socio("Pablo", "P123", 30);
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaConfirmacion frame = new VentanaConfirmacion(null,null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					VentanaConfirmacion frame = new VentanaConfirmacion(null, null,null);
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 	
 	private Image getScaledImage(Image srcImg, int w, int h){
 		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
@@ -61,7 +63,9 @@ public class VentanaConfirmacion extends JFrame {
 		return resizedImg;
 	}
 	
-	public VentanaConfirmacion(final Socio s1, final Alquiler a) {
+	public VentanaConfirmacion(JFrame ventanaAnterior, final Socio s1, final Alquiler a) {
+		ventanaQueMeLlama = ventanaAnterior;
+		
 		setResizable(false);
 		setTitle("Confirmación");
 		
@@ -186,8 +190,8 @@ public class VentanaConfirmacion extends JFrame {
 		bCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Para mas acciones
-				System.out.println("Página anterior.");				
+				ventanaQueMeLlama.setVisible(true);
+				VentanaConfirmacion.this.dispose();
 			}
 		});
 		bCancelar.setBounds(80,452,142,50);

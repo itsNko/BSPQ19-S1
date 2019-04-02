@@ -58,6 +58,7 @@ public class VentanaInicio extends JFrame {
 	 */
 	public VentanaInicio() {
 		setTitle("Bienvenido al Videoclub");
+		setResizable(false);
 		Socio s = new Socio("a", "a", 0);
 		socios.put(s.getNombre(), s);
 		
