@@ -180,13 +180,20 @@ public class MenuSocio extends JFrame {
 	}
 	
 	private void cargarArticulosPrueba() {
-		Videojuego a1 = new Videojuego("Sonic", "Descripcion de Sonic", "Plataformas","10/02/2004", 7, true, "sonic.JPG");
-		Pelicula a2 = new Pelicula("Los vengadores", "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, true, "vengadores.jpg");
-		Videojuego a3 = new Videojuego("Mario Bros", "Descripcion de Mario", "Aventura","31/03/2008", 8.5, true, "mario.jpg");
+		Videojuego v1 = new Videojuego("Sonic", "Descripcion de Sonic", "Plataformas","10/02/2004", 7, true, "sonic.JPG");
+		Videojuego v2 = new Videojuego("Mario Bros", "Descripcion de Mario", "Aventura","31/03/2008", 8.5, true, "mario.jpg");
+		Videojuego v3 = new Videojuego("GTA V", "Descripcion de GTA V", "Acción","20/03/2015", 9, true, "GTAV.jpg");
 		
-		articulos.add(a1);
-		articulos.add(a2);
-		articulos.add(a3);
+		Pelicula p1 = new Pelicula("Los vengadores", "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, true, "vengadores.jpg");
+		Pelicula p2 = new Pelicula("Harry Potter", "Descripcion de Harry Potter", "Acción","29/01/2009", 9, true, "harryPotter.jpg");
+		Pelicula p3 = new Pelicula("Star Wars I", "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, true, "starWars.jpg");
+		
+		articulos.add(v1);
+		articulos.add(v2);
+		articulos.add(v3);
+		articulos.add(p1);
+		articulos.add(p2);
+		articulos.add(p3);
 		
 	}
 	
