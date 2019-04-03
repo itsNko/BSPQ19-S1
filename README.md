@@ -25,7 +25,11 @@ Para compilar el proyecto es necesario introducir en la consola el siguiente com
 ```
 mvn compile
 ```
-Después, simplemente basta con compilar el código.
+Después, simplemente basta con compilar el código utilizando el siguiente comando de Maven:
+```
+mvn exec:java -D"exec.mainClass"="es.deusto.gui.VentanaInicio"
+```
+
 
 ## Construido con
 * [Maven](https://maven.apache.org/) - Dependency Management
