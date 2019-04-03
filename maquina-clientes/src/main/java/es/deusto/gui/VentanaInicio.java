@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
@@ -17,7 +18,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import es.deusto.data.Alquiler;
+import es.deusto.data.Pelicula;
 import es.deusto.data.Socio;
+import es.deusto.data.Videojuego;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -27,6 +31,7 @@ public class VentanaInicio extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private HashMap<String, Socio> socios = new HashMap<String, Socio>();
+	private ArrayList<Alquiler> alquileres = new ArrayList<Alquiler>();
 
 	/**
 	 * Launch the application.
@@ -43,7 +48,8 @@ public class VentanaInicio extends JFrame {
 			}
 		});
 	}
-	private Image getScaledImage(Image srcImg, int w, int h){
+	
+	private Image getScaledImage(Image srcImg, int w, int h) {
 		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = resizedImg.createGraphics();
 
@@ -54,32 +60,58 @@ public class VentanaInicio extends JFrame {
 		return resizedImg;
 	}
 	
-	private void candadoRojo(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde )
-	{
+	private void candadoRojo(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde ) {
 		candadoNegro.setVisible(false);
 		candadoRojo.setVisible(true);
 		candadoVerde.setVisible(false);
 	}
-	private void candadoVerde(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde )
-	{
+	private void candadoVerde(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde ) {
 		candadoNegro.setVisible(false);
 		candadoRojo.setVisible(false);
 		candadoVerde.setVisible(true);
 	}
-	private void candadoNegro(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde )
-	{
+	private void candadoNegro(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde ) {
 		candadoNegro.setVisible(true);
 		candadoRojo.setVisible(false);
 		candadoVerde.setVisible(false);
 	}
+	
+	public boolean contieneLetrasYNumeros(String s) {
+		String n = ".*[0-9].*";
+		String l = ".*[A-Z].*";
+		return s.matches(n) && s.matches(l);
+	}
+	
+	private void cargarAlquileresPrueba() {
+		Pelicula p1 = new Pelicula("Los vengadores", "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
+		Videojuego v1 = new Videojuego("Mario Bros", "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
+		Videojuego v2 = new Videojuego("GTA V", "Descripcion de GTA V", "Acción","10/07/2012", 6, "GTAV.jpg");
+		
+
+		Alquiler a1 = new Alquiler(p1, 6.25, "20/03/2019", "30/03/2019", true);
+		Alquiler a2 = new Alquiler(v1, 5, "15/02/2019", "03/04/2019", false);
+		Alquiler a3 = new Alquiler(v2, 5.5, "01/31/2018", "12/31/2018", true);
+		
+		
+		alquileres.add(a1);
+		alquileres.add(a2);
+		alquileres.add(a3);
+		
+	}
+	
 	/**
 	 * Create the frame.
 	 */
 	public VentanaInicio() {
 		setTitle("Bienvenido al Videoclub");
 		setResizable(false);
+		
+		cargarAlquileresPrueba();
+		
 		Socio s = new Socio("a", "a", 0);
+		s.setAlquileres(alquileres);
 		socios.put(s.getNombre(), s);
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 540);
@@ -232,6 +264,7 @@ public class VentanaInicio extends JFrame {
 									// Comprobación de si existe un socio con el nombre de usuario introducido en el JTextField
 									if(!socios.containsKey(nombreUsuario)) {
 										Socio cliente= new Socio(nombreUsuario, pass, 0);
+										cliente.setAlquileres(alquileres);
 										socios.put(nombreUsuario, cliente);
 										candadoVerde(candadoNegro, candadoRojo, candadoVerde);
 										JOptionPane.showMessageDialog(null, "Te has registrado correctamente :)", "Registro", JOptionPane.INFORMATION_MESSAGE);
@@ -274,11 +307,6 @@ public class VentanaInicio extends JFrame {
 
 
 
-	}
-	public boolean contieneLetrasYNumeros(String s) {
-		String n = ".*[0-9].*";
-		String l = ".*[A-Z].*";
-		return s.matches(n) && s.matches(l);
 	}
 
 }

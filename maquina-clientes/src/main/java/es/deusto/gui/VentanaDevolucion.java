@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import es.deusto.data.Alquiler;
+import es.deusto.data.Socio;
 
 public class VentanaDevolucion extends JFrame {
 
@@ -25,18 +25,18 @@ public class VentanaDevolucion extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					VentanaDevolucion frame = new VentanaDevolucion(null, null);
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	//	public static void main(String[] args) {
+	//		EventQueue.invokeLater(new Runnable() {
+	//			public void run() {
+	//				try {
+	//					VentanaDevolucion frame = new VentanaDevolucion(null, null);
+	//					frame.setVisible(true);
+	//				} catch (Exception e) {
+	//					e.printStackTrace();
+	//				}
+	//			}
+	//		});
+	//	}
 
 	private Image getScaledImage(Image srcImg, int w, int h){
 		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
@@ -52,10 +52,8 @@ public class VentanaDevolucion extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaDevolucion(JFrame ventanaAnterior, ArrayList<Alquiler> alquileres) {
+	public VentanaDevolucion(JFrame ventanaAnterior, final Socio s) {
 		ventanaQueMeLlama = ventanaAnterior;
-
-		//		cargaArticulos();
 
 		setTitle("Devolución de artículos");
 		setResizable(false);
@@ -85,25 +83,25 @@ public class VentanaDevolucion extends JFrame {
 		botonVolver.setBorderPainted(false);
 		background.add(botonVolver);
 
-//		JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT) {
-//
-//			private static final long serialVersionUID = 1L;
-//
-//			public Dimension preferredLayoutSize(Container target) {
-//				Dimension sd=super.preferredLayoutSize(target);
-//
-//				sd.width=Math.min(6, sd.width);
-//
-//				return sd;
-//			}
-//		});
+		//		JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT) {
+		//
+		//			private static final long serialVersionUID = 1L;
+		//
+		//			public Dimension preferredLayoutSize(Container target) {
+		//				Dimension sd=super.preferredLayoutSize(target);
+		//
+		//				sd.width=Math.min(6, sd.width);
+		//
+		//				return sd;
+		//			}
+		//		});
 
-//		JScrollPane scrollEnCurso = new JScrollPane(panel);
-//		panel.setOpaque(false);
-//		background.add(scrollEnCurso);
-//		scrollEnCurso.setBounds(83, 118, 787, 294);
-//		scrollEnCurso.setOpaque(false);
-//		scrollEnCurso.getViewport().setOpaque(false);
+		//		JScrollPane scrollEnCurso = new JScrollPane(panel);
+		//		panel.setOpaque(false);
+		//		background.add(scrollEnCurso);
+		//		scrollEnCurso.setBounds(83, 118, 787, 294);
+		//		scrollEnCurso.setOpaque(false);
+		//		scrollEnCurso.getViewport().setOpaque(false);
 
 		//		for (int i = 0; i < alquileres.size(); i++) {
 		//			if(alquileres.get(i).isEnCurso()) {
@@ -123,20 +121,21 @@ public class VentanaDevolucion extends JFrame {
 		//		}
 
 		int distancia = 128;
-		for (int i = 0; i < alquileres.size(); i++) {
-			if(alquileres.get(i).isEnCurso()) {
+		for (int i = 0; i < s.getAlquileres().size(); i++) {
+			if(s.getAlquileres().get(i).isEnCurso()) {
 				JButton btnArticulo = new JButton();
-				
+				final Alquiler a = s.getAlquileres().get(i);
 				btnArticulo.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						System.out.println("Ventana de confirmación de devolución");
-						
+						VentanaConfirmacionDevolucion vcd = new VentanaConfirmacionDevolucion(VentanaDevolucion.this, ventanaQueMeLlama, a, s);
+						vcd.setVisible(true);
+						VentanaDevolucion.this.setVisible(false);
 					}
 				});
 				btnArticulo.setBounds(distancia, 200, 87, 120);
 				background.add(btnArticulo);
-				ImageIcon img1 = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+alquileres.get(i).getAlquilado().getCaratula());
+				ImageIcon img1 = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+s.getAlquileres().get(i).getAlquilado().getCaratula());
 
 				Image image = img1.getImage();
 				image = getScaledImage(image, 87, 120);

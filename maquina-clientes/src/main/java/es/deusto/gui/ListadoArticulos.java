@@ -44,7 +44,7 @@ public class ListadoArticulos extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public ListadoArticulos(JFrame VentanaAnterior, final ArrayList<Articulo> articulos, ArrayList<Alquiler> alquileres, final Socio iniciado) {
+	public ListadoArticulos(JFrame VentanaAnterior, final ArrayList<Articulo> articulos, final Socio iniciado) {
 		MenuSocio = VentanaAnterior;
 		setTitle("Artículos disponibles para alquilar");
 		setResizable(false);

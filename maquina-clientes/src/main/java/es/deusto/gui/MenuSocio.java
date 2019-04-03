@@ -13,8 +13,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
-import es.deusto.data.Alquiler;
 import es.deusto.data.Articulo;
 import es.deusto.data.Pelicula;
 import es.deusto.data.Socio;
@@ -28,9 +28,9 @@ public class MenuSocio extends JFrame {
 	private static final long serialVersionUID = 1L;
 	// private JFrame frame;
 	private JFrame ventanaInicio;
-	
+
 	private ArrayList<Articulo> articulos = new ArrayList<Articulo>();
-	private ArrayList<Alquiler> alquileres = new ArrayList<Alquiler>();
+
 
 	/**
 	 * Launch the application.
@@ -53,9 +53,9 @@ public class MenuSocio extends JFrame {
 	 * @param iniciado 
 	 */
 	public MenuSocio(JFrame ventanaAnterior, final Socio iniciado) {
-		
+
 		cargarArticulosPrueba();
-		cargarAlquileresPrueba();
+
 		setTitle("Menú principal");
 		ventanaInicio = ventanaAnterior;
 		setResizable(false);
@@ -76,7 +76,7 @@ public class MenuSocio extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Alquilar");
-				ListadoArticulos ls = new ListadoArticulos(MenuSocio.this, articulos, alquileres, iniciado);
+				ListadoArticulos ls = new ListadoArticulos(MenuSocio.this, articulos, iniciado);
 				ls.setVisible(true);
 				MenuSocio.this.setVisible(false);
 			}
@@ -92,7 +92,7 @@ public class MenuSocio extends JFrame {
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Consultar alquileres");
-				VentanaAlquileres va = new VentanaAlquileres(MenuSocio.this, alquileres);
+				VentanaAlquileres va = new VentanaAlquileres(MenuSocio.this, iniciado.getAlquileres());
 				va.setVisible(true);
 				MenuSocio.this.setVisible(false);
 			}
@@ -119,9 +119,14 @@ public class MenuSocio extends JFrame {
 		btnDevolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Devolver artículos");
-				VentanaDevolucion vd = new VentanaDevolucion(MenuSocio.this, alquileres);
-				vd.setVisible(true);
-				MenuSocio.this.setVisible(false);
+				if(!alquileresEnCurso(iniciado)) {
+					JOptionPane.showMessageDialog(null, "No tienes alquileres en curso :(", "Error", JOptionPane.ERROR_MESSAGE);
+				} else {
+					VentanaDevolucion vd = new VentanaDevolucion(MenuSocio.this, iniciado);
+					vd.setVisible(true);
+					MenuSocio.this.setVisible(false);
+				}
+
 			}
 		});
 		btnDevolver.setBounds(490, 240, 170, 50);
@@ -178,39 +183,37 @@ public class MenuSocio extends JFrame {
 
 		return resizedImg;
 	}
-	
+
 	private void cargarArticulosPrueba() {
 		Videojuego v1 = new Videojuego("Sonic", "Descripcion de Sonic", "Plataformas","10/02/2004", 7, "sonic.JPG");
 		Videojuego v2 = new Videojuego("Mario Bros", "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
 		Videojuego v3 = new Videojuego("GTA V", "Descripcion de GTA V", "Acción","20/03/2015", 9, "GTAV.jpg");
-		
+
 		Pelicula p1 = new Pelicula("Los vengadores", "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
 		Pelicula p2 = new Pelicula("Harry Potter", "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg");
 		Pelicula p3 = new Pelicula("Star Wars I", "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, "starWars.jpg");
-		
+
 		articulos.add(v1);
 		articulos.add(v2);
 		articulos.add(v3);
 		articulos.add(p1);
 		articulos.add(p2);
 		articulos.add(p3);
-		
-	}
-	
-	private void cargarAlquileresPrueba() {
-		Pelicula p1 = new Pelicula("Los vengadores", "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
-		Videojuego v1 = new Videojuego("Mario Bros", "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
-		Videojuego v2 = new Videojuego("GTA V", "Descripcion de GTA V", "Acción","10/07/2012", 6, "GTAV.jpg");
-		
 
-		Alquiler a1 = new Alquiler(p1, 6.25, "20/03/2019", "30/03/2019", true);
-		Alquiler a2 = new Alquiler(v1, 5, "15/02/2019", "03/04/2019", false);
-		Alquiler a3 = new Alquiler(v2, 5.5, "01/31/2018", "12/31/2018", true);
-		
-		
-		alquileres.add(a1);
-		alquileres.add(a2);
-		alquileres.add(a3);
-		
 	}
+
+	private boolean alquileresEnCurso(final Socio iniciado) {
+		boolean result = false;
+
+		for(int i = 0; i < iniciado.getAlquileres().size(); i++) {
+			if(iniciado.getAlquileres().get(i).isEnCurso()) {
+				result = true;
+			} 
+		}
+
+
+		return result;
+
+	}
+
 }
