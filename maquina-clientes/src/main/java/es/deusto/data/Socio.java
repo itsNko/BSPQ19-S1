@@ -1,11 +1,14 @@
 package es.deusto.data;
 
+import java.util.ArrayList;
+
 public class Socio {
 
 	private String nombre;
 	private String password;
 	private int monedero;
 	private String imagen;
+	private ArrayList<Alquiler> alquileres;
 	
 	public Socio(String nombre, String password, int monedero) {
 		this.nombre = nombre;
@@ -44,9 +47,13 @@ public class Socio {
 	public String getImagen() {
 		return imagen;
 	}
-	
-	
-	
-	
+
+	public ArrayList<Alquiler> getAlquileres() {
+		return alquileres;
+	}
+
+	public void setAlquileres(ArrayList<Alquiler> alquileres) {
+		this.alquileres = alquileres;
+	}
 	
 }

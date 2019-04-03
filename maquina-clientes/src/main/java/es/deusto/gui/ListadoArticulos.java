@@ -22,24 +22,24 @@ import java.awt.event.ActionEvent;
 public class ListadoArticulos extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private JFrame MenuSocio;
 
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					ListadoArticulos window = new ListadoArticulos(null, null, null, null);
-//					window.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	//	public static void main(String[] args) {
+	//		EventQueue.invokeLater(new Runnable() {
+	//			public void run() {
+	//				try {
+	//					ListadoArticulos window = new ListadoArticulos(null, null, null, null);
+	//					window.setVisible(true);
+	//				} catch (Exception e) {
+	//					e.printStackTrace();
+	//				}
+	//			}
+	//		});
+	//	}
 
 	/**
 	 * Create the application.
@@ -60,7 +60,7 @@ public class ListadoArticulos extends JFrame {
 		background.setBounds(0, 0, 960, 518);
 		getContentPane().add(background);
 		background.setLayout(null);
-		
+
 		JButton btnVolver = new JButton("");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -74,40 +74,40 @@ public class ListadoArticulos extends JFrame {
 		btnVolver.setOpaque(false);
 		btnVolver.setContentAreaFilled(false);
 		btnVolver.setBorderPainted(false);
-		
+
 		int distancia = 128;
 		for (int i = 0; i < articulos.size(); i++) {
-			if(articulos.get(i).isDisponible()) {
-				JButton btnJuego = new JButton();
-				final Articulo a1 = articulos.get(i);
-				btnJuego.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						Alquiler a = new Alquiler(a1, 10 , "20/03/2019", "30/03/2019", false);
-						
-						VentanaConfirmacion confirm = new VentanaConfirmacion(ListadoArticulos.this, iniciado, a);
-						confirm.setVisible(true);
-						setVisible(false);
-					}
-				});
-				btnJuego.setBounds(distancia, 200, 87, 120);
-				background.add(btnJuego);
-				ImageIcon img1 = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+articulos.get(i).getCaratula());
-				
-				Image image = img1.getImage();
-				image = getScaledImage(image, 87, 120);
-				ImageIcon finalImage = new ImageIcon(image);
-				
-				btnJuego.setIcon(finalImage);
-				distancia = distancia+120;
-			}
-			
+
+			JButton btnJuego = new JButton();
+			final Articulo a1 = articulos.get(i);
+			btnJuego.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Alquiler a = new Alquiler(a1, 10 , "20/03/2019", "30/03/2019", false);
+
+					VentanaConfirmacion confirm = new VentanaConfirmacion(ListadoArticulos.this, iniciado, a);
+					confirm.setVisible(true);
+					setVisible(false);
+				}
+			});
+			btnJuego.setBounds(distancia, 200, 87, 120);
+			background.add(btnJuego);
+			ImageIcon img1 = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+articulos.get(i).getCaratula());
+
+			Image image = img1.getImage();
+			image = getScaledImage(image, 87, 120);
+			ImageIcon finalImage = new ImageIcon(image);
+
+			btnJuego.setIcon(finalImage);
+			distancia = distancia+120;
+
+
 		}
-		
+
 	}
 
-	
-	
+
+
 	private Image getScaledImage(Image srcImg, int w, int h){
 		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = resizedImg.createGraphics();

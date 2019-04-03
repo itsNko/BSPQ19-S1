@@ -180,13 +180,13 @@ public class MenuSocio extends JFrame {
 	}
 	
 	private void cargarArticulosPrueba() {
-		Videojuego v1 = new Videojuego("Sonic", "Descripcion de Sonic", "Plataformas","10/02/2004", 7, true, "sonic.JPG");
-		Videojuego v2 = new Videojuego("Mario Bros", "Descripcion de Mario", "Aventura","31/03/2008", 8.5, true, "mario.jpg");
-		Videojuego v3 = new Videojuego("GTA V", "Descripcion de GTA V", "Acción","20/03/2015", 9, true, "GTAV.jpg");
+		Videojuego v1 = new Videojuego("Sonic", "Descripcion de Sonic", "Plataformas","10/02/2004", 7, "sonic.JPG");
+		Videojuego v2 = new Videojuego("Mario Bros", "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
+		Videojuego v3 = new Videojuego("GTA V", "Descripcion de GTA V", "Acción","20/03/2015", 9, "GTAV.jpg");
 		
-		Pelicula p1 = new Pelicula("Los vengadores", "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, true, "vengadores.jpg");
-		Pelicula p2 = new Pelicula("Harry Potter", "Descripcion de Harry Potter", "Acción","29/01/2009", 9, true, "harryPotter.jpg");
-		Pelicula p3 = new Pelicula("Star Wars I", "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, true, "starWars.jpg");
+		Pelicula p1 = new Pelicula("Los vengadores", "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
+		Pelicula p2 = new Pelicula("Harry Potter", "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg");
+		Pelicula p3 = new Pelicula("Star Wars I", "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, "starWars.jpg");
 		
 		articulos.add(v1);
 		articulos.add(v2);
@@ -198,9 +198,9 @@ public class MenuSocio extends JFrame {
 	}
 	
 	private void cargarAlquileresPrueba() {
-		Pelicula p1 = new Pelicula("Los vengadores", "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, true, "vengadores.jpg");
-		Videojuego v1 = new Videojuego("Mario Bros", "Descripcion de Mario", "Aventura","31/03/2008", 8.5, true, "mario.jpg");
-		Videojuego v2 = new Videojuego("GTA V", "Descripcion de GTA V", "Acción","10/07/2012", 6, true, "GTAV.jpg");
+		Pelicula p1 = new Pelicula("Los vengadores", "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
+		Videojuego v1 = new Videojuego("Mario Bros", "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
+		Videojuego v2 = new Videojuego("GTA V", "Descripcion de GTA V", "Acción","10/07/2012", 6, "GTAV.jpg");
 		
 
 		Alquiler a1 = new Alquiler(p1, 6.25, "20/03/2019", "30/03/2019", true);

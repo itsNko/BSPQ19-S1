@@ -1,7 +1,6 @@
 package es.deusto.gui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -20,7 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import es.deusto.data.Alquiler;
-import es.deusto.data.Articulo;
 import es.deusto.data.Pelicula;
 import es.deusto.data.Socio;
 import java.awt.Color;
@@ -31,7 +29,7 @@ public class VentanaConfirmacion extends JFrame {
 	private JPanel contentPane;
 	private JFrame ventanaQueMeLlama;
 	
-	Pelicula p1 = new Pelicula("Los Vengadores", "Sinopsis Los Vengadores", "Acción", "30/11/2010", 2, true, "vengadores.jpg");
+	Pelicula p1 = new Pelicula("Los Vengadores", "Sinopsis Los Vengadores", "Acción", "30/11/2010", 2, "vengadores.jpg");
 
 	
 	private Alquiler a1 = new Alquiler(p1, 20.25 , "20/03/2019", "30/03/2019", false);

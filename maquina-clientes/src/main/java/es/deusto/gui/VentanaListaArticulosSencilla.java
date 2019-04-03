@@ -109,9 +109,9 @@ public class VentanaListaArticulosSencilla extends JFrame {
 
 	// Método que carga datos de prueba aleatoriamente en los ArrayLists
 	public void cargaArticulos() {
-		Pelicula p1 = new Pelicula("Los Vengadores", "Sinopsis Los Vengadores", "Acción", "30/11/2010", 2, true);
-		Pelicula p2 = new Pelicula("Harry Potter", "Sinopsis Harry Potter", "Ciencia Ficción", "01/07/2002", 4.5, true);
-		Pelicula p3 = new Pelicula("Star Wars II", "Sinopsis Star Wars II", "Ciencia Ficción", "24/02/2006", 10, true);
+		Pelicula p1 = new Pelicula("Los Vengadores", "Sinopsis Los Vengadores", "Acción", "30/11/2010", 2);
+		Pelicula p2 = new Pelicula("Harry Potter", "Sinopsis Harry Potter", "Ciencia Ficción", "01/07/2002", 4.5);
+		Pelicula p3 = new Pelicula("Star Wars II", "Sinopsis Star Wars II", "Ciencia Ficción", "24/02/2006", 10);
 
 		Random random = new Random();
 		int r;
@@ -129,9 +129,9 @@ public class VentanaListaArticulosSencilla extends JFrame {
 		}
 
 
-		Videojuego v1 = new Videojuego("GTA V", "Descripción GTA V", "Acción", "20/09/2014", 9, true);
-		Videojuego v2 = new Videojuego("Fallout: New Vegas", "Descrición Fallout", "Aventura", "15/03/2012", 6.25, true);
-		Videojuego v3 = new Videojuego("Dark Souls III", "Descripción Dark Souls", "Aventura", "10/04/2016", 7.5, true);
+		Videojuego v1 = new Videojuego("GTA V", "Descripción GTA V", "Acción", "20/09/2014", 9);
+		Videojuego v2 = new Videojuego("Fallout: New Vegas", "Descrición Fallout", "Aventura", "15/03/2012", 6.25);
+		Videojuego v3 = new Videojuego("Dark Souls III", "Descripción Dark Souls", "Aventura", "10/04/2016", 7.5);
 	
 		j = 0;
 		while(j < 100) {

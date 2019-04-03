@@ -4,17 +4,14 @@ public class Articulo {
 
 	private String nombre;
 	private String caratula;
-	private boolean disponible;
 
-	public Articulo(String nombre, boolean disponible) {
+	public Articulo(String nombre) {
 		this.nombre = nombre;
-		this.disponible = disponible;
 		this.caratula = null;
 	}
 	
-	public Articulo(String nombre,boolean disponible, String caratula) {
+	public Articulo(String nombre, String caratula) {
 		this.nombre = nombre;
-		this.disponible = disponible;
 		this.caratula = caratula;
 	}
 
@@ -24,14 +21,6 @@ public class Articulo {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public boolean isDisponible() {
-		return disponible;
-	}
-
-	public void setDisponible(boolean disponible) {
-		this.disponible = disponible;
 	}
 
 	public String getCaratula() {
