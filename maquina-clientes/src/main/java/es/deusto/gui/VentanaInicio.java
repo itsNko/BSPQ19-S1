@@ -53,6 +53,25 @@ public class VentanaInicio extends JFrame {
 
 		return resizedImg;
 	}
+	
+	private void candadoRojo(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde )
+	{
+		candadoNegro.setVisible(false);
+		candadoRojo.setVisible(true);
+		candadoVerde.setVisible(false);
+	}
+	private void candadoVerde(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde )
+	{
+		candadoNegro.setVisible(false);
+		candadoRojo.setVisible(false);
+		candadoVerde.setVisible(true);
+	}
+	private void candadoNegro(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde )
+	{
+		candadoNegro.setVisible(true);
+		candadoRojo.setVisible(false);
+		candadoVerde.setVisible(false);
+	}
 	/**
 	 * Create the frame.
 	 */
@@ -131,33 +150,39 @@ public class VentanaInicio extends JFrame {
 				String pass = String.valueOf(passwordField.getPassword());
 				// Comprobación de si hay algún campo vacio
 				if(nombreUsuario.equals("") || pass.equals("") || nombreUsuario == null || pass == null) {
+					candadoRojo(candadoNegro, candadoRojo, candadoVerde);
+					
 					JOptionPane.showMessageDialog(null, "Alguno de los campos está vacio, por favor introduce un nombre de usuario y contraseña correctos.", "Aviso", JOptionPane.WARNING_MESSAGE);
+					
+					candadoNegro(candadoNegro, candadoRojo, candadoVerde);
 				} else {
 					// Comprobación de si existe un usuario registrado con el nombre introducido
 					if(socios.containsKey(nombreUsuario)) {
 						// Comprobación de si la contraseña coincide con la del nombre de usuario registrado
 						if(socios.get(nombreUsuario).getPassword().equals(pass)) {
+							candadoVerde(candadoNegro, candadoRojo, candadoVerde);
 							System.out.println("Has iniciado sesión correctamente, bienvenido!");
 							textfield.setText(""); passwordField.setText("");
-
-							System.out.println("hola?");
-							candadoNegro.setVisible(false);
-							candadoRojo.setVisible(false);
-							candadoVerde.setVisible(true);
-
-							background.revalidate();
-							background.repaint();
+							
 							JOptionPane.showMessageDialog(null, "Has iniciado sesión correctamente!!", "", JOptionPane.INFORMATION_MESSAGE);
+							candadoNegro(candadoNegro, candadoRojo, candadoVerde);
 							Socio iniciado = socios.get(nombreUsuario);
 							MenuSocio ms = new MenuSocio(VentanaInicio.this, iniciado);
 							ms.setVisible(true);
 							VentanaInicio.this.setVisible(false);
 
 						} else {
+							
+							candadoRojo(candadoNegro, candadoRojo, candadoVerde);
+							
 							JOptionPane.showMessageDialog(null, "Contraseña incorrecta, vuelve a intentarlo.", "Error", JOptionPane.ERROR_MESSAGE);
+							
+							candadoNegro(candadoNegro, candadoRojo, candadoVerde);
 						}
 					} else {
+						candadoRojo(candadoNegro, candadoRojo, candadoVerde);
 						JOptionPane.showMessageDialog(null, "No existe ningún usuario con ese nombre, por favor prueba con otro.", "Error", JOptionPane.ERROR_MESSAGE);
+						candadoNegro(candadoNegro, candadoRojo, candadoVerde);
 					}
 				}
 
@@ -177,13 +202,7 @@ public class VentanaInicio extends JFrame {
 		boton2.setIcon(botonRegistro);
 		boton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				candadoNegro.setVisible(false);
-				candadoRojo.setVisible(true);
-				candadoVerde.setVisible(false);
-				background.revalidate();
-				background.repaint();
-
-
+				
 				String nombreUsuario = textfield.getText();
 				String pass = String.valueOf(passwordField.getPassword());
 				boolean mayus = false;
@@ -198,7 +217,9 @@ public class VentanaInicio extends JFrame {
 
 				// Comprobación de si algún campo está vacio
 				if(nombreUsuario.equals("") || pass.equals("") || nombreUsuario == null || pass == null) {
+					candadoRojo(candadoNegro, candadoRojo, candadoVerde);
 					JOptionPane.showMessageDialog(null, "Alguno de los campos está vacio, por favor introduce un nombre de usuario y contraseña correctos.", "Aviso", JOptionPane.WARNING_MESSAGE);
+					candadoNegro(candadoNegro, candadoRojo, candadoVerde);
 				} else {
 					// Comprobación de si los campos tienen el tamaño adecuado
 					if((nombreUsuario.length() >= 4 && nombreUsuario.length() <= 20) && (pass.length() >= 8 && pass.length() <= 16)) {
@@ -212,23 +233,35 @@ public class VentanaInicio extends JFrame {
 									if(!socios.containsKey(nombreUsuario)) {
 										Socio cliente= new Socio(nombreUsuario, pass, 0);
 										socios.put(nombreUsuario, cliente);
+										candadoVerde(candadoNegro, candadoRojo, candadoVerde);
 										JOptionPane.showMessageDialog(null, "Te has registrado correctamente :)", "Registro", JOptionPane.INFORMATION_MESSAGE);
+										candadoNegro(candadoNegro, candadoRojo, candadoVerde);
 										textfield.setText(""); passwordField.setText("");
 									} else {
+										candadoRojo(candadoNegro, candadoRojo, candadoVerde);
 										JOptionPane.showMessageDialog(null, "El nombre de usuario introducido ya existe, por favor introduzca otro nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+										candadoNegro(candadoNegro, candadoRojo, candadoVerde);
 									}
 								} else {
+									candadoRojo(candadoNegro, candadoRojo, candadoVerde);
 									JOptionPane.showMessageDialog(null, "La contraseña debe contener tanto letras como números.", "Aviso", JOptionPane.WARNING_MESSAGE);
+									candadoNegro(candadoNegro, candadoRojo, candadoVerde);
 								}
 							} else {
+								candadoRojo(candadoNegro, candadoRojo, candadoVerde);
 								JOptionPane.showMessageDialog(null, "La contraseña debe contener al menos una letra mayúscula", "Aviso", JOptionPane.WARNING_MESSAGE);
+								candadoNegro(candadoNegro, candadoRojo, candadoVerde);
 							}
 						} else {
+							candadoRojo(candadoNegro, candadoRojo, candadoVerde);
 							JOptionPane.showMessageDialog(null, "El nombre y la contraseña no pueden ser iguales, por favor introduce otro nombre o contraseña.", "Aviso", JOptionPane.WARNING_MESSAGE);
+							candadoNegro(candadoNegro, candadoRojo, candadoVerde);
 						}
 
 					} else {
+						candadoRojo(candadoNegro, candadoRojo, candadoVerde);
 						JOptionPane.showMessageDialog(null, "El nombre de usuario tiene que tener entre 4 y 20 carácteres, y la contraseña entre 8 y 16.", "Aviso", JOptionPane.WARNING_MESSAGE);
+						candadoNegro(candadoNegro, candadoRojo, candadoVerde);
 					}
 
 				}
