@@ -31,7 +31,7 @@ public class VentanaInicio extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private HashMap<String, Socio> socios = new HashMap<String, Socio>();
-	private ArrayList<Alquiler> alquileres = new ArrayList<Alquiler>();
+	private ArrayList<Alquiler> alquileresPrueba = new ArrayList<Alquiler>();
 
 	/**
 	 * Launch the application.
@@ -82,15 +82,15 @@ public class VentanaInicio extends JFrame {
 		return s.matches(n) && s.matches(l);
 	}
 	
-	private void cargarAlquileresPrueba() {
+	private void cargarAlquileresPrueba(ArrayList<Alquiler> alquileres) {
 		Pelicula p1 = new Pelicula("Los vengadores", "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
 		Videojuego v1 = new Videojuego("Mario Bros", "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
 		Videojuego v2 = new Videojuego("GTA V", "Descripcion de GTA V", "Acción","10/07/2012", 6, "GTAV.jpg");
 		
 
-		Alquiler a1 = new Alquiler(p1, 6.25, "20/03/2019", "30/03/2019", true);
-		Alquiler a2 = new Alquiler(v1, 5, "15/02/2019", "03/04/2019", false);
-		Alquiler a3 = new Alquiler(v2, 5.5, "01/31/2018", "12/31/2018", true);
+		Alquiler a1 = new Alquiler(p1, 6.25, "20/3/2019", "30/3/2019", true);
+		Alquiler a2 = new Alquiler(v1, 5, "15/2/2019", "03/4/2019", false);
+		Alquiler a3 = new Alquiler(v2, 5.5, "1/31/2018", "12/31/2018", true);
 		
 		
 		alquileres.add(a1);
@@ -106,10 +106,11 @@ public class VentanaInicio extends JFrame {
 		setTitle("Bienvenido al Videoclub");
 		setResizable(false);
 		
-		cargarAlquileresPrueba();
+		cargarAlquileresPrueba(alquileresPrueba);
 		
 		Socio s = new Socio("a", "a", 100);
-		s.setAlquileres(alquileres);
+		s.setAlquileres(alquileresPrueba);
+		s.setAlquileres(alquileresPrueba);
 		socios.put(s.getNombre(), s);
 		
 		
@@ -198,8 +199,7 @@ public class VentanaInicio extends JFrame {
 							
 							JOptionPane.showMessageDialog(null, "Has iniciado sesión correctamente!!", "", JOptionPane.INFORMATION_MESSAGE);
 							candadoNegro(candadoNegro, candadoRojo, candadoVerde);
-							Socio iniciado = socios.get(nombreUsuario);
-							MenuSocio ms = new MenuSocio(VentanaInicio.this, iniciado);
+							MenuSocio ms = new MenuSocio(VentanaInicio.this, socios.get(nombreUsuario));
 							ms.setVisible(true);
 							VentanaInicio.this.setVisible(false);
 
@@ -264,7 +264,8 @@ public class VentanaInicio extends JFrame {
 									// Comprobación de si existe un socio con el nombre de usuario introducido en el JTextField
 									if(!socios.containsKey(nombreUsuario)) {
 										Socio cliente= new Socio(nombreUsuario, pass, 0);
-										cliente.setAlquileres(alquileres);
+										ArrayList<Alquiler> alquileresTemp = new ArrayList<Alquiler>();
+										cliente.setAlquileres(alquileresTemp);
 										socios.put(nombreUsuario, cliente);
 										candadoVerde(candadoNegro, candadoRojo, candadoVerde);
 										JOptionPane.showMessageDialog(null, "Te has registrado correctamente :)", "Registro", JOptionPane.INFORMATION_MESSAGE);

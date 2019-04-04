@@ -71,12 +71,18 @@ public class MenuSocio extends JFrame {
 		background.setBounds(0,0,960, 518);
 		getContentPane().add(background);
 		background.setLayout(null);
+		
+		final JLabel lblSaldo = new JLabel("Tu saldo actual es de "+iniciado.getMonedero()+" €");
+		lblSaldo.setFont(new Font("AppleGothic", Font.PLAIN, 18));
+		lblSaldo.setForeground(Color.WHITE);
+		lblSaldo.setBounds(135, 200, 250, 60);
+		background.add(lblSaldo);
 
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Alquilar");
-				ListadoArticulos ls = new ListadoArticulos(MenuSocio.this, articulos, iniciado);
+				ListadoArticulos ls = new ListadoArticulos(MenuSocio.this, articulos, iniciado, lblSaldo);
 				ls.setVisible(true);
 				MenuSocio.this.setVisible(false);
 			}
@@ -167,12 +173,6 @@ public class MenuSocio extends JFrame {
 		lblHola.setForeground(Color.WHITE);
 		lblHola.setBounds(170, 159, 180, 60);
 		background.add(lblHola);
-
-		JLabel lblSaldo = new JLabel("Tu saldo actual es de "+iniciado.getMonedero()+" €");
-		lblSaldo.setFont(new Font("AppleGothic", Font.PLAIN, 18));
-		lblSaldo.setForeground(Color.WHITE);
-		lblSaldo.setBounds(135, 200, 250, 60);
-		background.add(lblSaldo);
 
 
 	}

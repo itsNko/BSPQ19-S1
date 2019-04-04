@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class VentanaRecargarSaldo extends JFrame {
-	private static int dinero = 0;
+	private static double dinero = 0;
 	private JPanel contentPane;
 	private JFrame ventanaRecargar;
 	JLabel lblSaldo = new JLabel(dinero+" €");
@@ -58,9 +58,9 @@ public class VentanaRecargarSaldo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaRecargarSaldo(JFrame ventanaAnterior, int monedero) {
+	public VentanaRecargarSaldo(JFrame ventanaAnterior, double d) {
 		ventanaRecargar = ventanaAnterior;
-		dinero = monedero;
+		dinero = d;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 540);

@@ -6,6 +6,8 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -44,7 +46,7 @@ public class ListadoArticulos extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public ListadoArticulos(JFrame VentanaAnterior, final ArrayList<Articulo> articulos, final Socio iniciado) {
+	public ListadoArticulos(final JFrame VentanaAnterior, final ArrayList<Articulo> articulos, final Socio iniciado, final JLabel lblSaldo) {
 		MenuSocio = VentanaAnterior;
 		setTitle("Artículos disponibles para alquilar");
 		setResizable(false);
@@ -83,9 +85,25 @@ public class ListadoArticulos extends JFrame {
 			btnJuego.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Alquiler a = new Alquiler(a1, 10 , "20/03/2019", "30/03/2019", false);
+					
+					Calendar fecha = new GregorianCalendar();
+					fecha.add(Calendar.MONTH, 1);
+					
+					int año = fecha.get(Calendar.YEAR);
+			        int mes = fecha.get(Calendar.MONTH);
+			        int dia = fecha.get(Calendar.DAY_OF_MONTH);
+			        
+			        String fechaIni = "" + dia +"/" + mes + "/"+ año +"";
+			        
+			        fecha.add(Calendar.DAY_OF_YEAR, 10);
+			        
+			        int añoF = fecha.get(Calendar.YEAR);
+			        int mesF = fecha.get(Calendar.MONTH);
+			        int diaF = fecha.get(Calendar.DAY_OF_MONTH);
+			        String fechaFin = "" + diaF +"/" + mesF + "/"+ añoF +"";
+					Alquiler a = new Alquiler(a1, 6 , fechaIni ,  fechaFin, false);
 
-					VentanaConfirmacion confirm = new VentanaConfirmacion(ListadoArticulos.this, iniciado, a);
+					VentanaConfirmacion confirm = new VentanaConfirmacion(VentanaAnterior , ListadoArticulos.this, iniciado, a, lblSaldo);
 					confirm.setVisible(true);
 					setVisible(false);
 				}

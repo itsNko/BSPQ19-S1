@@ -1,6 +1,6 @@
 # Sistema de gestión de un videoclub
 
-Proyecto de un software para la gestión de un videoclub desarrollado en Java.
+Proyecto software para la gestión de un videoclub desarrollado en Java.
 Permite a usuarios, empleados y el director del videoclub realizar las acciones que deban llevar a cabo.
 Los clientes pueden hacerse socios del videoclub para poder alquilar artículos (películas y videojuegos), además de recibir ofertas.
 Los empleados pueden gestionar los datos de los artículos y ver el listado de alquileres en todo momento.
@@ -20,12 +20,12 @@ Para poder ejecutar el proyecto es necesario software adicional:
 ```
 
 ### Instalación
-Para compilar el proyecto es necesario introducir en la consola el siguiente comando una vez te encuentres en el directorio del proyecto:
+Para compilar el proyecto es necesario introducir en la consola el siguiente comando una vez te encuentres en el directorio del proyecto (desde el directorio donde se encuentra el archivo pom.xml):
 
 ```
 mvn compile
 ```
-Después, simplemente basta con compilar el código utilizando el siguiente comando de Maven:
+Después, simplemente basta con ejecutar el código compilado utilizando el siguiente comando de Maven:
 ```
 mvn exec:java -D"exec.mainClass"="es.deusto.gui.VentanaInicio"
 ```

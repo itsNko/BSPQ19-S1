@@ -6,11 +6,11 @@ public class Socio {
 
 	private String nombre;
 	private String password;
-	private int monedero;
+	private double monedero;
 	private String imagen;
 	private ArrayList<Alquiler> alquileres;
 	
-	public Socio(String nombre, String password, int monedero) {
+	public Socio(String nombre, String password, double monedero) {
 		this.nombre = nombre;
 		this.password = password;
 		this.monedero = monedero;
@@ -33,11 +33,11 @@ public class Socio {
 		this.password = password;
 	}
 	
-	public int getMonedero() {
+	public double getMonedero() {
 		return monedero;
 	}
 	
-	public void setMonedero(int monedero) {
+	public void setMonedero(double monedero) {
 		this.monedero = monedero;
 	}
 	
