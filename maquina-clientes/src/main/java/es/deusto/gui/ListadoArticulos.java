@@ -46,7 +46,7 @@ public class ListadoArticulos extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public ListadoArticulos(final JFrame MenuSocio1,JFrame VentanaAnterior, final ArrayList<Articulo> articulos, final Socio iniciado) {
+	public ListadoArticulos(final JFrame VentanaAnterior, final ArrayList<Articulo> articulos, final Socio iniciado) {
 		MenuSocio = VentanaAnterior;
 		setTitle("Artículos disponibles para alquilar");
 		setResizable(false);
@@ -93,7 +93,7 @@ public class ListadoArticulos extends JFrame {
 			        
 			        String fechaIni = "" + dia +"/" + mes + "/"+ año +"";
 			        
-			        fecha.add(fecha.DAY_OF_YEAR, 10);
+			        fecha.add(Calendar.DAY_OF_YEAR, 10);
 			        
 			        int añoF = fecha.get(Calendar.YEAR);
 			        int mesF = fecha.get(Calendar.MONTH);
@@ -101,7 +101,7 @@ public class ListadoArticulos extends JFrame {
 			        String fechaFin = "" + diaF +"/" + mesF + "/"+ añoF +"";
 					Alquiler a = new Alquiler(a1, 6 , fechaIni ,  fechaFin, false);
 
-					VentanaConfirmacion confirm = new VentanaConfirmacion( MenuSocio1 , ListadoArticulos.this, iniciado, a);
+					VentanaConfirmacion confirm = new VentanaConfirmacion(VentanaAnterior , ListadoArticulos.this, iniciado, a);
 					confirm.setVisible(true);
 					setVisible(false);
 				}

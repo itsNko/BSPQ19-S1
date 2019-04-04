@@ -88,9 +88,9 @@ public class VentanaInicio extends JFrame {
 		Videojuego v2 = new Videojuego("GTA V", "Descripcion de GTA V", "Acción","10/07/2012", 6, "GTAV.jpg");
 		
 
-		Alquiler a1 = new Alquiler(p1, 6.25, "20/03/2019", "30/03/2019", true);
-		Alquiler a2 = new Alquiler(v1, 5, "15/02/2019", "03/04/2019", false);
-		Alquiler a3 = new Alquiler(v2, 5.5, "01/31/2018", "12/31/2018", true);
+		Alquiler a1 = new Alquiler(p1, 6.25, "20/3/2019", "30/3/2019", true);
+		Alquiler a2 = new Alquiler(v1, 5, "15/2/2019", "03/4/2019", false);
+		Alquiler a3 = new Alquiler(v2, 5.5, "1/31/2018", "12/31/2018", true);
 		
 		
 		alquileres.add(a1);
@@ -108,7 +108,7 @@ public class VentanaInicio extends JFrame {
 		
 		cargarAlquileresPrueba(alquileresPrueba);
 		
-		Socio s = new Socio("a", "a", 0);
+		Socio s = new Socio("a", "a", 100);
 		s.setAlquileres(alquileresPrueba);
 		socios.put(s.getNombre(), s);
 		
@@ -264,7 +264,6 @@ public class VentanaInicio extends JFrame {
 									if(!socios.containsKey(nombreUsuario)) {
 										Socio cliente= new Socio(nombreUsuario, pass, 0);
 										ArrayList<Alquiler> alquileresTemp = new ArrayList<Alquiler>();
-										cargarAlquileresPrueba(alquileresTemp);
 										cliente.setAlquileres(alquileresTemp);
 										socios.put(nombreUsuario, cliente);
 										candadoVerde(candadoNegro, candadoRojo, candadoVerde);

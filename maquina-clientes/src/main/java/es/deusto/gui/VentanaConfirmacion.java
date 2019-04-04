@@ -20,8 +20,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import es.deusto.data.Alquiler;
-import es.deusto.data.Articulo;
-import es.deusto.data.Pelicula;
 import es.deusto.data.Socio;
 import java.awt.Color;
 
@@ -67,7 +65,7 @@ public class VentanaConfirmacion extends JFrame {
 		ventanaQueMeLlama = ventanaAnterior;
 		
 		setResizable(false);
-		setTitle("Confirmación");
+		setTitle("Confirmación de alquiler");
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -165,7 +163,6 @@ public class VentanaConfirmacion extends JFrame {
 		bConfirmar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Para mas acciones
 				if(a.getCoste() > s1.getMonedero()) {
 					JOptionPane.showMessageDialog(null, "No tiene suficiente dinero en el monedero, porfavor introduzca más para seguir con la compra",
 							"Saldo insuficiente", JOptionPane.ERROR_MESSAGE);
@@ -180,6 +177,7 @@ public class VentanaConfirmacion extends JFrame {
 						alquileres.add(a);
 						System.out.println("Alquiler añadido a la lista de alquileres");
 						s1.setAlquileres(alquileres);
+						JOptionPane.showMessageDialog(null, "Artículo alquilado correctamente!", "Alquiler exitoso", JOptionPane.INFORMATION_MESSAGE);
 						MenuSocio.setVisible(true);
 						VentanaConfirmacion.this.dispose();
 					} 
