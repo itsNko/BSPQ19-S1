@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import es.deusto.data.Alquiler;
+import es.deusto.data.Articulo;
 import es.deusto.data.Pelicula;
 import es.deusto.data.Socio;
 import java.awt.Color;
@@ -61,7 +63,7 @@ public class VentanaConfirmacion extends JFrame {
 		return resizedImg;
 	}
 	
-	public VentanaConfirmacion(JFrame ventanaAnterior, final Socio s1, final Alquiler a) {
+	public VentanaConfirmacion(final JFrame MenuSocio,JFrame ventanaAnterior, final Socio s1, final Alquiler a) {
 		ventanaQueMeLlama = ventanaAnterior;
 		
 		setResizable(false);
@@ -167,9 +169,20 @@ public class VentanaConfirmacion extends JFrame {
 				if(a.getCoste() > s1.getMonedero()) {
 					JOptionPane.showMessageDialog(null, "No tiene suficiente dinero en el monedero, porfavor introduzca más para seguir con la compra",
 							"Saldo insuficiente", JOptionPane.ERROR_MESSAGE);
-					repaint();
+					MenuSocio.setVisible(true);
+					VentanaConfirmacion.this.dispose();
 				} else {
-					JOptionPane.showConfirmDialog(null, "¿Esta seguro?");
+					int eleccion = JOptionPane.showConfirmDialog(null, "¿Esta seguro?");
+					if(eleccion == 0) {
+						s1.setMonedero(s1.getMonedero() - a.getCoste());
+						ArrayList<Alquiler> alquileres = s1.getAlquileres();
+						a.setEnCurso(true);
+						alquileres.add(a);
+						System.out.println("Alquiler añadido a la lista de alquileres");
+						s1.setAlquileres(alquileres);
+						MenuSocio.setVisible(true);
+						VentanaConfirmacion.this.dispose();
+					} 
 				}
 				repaint();
 				
