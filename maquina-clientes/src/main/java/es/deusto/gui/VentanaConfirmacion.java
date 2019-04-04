@@ -31,13 +31,13 @@ public class VentanaConfirmacion extends JFrame {
 	private JPanel contentPane;
 	private JFrame ventanaQueMeLlama;
 	
-	Pelicula p1 = new Pelicula("Los Vengadores", "Sinopsis Los Vengadores", "Acción", "30/11/2010", 2, "vengadores.jpg");
+	//Pelicula p1 = new Pelicula("Los Vengadores", "Sinopsis Los Vengadores", "Acción", "30/11/2010", 2, "vengadores.jpg");
 
 	
-	private Alquiler a1 = new Alquiler(p1, 20.25 , "20/03/2019", "30/03/2019", false);
+	//private Alquiler a1 = new Alquiler(p1, 20.25 , "20/03/2019", "30/03/2019", false);
 	
 	//Socio de prueba
-	private Socio tester = new Socio("Pablo", "P123", 30);
+	//private Socio tester = new Socio("Pablo", "P123", 30);
 	
 //	public static void main(String[] args) {
 //		EventQueue.invokeLater(new Runnable() {
