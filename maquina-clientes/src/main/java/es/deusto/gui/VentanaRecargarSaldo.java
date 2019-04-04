@@ -1,7 +1,9 @@
 package es.deusto.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -18,11 +20,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class VentanaRecargarSaldo extends JFrame {
-
+	private static int dinero = 0;
 	private JPanel contentPane;
+	private JFrame ventanaRecargar;
+	JLabel lblSaldo = new JLabel(dinero+" €");
 
 	/**
 	 * Launch the application.
+	 * @return 
 	 */
 //	public static void main(String[] args) {
 //		EventQueue.invokeLater(new Runnable() {
@@ -36,6 +41,10 @@ public class VentanaRecargarSaldo extends JFrame {
 //			}
 //		});
 //	}
+	private void update()
+	{
+		lblSaldo.setText(dinero+" €");
+	}
 	private Image getScaledImage(Image srcImg, int w, int h) {
 		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = resizedImg.createGraphics();
@@ -49,7 +58,9 @@ public class VentanaRecargarSaldo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaRecargarSaldo() {
+	public VentanaRecargarSaldo(JFrame ventanaAnterior, int monedero) {
+		ventanaRecargar = ventanaAnterior;
+		dinero = monedero;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 540);
@@ -65,10 +76,18 @@ public class VentanaRecargarSaldo extends JFrame {
 		getContentPane().add(background);
 		background.setLayout(null);
 		
+		lblSaldo.setFont(new Font("AppleGothic", Font.PLAIN, 18));
+		lblSaldo.setForeground(Color.WHITE);
+		lblSaldo.setBounds(135, 200, 250, 60);
+		background.add(lblSaldo);
+		
+		
 		JButton botonVolver = new JButton();
 		botonVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Volver");
+				ventanaRecargar.setVisible(true);
+				VentanaRecargarSaldo.this.dispose();
 				
 			}
 		});
@@ -82,6 +101,8 @@ public class VentanaRecargarSaldo extends JFrame {
 		boton5euros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("5");
+				dinero = dinero + 5;
+				update();
 				
 			}
 		});
@@ -95,7 +116,8 @@ public class VentanaRecargarSaldo extends JFrame {
 		boton10euros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("10");
-				
+				dinero = dinero +10;
+				update();
 			}
 		});
 		boton10euros.setBounds(320,288,127,62);
@@ -108,7 +130,8 @@ public class VentanaRecargarSaldo extends JFrame {
 		boton20euros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("20");
-				
+				dinero = dinero + 20;
+				update();
 			}
 		});
 		boton20euros.setBounds(510,288,127,62);
@@ -121,7 +144,8 @@ public class VentanaRecargarSaldo extends JFrame {
 		boton50euros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("50");
-				
+				dinero = dinero + 50;
+				update();
 			}
 		});
 		boton50euros.setBounds(700,288,127,62);
@@ -130,11 +154,13 @@ public class VentanaRecargarSaldo extends JFrame {
 		boton50euros.setContentAreaFilled(false);
 		boton50euros.setBorderPainted(false);
 		
+		
 		JButton botonConfirmar = new JButton();
 		botonConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Confirmar");
-				
+				VentanaRecargarSaldo.this.dispose();
+				ventanaRecargar.setVisible(true);
 			}
 		});
 		botonConfirmar.setBounds(735,460,145,50);

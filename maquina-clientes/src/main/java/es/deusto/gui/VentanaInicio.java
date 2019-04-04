@@ -108,7 +108,7 @@ public class VentanaInicio extends JFrame {
 		
 		cargarAlquileresPrueba();
 		
-		Socio s = new Socio("a", "a", 0);
+		Socio s = new Socio("a", "a", 100);
 		s.setAlquileres(alquileres);
 		socios.put(s.getNombre(), s);
 		
