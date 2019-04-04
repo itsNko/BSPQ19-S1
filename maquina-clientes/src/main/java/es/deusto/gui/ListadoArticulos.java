@@ -46,7 +46,7 @@ public class ListadoArticulos extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public ListadoArticulos(final JFrame VentanaAnterior, final ArrayList<Articulo> articulos, final Socio iniciado) {
+	public ListadoArticulos(final JFrame VentanaAnterior, final ArrayList<Articulo> articulos, final Socio iniciado, final JLabel lblSaldo) {
 		MenuSocio = VentanaAnterior;
 		setTitle("Artículos disponibles para alquilar");
 		setResizable(false);
@@ -101,7 +101,7 @@ public class ListadoArticulos extends JFrame {
 			        String fechaFin = "" + diaF +"/" + mesF + "/"+ añoF +"";
 					Alquiler a = new Alquiler(a1, 6 , fechaIni ,  fechaFin, false);
 
-					VentanaConfirmacion confirm = new VentanaConfirmacion(VentanaAnterior , ListadoArticulos.this, iniciado, a);
+					VentanaConfirmacion confirm = new VentanaConfirmacion(VentanaAnterior , ListadoArticulos.this, iniciado, a, lblSaldo);
 					confirm.setVisible(true);
 					setVisible(false);
 				}

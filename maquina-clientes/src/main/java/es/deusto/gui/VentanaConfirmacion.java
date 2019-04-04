@@ -61,7 +61,7 @@ public class VentanaConfirmacion extends JFrame {
 		return resizedImg;
 	}
 	
-	public VentanaConfirmacion(final JFrame MenuSocio,JFrame ventanaAnterior, final Socio s1, final Alquiler a) {
+	public VentanaConfirmacion(final JFrame MenuSocio,JFrame ventanaAnterior, final Socio s1, final Alquiler a, final JLabel labelSaldo) {
 		ventanaQueMeLlama = ventanaAnterior;
 		
 		setResizable(false);
@@ -179,6 +179,7 @@ public class VentanaConfirmacion extends JFrame {
 						s1.setAlquileres(alquileres);
 						JOptionPane.showMessageDialog(null, "Artículo alquilado correctamente!", "Alquiler exitoso", JOptionPane.INFORMATION_MESSAGE);
 						MenuSocio.setVisible(true);
+						labelSaldo.setText("Tu saldo actual es de "+s1.getMonedero()+" €");
 						VentanaConfirmacion.this.dispose();
 					} 
 				}
