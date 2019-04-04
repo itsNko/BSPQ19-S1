@@ -87,6 +87,8 @@ public class ListadoArticulos extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					
 					Calendar fecha = new GregorianCalendar();
+					fecha.add(Calendar.MONTH, 1);
+					
 					int año = fecha.get(Calendar.YEAR);
 			        int mes = fecha.get(Calendar.MONTH);
 			        int dia = fecha.get(Calendar.DAY_OF_MONTH);
