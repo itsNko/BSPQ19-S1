@@ -113,7 +113,7 @@ public class MenuSocio extends JFrame {
 		btnRecargar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				System.out.println("Recargar saldo");
-				VentanaRecargarSaldo saldo = new VentanaRecargarSaldo(MenuSocio.this, iniciado.getMonedero());
+				VentanaRecargarSaldo saldo = new VentanaRecargarSaldo(MenuSocio.this, iniciado, lblSaldo);
 				saldo.setVisible(true);
 				MenuSocio.this.setVisible(false);
 

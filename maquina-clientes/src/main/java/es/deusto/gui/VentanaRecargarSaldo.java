@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import es.deusto.data.Socio;
+
 public class VentanaRecargarSaldo extends JFrame {
 	private static double dinero = 0;
 	private JPanel contentPane;
@@ -58,9 +60,9 @@ public class VentanaRecargarSaldo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaRecargarSaldo(JFrame ventanaAnterior, double d) {
+	public VentanaRecargarSaldo(JFrame ventanaAnterior, final Socio iniciado,final JLabel labelSaldo) {
 		ventanaRecargar = ventanaAnterior;
-		dinero = d;
+		dinero = iniciado.getMonedero();
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 540);
@@ -76,9 +78,10 @@ public class VentanaRecargarSaldo extends JFrame {
 		getContentPane().add(background);
 		background.setLayout(null);
 		
-		lblSaldo.setFont(new Font("AppleGothic", Font.PLAIN, 18));
+		lblSaldo.setFont(new Font("AppleGothic", Font.PLAIN, 30));
 		lblSaldo.setForeground(Color.WHITE);
-		lblSaldo.setBounds(135, 200, 250, 60);
+		lblSaldo.setBounds(375, 138, 250, 60);
+		update();
 		background.add(lblSaldo);
 		
 		
@@ -159,6 +162,8 @@ public class VentanaRecargarSaldo extends JFrame {
 		botonConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Confirmar");
+				iniciado.setMonedero(dinero);
+				labelSaldo.setText("Tu saldo actual es de "+iniciado.getMonedero()+" €");
 				VentanaRecargarSaldo.this.dispose();
 				ventanaRecargar.setVisible(true);
 			}
