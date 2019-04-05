@@ -18,7 +18,6 @@ import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.swing.JScrollPane;
 
@@ -57,7 +56,7 @@ public class VentanaListaArticulosSencilla extends JFrame {
 	 */
 	public VentanaListaArticulosSencilla() {
 
-		cargaArticulos();
+		//cargaArticulos();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, (int) screenSize.getWidth(), (int) screenSize.getHeight() - 100);
@@ -108,43 +107,43 @@ public class VentanaListaArticulosSencilla extends JFrame {
 	}
 
 	// Método que carga datos de prueba aleatoriamente en los ArrayLists
-	public void cargaArticulos() {
-		Pelicula p1 = new Pelicula("Los Vengadores", "Sinopsis Los Vengadores", "Acción", "30/11/2010", 2);
-		Pelicula p2 = new Pelicula("Harry Potter", "Sinopsis Harry Potter", "Ciencia Ficción", "01/07/2002", 4.5);
-		Pelicula p3 = new Pelicula("Star Wars II", "Sinopsis Star Wars II", "Ciencia Ficción", "24/02/2006", 10);
-
-		Random random = new Random();
-		int r;
-		int j = 0;
-		while(j < 100) {
-			r = random.nextInt(3);
-			if(r == 0) {
-				peliculas.add(p1);
-			} else if(r == 1) {
-				peliculas.add(p2);
-			} else {
-				peliculas.add(p3);
-			}
-			j++;
-		}
-
-
-		Videojuego v1 = new Videojuego("GTA V", "Descripción GTA V", "Acción", "20/09/2014", 9);
-		Videojuego v2 = new Videojuego("Fallout: New Vegas", "Descrición Fallout", "Aventura", "15/03/2012", 6.25);
-		Videojuego v3 = new Videojuego("Dark Souls III", "Descripción Dark Souls", "Aventura", "10/04/2016", 7.5);
-	
-		j = 0;
-		while(j < 100) {
-			 r = random.nextInt(3);
-			if(r == 0) {
-				videojuegos.add(v1);
-			} else if(r == 1) {
-				videojuegos.add(v2);
-			} else {
-				videojuegos.add(v3);
-			}
-			j++;
-		}
-	}
+//	public void cargaArticulos() {
+//		Pelicula p1 = new Pelicula("Los Vengadores", "Sinopsis Los Vengadores", "Acción", "30/11/2010", 2);
+//		Pelicula p2 = new Pelicula("Harry Potter", "Sinopsis Harry Potter", "Ciencia Ficción", "01/07/2002", 4.5);
+//		Pelicula p3 = new Pelicula("Star Wars II", "Sinopsis Star Wars II", "Ciencia Ficción", "24/02/2006", 10);
+//
+//		Random random = new Random();
+//		int r;
+//		int j = 0;
+//		while(j < 100) {
+//			r = random.nextInt(3);
+//			if(r == 0) {
+//				peliculas.add(p1);
+//			} else if(r == 1) {
+//				peliculas.add(p2);
+//			} else {
+//				peliculas.add(p3);
+//			}
+//			j++;
+//		}
+//
+//
+//		Videojuego v1 = new Videojuego("GTA V", "Descripción GTA V", "Acción", "20/09/2014", 9);
+//		Videojuego v2 = new Videojuego("Fallout: New Vegas", "Descrición Fallout", "Aventura", "15/03/2012", 6.25);
+//		Videojuego v3 = new Videojuego("Dark Souls III", "Descripción Dark Souls", "Aventura", "10/04/2016", 7.5);
+//	
+//		j = 0;
+//		while(j < 100) {
+//			 r = random.nextInt(3);
+//			if(r == 0) {
+//				videojuegos.add(v1);
+//			} else if(r == 1) {
+//				videojuegos.add(v2);
+//			} else {
+//				videojuegos.add(v3);
+//			}
+//			j++;
+//		}
+//	}
 
 }

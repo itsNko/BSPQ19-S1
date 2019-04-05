@@ -7,15 +7,15 @@ public class Videojuego extends Articulo {
 	private String fecha_lan;
 	private double puntuacion;
 	
-	public Videojuego(String nombre, String descripcion, String categoria, String fecha_lan, double puntuacion) {
-		super(nombre);
+	public Videojuego(String nombre, double precio, String descripcion, String categoria, String fecha_lan, double puntuacion) {
+		super(nombre, precio);
 		this.descripcion = descripcion;
 		this.categoria = categoria;
 		this.fecha_lan = fecha_lan;
 		this.puntuacion = puntuacion;
 	}
-	public Videojuego(String nombre, String descripcion, String categoria, String fecha_lan, double puntuacion, String caratula) {
-		super(nombre, caratula);
+	public Videojuego(String nombre, double precio, String descripcion, String categoria, String fecha_lan, double puntuacion, String caratula) {
+		super(nombre, caratula, precio);
 		this.descripcion = descripcion;
 		this.categoria = categoria;
 		this.fecha_lan = fecha_lan;

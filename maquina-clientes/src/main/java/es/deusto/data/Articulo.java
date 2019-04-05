@@ -4,15 +4,18 @@ public class Articulo {
 
 	private String nombre;
 	private String caratula;
+	private double precio;
 
-	public Articulo(String nombre) {
+	public Articulo(String nombre, double precio) {
 		this.nombre = nombre;
 		this.caratula = null;
+		this.precio = precio;
 	}
 	
-	public Articulo(String nombre, String caratula) {
+	public Articulo(String nombre, String caratula, double precio) {
 		this.nombre = nombre;
 		this.caratula = caratula;
+		this.precio = precio;
 	}
 
 	public String getNombre() {
@@ -29,6 +32,14 @@ public class Articulo {
 
 	public void setCaratula(String caratula) {
 		this.caratula = caratula;
+	}
+
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
 	}
 	
 }

@@ -101,7 +101,7 @@ public class ListadoArticulos extends JFrame {
 			        int mesF = fecha.get(Calendar.MONTH);
 			        int diaF = fecha.get(Calendar.DAY_OF_MONTH);
 			        String fechaFin = "" + diaF +"/" + mesF + "/"+ añoF +"";
-					Alquiler a = new Alquiler(a1, 6 , fechaIni ,  fechaFin, false);
+					Alquiler a = new Alquiler(a1, a1.getPrecio() , fechaIni ,  fechaFin, false);
 
 					VentanaConfirmacion confirm = new VentanaConfirmacion(VentanaAnterior , ListadoArticulos.this, iniciado, a, lblSaldo);
 					confirm.setVisible(true);

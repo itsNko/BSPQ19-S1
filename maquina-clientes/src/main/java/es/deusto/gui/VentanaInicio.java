@@ -83,14 +83,14 @@ public class VentanaInicio extends JFrame {
 	}
 	
 	private void cargarAlquileresPrueba(ArrayList<Alquiler> alquileres) {
-		Pelicula p1 = new Pelicula("Los vengadores", "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
-		Videojuego v1 = new Videojuego("Mario Bros", "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
-		Videojuego v2 = new Videojuego("GTA V", "Descripcion de GTA V", "Acción","10/07/2012", 6, "GTAV.jpg");
+		Pelicula p1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
+		Videojuego v1 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
+		Videojuego v2 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","10/07/2012", 6, "GTAV.jpg");
 		
 
-		Alquiler a1 = new Alquiler(p1, 6.25, "20/3/2019", "30/3/2019", true);
-		Alquiler a2 = new Alquiler(v1, 5, "15/2/2019", "03/4/2019", false);
-		Alquiler a3 = new Alquiler(v2, 5.5, "1/31/2018", "12/31/2018", true);
+		Alquiler a1 = new Alquiler(p1, p1.getPrecio(), "20/3/2019", "30/3/2019", true);
+		Alquiler a2 = new Alquiler(v1, v1.getPrecio(), "15/2/2019", "03/4/2019", false);
+		Alquiler a3 = new Alquiler(v2, v2.getPrecio(), "1/31/2018", "12/31/2018", true);
 		
 		
 		alquileres.add(a1);
