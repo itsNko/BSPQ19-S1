@@ -75,7 +75,7 @@ public class MenuSocio extends JFrame {
 		final JLabel lblSaldo = new JLabel("Tu saldo actual es de "+iniciado.getMonedero()+" €");
 		lblSaldo.setFont(new Font("AppleGothic", Font.PLAIN, 18));
 		lblSaldo.setForeground(Color.WHITE);
-		lblSaldo.setBounds(135, 200, 250, 60);
+		lblSaldo.setBounds(125, 200, 300, 60);
 		background.add(lblSaldo);
 
 		JButton btnNewButton = new JButton("");
