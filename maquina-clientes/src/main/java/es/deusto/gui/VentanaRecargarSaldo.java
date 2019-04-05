@@ -2,7 +2,6 @@ package es.deusto.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -17,13 +16,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import es.deusto.data.Socio;
 
 public class VentanaRecargarSaldo extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static double dinero = 0;
-	private JPanel contentPane;
 	private JFrame ventanaRecargar;
 	JLabel lblSaldo = new JLabel(dinero+" €");
 
@@ -66,7 +67,7 @@ public class VentanaRecargarSaldo extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 540);
-		contentPane = new JPanel();
+		new JPanel();
 		getContentPane().setLayout(new BorderLayout());
 		final JLabel background;
 		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"ventanaRecargarSaldo.png");
