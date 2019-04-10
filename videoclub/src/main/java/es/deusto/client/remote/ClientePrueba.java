@@ -3,7 +3,7 @@ package es.deusto.client.remote;
 import java.rmi.RemoteException;
 import es.deusto.server.IServer;
 
-public class ServiceLocator {
+public class ClientePrueba {
 
 	public static void main(String[] args) {
 		if (args.length != 3) {
