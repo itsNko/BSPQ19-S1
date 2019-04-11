@@ -129,7 +129,7 @@
 						<artifactId>exec-maven-plugin</artifactId>
 						<version>1.6.0</version>
 						<configuration>
-							<mainClass>es.deusto.client.remote.ServiceLocator</mainClass>
+							<mainClass>es.deusto.client.remote.ClientePrueba</mainClass>
 							<systemProperties>
 								<systemProperty>
 									<key>java.security.manager</key>
