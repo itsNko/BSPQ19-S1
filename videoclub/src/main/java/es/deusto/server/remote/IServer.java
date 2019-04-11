@@ -1,4 +1,4 @@
-package es.deusto.server;
+package es.deusto.server.remote;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

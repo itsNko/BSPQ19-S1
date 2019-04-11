@@ -91,7 +91,7 @@
 						<artifactId>exec-maven-plugin</artifactId>
 						<version>1.6.0</version><!-- 1.2.1 -->
 						<configuration>
-							<mainClass>es.deusto.server.ProgramaPrincipal</mainClass>
+							<mainClass>es.deusto.server.server.ProgramaPrincipal</mainClass>
 							<systemProperties>
 								<systemProperty>
 									<key>java.security.manager</key>

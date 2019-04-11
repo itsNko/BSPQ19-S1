@@ -1,9 +1,11 @@
-package es.deusto.server;
+package es.deusto.server.server;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
+
+import es.deusto.server.remote.IServer;
 
 public class ProgramaPrincipal extends UnicastRemoteObject implements IServer {
 
@@ -38,6 +40,7 @@ public class ProgramaPrincipal extends UnicastRemoteObject implements IServer {
 				Scanner scanner = new Scanner(System.in);
 				System.out.println("* Server '" + name + "' active and waiting...");
 				scanner.nextLine();
+				scanner.close();
 			} catch (Exception e) {
 				System.err.println("- Exception running the server: " + e.getMessage());
 				e.printStackTrace();

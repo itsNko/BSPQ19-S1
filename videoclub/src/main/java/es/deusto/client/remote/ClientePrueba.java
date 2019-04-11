@@ -1,7 +1,6 @@
 package es.deusto.client.remote;
 
-import java.rmi.RemoteException;
-import es.deusto.server.IServer;
+import es.deusto.server.remote.IServer;
 
 public class ClientePrueba {
 
@@ -21,12 +20,12 @@ public class ClientePrueba {
 			IServer stubServer = (IServer) java.rmi.Naming.lookup(name);
 			System.out.println("* Message coming from the server: '" + stubServer.sayHello() + "'");
 
-			try {
-				stubServer.sayHello();
-				
-			} catch(RemoteException e) {
-				System.err.println(e.getMessage());
-			}
+//			try {
+//				stubServer.sayHello();
+//				
+//			} catch(RemoteException e) {
+//				System.err.println(e.getMessage());
+//			}
 
 		} catch (Exception e) {
 			System.err.println("- Exception running the client: " + e.getMessage());
