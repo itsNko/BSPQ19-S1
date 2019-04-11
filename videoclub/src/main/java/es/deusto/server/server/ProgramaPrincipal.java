@@ -1,26 +1,12 @@
 package es.deusto.server.server;
 
 import java.rmi.Naming;
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
 import es.deusto.server.remote.IServer;
+import es.deusto.server.remote.Server;
 
-public class ProgramaPrincipal extends UnicastRemoteObject implements IServer {
-
-		private static final long serialVersionUID = 1L;
-		private int cont = 0;
-
-		protected ProgramaPrincipal() throws RemoteException {
-			super();
-		}
-
-		public String sayHello() {
-			cont++;
-			System.out.println(" * Client number: " + cont);
-			return "Hello World!";
-		}
+public class ProgramaPrincipal {
 
 		public static void main(String[] args) {
 			if (args.length != 3) {
@@ -35,8 +21,8 @@ public class ProgramaPrincipal extends UnicastRemoteObject implements IServer {
 			String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
 
 			try {		
-				IServer objServer = new ProgramaPrincipal();
-				Naming.rebind(name, objServer);
+				IServer server = Server.getInstance();
+				Naming.rebind(name, server);
 				Scanner scanner = new Scanner(System.in);
 				System.out.println("* Server '" + name + "' active and waiting...");
 				scanner.nextLine();
