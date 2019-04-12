@@ -168,7 +168,7 @@
 						<artifactId>exec-maven-plugin</artifactId>
 						<version>1.2.1</version>
 						<configuration>
-							<mainClass>es.deusto.client.remote.ClientePrueba</mainClass>
+							<mainClass>es.deusto.client.controllers.ControllerRegistro</mainClass>
 							<systemProperties>
 								<systemProperty>
 									<key>java.security.manager</key>

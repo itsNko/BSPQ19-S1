@@ -1,7 +1,6 @@
 package es.deusto.client.gui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -18,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import es.deusto.client.controllers.ControllerRegistro;
 import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Pelicula;
 import es.deusto.client.data.Socio;
@@ -32,77 +32,33 @@ public class VentanaInicio extends JFrame {
 	
 	private HashMap<String, Socio> socios = new HashMap<String, Socio>();
 	private ArrayList<Alquiler> alquileresPrueba = new ArrayList<Alquiler>();
+	@SuppressWarnings("unused")
+	private ControllerRegistro controllerRegistro;
+	private boolean cambiarVentana;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaInicio frame = new VentanaInicio();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
-	private Image getScaledImage(Image srcImg, int w, int h) {
-		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g2 = resizedImg.createGraphics();
-
-		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-		g2.drawImage(srcImg, 0, 0, w, h, null);
-		g2.dispose();
-
-		return resizedImg;
-	}
-	
-	private void candadoRojo(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde ) {
-		candadoNegro.setVisible(false);
-		candadoRojo.setVisible(true);
-		candadoVerde.setVisible(false);
-	}
-	private void candadoVerde(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde ) {
-		candadoNegro.setVisible(false);
-		candadoRojo.setVisible(false);
-		candadoVerde.setVisible(true);
-	}
-	private void candadoNegro(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde ) {
-		candadoNegro.setVisible(true);
-		candadoRojo.setVisible(false);
-		candadoVerde.setVisible(false);
-	}
-	
-	public boolean contieneLetrasYNumeros(String s) {
-		String n = ".*[0-9].*";
-		String l = ".*[A-Z].*";
-		return s.matches(n) && s.matches(l);
-	}
-	
-	private void cargarAlquileresPrueba(ArrayList<Alquiler> alquileres) {
-		Pelicula p1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
-		Videojuego v1 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
-		Videojuego v2 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","10/07/2012", 6, "GTAV.jpg");
-		
-
-		Alquiler a1 = new Alquiler(p1, p1.getPrecio(), "20/3/2019", "30/3/2019", true);
-		Alquiler a2 = new Alquiler(v1, v1.getPrecio(), "15/2/2019", "03/4/2019", false);
-		Alquiler a3 = new Alquiler(v2, v2.getPrecio(), "1/31/2018", "12/31/2018", true);
-		
-		
-		alquileres.add(a1);
-		alquileres.add(a2);
-		alquileres.add(a3);
-		
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					VentanaInicio frame = new VentanaInicio(null);
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 	
 	/**
 	 * Create the frame.
 	 */
-	public VentanaInicio() {
+	public VentanaInicio(ControllerRegistro controllerRegistro) {
+		this.controllerRegistro = controllerRegistro;
+		this.setVisible(true);
+		
 		setTitle("Bienvenido al Videoclub");
 		setResizable(false);
 		
@@ -263,7 +219,7 @@ public class VentanaInicio extends JFrame {
 								if(contieneLetrasYNumeros(pass)) {
 									// Comprobación de si existe un socio con el nombre de usuario introducido en el JTextField
 									if(!socios.containsKey(nombreUsuario)) {
-										Socio cliente= new Socio(nombreUsuario, pass, 0);
+										Socio cliente = new Socio(nombreUsuario, pass, 0);
 										ArrayList<Alquiler> alquileresTemp = new ArrayList<Alquiler>();
 										cliente.setAlquileres(alquileresTemp);
 										socios.put(nombreUsuario, cliente);
@@ -271,6 +227,10 @@ public class VentanaInicio extends JFrame {
 										JOptionPane.showMessageDialog(null, "Te has registrado correctamente :)", "Registro", JOptionPane.INFORMATION_MESSAGE);
 										candadoNegro(candadoNegro, candadoRojo, candadoVerde);
 										textfield.setText(""); passwordField.setText("");
+										cambiarVentana = controllerRegistro.registro(cliente.getNombre(), cliente.getPassword(), cliente.getMonedero());
+										if(cambiarVentana) {
+											System.out.println("Funciona RMI!");
+										}
 									} else {
 										candadoRojo(candadoNegro, candadoRojo, candadoVerde);
 										JOptionPane.showMessageDialog(null, "El nombre de usuario introducido ya existe, por favor introduzca otro nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -306,8 +266,56 @@ public class VentanaInicio extends JFrame {
 		boton2.setBounds(630,403,220,55);
 		background.add(boton2);
 
+	}
+	
+	private Image getScaledImage(Image srcImg, int w, int h) {
+		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2 = resizedImg.createGraphics();
 
+		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g2.drawImage(srcImg, 0, 0, w, h, null);
+		g2.dispose();
 
+		return resizedImg;
+	}
+	
+	private void candadoRojo(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde ) {
+		candadoNegro.setVisible(false);
+		candadoRojo.setVisible(true);
+		candadoVerde.setVisible(false);
+	}
+	private void candadoVerde(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde ) {
+		candadoNegro.setVisible(false);
+		candadoRojo.setVisible(false);
+		candadoVerde.setVisible(true);
+	}
+	private void candadoNegro(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde ) {
+		candadoNegro.setVisible(true);
+		candadoRojo.setVisible(false);
+		candadoVerde.setVisible(false);
+	}
+	
+	public boolean contieneLetrasYNumeros(String s) {
+		String n = ".*[0-9].*";
+		String l = ".*[A-Z].*";
+		return s.matches(n) && s.matches(l);
+	}
+	
+	private void cargarAlquileresPrueba(ArrayList<Alquiler> alquileres) {
+		Pelicula p1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
+		Videojuego v1 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
+		Videojuego v2 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","10/07/2012", 6, "GTAV.jpg");
+		
+
+		Alquiler a1 = new Alquiler(p1, p1.getPrecio(), "20/3/2019", "30/3/2019", true);
+		Alquiler a2 = new Alquiler(v1, v1.getPrecio(), "15/2/2019", "03/4/2019", false);
+		Alquiler a3 = new Alquiler(v2, v2.getPrecio(), "1/31/2018", "12/31/2018", true);
+		
+		
+		alquileres.add(a1);
+		alquileres.add(a2);
+		alquileres.add(a3);
+		
 	}
 
 }
