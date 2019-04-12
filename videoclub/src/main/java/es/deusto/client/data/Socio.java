@@ -2,8 +2,13 @@ package es.deusto.client.data;
 
 import java.util.ArrayList;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class Socio {
 
+	@PrimaryKey
 	private String nombre;
 	private String password;
 	private double monedero;
