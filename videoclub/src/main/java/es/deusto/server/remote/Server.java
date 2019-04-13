@@ -38,14 +38,25 @@ public class Server extends UnicastRemoteObject implements IServer {
 	}
 
 	@Override
-	public boolean registro(String email, String pass, double monedero) throws RemoteException {
+	public boolean registro(String nombre, String pass, double monedero) throws RemoteException {
 		try {
 			System.out.println("###Server: AppServiceDB.insertarSocio###");
-			return appService.insertarSocio(email, pass, monedero);
+			return appService.insertarSocio(nombre, pass, monedero);
 		} catch (Exception e) {
 			System.err.println("$ Error al registrarse " + e.getMessage());
 			return false;
 		}
+	}
+
+	@Override
+	public boolean existeSocio(String nombreSocio) throws RemoteException {
+		try {
+			return appService.existeSocio(nombreSocio);
+		} catch (Exception e) {
+			System.err.println("$ Error al comprobar si existe socio " + e.getMessage());
+			return false;
+		}
+		
 	}
 
 }

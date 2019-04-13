@@ -34,7 +34,7 @@ public class VentanaInicio extends JFrame {
 	private ArrayList<Alquiler> alquileresPrueba = new ArrayList<Alquiler>();
 	@SuppressWarnings("unused")
 	private ControllerRegistro controllerRegistro;
-	private boolean cambiarVentana;
+	private boolean registroCorrecto;
 
 	/**
 	 * Launch the application.
@@ -218,18 +218,17 @@ public class VentanaInicio extends JFrame {
 								// Comprobación de si la contraseña introducida contiene tanto letras como números
 								if(contieneLetrasYNumeros(pass)) {
 									// Comprobación de si existe un socio con el nombre de usuario introducido en el JTextField
-									if(!socios.containsKey(nombreUsuario)) {
+									if(!controllerRegistro.existeSocio(nombreUsuario)) {
 										Socio cliente = new Socio(nombreUsuario, pass, 0);
 										ArrayList<Alquiler> alquileresTemp = new ArrayList<Alquiler>();
 										cliente.setAlquileres(alquileresTemp);
-										socios.put(nombreUsuario, cliente);
-										candadoVerde(candadoNegro, candadoRojo, candadoVerde);
-										JOptionPane.showMessageDialog(null, "Te has registrado correctamente :)", "Registro", JOptionPane.INFORMATION_MESSAGE);
-										candadoNegro(candadoNegro, candadoRojo, candadoVerde);
-										textfield.setText(""); passwordField.setText("");
-										cambiarVentana = controllerRegistro.registro(cliente.getNombre(), cliente.getPassword(), cliente.getMonedero());
-										if(cambiarVentana) {
-											System.out.println("Funciona RMI!");
+										registroCorrecto = controllerRegistro.registro(cliente.getNombre(), cliente.getPassword(), cliente.getMonedero());
+										if(registroCorrecto) {
+											socios.put(nombreUsuario, cliente);
+											candadoVerde(candadoNegro, candadoRojo, candadoVerde);
+											JOptionPane.showMessageDialog(null, "Te has registrado correctamente :)", "Registro", JOptionPane.INFORMATION_MESSAGE);
+											candadoNegro(candadoNegro, candadoRojo, candadoVerde);
+											textfield.setText(""); passwordField.setText("");
 										}
 									} else {
 										candadoRojo(candadoNegro, candadoRojo, candadoVerde);

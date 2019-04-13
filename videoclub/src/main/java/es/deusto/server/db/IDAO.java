@@ -4,6 +4,7 @@ import es.deusto.client.data.Socio;
 
 public interface IDAO {
 
-	public boolean insertarSocio(Socio usuario);
+	public boolean insertarSocio(Socio s);
+	public boolean existeSocio(String nombreSocio);
 	
 }

@@ -16,11 +16,11 @@ public class ControllerRegistro {
 		rsl.setService(args[0], args[1], args[2]);
 	}
 
-	public boolean registro(String email, String pass, double monedero){
+	public boolean registro(String nombre, String pass, double monedero) {
 		boolean b;
 		try {
 			System.out.println("###ControllerRegistro: ServiceLocator.getService().register###");
-			b = rsl.getService().registro(email, pass, monedero);
+			b = rsl.getService().registro(nombre, pass, monedero);
 			if(b) {
 				System.out.println("###ControllerRegistro: Se ha registrado correctamente###");
 			} else {
@@ -29,6 +29,15 @@ public class ControllerRegistro {
 			return b;
 		} catch (Exception e){
 			System.err.println("$ Error al registrarse " + e.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean existeSocio(String nombreSocio) {
+		try {
+			return rsl.getService().existeSocio(nombreSocio);
+		} catch (Exception e){
+			System.err.println("$ Error al comprobar si existe el socio " + e.getMessage());
 			return false;
 		}
 	}

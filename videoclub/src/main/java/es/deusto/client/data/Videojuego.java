@@ -1,5 +1,11 @@
 package es.deusto.client.data;
 
+import javax.jdo.annotations.Inheritance;
+import javax.jdo.annotations.InheritanceStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+
+@PersistenceCapable
+@Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class Videojuego extends Articulo {
 
 	private String descripcion;
@@ -7,13 +13,6 @@ public class Videojuego extends Articulo {
 	private String fecha_lan;
 	private double puntuacion;
 	
-	public Videojuego(String nombre, double precio, String descripcion, String categoria, String fecha_lan, double puntuacion) {
-		super(nombre, precio);
-		this.descripcion = descripcion;
-		this.categoria = categoria;
-		this.fecha_lan = fecha_lan;
-		this.puntuacion = puntuacion;
-	}
 	public Videojuego(String nombre, double precio, String descripcion, String categoria, String fecha_lan, double puntuacion, String caratula) {
 		super(nombre, caratula, precio);
 		this.descripcion = descripcion;

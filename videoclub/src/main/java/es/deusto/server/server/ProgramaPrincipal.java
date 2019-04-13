@@ -23,10 +23,9 @@ public class ProgramaPrincipal {
 			try {		
 				IServer server = Server.getInstance();
 				Naming.rebind(name, server);
-				Scanner scanner = new Scanner(System.in);
+				VentanaServer vs = new VentanaServer();
 				System.out.println("* Server '" + name + "' active and waiting...");
-				scanner.nextLine();
-				scanner.close();
+				vs.setVisible(true);
 			} catch (Exception e) {
 				System.err.println("- Exception running the server: " + e.getMessage());
 				e.printStackTrace();

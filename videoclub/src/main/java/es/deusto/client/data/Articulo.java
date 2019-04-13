@@ -1,16 +1,15 @@
 package es.deusto.client.data;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class Articulo {
 
+	@PrimaryKey
 	private String nombre;
 	private String caratula;
 	private double precio;
-
-	public Articulo(String nombre, double precio) {
-		this.nombre = nombre;
-		this.caratula = null;
-		this.precio = precio;
-	}
 	
 	public Articulo(String nombre, String caratula, double precio) {
 		this.nombre = nombre;
