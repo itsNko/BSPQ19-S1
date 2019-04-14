@@ -2,6 +2,8 @@ package es.deusto.server.services;
 
 import java.rmi.RemoteException;
 
+import es.deusto.client.data.Alquiler;
+import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Socio;
 import es.deusto.server.db.MySQL_DB;
 import es.deusto.server.db.IDAO;
@@ -25,6 +27,13 @@ public class AppServiceDB {
 	
 	public boolean inicioSesion(String nombreSocio, String password) {
 		return db.inicioSesion(nombreSocio, password);
+	}
+	
+	
+	public boolean insertarAlquiler(Articulo articulo, double coste)
+	{
+		Alquiler alquiler = new Alquiler(articulo, coste, "fechaInicio", "fechaFin",true);
+		return db.insertarAlquiler(alquiler);
 	}
 
 }

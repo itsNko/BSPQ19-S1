@@ -6,6 +6,7 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
 
+import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Socio;
 
 public class MySQL_DB implements IDAO {
@@ -118,6 +119,35 @@ public class MySQL_DB implements IDAO {
 		}
 	
 		return inicioCorrecto;
+	}
+	
+	@Override
+	public boolean insertarAlquiler(Alquiler alquiler)
+	{
+		
+		try {
+			persistentManager = persistentManagerFactory.getPersistenceManager();
+			transaction = persistentManager.currentTransaction();	
+			transaction.begin();
+
+
+			persistentManager.makePersistent(alquiler);
+
+			System.out.println("- Inserted into db: " + alquiler.getAlquilado().getNombre());
+
+			transaction.commit();
+
+			return true;
+		} catch(Exception ex) {
+			System.err.println("* Exception inserting data into db: " + ex.getMessage());
+			return false;
+		} finally {		    
+			if (transaction.isActive()) {
+				transaction.rollback(); // Deshace los cambios en caso de que ocurra algún error
+			}
+
+			persistentManager.close();
+		}
 	}
 
 }
