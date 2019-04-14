@@ -6,5 +6,6 @@ public interface IDAO {
 
 	public boolean insertarSocio(Socio s);
 	public boolean existeSocio(String nombreSocio);
+	public boolean inicioSesion(String nombreSocio, String password);
 	
 }

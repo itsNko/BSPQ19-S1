@@ -59,4 +59,14 @@ public class Server extends UnicastRemoteObject implements IServer {
 		
 	}
 
+	@Override
+	public boolean inicioSesion(String nombreSocio, String password) throws RemoteException {
+		try {
+			return appService.inicioSesion(nombreSocio, password);
+		} catch (Exception e) {
+			System.err.println("$ Error al iniciar sesion " + e.getMessage());
+			return false;
+		}
+	}
+
 }

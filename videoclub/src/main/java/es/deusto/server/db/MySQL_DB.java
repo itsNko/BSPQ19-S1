@@ -57,11 +57,10 @@ public class MySQL_DB implements IDAO {
 
 		boolean existe = false;
 		try {
-			System.out.println("* Retrieving an Extent for Products.");
+			System.out.println("* Retrieving an Extent for Socios.");
 
 			transaction.begin();
 			Extent<Socio> extent = persistentManager.getExtent(Socio.class, true);
-
 
 			for (Socio socio : extent) {
 				if(socio.getNombre().equals(nombreSocio)) {
@@ -73,7 +72,7 @@ public class MySQL_DB implements IDAO {
 
 			transaction.commit();
 		} catch (Exception ex) {
-			System.out.println("   $ Error retrieving an extent: " + ex.getMessage());
+			System.out.println("$ Error retrieving an extent: " + ex.getMessage());
 		} finally {
 			if (transaction != null && transaction.isActive()) {
 				transaction.rollback();
@@ -83,6 +82,42 @@ public class MySQL_DB implements IDAO {
 		}
 
 		return existe;
+	}
+	
+	@Override
+	public boolean inicioSesion(String nombreSocio, String password) {
+		persistentManager = persistentManagerFactory.getPersistenceManager();
+		
+		transaction = persistentManager.currentTransaction();
+		
+		boolean inicioCorrecto = false;
+		try {
+			System.out.println("* Retrieving an Extent for Socios.");
+
+			transaction.begin();
+			Extent<Socio> extent = persistentManager.getExtent(Socio.class, true);
+
+			for (Socio socio : extent) {
+				if(socio.getNombre().equals(nombreSocio)) {
+					if(socio.getPassword().equals(password)) {
+						inicioCorrecto = true;
+						break;
+					}
+				}
+			}
+
+			transaction.commit();
+		} catch (Exception ex) {
+			System.out.println("$ Error retrieving an extent: " + ex.getMessage());
+		} finally {
+			if (transaction != null && transaction.isActive()) {
+				transaction.rollback();
+			}
+
+			persistentManager.close();
+		}
+	
+		return inicioCorrecto;
 	}
 
 }

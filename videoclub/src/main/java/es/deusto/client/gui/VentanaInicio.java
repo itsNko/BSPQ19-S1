@@ -29,47 +29,48 @@ import java.awt.event.ActionEvent;
 public class VentanaInicio extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private HashMap<String, Socio> socios = new HashMap<String, Socio>();
 	private ArrayList<Alquiler> alquileresPrueba = new ArrayList<Alquiler>();
 	@SuppressWarnings("unused")
 	private ControllerRegistro controllerRegistro;
 	private boolean registroCorrecto;
+	private boolean loginCorrecto;
 
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					VentanaInicio frame = new VentanaInicio(null);
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-	
+	//	public static void main(String[] args) {
+	//		EventQueue.invokeLater(new Runnable() {
+	//			public void run() {
+	//				try {
+	//					VentanaInicio frame = new VentanaInicio(null);
+	//					frame.setVisible(true);
+	//				} catch (Exception e) {
+	//					e.printStackTrace();
+	//				}
+	//			}
+	//		});
+	//	}
+
 	/**
 	 * Create the frame.
 	 */
 	public VentanaInicio(ControllerRegistro controllerRegistro) {
 		this.controllerRegistro = controllerRegistro;
 		this.setVisible(true);
-		
+
 		setTitle("Bienvenido al Videoclub");
 		setResizable(false);
-		
+
 		cargarAlquileresPrueba(alquileresPrueba);
-		
-		Socio s = new Socio("a", "a", 100);
+
+		Socio s = new Socio("a", "a", 100, "default-profile.png");
 		s.setAlquileres(alquileresPrueba);
 		s.setAlquileres(alquileresPrueba);
 		socios.put(s.getNombre(), s);
-		
-		
+
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 540);
 
@@ -140,38 +141,30 @@ public class VentanaInicio extends JFrame {
 				// Comprobación de si hay algún campo vacio
 				if(nombreUsuario.equals("") || pass.equals("") || nombreUsuario == null || pass == null) {
 					candadoRojo(candadoNegro, candadoRojo, candadoVerde);
-					
+
 					JOptionPane.showMessageDialog(null, "Alguno de los campos está vacio, por favor introduce un nombre de usuario y contraseña correctos.", "Aviso", JOptionPane.WARNING_MESSAGE);
-					
+
 					candadoNegro(candadoNegro, candadoRojo, candadoVerde);
 				} else {
-					// Comprobación de si existe un usuario registrado con el nombre introducido
-					if(socios.containsKey(nombreUsuario)) {
-						// Comprobación de si la contraseña coincide con la del nombre de usuario registrado
-						if(socios.get(nombreUsuario).getPassword().equals(pass)) {
-							candadoVerde(candadoNegro, candadoRojo, candadoVerde);
-							System.out.println("Has iniciado sesión correctamente, bienvenido!");
-							textfield.setText(""); passwordField.setText("");
-							
-							JOptionPane.showMessageDialog(null, "Has iniciado sesión correctamente!!", "", JOptionPane.INFORMATION_MESSAGE);
-							candadoNegro(candadoNegro, candadoRojo, candadoVerde);
-							MenuSocio ms = new MenuSocio(VentanaInicio.this, socios.get(nombreUsuario));
-							ms.setVisible(true);
-							VentanaInicio.this.setVisible(false);
+					loginCorrecto = controllerRegistro.inicioSesion(nombreUsuario, pass);
+					// Comprobación de si existe un socio registrado con el nombre introducido. En caso afirmativo se comprueba también si la contraseña es correcta para ese socio
+					if(loginCorrecto) {
+						candadoVerde(candadoNegro, candadoRojo, candadoVerde);
+						System.out.println("Has iniciado sesión correctamente, bienvenido!");
+						textfield.setText(""); passwordField.setText("");
 
-						} else {
-							
-							candadoRojo(candadoNegro, candadoRojo, candadoVerde);
-							
-							JOptionPane.showMessageDialog(null, "Contraseña incorrecta, vuelve a intentarlo.", "Error", JOptionPane.ERROR_MESSAGE);
-							
-							candadoNegro(candadoNegro, candadoRojo, candadoVerde);
-						}
+						JOptionPane.showMessageDialog(null, "Has iniciado sesión correctamente!!", "", JOptionPane.INFORMATION_MESSAGE);
+						candadoNegro(candadoNegro, candadoRojo, candadoVerde);
+						MenuSocio ms = new MenuSocio(VentanaInicio.this, socios.get(nombreUsuario));
+						ms.setVisible(true);
+						VentanaInicio.this.setVisible(false);
+
 					} else {
 						candadoRojo(candadoNegro, candadoRojo, candadoVerde);
-						JOptionPane.showMessageDialog(null, "No existe ningún usuario con ese nombre, por favor prueba con otro.", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos, vuelve a intentarlo.", "Login error", JOptionPane.ERROR_MESSAGE);
 						candadoNegro(candadoNegro, candadoRojo, candadoVerde);
 					}
+
 				}
 
 
@@ -190,7 +183,7 @@ public class VentanaInicio extends JFrame {
 		boton2.setIcon(botonRegistro);
 		boton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				String nombreUsuario = textfield.getText();
 				String pass = String.valueOf(passwordField.getPassword());
 				boolean mayus = false;
@@ -203,7 +196,7 @@ public class VentanaInicio extends JFrame {
 					}
 				}
 
-				// Comprobación de si algún campo está vacio
+				// Comprobación de si algún campo está vacío
 				if(nombreUsuario.equals("") || pass.equals("") || nombreUsuario == null || pass == null) {
 					candadoRojo(candadoNegro, candadoRojo, candadoVerde);
 					JOptionPane.showMessageDialog(null, "Alguno de los campos está vacio, por favor introduce un nombre de usuario y contraseña correctos.", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -219,7 +212,7 @@ public class VentanaInicio extends JFrame {
 								if(contieneLetrasYNumeros(pass)) {
 									// Comprobación de si existe un socio con el nombre de usuario introducido en el JTextField
 									if(!controllerRegistro.existeSocio(nombreUsuario)) {
-										Socio cliente = new Socio(nombreUsuario, pass, 0);
+										Socio cliente = new Socio(nombreUsuario, pass, 0, "default-profile.png");
 										ArrayList<Alquiler> alquileresTemp = new ArrayList<Alquiler>();
 										cliente.setAlquileres(alquileresTemp);
 										registroCorrecto = controllerRegistro.registro(cliente.getNombre(), cliente.getPassword(), cliente.getMonedero());
@@ -266,7 +259,7 @@ public class VentanaInicio extends JFrame {
 		background.add(boton2);
 
 	}
-	
+
 	private Image getScaledImage(Image srcImg, int w, int h) {
 		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = resizedImg.createGraphics();
@@ -277,7 +270,7 @@ public class VentanaInicio extends JFrame {
 
 		return resizedImg;
 	}
-	
+
 	private void candadoRojo(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde ) {
 		candadoNegro.setVisible(false);
 		candadoRojo.setVisible(true);
@@ -293,28 +286,28 @@ public class VentanaInicio extends JFrame {
 		candadoRojo.setVisible(false);
 		candadoVerde.setVisible(false);
 	}
-	
+
 	public boolean contieneLetrasYNumeros(String s) {
 		String n = ".*[0-9].*";
 		String l = ".*[A-Z].*";
 		return s.matches(n) && s.matches(l);
 	}
-	
+
 	private void cargarAlquileresPrueba(ArrayList<Alquiler> alquileres) {
 		Pelicula p1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
 		Videojuego v1 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
 		Videojuego v2 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","10/07/2012", 6, "GTAV.jpg");
-		
+
 
 		Alquiler a1 = new Alquiler(p1, p1.getPrecio(), "20/3/2019", "30/3/2019", true);
 		Alquiler a2 = new Alquiler(v1, v1.getPrecio(), "15/2/2019", "03/4/2019", false);
 		Alquiler a3 = new Alquiler(v2, v2.getPrecio(), "1/31/2018", "12/31/2018", true);
-		
-		
+
+
 		alquileres.add(a1);
 		alquileres.add(a2);
 		alquileres.add(a3);
-		
+
 	}
 
 }

@@ -41,6 +41,15 @@ public class ControllerRegistro {
 			return false;
 		}
 	}
+	
+	public boolean inicioSesion(String nombreSocio, String password) {
+		try {
+			return rsl.getService().inicioSesion(nombreSocio, password);
+		} catch (Exception e){
+			System.err.println("$ Error al iniciar sesion " + e.getMessage());
+			return false;
+		}
+	}
 
 	public void exit(){
 		System.exit(0);

@@ -15,11 +15,11 @@ public class Socio {
 	private String imagen;
 	private ArrayList<Alquiler> alquileres;
 	
-	public Socio(String nombre, String password, double monedero) {
+	public Socio(String nombre, String password, double monedero, String imagen) {
 		this.nombre = nombre;
 		this.password = password;
 		this.monedero = monedero;
-		this.imagen = null;
+		this.imagen = imagen;
 	}
 
 	public String getNombre() {
