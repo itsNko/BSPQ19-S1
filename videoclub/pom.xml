@@ -23,6 +23,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>2.18.0</version>
+			<scope>test</scope> <!-- Utilizar solo la librería al hacer los tests -->
+		</dependency>
+		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-core</artifactId>
 			<version>[5.1.6, 5.9)</version>
