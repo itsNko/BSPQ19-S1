@@ -33,7 +33,7 @@ public class MainDB {
 			Articulo art2 = new Videojuego("Mario Bros", 6, "Juego de la Wii", "Plataformas", "20/06/2005", 8.5, "mario.jpg");
 
 			Alquiler alquiler1 = new Alquiler(art1, art1.getPrecio(), "15/04/2019", "20/04/2019", true);
-			Alquiler alquiler2 = new Alquiler(art1, art1.getPrecio(), "15/04/2019", "20/04/2019", true);
+			Alquiler alquiler2 = new Alquiler(art2, art2.getPrecio(), "15/04/2019", "20/04/2019", true);
 
 			try {
 				transaction.begin();
@@ -164,7 +164,7 @@ public class MainDB {
 						@SuppressWarnings("unchecked")
 						Query<Alquiler> alquilerQuery = persistentManager.newQuery("SELECT FROM " + Alquiler.class.getName());
 						for(Alquiler alquiler: alquilerQuery.executeList()) {
-							if(alquiler.isEnCurso() && alquiler.getAlquilado().getNombre().equals(art1.getNombre())) {
+							if(alquiler.isEnCurso() && alquiler.getAlquilado().getNombre().equals(art1.getNombre()) && s.getAlquileres().contains(alquiler)) {
 								System.out.println("- Data modified: " + alquiler.isEnCurso() + " ---> FALSE");
 								alquiler.setEnCurso(false);
 							}
