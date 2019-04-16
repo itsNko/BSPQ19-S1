@@ -10,7 +10,7 @@ public class Alquiler {
 
 	@PrimaryKey
 	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT)
-	int id;
+	private int id;
 	private Articulo alquilado;
 	private double coste;
 	private String fecha_inicio;
@@ -23,6 +23,14 @@ public class Alquiler {
 		this.fecha_inicio = fecha_inicio;
 		this.fecha_fin = fecha_fin;
 		this.enCurso = enCurso;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public Articulo getAlquilado() {
