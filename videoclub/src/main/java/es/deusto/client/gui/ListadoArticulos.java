@@ -5,9 +5,9 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -15,7 +15,12 @@ import javax.swing.JLabel;
 
 import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
+import es.deusto.client.data.Pelicula;
 import es.deusto.client.data.Socio;
+import es.deusto.client.data.Videojuego;
+import es.deusto.server.dto.ArticuloDTO;
+import es.deusto.server.dto.PeliculaDTO;
+import es.deusto.server.dto.VideojuegoDTO;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -46,8 +51,9 @@ public class ListadoArticulos extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public ListadoArticulos(final JFrame VentanaAnterior, final ArrayList<Articulo> articulos, final Socio iniciado, final JLabel lblSaldo) {
+	public ListadoArticulos(final JFrame VentanaAnterior, final List<ArticuloDTO> articulos, final Socio iniciado, final JLabel lblSaldo) {
 		MenuSocio = VentanaAnterior;
+	
 		setTitle("Artículos disponibles para alquilar");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,7 +87,7 @@ public class ListadoArticulos extends JFrame {
 		for (int i = 0; i < articulos.size(); i++) {
 
 			JButton btnJuego = new JButton();
-			final Articulo a1 = articulos.get(i);
+			final Articulo a1 = getArticuloDeDTO(articulos.get(i));
 			btnJuego.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -124,8 +130,6 @@ public class ListadoArticulos extends JFrame {
 
 	}
 
-
-
 	private Image getScaledImage(Image srcImg, int w, int h){
 		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = resizedImg.createGraphics();
@@ -135,5 +139,17 @@ public class ListadoArticulos extends JFrame {
 		g2.dispose();
 
 		return resizedImg;
+	}
+	
+	public Articulo getArticuloDeDTO(ArticuloDTO artDTO) {
+		if(artDTO.getClassName().equals("VideojuegoDTO")) {
+			VideojuegoDTO juego = (VideojuegoDTO) artDTO;
+			return new Videojuego(juego.getNombre(), juego.getPrecio(), juego.getDescripcion(),
+					juego.getCategoria(), juego.getFecha_lan(), juego.getPuntuacion(), juego.getCaratula());
+		} else {
+			PeliculaDTO peli = (PeliculaDTO) artDTO;
+			return new Pelicula(peli.getNombre(), peli.getPrecio(), peli.getSinopsis(), peli.getGenero(), 
+					peli.getFecha_estr(), peli.getPuntuacion(), peli.getCaratula());
+		}
 	}
 }

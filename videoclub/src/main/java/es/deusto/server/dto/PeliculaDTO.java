@@ -1,19 +1,17 @@
-package es.deusto.client.data;
+package es.deusto.server.dto;
 
-import javax.jdo.annotations.Inheritance;
-import javax.jdo.annotations.InheritanceStrategy;
-import javax.jdo.annotations.PersistenceCapable;
+import java.io.Serializable;
 
-@PersistenceCapable
-@Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
-public class Pelicula extends Articulo {
+public class PeliculaDTO extends ArticuloDTO implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String sinopsis;
 	private String genero;
 	private String fecha_estr;
 	private double puntuacion;
 	
-	public Pelicula(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula) {
+	public PeliculaDTO(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula) {
 		super(nombre, caratula, precio);
 		this.sinopsis = sinopsis;
 		this.genero = genero;
@@ -55,7 +53,6 @@ public class Pelicula extends Articulo {
 
 	@Override
 	public String getClassName() {
-		return "Pelicula";
+		return "PeliculaDTO";
 	}
-	
 }

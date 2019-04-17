@@ -2,8 +2,10 @@ package es.deusto.server.remote;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 import es.deusto.client.data.Articulo;
+import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.services.AppServiceDB;
 
 public class Server extends UnicastRemoteObject implements IServer {
@@ -71,7 +73,7 @@ public class Server extends UnicastRemoteObject implements IServer {
 	}
 	
 	@Override
-	public boolean insertarAlquiler(Articulo articulo, double coste)
+	public boolean insertarAlquiler(Articulo articulo, double coste) throws RemoteException
 	{
 		try
 		{
@@ -80,6 +82,16 @@ public class Server extends UnicastRemoteObject implements IServer {
 		{
 			System.err.println("$ Error al insertar alquiler "+ e.getMessage());
 			return false;
+		}
+	}
+
+	@Override
+	public List<ArticuloDTO> listadoArticulos() throws RemoteException {
+		try {
+			return appService.listadoArticulos();
+		} catch(Exception e) {
+			System.err.println("$ Error al obtener listado de articulos " + e.getMessage());
+			return null;
 		}
 	}
 

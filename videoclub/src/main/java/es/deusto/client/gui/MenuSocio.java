@@ -7,7 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,10 +17,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import es.deusto.client.controllers.ControllerListadoArticulos;
 import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Pelicula;
 import es.deusto.client.data.Socio;
 import es.deusto.client.data.Videojuego;
+import es.deusto.server.dto.ArticuloDTO;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -28,8 +32,9 @@ public class MenuSocio extends JFrame {
 	private static final long serialVersionUID = 1L;
 	// private JFrame frame;
 	private JFrame ventanaInicio;
+	private ControllerListadoArticulos controllerListadoArticulos;
 
-	private ArrayList<Articulo> articulos = new ArrayList<Articulo>();
+	private List<ArticuloDTO> articulos = new ArrayList<ArticuloDTO>();
 
 
 	/**
@@ -54,7 +59,15 @@ public class MenuSocio extends JFrame {
 	 */
 	public MenuSocio(JFrame ventanaAnterior, final Socio iniciado) {
 
-		cargarArticulosPrueba();
+		//cargarArticulosPrueba();
+		
+		try {
+			this.controllerListadoArticulos = new ControllerListadoArticulos();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		articulos = controllerListadoArticulos.listadoArticulos();
 
 		setTitle("Menú principal");
 		ventanaInicio = ventanaAnterior;
@@ -188,23 +201,23 @@ public class MenuSocio extends JFrame {
 		return resizedImg;
 	}
 
-	private void cargarArticulosPrueba() {
-		Videojuego v1 = new Videojuego("Sonic", 5, "Descripcion de Sonic", "Plataformas","10/02/2004", 7, "sonic.JPG");
-		Videojuego v2 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
-		Videojuego v3 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","20/03/2015", 9, "GTAV.jpg");
-
-		Pelicula p1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
-		Pelicula p2 = new Pelicula("Harry Potter",5, "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg");
-		Pelicula p3 = new Pelicula("Star Wars I", 6.25, "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, "starWars.jpg");
-
-		articulos.add(v1);
-		articulos.add(v2);
-		articulos.add(v3);
-		articulos.add(p1);
-		articulos.add(p2);
-		articulos.add(p3);
-
-	}
+//	private void cargarArticulosPrueba() {
+//		Videojuego v1 = new Videojuego("Sonic", 5, "Descripcion de Sonic", "Plataformas","10/02/2004", 7, "sonic.JPG");
+//		Videojuego v2 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
+//		Videojuego v3 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","20/03/2015", 9, "GTAV.jpg");
+//
+//		Pelicula p1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
+//		Pelicula p2 = new Pelicula("Harry Potter",5, "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg");
+//		Pelicula p3 = new Pelicula("Star Wars I", 6.25, "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, "starWars.jpg");
+//
+//		articulos.add(v1);
+//		articulos.add(v2);
+//		articulos.add(v3);
+//		articulos.add(p1);
+//		articulos.add(p2);
+//		articulos.add(p3);
+//
+//	}
 
 	private boolean alquileresEnCurso(final Socio iniciado) {
 		boolean result = false;

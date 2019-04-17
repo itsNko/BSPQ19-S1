@@ -1,7 +1,6 @@
 package es.deusto.server.server;
 
 import java.rmi.Naming;
-import java.util.Scanner;
 
 import es.deusto.server.remote.IServer;
 import es.deusto.server.remote.Server;

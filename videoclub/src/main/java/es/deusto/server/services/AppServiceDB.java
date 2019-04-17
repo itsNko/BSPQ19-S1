@@ -1,19 +1,24 @@
 package es.deusto.server.services;
 
 import java.rmi.RemoteException;
+import java.util.List;
 
 import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Socio;
 import es.deusto.server.db.MySQL_DB;
+import es.deusto.server.dto.ArticuloAssembler;
+import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.db.IDAO;
 
 public class AppServiceDB {
 
 	private IDAO db;
+	private ArticuloAssembler artAssem;
 
 	public AppServiceDB() throws RemoteException {
 		db = new MySQL_DB();
+		artAssem = ArticuloAssembler.getInstance();
 	}
 
 	public boolean insertarSocio(String nombre, String pass, double monedero) {
@@ -34,6 +39,12 @@ public class AppServiceDB {
 	{
 		Alquiler alquiler = new Alquiler(articulo, coste, "fechaInicio", "fechaFin",true);
 		return db.insertarAlquiler(alquiler);
+	}
+	
+	public List<ArticuloDTO> listadoArticulos() {
+		List<Articulo> articulos = db.listadoArticulos();
+		
+		return artAssem.assemble(articulos);
 	}
 
 }

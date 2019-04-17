@@ -1,17 +1,16 @@
-package es.deusto.client.data;
+package es.deusto.server.dto;
 
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.PrimaryKey;
+import java.io.Serializable;
 
-@PersistenceCapable
-public abstract class Articulo {
+public abstract class  ArticuloDTO implements Serializable {
 
-	@PrimaryKey
+	private static final long serialVersionUID = 1L;
+	
 	private String nombre;
 	private String caratula;
 	private double precio;
 	
-	public Articulo(String nombre, String caratula, double precio) {
+	public ArticuloDTO(String nombre, String caratula, double precio) {
 		this.nombre = nombre;
 		this.caratula = caratula;
 		this.precio = precio;

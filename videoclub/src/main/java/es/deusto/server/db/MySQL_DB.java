@@ -1,5 +1,8 @@
 package es.deusto.server.db;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.jdo.Extent;
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
@@ -7,7 +10,10 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
 
 import es.deusto.client.data.Alquiler;
+import es.deusto.client.data.Articulo;
+import es.deusto.client.data.Pelicula;
 import es.deusto.client.data.Socio;
+import es.deusto.client.data.Videojuego;
 
 public class MySQL_DB implements IDAO {
 
@@ -144,6 +150,43 @@ public class MySQL_DB implements IDAO {
 		} finally {		    
 			if (transaction.isActive()) {
 				transaction.rollback(); // Deshace los cambios en caso de que ocurra algún error
+			}
+
+			persistentManager.close();
+		}
+	}
+
+	@Override
+	public List<Articulo> listadoArticulos() {
+		try {
+			persistentManager = persistentManagerFactory.getPersistenceManager();
+			transaction = persistentManager.currentTransaction();	
+			transaction.begin();
+
+			Extent<Pelicula> extentPeliculas = persistentManager.getExtent(Pelicula.class, true);
+			Extent<Videojuego> extentVideojuegos = persistentManager.getExtent(Videojuego.class, true);
+			
+			List<Articulo> articulos = new ArrayList<Articulo>();
+
+			for (Pelicula pelicula : extentPeliculas) {
+				articulos.add(pelicula);
+			}
+			
+			for (Videojuego juego : extentVideojuegos) {
+				articulos.add(juego);
+			}
+			
+			transaction.commit();
+
+			return articulos;
+			
+		} catch(Exception ex) {
+			System.err.println("* Exception retrieving articulos: " + ex.getMessage());
+			return null;
+			
+		} finally {		    
+			if (transaction.isActive()) {
+				transaction.rollback(); 
 			}
 
 			persistentManager.close();

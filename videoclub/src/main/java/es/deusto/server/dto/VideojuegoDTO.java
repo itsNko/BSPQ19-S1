@@ -1,19 +1,17 @@
-package es.deusto.client.data;
+package es.deusto.server.dto;
 
-import javax.jdo.annotations.Inheritance;
-import javax.jdo.annotations.InheritanceStrategy;
-import javax.jdo.annotations.PersistenceCapable;
+import java.io.Serializable;
 
-@PersistenceCapable
-@Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
-public class Videojuego extends Articulo {
+public class VideojuegoDTO extends ArticuloDTO implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String descripcion;
 	private String categoria;
 	private String fecha_lan;
 	private double puntuacion;
 	
-	public Videojuego(String nombre, double precio, String descripcion, String categoria, String fecha_lan, double puntuacion, String caratula) {
+	public VideojuegoDTO(String nombre, double precio, String descripcion, String categoria, String fecha_lan, double puntuacion, String caratula) {
 		super(nombre, caratula, precio);
 		this.descripcion = descripcion;
 		this.categoria = categoria;
@@ -55,7 +53,7 @@ public class Videojuego extends Articulo {
 
 	@Override
 	public String getClassName() {
-		return "Videojuego";
+		return "VideojuegoDTO";
 	}
-	
+
 }
