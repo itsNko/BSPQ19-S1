@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import es.deusto.client.data.Socio;
+import es.deusto.server.dto.SocioDTO;
 
 public class VentanaRecargarSaldo extends JFrame {
 	/**
@@ -61,7 +61,7 @@ public class VentanaRecargarSaldo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaRecargarSaldo(JFrame ventanaAnterior, final Socio iniciado,final JLabel labelSaldo) {
+	public VentanaRecargarSaldo(JFrame ventanaAnterior, final SocioDTO iniciado,final JLabel labelSaldo) {
 		ventanaRecargar = ventanaAnterior;
 		dinero = iniciado.getMonedero();
 		setResizable(false);

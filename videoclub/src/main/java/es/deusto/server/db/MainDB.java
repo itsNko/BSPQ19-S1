@@ -25,13 +25,18 @@ public class MainDB {
 			PersistenceManager persistentManager = persistentManagerFactory.getPersistenceManager();				
 			Transaction transaction = persistentManager.currentTransaction();
 
-			Socio s1 = new Socio("Marcos20", "1111111A", 20.75, "default-profile.png");
-			Socio s2 = new Socio("Isabel1123", "2222222B", 10, "default-profile.png");
-			Socio s3 = new Socio("Fran", "3333333C", 0, "default-profile.png");
-
-			Articulo art1 = new Pelicula("Los Vengadores", 5.5, "Sinopsis Los Vengadores", "Acción", "30/11/2010", 2, "vengadores.jpg");
-			Articulo art2 = new Videojuego("Mario Bros", 6, "Juego de la Wii", "Plataformas", "20/06/2005", 8.5, "mario.jpg");
-
+			Socio s1 = new Socio("Prueba1", "1111111A", 20.75, "default-profile.png");
+			Socio s2 = new Socio("Prueba2", "2222222B", 10, "default-profile.png");
+			Socio s3 = new Socio("Prueba3", "3333333C", 0, "default-profile.png");
+		
+			Articulo art1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
+			Articulo art2 = new Pelicula("Harry Potter",5, "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg");
+			Articulo art3 = new Pelicula("Star Wars I", 6.25, "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, "starWars.jpg");
+			
+			Articulo art4 = new Videojuego("Sonic", 5, "Descripcion de Sonic", "Plataformas","10/02/2004", 7, "sonic.JPG");
+			Articulo art5 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
+			Articulo art6 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","20/03/2015", 9, "GTAV.jpg");
+	
 			Alquiler alquiler1 = new Alquiler(art1, art1.getPrecio(), "15/04/2019", "20/04/2019", true);
 			Alquiler alquiler2 = new Alquiler(art2, art2.getPrecio(), "15/04/2019", "20/04/2019", true);
 
@@ -48,9 +53,17 @@ public class MainDB {
 
 				persistentManager.makePersistent(art1);
 				persistentManager.makePersistent(art2);
-
+				persistentManager.makePersistent(art3);
+				persistentManager.makePersistent(art4);
+				persistentManager.makePersistent(art5);
+				persistentManager.makePersistent(art6);
+				
 				System.out.println("- Inserted into db: " + art1.getNombre());
 				System.out.println("- Inserted into db: " + art2.getNombre());
+				System.out.println("- Inserted into db: " + art3.getNombre());
+				System.out.println("- Inserted into db: " + art4.getNombre());
+				System.out.println("- Inserted into db: " + art5.getNombre());
+				System.out.println("- Inserted into db: " + art6.getNombre());
 
 				transaction.commit();
 			} catch(Exception ex) {
@@ -74,7 +87,7 @@ public class MainDB {
 				Query<Socio> usuariosQuery = persistentManager.newQuery("SELECT FROM " + Socio.class.getName());
 				for (Socio socio : usuariosQuery.executeList()) {
 					System.out.println("- Selected from db: " + socio.getNombre());
-					if(socio.getNombre().equals("Fran")) {
+					if(socio.getNombre().equals("Prueba3")) {
 						// Borra el socio con nombre 'Fran'
 						persistentManager.deletePersistent(socio);
 						System.out.println("- Deleted from db: " + socio.getNombre());
@@ -130,7 +143,7 @@ public class MainDB {
 
 				while (iter.hasNext()) {
 					Socio s = (Socio) iter.next();
-					if (s.getNombre().equals("Marcos20")) {
+					if (s.getNombre().equals("Prueba1")) {
 						System.out.println("- Añadidos alquileres a socio: " + s.getNombre());
 						s.getAlquileres().add(alquiler1);
 						s.getAlquileres().add(alquiler2);
@@ -160,7 +173,7 @@ public class MainDB {
 
 				while (iter.hasNext()) {
 					Socio s = (Socio) iter.next();
-					if(s.getNombre().equals("Marcos20")) {
+					if(s.getNombre().equals("Prueba1")) {
 						@SuppressWarnings("unchecked")
 						Query<Alquiler> alquilerQuery = persistentManager.newQuery("SELECT FROM " + Alquiler.class.getName());
 						for(Alquiler alquiler: alquilerQuery.executeList()) {
@@ -171,7 +184,7 @@ public class MainDB {
 						}
 					}
 
-					if (s.getNombre().equals("Isabel1123")) {
+					if (s.getNombre().equals("Prueba2")) {
 						System.out.println("- Data modified: " + s.getPassword() + " ---> " + s.getPassword() + "M");
 						s.setPassword(s.getPassword() + "M");
 					}

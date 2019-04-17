@@ -18,11 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import es.deusto.client.controllers.ControllerListadoArticulos;
-import es.deusto.client.data.Articulo;
-import es.deusto.client.data.Pelicula;
-import es.deusto.client.data.Socio;
-import es.deusto.client.data.Videojuego;
 import es.deusto.server.dto.ArticuloDTO;
+import es.deusto.server.dto.SocioDTO;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -57,7 +54,7 @@ public class MenuSocio extends JFrame {
 	 * Create the application.
 	 * @param iniciado 
 	 */
-	public MenuSocio(JFrame ventanaAnterior, final Socio iniciado) {
+	public MenuSocio(JFrame ventanaAnterior, final SocioDTO iniciado) {
 
 		//cargarArticulosPrueba();
 		
@@ -66,8 +63,6 @@ public class MenuSocio extends JFrame {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		
-		articulos = controllerListadoArticulos.listadoArticulos();
 
 		setTitle("Menú principal");
 		ventanaInicio = ventanaAnterior;
@@ -95,6 +90,7 @@ public class MenuSocio extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Alquilar");
+				articulos = controllerListadoArticulos.listadoArticulos();
 				ListadoArticulos ls = new ListadoArticulos(MenuSocio.this, articulos, iniciado, lblSaldo);
 				ls.setVisible(true);
 				MenuSocio.this.setVisible(false);
@@ -219,7 +215,7 @@ public class MenuSocio extends JFrame {
 //
 //	}
 
-	private boolean alquileresEnCurso(final Socio iniciado) {
+	private boolean alquileresEnCurso(final SocioDTO iniciado) {
 		boolean result = false;
 
 		for(int i = 0; i < iniciado.getAlquileres().size(); i++) {

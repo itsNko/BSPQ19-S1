@@ -6,13 +6,14 @@ import java.util.List;
 
 import es.deusto.client.data.Articulo;
 import es.deusto.server.dto.ArticuloDTO;
+import es.deusto.server.dto.SocioDTO;
 
 public interface IServer extends Remote {
 
 	String sayHello() throws RemoteException;
 	public boolean registro(String nombre, String pass, double monedero) throws RemoteException;
 	public boolean existeSocio(String nombreSocio) throws RemoteException;
-	public boolean inicioSesion(String nombreSocio, String password) throws RemoteException;
+	public SocioDTO inicioSesion(String nombreSocio, String password) throws RemoteException;
 
 	boolean insertarAlquiler(Articulo articulo, double coste, String nombreUsuario) throws RemoteException;
 	

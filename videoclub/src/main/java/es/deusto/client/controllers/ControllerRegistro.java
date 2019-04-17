@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 import es.deusto.client.gui.VentanaInicio;
 import es.deusto.client.remote.ServiceLocator;
+import es.deusto.server.dto.SocioDTO;
 
 public class ControllerRegistro {
 
@@ -42,12 +43,12 @@ public class ControllerRegistro {
 		}
 	}
 	
-	public boolean inicioSesion(String nombreSocio, String password) {
+	public SocioDTO inicioSesion(String nombreSocio, String password) {
 		try {
 			return rsl.getService().inicioSesion(nombreSocio, password);
 		} catch (Exception e){
 			System.err.println("$ Error al iniciar sesion " + e.getMessage());
-			return false;
+			return null;
 		}
 	}
 

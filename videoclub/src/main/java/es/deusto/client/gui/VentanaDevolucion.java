@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import es.deusto.client.data.Alquiler;
-import es.deusto.client.data.Socio;
+import es.deusto.server.dto.SocioDTO;
 
 
 public class VentanaDevolucion extends JFrame {
@@ -53,7 +53,7 @@ public class VentanaDevolucion extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaDevolucion(JFrame ventanaAnterior, final Socio s) {
+	public VentanaDevolucion(JFrame ventanaAnterior, final SocioDTO s) {
 		ventanaQueMeLlama = ventanaAnterior;
 
 		setTitle("Devolución de artículos");

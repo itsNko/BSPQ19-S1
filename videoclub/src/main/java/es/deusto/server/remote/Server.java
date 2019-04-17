@@ -6,6 +6,7 @@ import java.util.List;
 
 import es.deusto.client.data.Articulo;
 import es.deusto.server.dto.ArticuloDTO;
+import es.deusto.server.dto.SocioDTO;
 import es.deusto.server.services.AppServiceDB;
 
 public class Server extends UnicastRemoteObject implements IServer {
@@ -63,12 +64,12 @@ public class Server extends UnicastRemoteObject implements IServer {
 	}
 
 	@Override
-	public boolean inicioSesion(String nombreSocio, String password) throws RemoteException {
+	public SocioDTO inicioSesion(String nombreSocio, String password) throws RemoteException {
 		try {
 			return appService.inicioSesion(nombreSocio, password);
 		} catch (Exception e) {
 			System.err.println("$ Error al iniciar sesion " + e.getMessage());
-			return false;
+			return null;
 		}
 	}
 	

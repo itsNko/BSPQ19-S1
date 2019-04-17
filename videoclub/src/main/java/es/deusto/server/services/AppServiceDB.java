@@ -9,16 +9,20 @@ import es.deusto.client.data.Socio;
 import es.deusto.server.db.MySQL_DB;
 import es.deusto.server.dto.ArticuloAssembler;
 import es.deusto.server.dto.ArticuloDTO;
+import es.deusto.server.dto.SocioAssembler;
+import es.deusto.server.dto.SocioDTO;
 import es.deusto.server.db.IDAO;
 
 public class AppServiceDB {
 
 	private IDAO db;
 	private ArticuloAssembler artAssem;
+	private SocioAssembler socioAssem;
 
 	public AppServiceDB() throws RemoteException {
 		db = new MySQL_DB();
 		artAssem = ArticuloAssembler.getInstance();
+		socioAssem = SocioAssembler.getInstance();
 	}
 
 	public boolean insertarSocio(String nombre, String pass, double monedero) {
@@ -30,8 +34,9 @@ public class AppServiceDB {
 		return db.existeSocio(nombreSocio);
 	}
 	
-	public boolean inicioSesion(String nombreSocio, String password) {
-		return db.inicioSesion(nombreSocio, password);
+	public SocioDTO inicioSesion(String nombreSocio, String password) {
+		Socio socio = db.inicioSesion(nombreSocio, password);
+		return socioAssem.assemble(socio);
 	}
 	
 	

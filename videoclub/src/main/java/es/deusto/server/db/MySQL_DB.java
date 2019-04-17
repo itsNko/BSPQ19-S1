@@ -94,12 +94,12 @@ public class MySQL_DB implements IDAO {
 	}
 	
 	@Override
-	public boolean inicioSesion(String nombreSocio, String password) {
+	public Socio inicioSesion(String nombreSocio, String password) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		
 		transaction = persistentManager.currentTransaction();
 		
-		boolean inicioCorrecto = false;
+		Socio s = null;
 		try {
 			System.out.println("* Retrieving an Extent for Socios.");
 
@@ -109,7 +109,7 @@ public class MySQL_DB implements IDAO {
 			for (Socio socio : extent) {
 				if(socio.getNombre().equals(nombreSocio)) {
 					if(socio.getPassword().equals(password)) {
-						inicioCorrecto = true;
+						s = socio;
 						break;
 					}
 				}
@@ -125,8 +125,12 @@ public class MySQL_DB implements IDAO {
 
 			persistentManager.close();
 		}
+		
+		if(s == null) {
+			s = new Socio();
+		}
 	
-		return inicioCorrecto;
+		return s;
 	}
 	
 	@Override

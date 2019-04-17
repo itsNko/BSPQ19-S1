@@ -6,8 +6,6 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,10 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import es.deusto.client.controllers.ControllerRegistro;
-import es.deusto.client.data.Alquiler;
-import es.deusto.client.data.Pelicula;
-import es.deusto.client.data.Socio;
-import es.deusto.client.data.Videojuego;
+import es.deusto.server.dto.SocioDTO;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -30,12 +25,12 @@ public class VentanaInicio extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	private HashMap<String, Socio> socios = new HashMap<String, Socio>();
-	private ArrayList<Alquiler> alquileresPrueba = new ArrayList<Alquiler>();
+//	private HashMap<String, Socio> socios = new HashMap<String, Socio>();
+//	private ArrayList<Alquiler> alquileresPrueba = new ArrayList<Alquiler>();
 	@SuppressWarnings("unused")
 	private ControllerRegistro controllerRegistro;
 	private boolean registroCorrecto;
-	private boolean loginCorrecto;
+	private SocioDTO socio;
 
 	/**
 	 * Launch the application.
@@ -63,12 +58,12 @@ public class VentanaInicio extends JFrame {
 		setTitle("Bienvenido al Videoclub");
 		setResizable(false);
 
-		cargarAlquileresPrueba(alquileresPrueba);
+//		cargarAlquileresPrueba(alquileresPrueba);
 
-		Socio s = new Socio("a", "a", 100, "default-profile.png");
-		s.setAlquileres(alquileresPrueba);
-		s.setAlquileres(alquileresPrueba);
-		socios.put(s.getNombre(), s);
+//		Socio s = new Socio("a", "a", 100, "default-profile.png");
+//		s.setAlquileres(alquileresPrueba);
+//		s.setAlquileres(alquileresPrueba);
+//		socios.put(s.getNombre(), s);
 
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -146,16 +141,16 @@ public class VentanaInicio extends JFrame {
 
 					candadoNegro(candadoNegro, candadoRojo, candadoVerde);
 				} else {
-					loginCorrecto = controllerRegistro.inicioSesion(nombreUsuario, pass);
+					socio = controllerRegistro.inicioSesion(nombreUsuario, pass);
 					// Comprobación de si existe un socio registrado con el nombre introducido. En caso afirmativo se comprueba también si la contraseña es correcta para ese socio
-					if(loginCorrecto) {
+					if(!socio.getNombre().equals("")) {
 						candadoVerde(candadoNegro, candadoRojo, candadoVerde);
 						System.out.println("Has iniciado sesión correctamente, bienvenido!");
 						textfield.setText(""); passwordField.setText("");
 
 						JOptionPane.showMessageDialog(null, "Has iniciado sesión correctamente!!", "", JOptionPane.INFORMATION_MESSAGE);
 						candadoNegro(candadoNegro, candadoRojo, candadoVerde);
-						MenuSocio ms = new MenuSocio(VentanaInicio.this, socios.get(nombreUsuario));
+						MenuSocio ms = new MenuSocio(VentanaInicio.this, socio);
 						ms.setVisible(true);
 						VentanaInicio.this.setVisible(false);
 
@@ -212,12 +207,12 @@ public class VentanaInicio extends JFrame {
 								if(contieneLetrasYNumeros(pass)) {
 									// Comprobación de si existe un socio con el nombre de usuario introducido en el JTextField
 									if(!controllerRegistro.existeSocio(nombreUsuario)) {
-										Socio cliente = new Socio(nombreUsuario, pass, 0, "default-profile.png");
-										ArrayList<Alquiler> alquileresTemp = new ArrayList<Alquiler>();
-										cliente.setAlquileres(alquileresTemp);
-										registroCorrecto = controllerRegistro.registro(cliente.getNombre(), cliente.getPassword(), cliente.getMonedero());
+//										Socio cliente = new Socio(nombreUsuario, pass, 0, "default-profile.png");
+//										ArrayList<Alquiler> alquileresTemp = new ArrayList<Alquiler>();
+//										cliente.setAlquileres(alquileresTemp);
+										registroCorrecto = controllerRegistro.registro(nombreUsuario, pass, 0);
 										if(registroCorrecto) {
-											socios.put(nombreUsuario, cliente);
+//											socios.put(nombreUsuario, cliente);
 											candadoVerde(candadoNegro, candadoRojo, candadoVerde);
 											JOptionPane.showMessageDialog(null, "Te has registrado correctamente :)", "Registro", JOptionPane.INFORMATION_MESSAGE);
 											candadoNegro(candadoNegro, candadoRojo, candadoVerde);
@@ -293,21 +288,21 @@ public class VentanaInicio extends JFrame {
 		return s.matches(n) && s.matches(l);
 	}
 
-	private void cargarAlquileresPrueba(ArrayList<Alquiler> alquileres) {
-		Pelicula p1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
-		Videojuego v1 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
-		Videojuego v2 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","10/07/2012", 6, "GTAV.jpg");
-
-
-		Alquiler a1 = new Alquiler(p1, p1.getPrecio(), "20/3/2019", "30/3/2019", true);
-		Alquiler a2 = new Alquiler(v1, v1.getPrecio(), "15/2/2019", "03/4/2019", false);
-		Alquiler a3 = new Alquiler(v2, v2.getPrecio(), "1/31/2018", "12/31/2018", true);
-
-
-		alquileres.add(a1);
-		alquileres.add(a2);
-		alquileres.add(a3);
-
-	}
+//	private void cargarAlquileresPrueba(ArrayList<Alquiler> alquileres) {
+//		Pelicula p1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
+//		Videojuego v1 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
+//		Videojuego v2 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","10/07/2012", 6, "GTAV.jpg");
+//
+//
+//		Alquiler a1 = new Alquiler(p1, p1.getPrecio(), "20/3/2019", "30/3/2019", true);
+//		Alquiler a2 = new Alquiler(v1, v1.getPrecio(), "15/2/2019", "03/4/2019", false);
+//		Alquiler a3 = new Alquiler(v2, v2.getPrecio(), "1/31/2018", "12/31/2018", true);
+//
+//
+//		alquileres.add(a1);
+//		alquileres.add(a2);
+//		alquileres.add(a3);
+//
+//	}
 
 }

@@ -1,32 +1,25 @@
-package es.deusto.client.data;
+package es.deusto.server.dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.PrimaryKey;
+import es.deusto.client.data.Alquiler;
 
-@PersistenceCapable
-public class Socio {
-
-	@PrimaryKey
+public class SocioDTO implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	private String nombre;
 	private String password;
 	private double monedero;
 	private String imagen;
 	private ArrayList<Alquiler> alquileres;
 	
-	public Socio(String nombre, String password, double monedero, String imagen) {
+	public SocioDTO(String nombre, String password, double monedero, String imagen) {
 		this.nombre = nombre;
 		this.password = password;
 		this.monedero = monedero;
 		this.imagen = imagen;
-	}
-	
-	public Socio() {
-		this.nombre = "";
-		this.password = "";
-		this.monedero = 0;
-		this.imagen = "";
 	}
 
 	public String getNombre() {
@@ -67,5 +60,4 @@ public class Socio {
 	public void setAlquileres(ArrayList<Alquiler> alquileres) {
 		this.alquileres = alquileres;
 	}
-	
 }

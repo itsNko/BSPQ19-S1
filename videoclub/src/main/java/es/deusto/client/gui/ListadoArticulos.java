@@ -16,10 +16,10 @@ import javax.swing.JLabel;
 import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Pelicula;
-import es.deusto.client.data.Socio;
 import es.deusto.client.data.Videojuego;
 import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.PeliculaDTO;
+import es.deusto.server.dto.SocioDTO;
 import es.deusto.server.dto.VideojuegoDTO;
 
 import javax.swing.JButton;
@@ -29,7 +29,7 @@ import java.awt.event.ActionEvent;
 public class ListadoArticulos extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	private JFrame MenuSocio;
 
 	/**
@@ -51,7 +51,7 @@ public class ListadoArticulos extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public ListadoArticulos(final JFrame VentanaAnterior, final List<ArticuloDTO> articulos, final Socio iniciado, final JLabel lblSaldo) {
+	public ListadoArticulos(final JFrame VentanaAnterior, final List<ArticuloDTO> articulos, final SocioDTO iniciado, final JLabel lblSaldo) {
 		MenuSocio = VentanaAnterior;
 	
 		setTitle("Artículos disponibles para alquilar");

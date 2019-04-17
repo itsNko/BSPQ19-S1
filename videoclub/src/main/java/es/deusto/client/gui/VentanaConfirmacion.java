@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 import es.deusto.client.controllers.ControllerAlquiler;
 import es.deusto.client.data.Alquiler;
-import es.deusto.client.data.Socio;
+import es.deusto.server.dto.SocioDTO;
 
 import java.awt.Color;
 
@@ -64,7 +64,7 @@ public class VentanaConfirmacion extends JFrame {
 		return resizedImg;
 	}
 	
-	public VentanaConfirmacion(final JFrame MenuSocio,JFrame ventanaAnterior, final Socio s1, final Alquiler a, final JLabel labelSaldo) {
+	public VentanaConfirmacion(final JFrame MenuSocio,JFrame ventanaAnterior, final SocioDTO s1, final Alquiler a, final JLabel labelSaldo) {
 		ventanaQueMeLlama = ventanaAnterior;
 		
 		setResizable(false);
