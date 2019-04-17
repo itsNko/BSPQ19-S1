@@ -71,11 +71,11 @@ public class Server extends UnicastRemoteObject implements IServer {
 	}
 	
 	@Override
-	public boolean insertarAlquiler(Articulo articulo, double coste)
+	public boolean insertarAlquiler(Articulo articulo, double coste, String nombreUsuario)
 	{
 		try
 		{
-			return appService.insertarAlquiler(articulo, coste);
+			return appService.insertarAlquiler(articulo, coste, nombreUsuario);
 		}catch(Exception e)
 		{
 			System.err.println("$ Error al insertar alquiler "+ e.getMessage());

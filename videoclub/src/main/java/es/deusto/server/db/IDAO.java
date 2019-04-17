@@ -8,6 +8,6 @@ public interface IDAO {
 	public boolean insertarSocio(Socio s);
 	public boolean existeSocio(String nombreSocio);
 	public boolean inicioSesion(String nombreSocio, String password);
-	boolean insertarAlquiler(Alquiler alquiler);
+	boolean insertarAlquiler(Alquiler alquiler, String nombreUsuario);
 	
 }

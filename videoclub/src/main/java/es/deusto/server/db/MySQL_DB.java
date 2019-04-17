@@ -1,5 +1,7 @@
 package es.deusto.server.db;
 
+import java.util.Iterator;
+
 import javax.jdo.Extent;
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
@@ -7,6 +9,7 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
 
 import es.deusto.client.data.Alquiler;
+import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Socio;
 
 public class MySQL_DB implements IDAO {
@@ -122,20 +125,38 @@ public class MySQL_DB implements IDAO {
 	}
 	
 	@Override
-	public boolean insertarAlquiler(Alquiler alquiler)
+	public boolean insertarAlquiler(Alquiler alquiler, String nombreUsuario)
 	{
 		
 		try {
-			persistentManager = persistentManagerFactory.getPersistenceManager();
-			transaction = persistentManager.currentTransaction();	
 			transaction.begin();
 
+			Extent<Articulo> a = persistentManager.getExtent(Articulo.class, true);
+			Iterator<Articulo> iter2 = a.iterator();
 
-			persistentManager.makePersistent(alquiler);
+			while (iter2.hasNext()) {
+				Articulo art = (Articulo) iter2.next();
+				if (art.getNombre().equals(alquiler.getAlquilado().getNombre())) {
+					alquiler.setAlquilado(art);
+				}
+			}
+			transaction.commit();
+			
+			transaction.begin();
+			Extent<Socio> e = persistentManager.getExtent(Socio.class, true);
+			Iterator<Socio> iter = e.iterator();
 
-			System.out.println("- Inserted into db: " + alquiler.getAlquilado().getNombre());
+			while (iter.hasNext()) {
+				Socio s = (Socio) iter.next();
+				if (s.getNombre().equals(nombreUsuario)) {
+					System.out.println("- Añadida alquileres a socio: " + s.getNombre());
+					s.getAlquileres().add(alquiler);
+				}
+			}
 
 			transaction.commit();
+			
+			
 
 			return true;
 		} catch(Exception ex) {
