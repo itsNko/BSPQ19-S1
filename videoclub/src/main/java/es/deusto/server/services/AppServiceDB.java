@@ -35,10 +35,10 @@ public class AppServiceDB {
 	}
 	
 	
-	public boolean insertarAlquiler(Articulo articulo, double coste)
+	public boolean insertarAlquiler(Articulo articulo, double coste, String nombreUsuario)
 	{
 		Alquiler alquiler = new Alquiler(articulo, coste, "fechaInicio", "fechaFin",true);
-		return db.insertarAlquiler(alquiler);
+		return db.insertarAlquiler(alquiler, nombreUsuario);
 	}
 	
 	public List<ArticuloDTO> listadoArticulos() {

@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import es.deusto.client.controllers.ControllerAlquiler;
 import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Socio;
 
@@ -29,6 +30,7 @@ public class VentanaConfirmacion extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFrame ventanaQueMeLlama;
+	private ControllerAlquiler controllerAlquiler;
 	
 	//Pelicula p1 = new Pelicula("Los Vengadores", "Sinopsis Los Vengadores", "Acción", "30/11/2010", 2, "vengadores.jpg");
 
