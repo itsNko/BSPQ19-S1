@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -66,7 +67,11 @@ public class VentanaConfirmacion extends JFrame {
 	
 	public VentanaConfirmacion(final JFrame MenuSocio,JFrame ventanaAnterior, final SocioDTO s1, final Alquiler a, final JLabel labelSaldo) {
 		ventanaQueMeLlama = ventanaAnterior;
-		
+		try {
+			controllerAlquiler = new ControllerAlquiler();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
 		setResizable(false);
 		setTitle("Confirmación de alquiler");
 		
@@ -175,6 +180,7 @@ public class VentanaConfirmacion extends JFrame {
 					int eleccion = JOptionPane.showConfirmDialog(null, "¿Esta seguro?");
 					if(eleccion == 0) {
 						s1.setMonedero(s1.getMonedero() - a.getCoste());
+						controllerAlquiler.insertarAlquiler(a.getAlquilado(), a.getCoste(), s1.getNombre());
 						ArrayList<Alquiler> alquileres = s1.getAlquileres();
 						a.setEnCurso(true);
 						alquileres.add(a);
