@@ -8,6 +8,7 @@ import javax.jdo.Extent;
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import es.deusto.client.data.Alquiler;
@@ -178,6 +179,45 @@ public class MySQL_DB implements IDAO {
 
 			persistentManager.close();
 		}
+	}
+	
+	@Override
+	public Socio selectSocio(String nombreUsuario) {
+		persistentManager = persistentManagerFactory.getPersistenceManager();
+		transaction = persistentManager.currentTransaction();
+		try {
+			transaction.begin();
+			@SuppressWarnings("unchecked")
+			Query<Socio> query = persistentManager.newQuery("javax.jdo.query.SQL",
+					"SELECT * FROM SOCIO WHERE NOMBRE = '" + nombreUsuario + "'");
+			query.setClass(Socio.class);
+			query.setUnique(true);
+			Socio socio = (Socio) query.execute();
+			return socio;
+		} catch (Exception ex) {
+			System.err.println("* Exception: " + ex.getMessage());
+			return new Socio();
+		}
+
+	}
+	
+	@Override
+	public List<Alquiler> selectAlquilerPorSocio(String nombreUsuario) {
+		persistentManager = persistentManagerFactory.getPersistenceManager();
+		transaction = persistentManager.currentTransaction();
+		try {
+			transaction.begin();
+			@SuppressWarnings("unchecked")
+			Query<Alquiler> query = persistentManager.newQuery("javax.jdo.query.SQL",
+					"SELECT * FROM ALQUILER WHERE ALQUILERES_NOMBRE_OWN = '" + nombreUsuario + "'");
+			query.setClass(Alquiler.class);
+			List<Alquiler> alquileres = (List<Alquiler>) new ArrayList<Alquiler>();
+			return alquileres;
+		} catch (Exception ex) {
+			System.err.println("* Exception: " + ex.getMessage());
+			return null;
+		}
+
 	}
 
 	@Override

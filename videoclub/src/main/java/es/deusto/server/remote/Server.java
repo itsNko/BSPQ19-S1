@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 import es.deusto.client.data.Articulo;
+import es.deusto.client.data.Socio;
 import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.SocioDTO;
 import es.deusto.server.services.AppServiceDB;
@@ -94,6 +95,16 @@ public class Server extends UnicastRemoteObject implements IServer {
 			System.err.println("$ Error al obtener listado de articulos " + e.getMessage());
 			return null;
 		}
+	}
+
+	@Override
+	public Socio selectSocio(String nombreUsuario) {
+		try {
+			return appService.selectSocio(nombreUsuario);
+		}catch(Exception e) {
+			System.err.println("$ Error al seleccionar el socio " + e.getMessage());
+		}
+		return null;
 	}
 
 }

@@ -3,6 +3,7 @@ package es.deusto.client.controllers;
 import java.rmi.RemoteException;
 
 import es.deusto.client.data.Articulo;
+import es.deusto.client.data.Socio;
 import es.deusto.client.remote.ServiceLocator;
 
 public class ControllerAlquiler {
@@ -25,6 +26,17 @@ public class ControllerAlquiler {
 			System.err.println("$ Error al insertar alquiler " + e.getMessage());
 			return false;
 
+		}
+	}
+	
+	public Socio selectSocio(String nombreUsuario) {
+		try {
+			System.out.println("###ControllerAlquiler: ServiceLocator.getService().selectSocio###");
+			return rsl.getService().selectSocio(nombreUsuario);
+
+		}catch(Exception e) {
+			System.err.println("$ Error al seleccionar socio " + e.getMessage());
+			return new Socio();
 		}
 	}
 

@@ -51,5 +51,9 @@ public class AppServiceDB {
 		
 		return artAssem.assemble(articulos);
 	}
+	
+	public Socio selectSocio(String nombreUsuario) {
+		return db.selectSocio(nombreUsuario);
+	}
 
 }

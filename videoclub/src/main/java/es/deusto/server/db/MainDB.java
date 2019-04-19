@@ -1,6 +1,8 @@
 package es.deusto.server.db;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.jdo.Extent;
 import javax.jdo.JDOHelper;
@@ -200,11 +202,45 @@ public class MainDB {
 
 				persistentManager.close();
 			}
-
+			persistentManager = persistentManagerFactory.getPersistenceManager();
+			transaction = persistentManager.currentTransaction();
+			try {
+			transaction.begin();
+			Query query = persistentManager.newQuery("javax.jdo.query.SQL", "SELECT * FROM SOCIO WHERE NOMBRE = 'iker'");
+			query.setClass(Socio.class);
+			query.setUnique(true);
+			Socio socio = (Socio) query.execute();
+			System.out.println(socio.getMonedero());
+			}catch(Exception ex) {
+				System.err.println("* Exception: " + ex.getMessage());
+			}
+			
+			
+			persistentManager = persistentManagerFactory.getPersistenceManager();
+			transaction = persistentManager.currentTransaction();
+			try {
+				transaction.begin();
+				@SuppressWarnings("unchecked")
+				Query<Alquiler> query = persistentManager.newQuery("javax.jdo.query.SQL",
+						"SELECT * FROM ALQUILER WHERE ALQUILERES_NOMBRE_OWN = '" + "Prueba1" + "'");
+				query.setClass(Alquiler.class);
+				List<Alquiler> alquileres = (List<Alquiler>) new ArrayList<Alquiler>();
+				for(Alquiler alquiler:alquileres) {
+					System.out.println(alquiler.getAlquilado());
+				}
+			} catch (Exception ex) {
+				System.err.println("* Exception: " + ex.getMessage());
+				
+			}
 		} catch (Exception ex) {
 			System.err.println("* Exception: " + ex.getMessage());
 		}
 
+		
 	}
+	
+
+
+	
 
 }
