@@ -10,7 +10,7 @@ import static org.mockito.Mockito.*;
 
 import es.deusto.client.data.Socio;
 
-public class MySQL_DB_Test {
+public class MySQL_DBTest {
 
 	@Mock
 	private IDAO db;
@@ -19,6 +19,7 @@ public class MySQL_DB_Test {
 
 	@Before
 	public void setUp() {
+		db = new MySQL_DB();
 		s = new Socio("Test1", "12345678A", 20.25, "imagenTest.png");
 		MockitoAnnotations.initMocks(this);
 	}
@@ -26,9 +27,15 @@ public class MySQL_DB_Test {
 	@Test
 	public void testInsertarSocioBien() {
 		when(db.insertarSocio(s)).thenReturn(true);
-		when(db.existeSocio(s.getNombre())).thenReturn(true);
-		
-		assertTrue(db.insertarSocio(s) && db.existeSocio(s.getNombre()));
+		boolean b = db.insertarSocio(s);
+		assertTrue(b);
+	}
+	
+	@Test
+	public void testInsertarSocioMal() {
+		when(db.insertarSocio(s)).thenReturn(false);
+		boolean b = db.insertarSocio(s);
+		assertFalse(b);
 	}
 	
 }
