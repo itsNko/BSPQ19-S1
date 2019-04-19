@@ -1,32 +1,34 @@
 package es.deusto.server.db;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
 import es.deusto.client.data.Socio;
 
 public class MySQL_DB_Test {
 
-	private MySQL_DB db;
+	@Mock
+	private IDAO db;
 	
 	private Socio s;
 
-	//@Before
+	@Before
 	public void setUp() {
-		db = new MySQL_DB();
-		s = new Socio("Lucas", "12345678A", 20.25, "imagenSocio.png");
+		s = new Socio("Test1", "12345678A", 20.25, "imagenTest.png");
+		MockitoAnnotations.initMocks(this);
 	}
 	
-	//@Test
+	@Test
 	public void testInsertarSocioBien() {
-		//assertTrue(db.insertarSocio(s));
+		when(db.insertarSocio(s)).thenReturn(true);
+		when(db.existeSocio(s.getNombre())).thenReturn(true);
+		
+		assertTrue(db.insertarSocio(s) && db.existeSocio(s.getNombre()));
 	}
-	// https://db.apache.org/jdo/pm.html
-	
-//	@After
-//	public void tearDown() {
-//		if (transaction.isActive()) {
-//			transaction.rollback();
-//		}
-//
-//		persistentManager.close();
-//	}
 	
 }

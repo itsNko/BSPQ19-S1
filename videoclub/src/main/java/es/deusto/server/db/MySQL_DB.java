@@ -34,7 +34,7 @@ public class MySQL_DB implements IDAO {
 	public boolean insertarSocio(Socio socio) {
 		try {
 			persistentManager = persistentManagerFactory.getPersistenceManager();
-			transaction = persistentManager.currentTransaction();	
+			transaction = persistentManager.currentTransaction();
 			transaction.begin();
 
 
