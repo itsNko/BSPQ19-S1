@@ -16,5 +16,6 @@ public interface IDAO {
 	public List<Articulo> listadoArticulos();
 	public Socio selectSocio(String nombreUsuario);
 	public List<Alquiler> selectAlquilerPorSocio(String nombreUsuario);
+	public boolean updateMonedero(String nombreUsuario, Double monedero);
 	
 }

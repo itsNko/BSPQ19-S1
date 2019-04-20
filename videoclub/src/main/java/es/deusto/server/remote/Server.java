@@ -107,4 +107,14 @@ public class Server extends UnicastRemoteObject implements IServer {
 		return null;
 	}
 
+	@Override
+	public boolean updateMonedero(String nombreUsuario, double monedero) throws RemoteException {
+		try {
+			return appService.updateMonedero(nombreUsuario, monedero);
+		}catch(Exception e) {
+			System.err.println("$ Error al actualizar el monedero " + e.getMessage());
+		}
+		return false;
+	}
+
 }

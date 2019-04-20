@@ -56,4 +56,8 @@ public class AppServiceDB {
 		return db.selectSocio(nombreUsuario);
 	}
 
+	public boolean updateMonedero(String nombreUsuario, double monedero) {
+		return db.updateMonedero(nombreUsuario, monedero);
+	}
+
 }

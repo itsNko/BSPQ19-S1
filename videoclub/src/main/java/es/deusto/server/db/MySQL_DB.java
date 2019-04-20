@@ -202,6 +202,41 @@ public class MySQL_DB implements IDAO {
 	}
 	
 	@Override
+	public boolean updateMonedero(String nombreUsuario, Double monedero) {
+		persistentManager = persistentManagerFactory.getPersistenceManager();
+		transaction = persistentManager.currentTransaction();
+
+		try {
+			transaction.begin();
+
+			Extent<Socio> e = persistentManager.getExtent(Socio.class, true);
+			Iterator<Socio> iter = e.iterator();
+			while (iter.hasNext()) 
+			{
+				Socio s = (Socio)iter.next();
+				if (s.getNombre().equals(nombreUsuario))
+				{
+					System.out.println("- Data modified: " + s.getMonedero() +" -> "+monedero);
+					s.setMonedero(monedero);
+					return true;
+				}
+			}
+
+			transaction.commit();
+		} catch(Exception ex) {
+			System.err.println("* Exception executing a query: " + ex.getMessage());
+			return false;
+		} finally {
+			if (transaction.isActive()) {
+				transaction.rollback();
+			}
+
+			persistentManager.close();
+		}
+		return false;
+	}
+	
+	@Override
 	public List<Alquiler> selectAlquilerPorSocio(String nombreUsuario) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		transaction = persistentManager.currentTransaction();

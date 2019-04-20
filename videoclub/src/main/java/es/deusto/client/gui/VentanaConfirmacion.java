@@ -68,12 +68,13 @@ public class VentanaConfirmacion extends JFrame {
 	
 	public VentanaConfirmacion(final JFrame MenuSocio,JFrame ventanaAnterior, String nombreUsuario, final Alquiler a, final JLabel labelSaldo) {
 		ventanaQueMeLlama = ventanaAnterior;
-		Socio s1 = controllerAlquiler.selectSocio(nombreUsuario);
+		
 		try {
 			controllerAlquiler = new ControllerAlquiler();
 		} catch (RemoteException e1) {
 			e1.printStackTrace();
 		}
+		Socio s1 = controllerAlquiler.selectSocio(nombreUsuario);
 		setResizable(false);
 		setTitle("Confirmación de alquiler");
 		

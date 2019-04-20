@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.rmi.RemoteException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,6 +18,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import es.deusto.client.controllers.ControllerAlquiler;
+import es.deusto.client.controllers.ControllerRecargarSaldo;
 import es.deusto.server.dto.SocioDTO;
 
 public class VentanaRecargarSaldo extends JFrame {
@@ -27,6 +30,7 @@ public class VentanaRecargarSaldo extends JFrame {
 	private static double dinero = 0;
 	private JFrame ventanaRecargar;
 	JLabel lblSaldo = new JLabel(dinero+" €");
+	private ControllerRecargarSaldo controllerRecargarSaldo;
 
 	/**
 	 * Launch the application.
@@ -61,9 +65,15 @@ public class VentanaRecargarSaldo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaRecargarSaldo(JFrame ventanaAnterior, final SocioDTO iniciado,final JLabel labelSaldo) {
+	public VentanaRecargarSaldo(JFrame ventanaAnterior, String nombreUsuario,final JLabel labelSaldo) {
 		ventanaRecargar = ventanaAnterior;
-		dinero = iniciado.getMonedero();
+		try {
+			controllerRecargarSaldo = new ControllerRecargarSaldo();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
+		
+		dinero = controllerRecargarSaldo.selectSocio(nombreUsuario).getMonedero();
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 540);
@@ -163,8 +173,13 @@ public class VentanaRecargarSaldo extends JFrame {
 		botonConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Confirmar");
+				
+				
 				iniciado.setMonedero(dinero);
-				labelSaldo.setText("Tu saldo actual es de "+iniciado.getMonedero()+" €");
+				
+				
+				
+				labelSaldo.setText("Tu saldo actual es de "+controllerRecargarSaldo.selectSocio(nombreUsuario).getMonedero()+" €");
 				VentanaRecargarSaldo.this.dispose();
 				ventanaRecargar.setVisible(true);
 			}
