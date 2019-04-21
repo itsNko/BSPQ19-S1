@@ -3,6 +3,8 @@ package es.deusto.client.gui;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Calendar;
@@ -10,6 +12,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -21,10 +24,6 @@ import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.PeliculaDTO;
 import es.deusto.server.dto.SocioDTO;
 import es.deusto.server.dto.VideojuegoDTO;
-
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class ListadoArticulos extends JFrame {
 
@@ -109,7 +108,7 @@ public class ListadoArticulos extends JFrame {
 			        String fechaFin = "" + diaF +"/" + mesF + "/"+ añoF +"";
 					Alquiler a = new Alquiler(a1, a1.getPrecio() , fechaIni ,  fechaFin, false);
 
-					VentanaConfirmacion confirm = new VentanaConfirmacion(VentanaAnterior , ListadoArticulos.this, iniciado, a, lblSaldo);
+					VentanaConfirmacion confirm = new VentanaConfirmacion(VentanaAnterior , ListadoArticulos.this, iniciado.getNombre(), a, lblSaldo);
 					confirm.setVisible(true);
 					setVisible(false);
 				}

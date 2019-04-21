@@ -62,4 +62,12 @@ public class AppServiceDB {
 		return alqAssem.assemble(alquileres);
 	}
 
+	public Socio selectSocio(String nombreUsuario) {
+		return db.selectSocio(nombreUsuario);
+	}
+
+	public boolean updateMonedero(String nombreUsuario, double monedero) {
+		return db.updateMonedero(nombreUsuario, monedero);
+	}
+
 }

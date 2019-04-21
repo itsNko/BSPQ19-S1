@@ -6,6 +6,7 @@ import java.util.List;
 
 import es.deusto.client.data.Articulo;
 import es.deusto.server.dto.AlquilerDTO;
+import es.deusto.client.data.Socio;
 import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.SocioDTO;
 import es.deusto.server.services.AppServiceDB;
@@ -105,6 +106,25 @@ public class Server extends UnicastRemoteObject implements IServer {
 			System.err.println("$ Error al obtener historial de alquileres " + e.getMessage());
 			return null;
 		}
+	}
+
+	public Socio selectSocio(String nombreUsuario) {
+		try {
+			return appService.selectSocio(nombreUsuario);
+		}catch(Exception e) {
+			System.err.println("$ Error al seleccionar el socio " + e.getMessage());
+		}
+		return null;
+	}
+
+	@Override
+	public boolean updateMonedero(String nombreUsuario, double monedero) throws RemoteException {
+		try {
+			return appService.updateMonedero(nombreUsuario, monedero);
+		}catch(Exception e) {
+			System.err.println("$ Error al actualizar el monedero " + e.getMessage());
+		}
+		return false;
 	}
 
 }

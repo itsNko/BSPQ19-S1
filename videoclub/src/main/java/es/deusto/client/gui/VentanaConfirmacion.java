@@ -22,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 
 import es.deusto.client.controllers.ControllerAlquiler;
 import es.deusto.client.data.Alquiler;
+import es.deusto.client.data.Socio;
 import es.deusto.server.dto.SocioDTO;
 
 import java.awt.Color;
@@ -65,13 +66,15 @@ public class VentanaConfirmacion extends JFrame {
 		return resizedImg;
 	}
 	
-	public VentanaConfirmacion(final JFrame MenuSocio,JFrame ventanaAnterior, final SocioDTO s1, final Alquiler a, final JLabel labelSaldo) {
+	public VentanaConfirmacion(final JFrame MenuSocio,JFrame ventanaAnterior, String nombreUsuario, final Alquiler a, final JLabel labelSaldo) {
 		ventanaQueMeLlama = ventanaAnterior;
+		
 		try {
 			controllerAlquiler = new ControllerAlquiler();
 		} catch (RemoteException e1) {
 			e1.printStackTrace();
 		}
+		Socio s1 = controllerAlquiler.selectSocio(nombreUsuario);
 		setResizable(false);
 		setTitle("Confirmación de alquiler");
 		

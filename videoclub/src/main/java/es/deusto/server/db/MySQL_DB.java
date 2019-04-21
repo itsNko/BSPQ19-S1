@@ -180,6 +180,80 @@ public class MySQL_DB implements IDAO {
 			persistentManager.close();
 		}
 	}
+	
+	@Override
+	public Socio selectSocio(String nombreUsuario) {
+		persistentManager = persistentManagerFactory.getPersistenceManager();
+		transaction = persistentManager.currentTransaction();
+		try {
+			transaction.begin();
+			@SuppressWarnings("unchecked")
+			Query<Socio> query = persistentManager.newQuery("javax.jdo.query.SQL",
+					"SELECT * FROM SOCIO WHERE NOMBRE = '" + nombreUsuario + "'");
+			query.setClass(Socio.class);
+			query.setUnique(true);
+			Socio socio = (Socio) query.execute();
+			return socio;
+		} catch (Exception ex) {
+			System.err.println("* Exception: " + ex.getMessage());
+			return new Socio();
+		}
+
+	}
+	
+	@Override
+	public boolean updateMonedero(String nombreUsuario, Double monedero) {
+		persistentManager = persistentManagerFactory.getPersistenceManager();
+		transaction = persistentManager.currentTransaction();
+
+		try {
+			transaction.begin();
+
+			Extent<Socio> e = persistentManager.getExtent(Socio.class, true);
+			Iterator<Socio> iter = e.iterator();
+			while (iter.hasNext()) 
+			{
+				Socio s = (Socio)iter.next();
+				if (s.getNombre().equals(nombreUsuario))
+				{
+					System.out.println("- Data modified: " + s.getMonedero() +" -> "+monedero);
+					s.setMonedero(monedero);
+					return true;
+				}
+			}
+
+			transaction.commit();
+		} catch(Exception ex) {
+			System.err.println("* Exception executing a query: " + ex.getMessage());
+			return false;
+		} finally {
+			if (transaction.isActive()) {
+				transaction.rollback();
+			}
+
+			persistentManager.close();
+		}
+		return false;
+	}
+	
+	@Override
+	public List<Alquiler> selectAlquilerPorSocio(String nombreUsuario) {
+		persistentManager = persistentManagerFactory.getPersistenceManager();
+		transaction = persistentManager.currentTransaction();
+		try {
+			transaction.begin();
+			@SuppressWarnings("unchecked")
+			Query<Alquiler> query = persistentManager.newQuery("javax.jdo.query.SQL",
+					"SELECT * FROM ALQUILER WHERE ALQUILERES_NOMBRE_OWN = '" + nombreUsuario + "'");
+			query.setClass(Alquiler.class);
+			List<Alquiler> alquileres = (List<Alquiler>) new ArrayList<Alquiler>();
+			return alquileres;
+		} catch (Exception ex) {
+			System.err.println("* Exception: " + ex.getMessage());
+			return null;
+		}
+
+	}
 
 	@Override
 	public List<Articulo> listadoArticulos() {
