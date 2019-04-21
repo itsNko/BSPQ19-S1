@@ -1,9 +1,11 @@
 package es.deusto.client.controllers;
 
 import java.rmi.RemoteException;
+import java.util.List;
 
 import es.deusto.client.data.Articulo;
 import es.deusto.client.remote.ServiceLocator;
+import es.deusto.server.dto.AlquilerDTO;
 
 public class ControllerAlquiler {
 
@@ -11,8 +13,7 @@ public class ControllerAlquiler {
 
 	public ControllerAlquiler() throws RemoteException {
 	}
-	
-	
+
 	public boolean insertarAlquiler(Articulo articulo, double coste, String nombreUsuario) {
 		boolean correcto;
 		try {
@@ -25,6 +26,15 @@ public class ControllerAlquiler {
 			System.err.println("$ Error al insertar alquiler " + e.getMessage());
 			return false;
 
+		}
+	}
+
+	public List<AlquilerDTO> historialAlquileres(String nombreSocio) {
+		try {
+			return rsl.getService().historialAlquileres(nombreSocio);
+		} catch(Exception e) {
+			System.err.println("$ Error al devolver historial de alquileres " + e.getMessage());
+			return null;
 		}
 	}
 

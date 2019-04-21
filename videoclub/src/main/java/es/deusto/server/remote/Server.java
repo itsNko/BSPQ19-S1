@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 import es.deusto.client.data.Articulo;
+import es.deusto.server.dto.AlquilerDTO;
 import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.SocioDTO;
 import es.deusto.server.services.AppServiceDB;
@@ -92,6 +93,16 @@ public class Server extends UnicastRemoteObject implements IServer {
 			return appService.listadoArticulos();
 		} catch(Exception e) {
 			System.err.println("$ Error al obtener listado de articulos " + e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public List<AlquilerDTO> historialAlquileres(String nombreSocio) throws RemoteException {
+		try {
+			return appService.historialAlquileres(nombreSocio);
+		} catch(Exception e) {
+			System.err.println("$ Error al obtener historial de alquileres " + e.getMessage());
 			return null;
 		}
 	}

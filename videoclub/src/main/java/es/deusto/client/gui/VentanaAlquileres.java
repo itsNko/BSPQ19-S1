@@ -19,11 +19,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JScrollPane;
 
-import es.deusto.client.data.Alquiler;
+import es.deusto.server.dto.AlquilerDTO;
 
 import java.awt.Graphics2D;
 
@@ -63,7 +63,7 @@ public class VentanaAlquileres extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaAlquileres(JFrame ventanaAnterior, ArrayList<Alquiler> alquileres) {
+	public VentanaAlquileres(JFrame ventanaAnterior, List<AlquilerDTO> alquileres) {
 		ventanaQueMeLlama = ventanaAnterior;
 
 		setTitle("Tu historial de artículos alquilados/devueltos");

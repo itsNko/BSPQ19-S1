@@ -15,4 +15,6 @@ public interface IDAO {
 	
 	public List<Articulo> listadoArticulos();
 	
+	public List<Alquiler> historialAlquileres(String nombreSocio);
+	
 }

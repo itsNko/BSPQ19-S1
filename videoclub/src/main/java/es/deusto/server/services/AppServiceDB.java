@@ -7,6 +7,8 @@ import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Socio;
 import es.deusto.server.db.MySQL_DB;
+import es.deusto.server.dto.AlquilerAssembler;
+import es.deusto.server.dto.AlquilerDTO;
 import es.deusto.server.dto.ArticuloAssembler;
 import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.SocioAssembler;
@@ -18,11 +20,13 @@ public class AppServiceDB {
 	private IDAO db;
 	private ArticuloAssembler artAssem;
 	private SocioAssembler socioAssem;
+	private AlquilerAssembler alqAssem;
 
 	public AppServiceDB() throws RemoteException {
 		db = new MySQL_DB();
 		artAssem = ArticuloAssembler.getInstance();
 		socioAssem = SocioAssembler.getInstance();
+		alqAssem = AlquilerAssembler.getInstance();
 	}
 
 	public boolean insertarSocio(String nombre, String pass, double monedero) {
@@ -50,6 +54,12 @@ public class AppServiceDB {
 		List<Articulo> articulos = db.listadoArticulos();
 		
 		return artAssem.assemble(articulos);
+	}
+	
+	public List<AlquilerDTO> historialAlquileres(String nombreSocio) {
+		List<Alquiler> alquileres = db.historialAlquileres(nombreSocio);
+		
+		return alqAssem.assemble(alquileres);
 	}
 
 }

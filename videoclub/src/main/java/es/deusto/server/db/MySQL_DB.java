@@ -8,6 +8,7 @@ import javax.jdo.Extent;
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import es.deusto.client.data.Alquiler;
@@ -92,13 +93,13 @@ public class MySQL_DB implements IDAO {
 
 		return existe;
 	}
-	
+
 	@Override
 	public Socio inicioSesion(String nombreSocio, String password) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
-		
+
 		transaction = persistentManager.currentTransaction();
-		
+
 		Socio s = null;
 		try {
 			System.out.println("* Retrieving an Extent for Socios.");
@@ -125,18 +126,18 @@ public class MySQL_DB implements IDAO {
 
 			persistentManager.close();
 		}
-		
+
 		if(s == null) {
 			s = new Socio();
 		}
-	
+
 		return s;
 	}
-	
+
 	@Override
 	public boolean insertarAlquiler(Alquiler alquiler, String nombreUsuario)
 	{
-		
+
 		try {
 			transaction.begin();
 
@@ -150,7 +151,7 @@ public class MySQL_DB implements IDAO {
 				}
 			}
 			transaction.commit();
-			
+
 			transaction.begin();
 			Extent<Socio> e = persistentManager.getExtent(Socio.class, true);
 			Iterator<Socio> iter = e.iterator();
@@ -164,8 +165,8 @@ public class MySQL_DB implements IDAO {
 			}
 
 			transaction.commit();
-			
-			
+
+
 
 			return true;
 		} catch(Exception ex) {
@@ -189,25 +190,68 @@ public class MySQL_DB implements IDAO {
 
 			Extent<Pelicula> extentPeliculas = persistentManager.getExtent(Pelicula.class, true);
 			Extent<Videojuego> extentVideojuegos = persistentManager.getExtent(Videojuego.class, true);
-			
+
 			List<Articulo> articulos = new ArrayList<Articulo>();
 
 			for (Pelicula pelicula : extentPeliculas) {
 				articulos.add(pelicula);
 			}
-			
+
 			for (Videojuego juego : extentVideojuegos) {
 				articulos.add(juego);
 			}
-			
+
 			transaction.commit();
 
 			return articulos;
-			
+
 		} catch(Exception ex) {
 			System.err.println("* Exception retrieving articulos: " + ex.getMessage());
 			return null;
-			
+
+		} finally {		    
+			if (transaction.isActive()) {
+				transaction.rollback(); 
+			}
+
+			persistentManager.close();
+		}
+	}
+
+	@Override
+	public List<Alquiler> historialAlquileres(String nombreSocio) {
+		try {
+			persistentManager = persistentManagerFactory.getPersistenceManager();
+			transaction = persistentManager.currentTransaction();	
+			transaction.begin();
+
+			Extent<Socio> extentSocios = persistentManager.getExtent(Socio.class, true);
+			Iterator<Socio> iter = extentSocios.iterator();
+
+			@SuppressWarnings("unchecked")
+			Query<Alquiler> alquilerQuery = persistentManager.newQuery("SELECT FROM " + Alquiler.class.getName());
+
+			List<Alquiler> alquileres = new ArrayList<Alquiler>();
+
+			while(iter.hasNext()) {
+				Socio s = (Socio) iter.next();
+				if(s.getNombre().equals(nombreSocio)) {
+					for(Alquiler alq: alquilerQuery.executeList()) {
+						if(s.getAlquileres().contains(alq)) {
+							alquileres.add(alq);
+						}
+					}
+				}
+			}
+
+			transaction.commit();
+
+			return alquileres;
+
+		} catch(Exception ex) {
+			System.err.println("* Exception retrieving alquileres: " + ex.getMessage());
+			return null;
+
 		} finally {		    
 			if (transaction.isActive()) {
 				transaction.rollback(); 
