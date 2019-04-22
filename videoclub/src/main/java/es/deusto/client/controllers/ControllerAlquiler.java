@@ -43,10 +43,9 @@ public class ControllerAlquiler {
 		}
 	}
 
-	public List<Alquiler> historialAlquileres(String nombreSocio) {
+	public List<AlquilerDTO> historialAlquileres(String nombreSocio) {
 		try {
-			SocioDTO s = rsl.getService().selectSocio(nombreSocio); 
-			return s.getAlquileres();
+			return rsl.getService().historialAlquileres(nombreSocio); 
 		} catch(Exception e) {
 			System.err.println("$ Error al devolver historial de alquileres " + e.getMessage());
 			return null;

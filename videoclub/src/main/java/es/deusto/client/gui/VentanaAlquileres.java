@@ -19,12 +19,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JScrollPane;
 
+import es.deusto.client.controllers.ControllerAlquiler;
+import es.deusto.client.controllers.ControllerListadoArticulos;
 import es.deusto.client.data.Alquiler;
 import es.deusto.server.dto.AlquilerDTO;
+import es.deusto.server.dto.SocioDTO;
 
 import java.awt.Graphics2D;
 
@@ -33,6 +38,8 @@ public class VentanaAlquileres extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JFrame ventanaQueMeLlama;
+	private List<AlquilerDTO> alquileres = new ArrayList<AlquilerDTO>();
+	private ControllerAlquiler controllerAlquileres;
 
 	/**
 	 * Launch the application.
@@ -64,8 +71,14 @@ public class VentanaAlquileres extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaAlquileres(JFrame ventanaAnterior, List<Alquiler> alquileres) {
+	public VentanaAlquileres(JFrame ventanaAnterior, SocioDTO iniciado) {
 		ventanaQueMeLlama = ventanaAnterior;
+		
+		try {
+			this.controllerAlquileres = new ControllerAlquiler();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 
 		setTitle("Tu historial de artículos alquilados/devueltos");
 		setResizable(false);
@@ -96,7 +109,8 @@ public class VentanaAlquileres extends JFrame {
 		scrollDevueltos.setBounds(473, 124, 323, 360);
 		scrollDevueltos.setOpaque(false);
 		scrollDevueltos.getViewport().setOpaque(false);
-
+		
+		alquileres = controllerAlquileres.historialAlquileres(iniciado.getNombre());
 
 		String titulo = "";
 		String fecha = "";

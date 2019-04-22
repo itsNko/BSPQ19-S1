@@ -46,18 +46,18 @@ public class AppServiceDB {
 	
 	public boolean insertarAlquiler(Articulo articulo, double coste, String nombreUsuario)
 	{
-		Alquiler alquiler = new Alquiler(articulo, coste, "fechaInicio", "fechaFin",true);
+		Alquiler alquiler = new Alquiler(articulo, coste, "fechaInicio", "fechaFin",true, articulo.getNombre());
 		return db.insertarAlquiler(alquiler, nombreUsuario);
 	}
 	
 	public List<ArticuloDTO> listadoArticulos() {
-		List<Articulo> articulos = db.listadoArticulos();
-		
-		return artAssem.assemble(articulos);
+		return artAssem.assemble(db.listadoArticulos());
 	}
 	
-	public List<Alquiler> historialAlquileres(String nombreSocio) {
-		return db.historialAlquileres(nombreSocio);
+	public List<AlquilerDTO> historialAlquileres(String nombreSocio) {
+		List<Alquiler> alquileres = db.historialAlquileres(nombreSocio);
+
+		return alqAssem.assemble(alquileres);
 	}
 
 	public SocioDTO selectSocio(String nombreUsuario) {

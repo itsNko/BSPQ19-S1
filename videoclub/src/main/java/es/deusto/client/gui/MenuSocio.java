@@ -33,10 +33,8 @@ public class MenuSocio extends JFrame {
 	// private JFrame frame;
 	private JFrame ventanaInicio;
 	private ControllerListadoArticulos controllerListadoArticulos;
-	private ControllerAlquiler controllerAlquileres;
 
 	private List<ArticuloDTO> articulos = new ArrayList<ArticuloDTO>();
-	private List<Alquiler> alquileres = new ArrayList<Alquiler>();
 	
 
 	/**
@@ -65,7 +63,6 @@ public class MenuSocio extends JFrame {
 		
 		try {
 			this.controllerListadoArticulos = new ControllerListadoArticulos();
-			this.controllerAlquileres = new ControllerAlquiler();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -113,9 +110,7 @@ public class MenuSocio extends JFrame {
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Consultar alquileres");
-				SocioDTO s = controllerAlquileres.selectSocio(iniciado.getNombre());
-				alquileres = s.getAlquileres();
-				VentanaAlquileres va = new VentanaAlquileres(MenuSocio.this, alquileres);
+				VentanaAlquileres va = new VentanaAlquileres(MenuSocio.this, iniciado);
 				va.setVisible(true);
 				MenuSocio.this.setVisible(false);
 			}

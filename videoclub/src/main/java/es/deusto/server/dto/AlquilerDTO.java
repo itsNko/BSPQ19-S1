@@ -8,13 +8,13 @@ public class AlquilerDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Articulo alquilado;
+	private ArticuloDTO alquilado;
 	private double coste;
 	private String fecha_inicio;
 	private String fecha_fin;
 	private boolean enCurso;
 	
-	public AlquilerDTO(Articulo alquilado, double coste, String fecha_inicio, String fecha_fin, boolean enCurso) {
+	public AlquilerDTO(ArticuloDTO alquilado, double coste, String fecha_inicio, String fecha_fin, boolean enCurso) {
 		this.alquilado = alquilado;
 		this.coste = coste;
 		this.fecha_inicio = fecha_inicio;
@@ -22,11 +22,11 @@ public class AlquilerDTO implements Serializable {
 		this.enCurso = enCurso;
 	}
 	
-	public Articulo getAlquilado() {
+	public ArticuloDTO getAlquilado() {
 		return alquilado;
 	}
 
-	public void setAlquilado(Articulo alquilado) {
+	public void setAlquilado(ArticuloDTO alquilado) {
 		this.alquilado = alquilado;
 	}
 

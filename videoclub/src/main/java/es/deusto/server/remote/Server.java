@@ -100,7 +100,7 @@ public class Server extends UnicastRemoteObject implements IServer {
 	}
 
 	@Override
-	public List<Alquiler> historialAlquileres(String nombreSocio) throws RemoteException {
+	public List<AlquilerDTO> historialAlquileres(String nombreSocio) throws RemoteException {
 		try {
 			return appService.historialAlquileres(nombreSocio);
 		} catch(Exception e) {

@@ -24,7 +24,6 @@ public class MySQL_DB implements IDAO {
 	PersistenceManager persistentManager;			
 	Transaction transaction;
 
-
 	public MySQL_DB() {
 		persistentManagerFactory = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		persistentManager = null;			
@@ -313,27 +312,34 @@ public class MySQL_DB implements IDAO {
 
 	@Override
 	public List<Alquiler> historialAlquileres(String nombreSocio) {
+		
 		try {
 			persistentManager = persistentManagerFactory.getPersistenceManager();
-			transaction = persistentManager.currentTransaction();	
-			transaction.begin();
-
-			@SuppressWarnings("unchecked")
-			Query<Socio> socioQuery = persistentManager.newQuery("javax.jdo.query.SQL",
-					"SELECT * FROM SOCIO WHERE NOMBRE = '" + "Prueba1" + "'");
-			socioQuery.setClass(Socio.class);
-			socioQuery.setUnique(true);
 			
-			List<Alquiler> alquileres = new ArrayList<Alquiler>();
+			Socio socio = persistentManager.getObjectById(Socio.class, nombreSocio);
+			String[] partes;
+			Pelicula peli;
+			Videojuego videojuego;
 			
-			Socio s = (Socio) socioQuery.execute();
-			System.out.println(s.getNombre());
-			alquileres = s.getAlquileres();
-		
-			transaction.commit();
+			List<Alquiler> alquileres = socio.getAlquileres();
 			
-			System.out.println(alquileres.get(0).getAlquilado().getNombre());
-			System.out.println(alquileres.get(1).getAlquilado().getNombre());
+			for(Alquiler alq : alquileres) {
+				partes = alq.getNombreArticulo().split("-");
+				
+				if(partes[1].equals("Pelicula")) {
+					peli = persistentManager.getObjectById(Pelicula.class, partes[0]);
+					alq.setAlquilado(peli);
+				} else {
+					videojuego = persistentManager.getObjectById(Videojuego.class, partes[0]);
+					alq.setAlquilado(videojuego);
+				}
+				
+			}
+			
+			for(Alquiler a : alquileres) {
+				System.out.println(a.getAlquilado().getNombre());
+				System.out.println(a.getCoste());
+			}
 
 			return alquileres;
 		} catch(Exception ex) {
@@ -346,6 +352,7 @@ public class MySQL_DB implements IDAO {
 
 			persistentManager.close();
 		}
+		
 	}
 
 }

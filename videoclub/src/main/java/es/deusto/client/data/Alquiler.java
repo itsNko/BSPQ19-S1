@@ -16,13 +16,23 @@ public class Alquiler {
 	private String fecha_inicio;
 	private String fecha_fin;
 	private boolean enCurso;
+	private String nombreArticulo;
 	
-	public Alquiler(Articulo alquilado, double coste, String fecha_inicio, String fecha_fin, boolean enCurso) {
+	public String getNombreArticulo() {
+		return nombreArticulo;
+	}
+
+	public void setNombreArticulo(String nombreArticulo) {
+		this.nombreArticulo = nombreArticulo;
+	}
+
+	public Alquiler(Articulo alquilado, double coste, String fecha_inicio, String fecha_fin, boolean enCurso, String nombreArticulo) {
 		this.alquilado = alquilado;
 		this.coste = coste;
 		this.fecha_inicio = fecha_inicio;
 		this.fecha_fin = fecha_fin;
 		this.enCurso = enCurso;
+		this.nombreArticulo = nombreArticulo;
 	}
 	
 	public int getId() {
