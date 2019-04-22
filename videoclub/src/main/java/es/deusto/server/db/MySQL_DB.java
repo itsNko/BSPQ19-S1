@@ -280,7 +280,10 @@ public class MySQL_DB implements IDAO {
 			}
 
 			transaction.commit();
-
+			for(Articulo a: articulos)
+			{
+				System.out.println(a.getPrecio());
+			}
 			return articulos;
 
 		} catch(Exception ex) {

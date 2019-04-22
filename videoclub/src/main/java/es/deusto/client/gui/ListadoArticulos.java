@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.rmi.RemoteException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -16,6 +17,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import es.deusto.client.controllers.ControllerListadoArticulos;
+import es.deusto.client.controllers.ControllerRecargarSaldo;
 import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Pelicula;
@@ -30,6 +33,8 @@ public class ListadoArticulos extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private JFrame MenuSocio;
+	ControllerListadoArticulos controllerListadoArticulos;
+	List<ArticuloDTO> articulos;
 
 	/**
 	 * Launch the application.
@@ -50,9 +55,14 @@ public class ListadoArticulos extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public ListadoArticulos(final JFrame VentanaAnterior, final List<ArticuloDTO> articulos, final SocioDTO iniciado, final JLabel lblSaldo) {
+	public ListadoArticulos(final JFrame VentanaAnterior, final SocioDTO iniciado, final JLabel lblSaldo) {
 		MenuSocio = VentanaAnterior;
-	
+		try {
+			controllerListadoArticulos = new ControllerListadoArticulos();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
+		articulos = controllerListadoArticulos.listadoArticulos();
 		setTitle("Artículos disponibles para alquilar");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,6 +83,7 @@ public class ListadoArticulos extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Volver");
 				MenuSocio.setVisible(true);
+				articulos.clear();
 				ListadoArticulos.this.dispose();
 			}
 		});
