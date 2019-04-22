@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 
 import es.deusto.client.controllers.ControllerAlquiler;
 import es.deusto.client.controllers.ControllerListadoArticulos;
+import es.deusto.client.data.Alquiler;
 import es.deusto.server.dto.AlquilerDTO;
 import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.SocioDTO;
@@ -35,7 +36,7 @@ public class MenuSocio extends JFrame {
 	private ControllerAlquiler controllerAlquileres;
 
 	private List<ArticuloDTO> articulos = new ArrayList<ArticuloDTO>();
-	private List<AlquilerDTO> alquileres = new ArrayList<AlquilerDTO>();
+	private List<Alquiler> alquileres = new ArrayList<Alquiler>();
 	
 
 	/**
@@ -64,11 +65,6 @@ public class MenuSocio extends JFrame {
 		
 		try {
 			this.controllerListadoArticulos = new ControllerListadoArticulos();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		
-		try {
 			this.controllerAlquileres = new ControllerAlquiler();
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -117,7 +113,9 @@ public class MenuSocio extends JFrame {
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Consultar alquileres");
+				System.out.println(iniciado.getNombre());
 				alquileres = controllerAlquileres.historialAlquileres(iniciado.getNombre());
+				System.out.println(alquileres.get(0).getAlquilado().getNombre());
 				VentanaAlquileres va = new VentanaAlquileres(MenuSocio.this, alquileres);
 				va.setVisible(true);
 				MenuSocio.this.setVisible(false);

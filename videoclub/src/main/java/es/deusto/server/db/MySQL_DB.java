@@ -180,7 +180,7 @@ public class MySQL_DB implements IDAO {
 			persistentManager.close();
 		}
 	}
-	
+
 	@Override
 	public Socio selectSocio(String nombreUsuario) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
@@ -197,10 +197,16 @@ public class MySQL_DB implements IDAO {
 		} catch (Exception ex) {
 			System.err.println("* Exception: " + ex.getMessage());
 			return new Socio();
+		} finally {
+			if (transaction != null && transaction.isActive()) {
+				transaction.rollback();
+			}
+
+			persistentManager.close();
 		}
 
 	}
-	
+
 	@Override
 	public boolean updateMonedero(String nombreUsuario, Double monedero) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
@@ -235,7 +241,7 @@ public class MySQL_DB implements IDAO {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public List<Alquiler> selectAlquilerPorSocio(String nombreUsuario) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
@@ -299,33 +305,27 @@ public class MySQL_DB implements IDAO {
 			transaction = persistentManager.currentTransaction();	
 			transaction.begin();
 
-			Extent<Socio> extentSocios = persistentManager.getExtent(Socio.class, true);
-			Iterator<Socio> iter = extentSocios.iterator();
-
 			@SuppressWarnings("unchecked")
-			Query<Alquiler> alquilerQuery = persistentManager.newQuery("SELECT FROM " + Alquiler.class.getName());
-
+			Query<Socio> socioQuery = persistentManager.newQuery("javax.jdo.query.SQL",
+					"SELECT * FROM SOCIO WHERE NOMBRE = '" + "Prueba1" + "'");
+			socioQuery.setClass(Socio.class);
+			socioQuery.setUnique(true);
+			
 			List<Alquiler> alquileres = new ArrayList<Alquiler>();
-
-			while(iter.hasNext()) {
-				Socio s = (Socio) iter.next();
-				if(s.getNombre().equals(nombreSocio)) {
-					for(Alquiler alq: alquilerQuery.executeList()) {
-						if(s.getAlquileres().contains(alq)) {
-							alquileres.add(alq);
-						}
-					}
-				}
-			}
-
+			
+			Socio s = (Socio) socioQuery.execute();
+			System.out.println(s.getNombre());
+			alquileres = s.getAlquileres();
+		
 			transaction.commit();
+			
+			System.out.println(alquileres.get(0).getAlquilado().getNombre());
+			System.out.println(alquileres.get(1).getAlquilado().getNombre());
 
 			return alquileres;
-
 		} catch(Exception ex) {
 			System.err.println("* Exception retrieving alquileres: " + ex.getMessage());
 			return null;
-
 		} finally {		    
 			if (transaction.isActive()) {
 				transaction.rollback(); 

@@ -56,14 +56,12 @@ public class AppServiceDB {
 		return artAssem.assemble(articulos);
 	}
 	
-	public List<AlquilerDTO> historialAlquileres(String nombreSocio) {
-		List<Alquiler> alquileres = db.historialAlquileres(nombreSocio);
-		
-		return alqAssem.assemble(alquileres);
+	public List<Alquiler> historialAlquileres(String nombreSocio) {
+		return db.historialAlquileres(nombreSocio);
 	}
 
-	public Socio selectSocio(String nombreUsuario) {
-		return db.selectSocio(nombreUsuario);
+	public SocioDTO selectSocio(String nombreUsuario) {
+		return socioAssem.assemble(db.selectSocio(nombreUsuario));
 	}
 
 	public boolean updateMonedero(String nombreUsuario, double monedero) {

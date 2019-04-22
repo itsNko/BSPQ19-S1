@@ -3,14 +3,16 @@ package es.deusto.client.controllers;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Socio;
 import es.deusto.client.remote.ServiceLocator;
 import es.deusto.server.dto.AlquilerDTO;
+import es.deusto.server.dto.SocioDTO;
 
 public class ControllerAlquiler {
 
-	private static ServiceLocator rsl = ControllerRegistro.getRsl();
+	private ServiceLocator rsl = ControllerRegistro.getRsl();
 
 	public ControllerAlquiler() throws RemoteException {
 	}
@@ -30,20 +32,21 @@ public class ControllerAlquiler {
 		}
 	}
 	
-	public Socio selectSocio(String nombreUsuario) {
+	public SocioDTO selectSocio(String nombreUsuario) {
 		try {
 			System.out.println("###ControllerAlquiler: ServiceLocator.getService().selectSocio###");
 			return rsl.getService().selectSocio(nombreUsuario);
 
 		}catch(Exception e) {
 			System.err.println("$ Error al seleccionar socio " + e.getMessage());
-			return new Socio();
+			return new SocioDTO("", "", 0, "");
 		}
 	}
 
-	public List<AlquilerDTO> historialAlquileres(String nombreSocio) {
+	public List<Alquiler> historialAlquileres(String nombreSocio) {
 		try {
-			return rsl.getService().historialAlquileres(nombreSocio);
+			SocioDTO s = rsl.getService().selectSocio(nombreSocio); 
+			return s.getAlquileres();
 		} catch(Exception e) {
 			System.err.println("$ Error al devolver historial de alquileres " + e.getMessage());
 			return null;

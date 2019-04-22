@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
+import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
 import es.deusto.server.dto.AlquilerDTO;
 import es.deusto.client.data.Socio;
@@ -99,7 +100,7 @@ public class Server extends UnicastRemoteObject implements IServer {
 	}
 
 	@Override
-	public List<AlquilerDTO> historialAlquileres(String nombreSocio) throws RemoteException {
+	public List<Alquiler> historialAlquileres(String nombreSocio) throws RemoteException {
 		try {
 			return appService.historialAlquileres(nombreSocio);
 		} catch(Exception e) {
@@ -108,13 +109,14 @@ public class Server extends UnicastRemoteObject implements IServer {
 		}
 	}
 
-	public Socio selectSocio(String nombreUsuario) {
+	public SocioDTO selectSocio(String nombreUsuario) {
 		try {
 			return appService.selectSocio(nombreUsuario);
 		}catch(Exception e) {
 			System.err.println("$ Error al seleccionar el socio " + e.getMessage());
+			return null;
 		}
-		return null;
+	
 	}
 
 	@Override

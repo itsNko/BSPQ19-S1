@@ -233,15 +233,45 @@ public class MainDB {
 				System.err.println("* Exception: " + ex.getMessage());
 				
 			}
+			
+			try {
+				persistentManager = persistentManagerFactory.getPersistenceManager();
+				transaction = persistentManager.currentTransaction();	
+				transaction.begin();
+
+				@SuppressWarnings("unchecked")
+				Query<Socio> socioQuery = persistentManager.newQuery("javax.jdo.query.SQL",
+						"SELECT * FROM SOCIO WHERE NOMBRE = '" + "Prueba1" + "'");
+				socioQuery.setClass(Socio.class);
+				socioQuery.setUnique(true);
+				
+				List<Alquiler> alquileres = new ArrayList<Alquiler>();
+				
+				Socio s = (Socio) socioQuery.execute();
+				System.out.println(s.getNombre());
+				alquileres = s.getAlquileres();
+			
+				transaction.commit();
+				
+				System.out.println(alquileres.get(0).getAlquilado().getNombre());
+				System.out.println(alquileres.get(1).getAlquilado().getNombre());
+
+			} catch(Exception ex) {
+				System.err.println("* Exception retrieving alquileres: " + ex.getMessage());
+
+			} finally {		    
+				if (transaction.isActive()) {
+					transaction.rollback(); 
+				}
+
+				persistentManager.close();
+			}
+			
 		} catch (Exception ex) {
 			System.err.println("* Exception: " + ex.getMessage());
 		}
 
 		
 	}
-	
-
-
-	
 
 }

@@ -74,6 +74,7 @@ public class VentanaRecargarSaldo extends JFrame {
 		}
 		
 		dinero = controllerRecargarSaldo.selectSocio(nombreUsuario).getMonedero();
+		System.out.println(dinero);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 540);
@@ -175,7 +176,7 @@ public class VentanaRecargarSaldo extends JFrame {
 				System.out.println("Confirmar");
 				
 				
-				iniciado.setMonedero(dinero);
+//				iniciado.setMonedero(dinero);
 				
 				
 				

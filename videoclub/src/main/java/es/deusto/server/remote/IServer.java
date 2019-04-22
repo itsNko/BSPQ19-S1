@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
 import es.deusto.server.dto.AlquilerDTO;
 import es.deusto.client.data.Socio;
@@ -18,9 +19,9 @@ public interface IServer extends Remote {
 	public SocioDTO inicioSesion(String nombreSocio, String password) throws RemoteException;
 
 	public boolean insertarAlquiler(Articulo articulo, double coste, String nombreUsuario) throws RemoteException;
-	public List<AlquilerDTO> historialAlquileres(String nombreSocio) throws RemoteException;
+	public List<Alquiler> historialAlquileres(String nombreSocio) throws RemoteException;
 	
 	public List<ArticuloDTO> listadoArticulos() throws RemoteException;
-	public Socio selectSocio(String nombreUsuario) throws RemoteException;
+	public SocioDTO selectSocio(String nombreUsuario) throws RemoteException;
 	public boolean updateMonedero(String nombreUsuario, double monedero) throws RemoteException;
 }

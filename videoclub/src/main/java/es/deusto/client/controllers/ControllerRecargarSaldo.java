@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 import es.deusto.client.data.Socio;
 import es.deusto.client.remote.ServiceLocator;
+import es.deusto.server.dto.SocioDTO;
 
 public class ControllerRecargarSaldo {
 	
@@ -12,14 +13,14 @@ public class ControllerRecargarSaldo {
 	public ControllerRecargarSaldo() throws RemoteException {
 	}
 	
-	public Socio selectSocio(String nombreUsuario) {
+	public SocioDTO selectSocio(String nombreUsuario) {
 		try {
 			System.out.println("###ControllerRecargarSaldo: ServiceLocator.getService().selectSocio###");
 			return rsl.getService().selectSocio(nombreUsuario);
 
 		}catch(Exception e) {
 			System.err.println("$ Error al seleccionar socio " + e.getMessage());
-			return new Socio();
+			return new SocioDTO("", "", 0, "");
 		}
 	}
 	

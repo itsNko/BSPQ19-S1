@@ -74,7 +74,7 @@ public class VentanaConfirmacion extends JFrame {
 		} catch (RemoteException e1) {
 			e1.printStackTrace();
 		}
-		Socio s1 = controllerAlquiler.selectSocio(nombreUsuario);
+		SocioDTO s1 = controllerAlquiler.selectSocio(nombreUsuario);
 		setResizable(false);
 		setTitle("Confirmación de alquiler");
 		
