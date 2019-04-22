@@ -187,23 +187,7 @@ public class MySQL_DB implements IDAO {
 		transaction = persistentManager.currentTransaction();
 		
 		try {
-			transaction.begin();
-			
-			Socio socio = null;
-
-			Query q = persistentManager.newQuery("SELECT FROM " + Socio.class.getName());
-			List<Socio> socios = q.executeList();
-			Iterator<Socio> iter = socios.iterator();
-			
-			while (iter.hasNext()) {
-				Socio s = iter.next();
-
-				if(s.getNombre().equals(nombreUsuario)) {
-					socio = s;
-				}
-			}
-
-			transaction.commit();
+			Socio socio = persistentManager.getObjectById(Socio.class, nombreUsuario);
 
 			return socio;
 		} catch(Exception ex) {
@@ -237,11 +221,12 @@ public class MySQL_DB implements IDAO {
 				{
 					System.out.println("- Data modified: " + s.getMonedero() +" -> "+monedero);
 					s.setMonedero(monedero);
+					transaction.commit();
 					return true;
 				}
 			}
 
-			transaction.commit();
+			
 		} catch(Exception ex) {
 			System.err.println("* Exception executing a query: " + ex.getMessage());
 			return false;
