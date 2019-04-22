@@ -93,8 +93,8 @@ public class MenuSocio extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Alquilar");
-				articulos = controllerListadoArticulos.listadoArticulos();
-				ListadoArticulos ls = new ListadoArticulos(MenuSocio.this, articulos, iniciado, lblSaldo);
+				//articulos = controllerListadoArticulos.listadoArticulos();
+				ListadoArticulos ls = new ListadoArticulos(MenuSocio.this, iniciado, lblSaldo);
 				ls.setVisible(true);
 				MenuSocio.this.setVisible(false);
 			}

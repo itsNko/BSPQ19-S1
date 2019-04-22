@@ -178,13 +178,11 @@ public class VentanaRecargarSaldo extends JFrame {
 		botonConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Confirmar");
-				
-				
-//				iniciado.setMonedero(dinero);
-				
-				
-				
+				System.out.println(nombreUsuario);
+				System.out.println(dinero);
+				controllerRecargarSaldo.updateMonedero(nombreUsuario, dinero);			
 				labelSaldo.setText("Tu saldo actual es de "+controllerRecargarSaldo.selectSocio(nombreUsuario).getMonedero()+" €");
+				
 				VentanaRecargarSaldo.this.dispose();
 				ventanaRecargar.setVisible(true);
 			}
