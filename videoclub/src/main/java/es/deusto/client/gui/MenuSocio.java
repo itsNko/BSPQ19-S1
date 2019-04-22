@@ -113,9 +113,8 @@ public class MenuSocio extends JFrame {
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Consultar alquileres");
-				System.out.println(iniciado.getNombre());
-				alquileres = controllerAlquileres.historialAlquileres(iniciado.getNombre());
-				System.out.println(alquileres.get(0).getAlquilado().getNombre());
+				SocioDTO s = controllerAlquileres.selectSocio(iniciado.getNombre());
+				alquileres = s.getAlquileres();
 				VentanaAlquileres va = new VentanaAlquileres(MenuSocio.this, alquileres);
 				va.setVisible(true);
 				MenuSocio.this.setVisible(false);

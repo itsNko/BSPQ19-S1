@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -184,7 +185,7 @@ public class VentanaConfirmacion extends JFrame {
 					if(eleccion == 0) {
 						s1.setMonedero(s1.getMonedero() - a.getCoste());
 						controllerAlquiler.insertarAlquiler(a.getAlquilado(), a.getCoste(), s1.getNombre());
-						ArrayList<Alquiler> alquileres = s1.getAlquileres();
+						List<Alquiler> alquileres = s1.getAlquileres();
 						a.setEnCurso(true);
 						alquileres.add(a);
 						System.out.println("Alquiler añadido a la lista de alquileres");

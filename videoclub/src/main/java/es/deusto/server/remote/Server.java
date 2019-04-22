@@ -109,7 +109,7 @@ public class Server extends UnicastRemoteObject implements IServer {
 		}
 	}
 
-	public SocioDTO selectSocio(String nombreUsuario) {
+	public SocioDTO selectSocio(String nombreUsuario) throws RemoteException {
 		try {
 			return appService.selectSocio(nombreUsuario);
 		}catch(Exception e) {

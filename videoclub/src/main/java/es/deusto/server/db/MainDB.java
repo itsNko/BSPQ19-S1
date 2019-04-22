@@ -22,11 +22,11 @@ public class MainDB {
 	public static void main(String[] args) {
 		try {
 			PersistenceManagerFactory persistentManagerFactory = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-
-			//Insert data in the DB
+			//
+			//			//Insert data in the DB
 			PersistenceManager persistentManager = persistentManagerFactory.getPersistenceManager();				
 			Transaction transaction = persistentManager.currentTransaction();
-
+			//
 			Socio s1 = new Socio("Prueba1", "1111111A", 20.75, "default-profile.png");
 			Socio s2 = new Socio("Prueba2", "2222222B", 10, "default-profile.png");
 			Socio s3 = new Socio("Prueba3", "3333333C", 0, "default-profile.png");
@@ -42,236 +42,240 @@ public class MainDB {
 			Alquiler alquiler1 = new Alquiler(art1, art1.getPrecio(), "15/04/2019", "20/04/2019", true);
 			Alquiler alquiler2 = new Alquiler(art2, art2.getPrecio(), "15/04/2019", "20/04/2019", true);
 
-			try {
-				transaction.begin();
+			//			try {
+			//				transaction.begin();
+			//
+			//				persistentManager.makePersistent(s1);
+			//				persistentManager.makePersistent(s2);
+			//				persistentManager.makePersistent(s3);
+			//
+			//				System.out.println("- Inserted into db: " + s1.getNombre());
+			//				System.out.println("- Inserted into db: " + s2.getNombre());
+			//				System.out.println("- Inserted into db: " + s3.getNombre());
+			//
+			//				persistentManager.makePersistent(art1);
+			//				persistentManager.makePersistent(art2);
+			//				persistentManager.makePersistent(art3);
+			//				persistentManager.makePersistent(art4);
+			//				persistentManager.makePersistent(art5);
+			//				persistentManager.makePersistent(art6);
+			//
+			//				System.out.println("- Inserted into db: " + art1.getNombre());
+			//				System.out.println("- Inserted into db: " + art2.getNombre());
+			//				System.out.println("- Inserted into db: " + art3.getNombre());
+			//				System.out.println("- Inserted into db: " + art4.getNombre());
+			//				System.out.println("- Inserted into db: " + art5.getNombre());
+			//				System.out.println("- Inserted into db: " + art6.getNombre());
+			//
+			//				transaction.commit();
+			//			} catch(Exception ex) {
+			//				System.err.println("* Exception inserting data into db: " + ex.getMessage());
+			//			} finally {		    
+			//				if (transaction.isActive()) {
+			//					transaction.rollback(); // Deshace los cambios en caso de que de algun error
+			//				}
+			//
+			//				persistentManager.close();
+			//			}
+			//
+			//			//Select data using a Query and delete data
+			//			persistentManager = persistentManagerFactory.getPersistenceManager();
+			//			transaction = persistentManager.currentTransaction();
+			//
+			//			try {
+			//				transaction.begin();
+			//
+			//				@SuppressWarnings("unchecked")
+			//				Query<Socio> usuariosQuery = persistentManager.newQuery("SELECT FROM " + Socio.class.getName());
+			//				for (Socio socio : usuariosQuery.executeList()) {
+			//					System.out.println("- Selected from db: " + socio.getNombre());
+			//					if(socio.getNombre().equals("Prueba3")) {
+			//						// Borra el socio con nombre 'Fran'
+			//						persistentManager.deletePersistent(socio);
+			//						System.out.println("- Deleted from db: " + socio.getNombre());
+			//					}
+			//
+			//				}
+			//
+			//				transaction.commit();
+			//			} catch(Exception ex) {
+			//				System.err.println("* Exception executing a query: " + ex.getMessage());
+			//			} finally {
+			//				if (transaction.isActive()) {
+			//					transaction.rollback();
+			//				}
+			//
+			//				persistentManager.close();
+			//			}
+			//
+			//			// Añadir alquiler a socio
+			//			persistentManager = persistentManagerFactory.getPersistenceManager();
+			//			transaction = persistentManager.currentTransaction();
+			//
+			//			try {
+			//				transaction.begin();
+			//
+			//				Extent<Articulo> a = persistentManager.getExtent(Articulo.class, true);
+			//				Iterator<Articulo> iter2 = a.iterator();
+			//
+			//				while (iter2.hasNext()) {
+			//					Articulo art = (Articulo) iter2.next();
+			//					if (art.getNombre().equals(alquiler1.getAlquilado().getNombre())) {
+			//						alquiler1.setAlquilado(art);
+			//					}
+			//				}
+			//				transaction.commit();
+			//
+			//				transaction.begin();
+			//
+			//				Extent<Articulo> a2 = persistentManager.getExtent(Articulo.class, true);
+			//				Iterator<Articulo> iter3 = a2.iterator();
+			//
+			//				while (iter3.hasNext()) {
+			//					Articulo art = (Articulo) iter3.next();
+			//					if (art.getNombre().equals(alquiler2.getAlquilado().getNombre())) {
+			//						alquiler2.setAlquilado(art);
+			//					}
+			//				}
+			//				transaction.commit();
+			//
+			//				transaction.begin();
+			//				Extent<Socio> e = persistentManager.getExtent(Socio.class, true);
+			//				Iterator<Socio> iter = e.iterator();
+			//
+			//				while (iter.hasNext()) {
+			//					Socio s = (Socio) iter.next();
+			//					if (s.getNombre().equals("Prueba1")) {
+			//						System.out.println("- Añadidos alquileres a socio: " + s.getNombre());
+			//						s.getAlquileres().add(alquiler1);
+			//						s.getAlquileres().add(alquiler2);
+			//					}
+			//				}
+			//
+			//				transaction.commit();
+			//			} catch(Exception ex) {
+			//				System.err.println("* Exception executing a query: " + ex.getMessage());
+			//			} finally {
+			//				if (transaction.isActive()) {
+			//					transaction.rollback();
+			//				}
+			//
+			//				persistentManager.close();
+			//			}
 
-				persistentManager.makePersistent(s1);
-				persistentManager.makePersistent(s2);
-				persistentManager.makePersistent(s3);
+			//			// Update de un atributo socio y a su vez de un alquiler suyo
+			//			persistentManager = persistentManagerFactory.getPersistenceManager();
+			//			transaction = persistentManager.currentTransaction();
+			//
+			//			try {
+			//				transaction.begin();
+			//
+			//				Extent<Socio> e = persistentManager.getExtent(Socio.class, true);
+			//				Iterator<Socio> iter = e.iterator();
+			//
+			//				@SuppressWarnings("unchecked")
+			//				Query<Alquiler> alquilerQuery = persistentManager.newQuery("SELECT FROM " + Alquiler.class.getName());
+			//
+			//				while (iter.hasNext()) {
+			//					Socio s = (Socio) iter.next();
+			//					if(s.getNombre().equals("Prueba1")) {
+			//						for(Alquiler alquiler: alquilerQuery.executeList()) {
+			//							if(alquiler.isEnCurso() && alquiler.getAlquilado().getNombre().equals(art1.getNombre()) && s.getAlquileres().contains(alquiler)) {
+			//								System.out.println("- Data modified: " + alquiler.isEnCurso() + " ---> FALSE");
+			//								alquiler.setEnCurso(false);
+			//							}
+			//						}
+			//					}
+			//
+			//					if (s.getNombre().equals("Prueba2")) {
+			//						System.out.println("- Data modified: " + s.getPassword() + " ---> " + s.getPassword() + "M");
+			//						s.setPassword(s.getPassword() + "M");
+			//					}
+			//				}
+			//
+			//				transaction.commit();
+			//			} catch(Exception ex) {
+			//				System.err.println("* Exception executing a query: " + ex.getMessage());
+			//			} finally {
+			//				if (transaction.isActive()) {
+			//					transaction.rollback();
+			//				}
+			//
+			//				persistentManager.close();
+			//			}
+			//			persistentManager = persistentManagerFactory.getPersistenceManager();
+			//			transaction = persistentManager.currentTransaction();
+			//			try {
+			//			transaction.begin();
+			//			Query query = persistentManager.newQuery("javax.jdo.query.SQL", "SELECT * FROM SOCIO WHERE NOMBRE = 'iker'");
+			//			query.setClass(Socio.class);
+			//			query.setUnique(true);
+			//			Socio socio = (Socio) query.execute();
+			//			System.out.println(socio.getMonedero());
+			//			}catch(Exception ex) {
+			//				System.err.println("* Exception: " + ex.getMessage());
+			//			}
+			//			
+			//			
+			//			persistentManager = persistentManagerFactory.getPersistenceManager();
+			//			transaction = persistentManager.currentTransaction();
+			//			try {
+			//				transaction.begin();
+			//				@SuppressWarnings("unchecked")
+			//				Query<Alquiler> query = persistentManager.newQuery("javax.jdo.query.SQL",
+			//						"SELECT * FROM ALQUILER WHERE ALQUILERES_NOMBRE_OWN = '" + "Prueba1" + "'");
+			//				query.setClass(Alquiler.class);
+			//				List<Alquiler> alquileres = (List<Alquiler>) new ArrayList<Alquiler>();
+			//				for(Alquiler alquiler:alquileres) {
+			//					System.out.println(alquiler.getAlquilado());
+			//				}
+			//			} catch (Exception ex) {
+			//				System.err.println("* Exception: " + ex.getMessage());
+			//				
+			//			}
 
-				System.out.println("- Inserted into db: " + s1.getNombre());
-				System.out.println("- Inserted into db: " + s2.getNombre());
-				System.out.println("- Inserted into db: " + s3.getNombre());
-
-				persistentManager.makePersistent(art1);
-				persistentManager.makePersistent(art2);
-				persistentManager.makePersistent(art3);
-				persistentManager.makePersistent(art4);
-				persistentManager.makePersistent(art5);
-				persistentManager.makePersistent(art6);
-
-				System.out.println("- Inserted into db: " + art1.getNombre());
-				System.out.println("- Inserted into db: " + art2.getNombre());
-				System.out.println("- Inserted into db: " + art3.getNombre());
-				System.out.println("- Inserted into db: " + art4.getNombre());
-				System.out.println("- Inserted into db: " + art5.getNombre());
-				System.out.println("- Inserted into db: " + art6.getNombre());
-
-				transaction.commit();
-			} catch(Exception ex) {
-				System.err.println("* Exception inserting data into db: " + ex.getMessage());
-			} finally {		    
-				if (transaction.isActive()) {
-					transaction.rollback(); // Deshace los cambios en caso de que de algun error
-				}
-
-				persistentManager.close();
-			}
-
-			//Select data using a Query and delete data
 			persistentManager = persistentManagerFactory.getPersistenceManager();
-			transaction = persistentManager.currentTransaction();
-
+			//transaction = persistentManager.currentTransaction();
 			try {
 				transaction.begin();
 
-				@SuppressWarnings("unchecked")
-				Query<Socio> usuariosQuery = persistentManager.newQuery("SELECT FROM " + Socio.class.getName());
-				for (Socio socio : usuariosQuery.executeList()) {
-					System.out.println("- Selected from db: " + socio.getNombre());
-					if(socio.getNombre().equals("Prueba3")) {
-						// Borra el socio con nombre 'Fran'
-						persistentManager.deletePersistent(socio);
-						System.out.println("- Deleted from db: " + socio.getNombre());
-					}
-
-				}
-
-				transaction.commit();
-			} catch(Exception ex) {
-				System.err.println("* Exception executing a query: " + ex.getMessage());
-			} finally {
-				if (transaction.isActive()) {
-					transaction.rollback();
-				}
-
-				persistentManager.close();
-			}
-
-			// Añadir alquiler a socio
-			persistentManager = persistentManagerFactory.getPersistenceManager();
-			transaction = persistentManager.currentTransaction();
-
-			try {
-				transaction.begin();
-
-				Extent<Articulo> a = persistentManager.getExtent(Articulo.class, true);
-				Iterator<Articulo> iter2 = a.iterator();
-
-				while (iter2.hasNext()) {
-					Articulo art = (Articulo) iter2.next();
-					if (art.getNombre().equals(alquiler1.getAlquilado().getNombre())) {
-						alquiler1.setAlquilado(art);
-					}
-				}
-				transaction.commit();
-
-				transaction.begin();
-
-				Extent<Articulo> a2 = persistentManager.getExtent(Articulo.class, true);
-				Iterator<Articulo> iter3 = a2.iterator();
-
-				while (iter3.hasNext()) {
-					Articulo art = (Articulo) iter3.next();
-					if (art.getNombre().equals(alquiler2.getAlquilado().getNombre())) {
-						alquiler2.setAlquilado(art);
-					}
-				}
-				transaction.commit();
-
-				transaction.begin();
-				Extent<Socio> e = persistentManager.getExtent(Socio.class, true);
-				Iterator<Socio> iter = e.iterator();
-
-				while (iter.hasNext()) {
-					Socio s = (Socio) iter.next();
-					if (s.getNombre().equals("Prueba1")) {
-						System.out.println("- Añadidos alquileres a socio: " + s.getNombre());
-						s.getAlquileres().add(alquiler1);
-						s.getAlquileres().add(alquiler2);
-					}
-				}
-
-				transaction.commit();
-			} catch(Exception ex) {
-				System.err.println("* Exception executing a query: " + ex.getMessage());
-			} finally {
-				if (transaction.isActive()) {
-					transaction.rollback();
-				}
-
-				persistentManager.close();
-			}
-
-			// Update de un atributo socio y a su vez de un alquiler suyo
-			persistentManager = persistentManagerFactory.getPersistenceManager();
-			transaction = persistentManager.currentTransaction();
-
-			try {
-				transaction.begin();
-
-				Extent<Socio> e = persistentManager.getExtent(Socio.class, true);
-				Iterator<Socio> iter = e.iterator();
-
-				@SuppressWarnings("unchecked")
-				Query<Alquiler> alquilerQuery = persistentManager.newQuery("SELECT FROM " + Alquiler.class.getName());
-
-				while (iter.hasNext()) {
-					Socio s = (Socio) iter.next();
-					if(s.getNombre().equals("Prueba1")) {
-						for(Alquiler alquiler: alquilerQuery.executeList()) {
-							if(alquiler.isEnCurso() && alquiler.getAlquilado().getNombre().equals(art1.getNombre()) && s.getAlquileres().contains(alquiler)) {
-								System.out.println("- Data modified: " + alquiler.isEnCurso() + " ---> FALSE");
-								alquiler.setEnCurso(false);
-							}
-						}
-					}
-
-					if (s.getNombre().equals("Prueba2")) {
-						System.out.println("- Data modified: " + s.getPassword() + " ---> " + s.getPassword() + "M");
-						s.setPassword(s.getPassword() + "M");
-					}
-				}
-
-				transaction.commit();
-			} catch(Exception ex) {
-				System.err.println("* Exception executing a query: " + ex.getMessage());
-			} finally {
-				if (transaction.isActive()) {
-					transaction.rollback();
-				}
-
-				persistentManager.close();
-			}
-			persistentManager = persistentManagerFactory.getPersistenceManager();
-			transaction = persistentManager.currentTransaction();
-			try {
-			transaction.begin();
-			Query query = persistentManager.newQuery("javax.jdo.query.SQL", "SELECT * FROM SOCIO WHERE NOMBRE = 'iker'");
-			query.setClass(Socio.class);
-			query.setUnique(true);
-			Socio socio = (Socio) query.execute();
-			System.out.println(socio.getMonedero());
-			}catch(Exception ex) {
-				System.err.println("* Exception: " + ex.getMessage());
-			}
-			
-			
-			persistentManager = persistentManagerFactory.getPersistenceManager();
-			transaction = persistentManager.currentTransaction();
-			try {
-				transaction.begin();
-				@SuppressWarnings("unchecked")
-				Query<Alquiler> query = persistentManager.newQuery("javax.jdo.query.SQL",
-						"SELECT * FROM ALQUILER WHERE ALQUILERES_NOMBRE_OWN = '" + "Prueba1" + "'");
-				query.setClass(Alquiler.class);
-				List<Alquiler> alquileres = (List<Alquiler>) new ArrayList<Alquiler>();
-				for(Alquiler alquiler:alquileres) {
-					System.out.println(alquiler.getAlquilado());
-				}
-			} catch (Exception ex) {
-				System.err.println("* Exception: " + ex.getMessage());
+				Query q = persistentManager.newQuery("SELECT FROM " + Socio.class.getName());
+				List<Socio> socios = q.executeList();
+				Iterator<Socio> iter = socios.iterator();
 				
-			}
-			
-			try {
-				persistentManager = persistentManagerFactory.getPersistenceManager();
-				transaction = persistentManager.currentTransaction();	
-				transaction.begin();
-
-				@SuppressWarnings("unchecked")
-				Query<Socio> socioQuery = persistentManager.newQuery("javax.jdo.query.SQL",
-						"SELECT * FROM SOCIO WHERE NOMBRE = '" + "Prueba1" + "'");
-				socioQuery.setClass(Socio.class);
-				socioQuery.setUnique(true);
+				Socio socio = null;
 				
 				List<Alquiler> alquileres = new ArrayList<Alquiler>();
-				
-				Socio s = (Socio) socioQuery.execute();
-				System.out.println(s.getNombre());
-				alquileres = s.getAlquileres();
-			
+				while (iter.hasNext())
+				{
+					Socio s = iter.next();
+
+					if(s.getNombre().equals("Prueba1")) {
+						socio = s;
+						alquileres = s.getAlquileres();
+					}
+				}
+
 				transaction.commit();
-				
+
 				System.out.println(alquileres.get(0).getAlquilado().getNombre());
-				System.out.println(alquileres.get(1).getAlquilado().getNombre());
-
+				System.out.println(alquileres.get(0).getAlquilado().getCaratula());
+				System.out.println(socio.getPassword());
 			} catch(Exception ex) {
-				System.err.println("* Exception retrieving alquileres: " + ex.getMessage());
-
-			} finally {		    
+				System.err.println("* Exception executing a query: " + ex.getMessage());
+			} finally {
 				if (transaction.isActive()) {
-					transaction.rollback(); 
+					transaction.rollback();
 				}
 
 				persistentManager.close();
 			}
-			
+
 		} catch (Exception ex) {
 			System.err.println("* Exception: " + ex.getMessage());
 		}
 
-		
+
 	}
 
 }

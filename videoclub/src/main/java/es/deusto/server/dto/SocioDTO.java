@@ -2,6 +2,7 @@ package es.deusto.server.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import es.deusto.client.data.Alquiler;
 
@@ -13,7 +14,7 @@ public class SocioDTO implements Serializable {
 	private String password;
 	private double monedero;
 	private String imagen;
-	private ArrayList<Alquiler> alquileres;
+	private List<Alquiler> alquileres;
 	
 	public SocioDTO(String nombre, String password, double monedero, String imagen) {
 		this.nombre = nombre;
@@ -53,11 +54,11 @@ public class SocioDTO implements Serializable {
 		return imagen;
 	}
 
-	public ArrayList<Alquiler> getAlquileres() {
+	public List<Alquiler> getAlquileres() {
 		return alquileres;
 	}
 
-	public void setAlquileres(ArrayList<Alquiler> alquileres) {
+	public void setAlquileres(List<Alquiler> alquileres) {
 		this.alquileres = alquileres;
 	}
 }

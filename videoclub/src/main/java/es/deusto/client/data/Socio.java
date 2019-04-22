@@ -1,6 +1,7 @@
 package es.deusto.client.data;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
@@ -13,7 +14,7 @@ public class Socio {
 	private String password;
 	private double monedero;
 	private String imagen;
-	private ArrayList<Alquiler> alquileres;
+	private List<Alquiler> alquileres;
 	
 	public Socio(String nombre, String password, double monedero, String imagen) {
 		this.nombre = nombre;
@@ -60,11 +61,11 @@ public class Socio {
 		return imagen;
 	}
 
-	public ArrayList<Alquiler> getAlquileres() {
+	public List<Alquiler> getAlquileres() {
 		return alquileres;
 	}
 
-	public void setAlquileres(ArrayList<Alquiler> alquileres) {
+	public void setAlquileres(List<Alquiler> alquileres) {
 		this.alquileres = alquileres;
 	}
 	

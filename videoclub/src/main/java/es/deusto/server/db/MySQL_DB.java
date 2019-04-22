@@ -61,7 +61,7 @@ public class MySQL_DB implements IDAO {
 	@Override
 	public boolean existeSocio(String nombreSocio) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
-		persistentManager.getFetchPlan().setMaxFetchDepth(1);
+		//persistentManager.getFetchPlan().setMaxFetchDepth(1);
 
 		transaction = persistentManager.currentTransaction();
 
@@ -185,25 +185,38 @@ public class MySQL_DB implements IDAO {
 	public Socio selectSocio(String nombreUsuario) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		transaction = persistentManager.currentTransaction();
+		
 		try {
 			transaction.begin();
-			@SuppressWarnings("unchecked")
-			Query<Socio> query = persistentManager.newQuery("javax.jdo.query.SQL",
-					"SELECT * FROM SOCIO WHERE NOMBRE = '" + nombreUsuario + "'");
-			query.setClass(Socio.class);
-			query.setUnique(true);
-			Socio socio = (Socio) query.execute();
+			
+			Socio socio = null;
+
+			Query q = persistentManager.newQuery("SELECT FROM " + Socio.class.getName());
+			List<Socio> socios = q.executeList();
+			Iterator<Socio> iter = socios.iterator();
+			
+			while (iter.hasNext()) {
+				Socio s = iter.next();
+
+				if(s.getNombre().equals(nombreUsuario)) {
+					socio = s;
+				}
+			}
+
+			transaction.commit();
+
 			return socio;
-		} catch (Exception ex) {
-			System.err.println("* Exception: " + ex.getMessage());
+		} catch(Exception ex) {
+			System.err.println("* Exception executing a query: " + ex.getMessage());
 			return new Socio();
 		} finally {
-			if (transaction != null && transaction.isActive()) {
+			if (transaction.isActive()) {
 				transaction.rollback();
 			}
 
 			persistentManager.close();
 		}
+
 
 	}
 
