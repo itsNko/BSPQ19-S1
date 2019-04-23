@@ -35,14 +35,6 @@ public class Alquiler {
 		this.nombreArticulo = nombreArticulo;
 	}
 	
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
-	
 	public Articulo getAlquilado() {
 		return alquilado;
 	}
