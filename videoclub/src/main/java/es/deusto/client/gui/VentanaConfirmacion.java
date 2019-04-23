@@ -175,7 +175,7 @@ public class VentanaConfirmacion extends JFrame {
 		bConfirmar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(a.getCoste() > s1.getMonedero()) {
+				if(a.getCoste() > controllerAlquiler.selectSocio(nombreUsuario).getMonedero()) {
 					JOptionPane.showMessageDialog(null, "No tiene suficiente dinero en el monedero, porfavor introduzca más para seguir con la compra",
 							"Saldo insuficiente", JOptionPane.ERROR_MESSAGE);
 					MenuSocio.setVisible(true);
@@ -183,7 +183,11 @@ public class VentanaConfirmacion extends JFrame {
 				} else {
 					int eleccion = JOptionPane.showConfirmDialog(null, "¿Esta seguro?");
 					if(eleccion == 0) {
+						//update monedero
+						System.out.println("updateMonedero");
+						controllerAlquiler.updateMonedero(nombreUsuario, controllerAlquiler.selectSocio(nombreUsuario).getMonedero()-a.getCoste());
 						s1.setMonedero(s1.getMonedero() - a.getCoste());
+						System.out.println("insertarAlquiler");
 						controllerAlquiler.insertarAlquiler(a.getAlquilado(), a.getCoste(), s1.getNombre());
 						List<Alquiler> alquileres = s1.getAlquileres();
 						a.setEnCurso(true);

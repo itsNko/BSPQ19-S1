@@ -51,6 +51,17 @@ public class ControllerAlquiler {
 			return null;
 		}
 	}
+	
+	public boolean updateMonedero(String nombreUsuario, double monedero) {
+		try {
+			System.out.println("###ControllerRecargarSaldo: ServiceLocator.getService().updateMonedero###");
+			return rsl.getService().updateMonedero(nombreUsuario, monedero);
+		}catch(Exception e) {
+			System.err.println("$ Error al actualizar monedero " + e.getMessage());
+			return false;
+		}
+	}
+	
 
 	public void exit(){
 		System.exit(0);
