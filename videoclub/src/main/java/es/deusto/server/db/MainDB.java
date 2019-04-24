@@ -25,8 +25,8 @@ public class MainDB {
 			//
 			//			//Insert data in the DB
 			PersistenceManager persistentManager = persistentManagerFactory.getPersistenceManager();				
-//			Transaction transaction = persistentManager.currentTransaction();
-//			//
+			Transaction transaction = persistentManager.currentTransaction();
+			
 //			Socio s1 = new Socio("Prueba1", "1111111A", 20.75, "default-profile.png");
 //			Socio s2 = new Socio("Prueba2", "2222222B", 10, "default-profile.png");
 //			Socio s3 = new Socio("Prueba3", "3333333C", 0, "default-profile.png");
@@ -270,15 +270,15 @@ public class MainDB {
 //
 //				persistentManager.close();
 //			}
-			
-			Socio so = persistentManager.getObjectById(Socio.class, "Prueba1");
-
-	        System.out.println(so.getNombre());
-	        System.out.println(so.getMonedero());
-	        System.out.println(so.getAlquileres().get(0).getNombreArticulo());
-	        
-	        Articulo art = persistentManager.getObjectById(Pelicula.class, so.getAlquileres().get(0).getNombreArticulo());
-	        System.out.println(art.getNombre());
+//			
+//			Socio so = persistentManager.getObjectById(Socio.class, "Prueba1");
+//
+//	        System.out.println(so.getNombre());
+//	        System.out.println(so.getMonedero());
+//	        System.out.println(so.getAlquileres().get(0).getNombreArticulo());
+//	        
+//	        Articulo art = persistentManager.getObjectById(Pelicula.class, so.getAlquileres().get(0).getNombreArticulo());
+//	        System.out.println(art.getNombre());
 	        
 		} catch (Exception ex) {
 			System.err.println("* Exception: " + ex.getMessage());

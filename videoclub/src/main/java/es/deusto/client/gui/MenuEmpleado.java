@@ -1,5 +1,8 @@
 package es.deusto.client.gui;
 
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -17,18 +20,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import es.deusto.client.controllers.ControllerAlquiler;
 import es.deusto.client.controllers.ControllerListadoArticulos;
-import es.deusto.client.data.Alquiler;
-import es.deusto.server.dto.AlquilerDTO;
 import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.SocioDTO;
 
-import java.awt.Color;
-import java.awt.Font;
-
-public class MenuSocio extends JFrame {
-
+public class MenuEmpleado extends JFrame {
+	
 	private static final long serialVersionUID = 1L;
 	// private JFrame frame;
 	private JFrame ventanaInicio;
@@ -40,24 +37,24 @@ public class MenuSocio extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	//	public static void main(String[] args) {
-	//		EventQueue.invokeLater(new Runnable() {
-	//			public void run() {
-	//				try {
-	//					MenuSocio frame = new MenuSocio();
-	//					frame.setVisible(true);
-	//				} catch (Exception e) {
-	//					e.printStackTrace();
-	//				}
-	//			}
-	//		});
-	//	}
+//		public static void main(String[] args) {
+//			EventQueue.invokeLater(new Runnable() {
+//				public void run() {
+//					try {
+//						MenuEmpleado frame = new MenuEmpleado(null,null);
+//						frame.setVisible(true);
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//				}
+//			});
+//		}
 
 	/**
 	 * Create the application.
 	 * @param iniciado 
 	 */
-	public MenuSocio(JFrame ventanaAnterior, final SocioDTO iniciado) {
+	public MenuEmpleado(JFrame ventanaAnterior, final SocioDTO iniciado) {
 
 		//cargarArticulosPrueba();
 		
@@ -67,7 +64,7 @@ public class MenuSocio extends JFrame {
 			e.printStackTrace();
 		}
 
-		setTitle("Menú principal");
+		setTitle("Menú principal - Empleado");
 		ventanaInicio = ventanaAnterior;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,21 +79,22 @@ public class MenuSocio extends JFrame {
 		background.setBounds(0,0,960, 518);
 		getContentPane().add(background);
 		background.setLayout(null);
-		
+
 		final JLabel lblSaldo = new JLabel("Tu saldo actual es de "+iniciado.getMonedero()+" €");
 		lblSaldo.setFont(new Font("AppleGothic", Font.PLAIN, 18));
 		lblSaldo.setForeground(Color.WHITE);
 		lblSaldo.setBounds(125, 200, 300, 60);
 		background.add(lblSaldo);
-
+		
+		
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Alquilar");
 				//articulos = controllerListadoArticulos.listadoArticulos();
-				ListadoArticulos ls = new ListadoArticulos(MenuSocio.this, iniciado, lblSaldo);
+				ListadoArticulos ls = new ListadoArticulos(MenuEmpleado.this, iniciado, lblSaldo);
 				ls.setVisible(true);
-				MenuSocio.this.setVisible(false);
+				MenuEmpleado.this.setVisible(false);
 			}
 		});
 		btnNewButton.setBounds(490, 159, 170, 50);
@@ -110,9 +108,9 @@ public class MenuSocio extends JFrame {
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Consultar alquileres");
-				VentanaAlquileres va = new VentanaAlquileres(MenuSocio.this, iniciado);
+				VentanaAlquileres va = new VentanaAlquileres(MenuEmpleado.this, iniciado);
 				va.setVisible(true);
-				MenuSocio.this.setVisible(false);
+				MenuEmpleado.this.setVisible(false);
 			}
 		});
 		background.add(btnConsultar);
@@ -125,9 +123,9 @@ public class MenuSocio extends JFrame {
 		btnRecargar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				System.out.println("Recargar saldo");
-				VentanaRecargarSaldo saldo = new VentanaRecargarSaldo(MenuSocio.this, iniciado.getNombre(), lblSaldo);
+				VentanaRecargarSaldo saldo = new VentanaRecargarSaldo(MenuEmpleado.this, iniciado.getNombre(), lblSaldo);
 				saldo.setVisible(true);
-				MenuSocio.this.setVisible(false);
+				MenuEmpleado.this.setVisible(false);
 
 			}
 		});
@@ -144,9 +142,9 @@ public class MenuSocio extends JFrame {
 				if(!alquileresEnCurso(iniciado)) {
 					JOptionPane.showMessageDialog(null, "No tienes alquileres en curso :(", "Error", JOptionPane.ERROR_MESSAGE);
 				} else {
-					VentanaDevolucion vd = new VentanaDevolucion(MenuSocio.this, iniciado);
+					VentanaDevolucion vd = new VentanaDevolucion(MenuEmpleado.this, iniciado);
 					vd.setVisible(true);
-					MenuSocio.this.setVisible(false);
+					MenuEmpleado.this.setVisible(false);
 				}
 
 			}
@@ -156,12 +154,13 @@ public class MenuSocio extends JFrame {
 		btnDevolver.setOpaque(false);
 		btnDevolver.setContentAreaFilled(false);
 		btnDevolver.setBorderPainted(false);
+		
 		JButton btnSalir = new JButton("");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Salir");
 				ventanaInicio.setVisible(true);
-				MenuSocio.this.dispose();
+				MenuEmpleado.this.dispose();
 			}
 		});
 		btnSalir.setBounds(590, 430, 180, 55);
@@ -169,6 +168,15 @@ public class MenuSocio extends JFrame {
 		btnSalir.setOpaque(false);
 		btnSalir.setContentAreaFilled(false);
 		btnSalir.setBorderPainted(false);
+		
+		JButton btnDescuento = new JButton("Descuento");
+		btnDescuento.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 
 		final JLabel fotoPerfil;
 		ImageIcon defaultProfile = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"default-profile.png");
@@ -231,5 +239,4 @@ public class MenuSocio extends JFrame {
 		return result;
 
 	}
-
 }

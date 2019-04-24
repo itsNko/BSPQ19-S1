@@ -31,6 +31,7 @@ public class VentanaInicio extends JFrame {
 	private ControllerRegistro controllerRegistro;
 	private boolean registroCorrecto;
 	private SocioDTO socio;
+	private SocioDTO admin;
 
 	/**
 	 * Launch the application.
@@ -140,7 +141,21 @@ public class VentanaInicio extends JFrame {
 					JOptionPane.showMessageDialog(null, "Alguno de los campos está vacio, por favor introduce un nombre de usuario y contraseña correctos.", "Aviso", JOptionPane.WARNING_MESSAGE);
 
 					candadoNegro(candadoNegro, candadoRojo, candadoVerde);
-				} else {
+				//Creacion cuenta de empleado
+				} else if(nombreUsuario.equals("Admin") || pass.equals("admin")){
+					admin = controllerRegistro.inicioSesion(nombreUsuario, pass);
+					
+					candadoVerde(candadoNegro, candadoRojo, candadoVerde);
+					System.out.println("Has iniciado sesión correctamente, bienvenido!");
+					textfield.setText(""); passwordField.setText("");
+					
+					JOptionPane.showMessageDialog(null, "Has iniciado sesión correctamente!!", "", JOptionPane.INFORMATION_MESSAGE);
+					candadoNegro(candadoNegro, candadoRojo, candadoVerde);
+					MenuEmpleado ms = new MenuEmpleado(VentanaInicio.this, admin);
+					ms.setVisible(true);
+					VentanaInicio.this.setVisible(false);
+
+				}else {
 					socio = controllerRegistro.inicioSesion(nombreUsuario, pass);
 					// Comprobación de si existe un socio registrado con el nombre introducido. En caso afirmativo se comprueba también si la contraseña es correcta para ese socio
 					if(!socio.getNombre().equals("")) {
