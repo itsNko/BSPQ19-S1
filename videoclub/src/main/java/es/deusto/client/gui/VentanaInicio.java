@@ -142,7 +142,7 @@ public class VentanaInicio extends JFrame {
 
 					candadoNegro(candadoNegro, candadoRojo, candadoVerde);
 				//Creacion cuenta de empleado
-				} else if(nombreUsuario.equals("Admin") || pass.equals("admin")){
+				} else if(nombreUsuario.equals("Admin") && pass.equals("12345")){
 					admin = controllerRegistro.inicioSesion(nombreUsuario, pass);
 					
 					candadoVerde(candadoNegro, candadoRojo, candadoVerde);
