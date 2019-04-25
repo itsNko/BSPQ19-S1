@@ -18,7 +18,7 @@ public interface IServer extends Remote {
 	public boolean existeSocio(String nombreSocio) throws RemoteException;
 	public SocioDTO inicioSesion(String nombreSocio, String password) throws RemoteException;
 
-	public boolean insertarAlquiler(Articulo articulo, double coste, String nombreUsuario) throws RemoteException;
+	public boolean insertarAlquiler(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double coste, String nombreUsuario, boolean pv) throws RemoteException;
 	public List<AlquilerDTO> historialAlquileres(String nombreSocio) throws RemoteException;
 	
 	public List<ArticuloDTO> listadoArticulos() throws RemoteException;

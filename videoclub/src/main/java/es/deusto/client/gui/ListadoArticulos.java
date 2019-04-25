@@ -119,7 +119,7 @@ public class ListadoArticulos extends JFrame {
 			        String fechaFin = "" + diaF +"/" + mesF + "/"+ añoF +"";
 					Alquiler a = new Alquiler(a1, a1.getPrecio() , fechaIni ,  fechaFin, false, a1.getNombre());
 
-					VentanaConfirmacion confirm = new VentanaConfirmacion(VentanaAnterior , ListadoArticulos.this, iniciado.getNombre(), a, lblSaldo);
+					VentanaConfirmacion confirm = new VentanaConfirmacion(VentanaAnterior , ListadoArticulos.this, iniciado.getNombre(), a,a1, lblSaldo);
 					confirm.setVisible(true);
 					setVisible(false);
 				}

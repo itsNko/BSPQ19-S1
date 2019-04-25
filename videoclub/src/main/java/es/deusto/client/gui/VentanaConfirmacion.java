@@ -23,7 +23,10 @@ import javax.swing.border.EmptyBorder;
 
 import es.deusto.client.controllers.ControllerAlquiler;
 import es.deusto.client.data.Alquiler;
+import es.deusto.client.data.Articulo;
+import es.deusto.client.data.Pelicula;
 import es.deusto.client.data.Socio;
+import es.deusto.client.data.Videojuego;
 import es.deusto.server.dto.SocioDTO;
 
 import java.awt.Color;
@@ -67,7 +70,7 @@ public class VentanaConfirmacion extends JFrame {
 		return resizedImg;
 	}
 	
-	public VentanaConfirmacion(final JFrame MenuSocio,JFrame ventanaAnterior, String nombreUsuario, final Alquiler a, final JLabel labelSaldo) {
+	public VentanaConfirmacion(final JFrame MenuSocio,JFrame ventanaAnterior, String nombreUsuario, final Alquiler a,Articulo a1, final JLabel labelSaldo) {
 		ventanaQueMeLlama = ventanaAnterior;
 		
 		try {
@@ -188,12 +191,30 @@ public class VentanaConfirmacion extends JFrame {
 						controllerAlquiler.updateMonedero(nombreUsuario, controllerAlquiler.selectSocio(nombreUsuario).getMonedero()-a.getCoste());
 						s1.setMonedero(s1.getMonedero() - a.getCoste());
 						System.out.println("insertarAlquiler");
-						controllerAlquiler.insertarAlquiler(a.getAlquilado(), a.getCoste(), s1.getNombre());
-						List<Alquiler> alquileres = s1.getAlquileres();
-						a.setEnCurso(true);
-						alquileres.add(a);
-						System.out.println("Alquiler añadido a la lista de alquileres");
-						s1.setAlquileres(alquileres);
+						Videojuego v;
+						Pelicula p;
+						boolean pv;
+//String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double coste, String nombreUsuario, boolean pv
+						if(a1.getClassName().equals("Videojuego")) {
+							v = (Videojuego)a1;
+							pv = false;
+							System.out.println(pv);
+							controllerAlquiler.insertarAlquiler(v.getNombre(),v.getPrecio(),v.getDescripcion(), v.getCategoria(),v.getFecha_lan(), v.getPuntuacion(),v.getCaratula(), a.getCoste(), s1.getNombre(), pv);
+
+						}else if(a1.getClassName().equals("Pelicula"))
+						{
+							p = (Pelicula)a1;
+							pv = true;
+							System.out.println(pv);
+							System.out.println(p.getNombre() + "-" +p.getPrecio() + "-" +p.getSinopsis() + "-" +p.getGenero() + "-" +p.getFecha_estr() + "-" +p.getPuntuacion() + "-" +p.getCaratula() + "-" + a.getCoste() + "-" + s1.getNombre() + "-" + pv);
+							controllerAlquiler.insertarAlquiler(p.getNombre(),p.getPrecio(),p.getSinopsis(), p.getGenero(),p.getFecha_estr(), p.getPuntuacion(),p.getCaratula(), a.getCoste(), s1.getNombre(), pv);
+
+						}
+						//List<Alquiler> alquileres = s1.getAlquileres();
+						//a.setEnCurso(true);
+						//alquileres.add(a);
+						//System.out.println("Alquiler añadido a la lista de alquileres");
+						//s1.setAlquileres(alquileres);
 						JOptionPane.showMessageDialog(null, "Artículo alquilado correctamente!", "Alquiler exitoso", JOptionPane.INFORMATION_MESSAGE);
 						MenuSocio.setVisible(true);
 						labelSaldo.setText("Tu saldo actual es de "+s1.getMonedero()+" €");
