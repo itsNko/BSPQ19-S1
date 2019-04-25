@@ -139,7 +139,6 @@ public class MySQL_DB implements IDAO {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		transaction = persistentManager.currentTransaction();
 		
-		System.out.println(alquiler.getAlquilado().getNombre()+"/"+nombreUsuario);
 		try {
 			transaction.begin();
 			Articulo articulo = persistentManager.getObjectById(Articulo.class, alquiler.getAlquilado().getNombre());

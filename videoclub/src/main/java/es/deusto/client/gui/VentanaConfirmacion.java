@@ -213,7 +213,7 @@ public class VentanaConfirmacion extends JFrame {
 						//List<Alquiler> alquileres = s1.getAlquileres();
 						//a.setEnCurso(true);
 						//alquileres.add(a);
-						//System.out.println("Alquiler añadido a la lista de alquileres");
+						//System.out.println("Alquiler añadido a la lista de alquileres"); 
 						//s1.setAlquileres(alquileres);
 						JOptionPane.showMessageDialog(null, "Artículo alquilado correctamente!", "Alquiler exitoso", JOptionPane.INFORMATION_MESSAGE);
 						MenuSocio.setVisible(true);
