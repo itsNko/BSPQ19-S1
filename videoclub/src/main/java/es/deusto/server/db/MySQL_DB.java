@@ -136,37 +136,37 @@ public class MySQL_DB implements IDAO {
 	@Override
 	public boolean insertarAlquiler(Alquiler alquiler, String nombreUsuario)
 	{
-
+		persistentManager = persistentManagerFactory.getPersistenceManager();
+		transaction = persistentManager.currentTransaction();
+		
+		System.out.println(alquiler.getAlquilado().getNombre()+"/"+nombreUsuario);
 		try {
 			transaction.begin();
-
-			Extent<Articulo> a = persistentManager.getExtent(Articulo.class, true);
-			Iterator<Articulo> iter2 = a.iterator();
-
-			while (iter2.hasNext()) {
-				Articulo art = (Articulo) iter2.next();
-				if (art.getNombre().equals(alquiler.getAlquilado().getNombre())) {
-					alquiler.setAlquilado(art);
-				}
-			}
-			transaction.commit();
-
-			transaction.begin();
+			Articulo articulo = persistentManager.getObjectById(Articulo.class, alquiler.getAlquilado().getNombre());
+			alquiler.setAlquilado(articulo);
 			Extent<Socio> e = persistentManager.getExtent(Socio.class, true);
 			Iterator<Socio> iter = e.iterator();
-
-			while (iter.hasNext()) {
-				Socio s = (Socio) iter.next();
-				if (s.getNombre().equals(nombreUsuario)) {
-					System.out.println("- Añadida alquileres a socio: " + s.getNombre());
-					s.getAlquileres().add(alquiler);
+			while (iter.hasNext()) 
+			{
+				Socio s = (Socio)iter.next();
+				if (s.getNombre().equals(nombreUsuario))
+				{
+					if(s.getAlquileres() == null || s.getAlquileres().isEmpty())
+					{
+						List<Alquiler> a2 = new ArrayList<Alquiler>();
+						a2.add(alquiler);
+						s.setAlquileres(a2);
+					}else
+					{
+					List<Alquiler> a =s.getAlquileres();
+					a.add(alquiler);
+					
+					s.setAlquileres(a);
+					}
 				}
-			}
-
+					
+				}	
 			transaction.commit();
-
-
-
 			return true;
 		} catch(Exception ex) {
 			System.err.println("* Exception inserting data into db: " + ex.getMessage());

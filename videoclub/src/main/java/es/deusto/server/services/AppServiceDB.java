@@ -5,7 +5,9 @@ import java.util.List;
 
 import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
+import es.deusto.client.data.Pelicula;
 import es.deusto.client.data.Socio;
+import es.deusto.client.data.Videojuego;
 import es.deusto.server.db.MySQL_DB;
 import es.deusto.server.dto.AlquilerAssembler;
 import es.deusto.server.dto.AlquilerDTO;
@@ -44,9 +46,19 @@ public class AppServiceDB {
 	}
 	
 	
-	public boolean insertarAlquiler(Articulo articulo, double coste, String nombreUsuario)
+	public boolean insertarAlquiler(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double coste, String nombreUsuario, boolean pv)
 	{
+		Articulo articulo;
+		if(pv)
+		{
+			articulo = new Pelicula(nombre, precio, sinopsis, genero, fecha_estr, puntuacion, caratula);
+
+		}else
+		{
+			articulo = new Videojuego(nombre, precio, sinopsis, genero, fecha_estr, puntuacion, caratula);
+		}
 		Alquiler alquiler = new Alquiler(articulo, coste, "fechaInicio", "fechaFin",true, articulo.getNombre());
+		System.out.println(alquiler.getCoste()+"-"+alquiler.getFecha_fin()+"-"+alquiler.getNombreArticulo()+"-"+alquiler.getAlquilado().getCaratula()+"-"+alquiler.getAlquilado().getNombre());
 		return db.insertarAlquiler(alquiler, nombreUsuario);
 	}
 	
