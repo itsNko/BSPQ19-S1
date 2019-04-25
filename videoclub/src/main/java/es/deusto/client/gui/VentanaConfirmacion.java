@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -162,6 +163,9 @@ public class VentanaConfirmacion extends JFrame {
 			
 		}
 		
+		TextField tf = null;
+		String itemSeleccionado = (String)comboBox.getSelectedItem();
+		
 		/*JLabel label_2 = new JLabel("" + a.getFecha_fin());
 		label_2.setBounds(630,170,500,150);
 		label_2.setFont(new Font("Times New Roman", Font.BOLD, 22));
@@ -205,6 +209,7 @@ public class VentanaConfirmacion extends JFrame {
 					MenuSocio.setVisible(true);
 					VentanaConfirmacion.this.dispose();
 				} else {
+					System.out.println("Fecha de devolución: " + itemSeleccionado);
 					int eleccion = JOptionPane.showConfirmDialog(null, "¿Esta seguro?");
 					if(eleccion == 0) {
 						//update monedero
@@ -220,7 +225,7 @@ public class VentanaConfirmacion extends JFrame {
 							v = (Videojuego)a1;
 							pv = false;
 							System.out.println(pv);
-							controllerAlquiler.insertarAlquiler(v.getNombre(),v.getPrecio(),v.getDescripcion(), v.getCategoria(),v.getFecha_lan(), v.getPuntuacion(),v.getCaratula(), a.getCoste(), s1.getNombre(), pv);
+							controllerAlquiler.insertarAlquiler(v.getNombre(),v.getPrecio(),v.getDescripcion(), v.getCategoria(),v.getFecha_lan(), v.getPuntuacion(),v.getCaratula(), a.getCoste(), s1.getNombre(), pv, itemSeleccionado);
 
 						}else if(a1.getClassName().equals("Pelicula"))
 						{
@@ -228,7 +233,7 @@ public class VentanaConfirmacion extends JFrame {
 							pv = true;
 							System.out.println(pv);
 							System.out.println(p.getNombre() + "-" +p.getPrecio() + "-" +p.getSinopsis() + "-" +p.getGenero() + "-" +p.getFecha_estr() + "-" +p.getPuntuacion() + "-" +p.getCaratula() + "-" + a.getCoste() + "-" + s1.getNombre() + "-" + pv);
-							controllerAlquiler.insertarAlquiler(p.getNombre(),p.getPrecio(),p.getSinopsis(), p.getGenero(),p.getFecha_estr(), p.getPuntuacion(),p.getCaratula(), a.getCoste(), s1.getNombre(), pv);
+							controllerAlquiler.insertarAlquiler(p.getNombre(),p.getPrecio(),p.getSinopsis(), p.getGenero(),p.getFecha_estr(), p.getPuntuacion(),p.getCaratula(), a.getCoste(), s1.getNombre(), pv, itemSeleccionado);
 
 						}
 						//List<Alquiler> alquileres = s1.getAlquileres();
