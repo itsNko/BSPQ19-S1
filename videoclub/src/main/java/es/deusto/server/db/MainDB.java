@@ -31,20 +31,20 @@ public class MainDB {
 //			Socio s2 = new Socio("Prueba2", "2222222B", 10, "default-profile.png");
 //			Socio s3 = new Socio("Prueba3", "3333333C", 0, "default-profile.png");
 //
-//			Articulo art1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
-//			Articulo art2 = new Pelicula("Harry Potter",5, "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg");
-//			Articulo art3 = new Pelicula("Star Wars I", 6.25, "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, "starWars.jpg");
-//
-//			Articulo art4 = new Videojuego("Sonic", 5, "Descripcion de Sonic", "Plataformas","10/02/2004", 7, "sonic.JPG");
-//			Articulo art5 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
-//			Articulo art6 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","20/03/2015", 9, "GTAV.jpg");
+			Articulo art1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
+			Articulo art2 = new Pelicula("Harry Potter",5, "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg");
+			Articulo art3 = new Pelicula("Star Wars I", 6.25, "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, "starWars.jpg");
+
+			Articulo art4 = new Videojuego("Sonic", 5, "Descripcion de Sonic", "Plataformas","10/02/2004", 7, "sonic.JPG");
+			Articulo art5 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
+			Articulo art6 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","20/03/2015", 9, "GTAV.jpg");
 //
 //			Alquiler alquiler1 = new Alquiler(art1, art1.getPrecio(), "15/04/2019", "20/04/2019", true, art1.getNombre() + "-Pelicula");
 //			Alquiler alquiler2 = new Alquiler(art2, art2.getPrecio(), "15/04/2019", "20/04/2019", true, art2.getNombre() + "-Pelicula");
 //
-//						try {
-//							transaction.begin();
-//			
+						try {
+							transaction.begin();
+			
 //							persistentManager.makePersistent(s1);
 //							persistentManager.makePersistent(s2);
 //							persistentManager.makePersistent(s3);
@@ -52,31 +52,31 @@ public class MainDB {
 //							System.out.println("- Inserted into db: " + s1.getNombre());
 //							System.out.println("- Inserted into db: " + s2.getNombre());
 //							System.out.println("- Inserted into db: " + s3.getNombre());
-//			
-//							persistentManager.makePersistent(art1);
-//							persistentManager.makePersistent(art2);
-//							persistentManager.makePersistent(art3);
-//							persistentManager.makePersistent(art4);
-//							persistentManager.makePersistent(art5);
-//							persistentManager.makePersistent(art6);
-//			
-//							System.out.println("- Inserted into db: " + art1.getNombre());
-//							System.out.println("- Inserted into db: " + art2.getNombre());
-//							System.out.println("- Inserted into db: " + art3.getNombre());
-//							System.out.println("- Inserted into db: " + art4.getNombre());
-//							System.out.println("- Inserted into db: " + art5.getNombre());
-//							System.out.println("- Inserted into db: " + art6.getNombre());
-//			
-//							transaction.commit();
-//						} catch(Exception ex) {
-//							System.err.println("* Exception inserting data into db: " + ex.getMessage());
-//						} finally {		    
-//							if (transaction.isActive()) {
-//								transaction.rollback(); // Deshace los cambios en caso de que de algun error
-//							}
-//			
-//							persistentManager.close();
-//						}
+			
+							persistentManager.makePersistent(art1);
+							persistentManager.makePersistent(art2);
+							persistentManager.makePersistent(art3);
+							persistentManager.makePersistent(art4);
+							persistentManager.makePersistent(art5);
+							persistentManager.makePersistent(art6);
+			
+							System.out.println("- Inserted into db: " + art1.getNombre());
+							System.out.println("- Inserted into db: " + art2.getNombre());
+							System.out.println("- Inserted into db: " + art3.getNombre());
+							System.out.println("- Inserted into db: " + art4.getNombre());
+							System.out.println("- Inserted into db: " + art5.getNombre());
+							System.out.println("- Inserted into db: " + art6.getNombre());
+			
+							transaction.commit();
+						} catch(Exception ex) {
+							System.err.println("* Exception inserting data into db: " + ex.getMessage());
+						} finally {		    
+							if (transaction.isActive()) {
+								transaction.rollback(); // Deshace los cambios en caso de que de algun error
+							}
+			
+							persistentManager.close();
+						}
 //			
 //						//Select data using a Query and delete data
 //						persistentManager = persistentManagerFactory.getPersistenceManager();

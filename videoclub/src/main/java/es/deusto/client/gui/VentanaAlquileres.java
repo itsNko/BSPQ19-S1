@@ -38,8 +38,6 @@ public class VentanaAlquileres extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JFrame ventanaQueMeLlama;
-	private List<AlquilerDTO> alquileres = new ArrayList<AlquilerDTO>();
-	private ControllerAlquiler controllerAlquileres;
 
 	/**
 	 * Launch the application.
@@ -71,14 +69,8 @@ public class VentanaAlquileres extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaAlquileres(JFrame ventanaAnterior, SocioDTO iniciado) {
+	public VentanaAlquileres(JFrame ventanaAnterior, SocioDTO iniciado, List<AlquilerDTO> alquileres) {
 		ventanaQueMeLlama = ventanaAnterior;
-		
-		try {
-			this.controllerAlquileres = new ControllerAlquiler();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
 
 		setTitle("Tu historial de artículos alquilados/devueltos");
 		setResizable(false);
@@ -109,8 +101,6 @@ public class VentanaAlquileres extends JFrame {
 		scrollDevueltos.setBounds(473, 124, 323, 360);
 		scrollDevueltos.setOpaque(false);
 		scrollDevueltos.getViewport().setOpaque(false);
-		
-		alquileres = controllerAlquileres.historialAlquileres(iniciado.getNombre());
 
 		String titulo = "";
 		String fecha = "";

@@ -20,35 +20,38 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import es.deusto.client.controllers.ControllerAlquiler;
 import es.deusto.client.controllers.ControllerListadoArticulos;
+import es.deusto.server.dto.AlquilerDTO;
 import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.SocioDTO;
 
 public class MenuEmpleado extends JFrame {
-	
+
 	private static final long serialVersionUID = 1L;
 	// private JFrame frame;
 	private JFrame ventanaInicio;
 	private ControllerListadoArticulos controllerListadoArticulos;
-
+	private ControllerAlquiler controllerAlquileres;
 	private List<ArticuloDTO> articulos = new ArrayList<ArticuloDTO>();
-	
+	private List<AlquilerDTO> alquileres = new ArrayList<AlquilerDTO>();
+
 
 	/**
 	 * Launch the application.
 	 */
-//		public static void main(String[] args) {
-//			EventQueue.invokeLater(new Runnable() {
-//				public void run() {
-//					try {
-//						MenuEmpleado frame = new MenuEmpleado(null,null);
-//						frame.setVisible(true);
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//				}
-//			});
-//		}
+	//		public static void main(String[] args) {
+	//			EventQueue.invokeLater(new Runnable() {
+	//				public void run() {
+	//					try {
+	//						MenuEmpleado frame = new MenuEmpleado(null,null);
+	//						frame.setVisible(true);
+	//					} catch (Exception e) {
+	//						e.printStackTrace();
+	//					}
+	//				}
+	//			});
+	//		}
 
 	/**
 	 * Create the application.
@@ -57,9 +60,10 @@ public class MenuEmpleado extends JFrame {
 	public MenuEmpleado(JFrame ventanaAnterior, final SocioDTO iniciado) {
 
 		//cargarArticulosPrueba();
-		
+
 		try {
 			this.controllerListadoArticulos = new ControllerListadoArticulos();
+			this.controllerAlquileres = new ControllerAlquiler();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -85,14 +89,14 @@ public class MenuEmpleado extends JFrame {
 		lblSaldo.setForeground(Color.WHITE);
 		lblSaldo.setBounds(125, 200, 300, 60);
 		background.add(lblSaldo);
-		
-		
+
+
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Alquilar");
-				//articulos = controllerListadoArticulos.listadoArticulos();
-				ListadoArticulos ls = new ListadoArticulos(MenuEmpleado.this, iniciado, lblSaldo);
+				articulos = controllerListadoArticulos.listadoArticulos();
+				ListadoArticulos ls = new ListadoArticulos(MenuEmpleado.this, iniciado, lblSaldo, articulos);
 				ls.setVisible(true);
 				MenuEmpleado.this.setVisible(false);
 			}
@@ -108,9 +112,12 @@ public class MenuEmpleado extends JFrame {
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Consultar alquileres");
-				VentanaAlquileres va = new VentanaAlquileres(MenuEmpleado.this, iniciado);
-				va.setVisible(true);
-				MenuEmpleado.this.setVisible(false);
+				alquileres = controllerAlquileres.historialAlquileres(iniciado.getNombre());
+				if(!(alquileres.isEmpty() || alquileres == null)) {
+					VentanaAlquileres va = new VentanaAlquileres(MenuEmpleado.this, iniciado, alquileres);
+					va.setVisible(true);
+					MenuEmpleado.this.setVisible(false);
+				}
 			}
 		});
 		background.add(btnConsultar);
@@ -154,7 +161,7 @@ public class MenuEmpleado extends JFrame {
 		btnDevolver.setOpaque(false);
 		btnDevolver.setContentAreaFilled(false);
 		btnDevolver.setBorderPainted(false);
-		
+
 		JButton btnSalir = new JButton("");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -168,7 +175,7 @@ public class MenuEmpleado extends JFrame {
 		btnSalir.setOpaque(false);
 		btnSalir.setContentAreaFilled(false);
 		btnSalir.setBorderPainted(false);
-		
+
 		JButton btnDescuento = new JButton("Descuento");
 		btnDescuento.addActionListener(new ActionListener() {
 			@Override
@@ -213,23 +220,23 @@ public class MenuEmpleado extends JFrame {
 		return resizedImg;
 	}
 
-//	private void cargarArticulosPrueba() {
-//		Videojuego v1 = new Videojuego("Sonic", 5, "Descripcion de Sonic", "Plataformas","10/02/2004", 7, "sonic.JPG");
-//		Videojuego v2 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
-//		Videojuego v3 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","20/03/2015", 9, "GTAV.jpg");
-//
-//		Pelicula p1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
-//		Pelicula p2 = new Pelicula("Harry Potter",5, "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg");
-//		Pelicula p3 = new Pelicula("Star Wars I", 6.25, "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, "starWars.jpg");
-//
-//		articulos.add(v1);
-//		articulos.add(v2);
-//		articulos.add(v3);
-//		articulos.add(p1);
-//		articulos.add(p2);
-//		articulos.add(p3);
-//
-//	}
+	//	private void cargarArticulosPrueba() {
+	//		Videojuego v1 = new Videojuego("Sonic", 5, "Descripcion de Sonic", "Plataformas","10/02/2004", 7, "sonic.JPG");
+	//		Videojuego v2 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg");
+	//		Videojuego v3 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","20/03/2015", 9, "GTAV.jpg");
+	//
+	//		Pelicula p1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
+	//		Pelicula p2 = new Pelicula("Harry Potter",5, "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg");
+	//		Pelicula p3 = new Pelicula("Star Wars I", 6.25, "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, "starWars.jpg");
+	//
+	//		articulos.add(v1);
+	//		articulos.add(v2);
+	//		articulos.add(v3);
+	//		articulos.add(p1);
+	//		articulos.add(p2);
+	//		articulos.add(p3);
+	//
+	//	}
 
 	private boolean alquileresEnCurso(final SocioDTO iniciado) {
 		boolean result = false;

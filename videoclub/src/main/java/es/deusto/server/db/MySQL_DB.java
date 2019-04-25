@@ -43,7 +43,7 @@ public class MySQL_DB implements IDAO {
 			System.out.println("- Inserted into db: " + socio.getNombre());
 
 			transaction.commit();
-			
+
 			result = true;
 		} catch(Exception ex) {
 			System.err.println("* Exception inserting data into db: " + ex.getMessage());
@@ -52,39 +52,39 @@ public class MySQL_DB implements IDAO {
 				transaction.rollback(); // Deshace los cambios en caso de que ocurra algún error
 			}
 
-			
+
 			persistentManager.close();
 		}
-		
+
 		return result;
 	}
-	
-//	@Override
-//	public boolean deleteSocio(Socio socio) {
-//		boolean result = false;
-//		try {
-//			persistentManager = persistentManagerFactory.getPersistenceManager();
-//			transaction = persistentManager.currentTransaction();
-//			transaction.begin();
-//
-//			persistentManager.deletePersistent(socio);
-//
-//			System.out.println("- Deleted from db: " + socio.getNombre());
-//
-//			transaction.commit();
-//
-//			result = true;
-//		} catch(Exception ex) {
-//			System.err.println("* Exception deleting data from db: " + ex.getMessage());
-//		} finally {		    
-//			if (transaction.isActive()) {
-//				transaction.rollback(); // Deshace los cambios en caso de que ocurra algún error
-//			}
-//
-//			persistentManager.close();
-//		}
-//		return result;
-//	}
+
+	//	@Override
+	//	public boolean deleteSocio(Socio socio) {
+	//		boolean result = false;
+	//		try {
+	//			persistentManager = persistentManagerFactory.getPersistenceManager();
+	//			transaction = persistentManager.currentTransaction();
+	//			transaction.begin();
+	//
+	//			persistentManager.deletePersistent(socio);
+	//
+	//			System.out.println("- Deleted from db: " + socio.getNombre());
+	//
+	//			transaction.commit();
+	//
+	//			result = true;
+	//		} catch(Exception ex) {
+	//			System.err.println("* Exception deleting data from db: " + ex.getMessage());
+	//		} finally {		    
+	//			if (transaction.isActive()) {
+	//				transaction.rollback(); // Deshace los cambios en caso de que ocurra algún error
+	//			}
+	//
+	//			persistentManager.close();
+	//		}
+	//		return result;
+	//	}
 
 	@Override
 	public boolean existeSocio(String nombreSocio) {
@@ -167,7 +167,7 @@ public class MySQL_DB implements IDAO {
 	{
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		transaction = persistentManager.currentTransaction();
-		
+
 		try {
 			transaction.begin();
 			Articulo articulo = persistentManager.getObjectById(Articulo.class, alquiler.getAlquilado().getNombre());
@@ -186,14 +186,14 @@ public class MySQL_DB implements IDAO {
 						s.setAlquileres(a2);
 					}else
 					{
-					List<Alquiler> a =s.getAlquileres();
-					a.add(alquiler);
-					
-					s.setAlquileres(a);
+						List<Alquiler> a =s.getAlquileres();
+						a.add(alquiler);
+
+						s.setAlquileres(a);
 					}
 				}
-					
-				}	
+
+			}	
 			transaction.commit();
 			return true;
 		} catch(Exception ex) {
@@ -212,7 +212,7 @@ public class MySQL_DB implements IDAO {
 	public Socio selectSocio(String nombreUsuario) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		transaction = persistentManager.currentTransaction();
-		
+
 		try {
 			Socio socio = persistentManager.getObjectById(Socio.class, nombreUsuario);
 
@@ -253,7 +253,7 @@ public class MySQL_DB implements IDAO {
 				}
 			}
 
-			
+
 		} catch(Exception ex) {
 			System.err.println("* Exception executing a query: " + ex.getMessage());
 			return false;
@@ -328,33 +328,36 @@ public class MySQL_DB implements IDAO {
 
 	@Override
 	public List<Alquiler> historialAlquileres(String nombreSocio) {
-		
+
 		try {
 			persistentManager = persistentManagerFactory.getPersistenceManager();
-			
+
 			Socio socio = persistentManager.getObjectById(Socio.class, nombreSocio);
 			String[] partes;
 			Pelicula peli;
 			Videojuego videojuego;
+
+			List<Alquiler> alquileres = new ArrayList<Alquiler>();
+			alquileres = socio.getAlquileres();
 			
-			List<Alquiler> alquileres = socio.getAlquileres();
-			
-			for(Alquiler alq : alquileres) {
-				partes = alq.getNombreArticulo().split("-");
-				
-				if(partes[1].equals("Pelicula")) {
-					peli = persistentManager.getObjectById(Pelicula.class, partes[0]);
-					alq.setAlquilado(peli);
-				} else {
-					videojuego = persistentManager.getObjectById(Videojuego.class, partes[0]);
-					alq.setAlquilado(videojuego);
+			if(!(alquileres.isEmpty() || alquileres == null)) {
+				for(Alquiler alq : alquileres) {
+					partes = alq.getNombreArticulo().split("-");
+
+					if(partes[1].equals("Pelicula")) {
+						peli = persistentManager.getObjectById(Pelicula.class, partes[0]);
+						alq.setAlquilado(peli);
+					} else {
+						videojuego = persistentManager.getObjectById(Videojuego.class, partes[0]);
+						alq.setAlquilado(videojuego);
+					}
+
 				}
-				
-			}
-			
-			for(Alquiler a : alquileres) {
-				System.out.println(a.getAlquilado().getNombre());
-				System.out.println(a.getCoste());
+
+				for(Alquiler a : alquileres) {
+					System.out.println(a.getAlquilado().getNombre());
+					System.out.println(a.getCoste());
+				}
 			}
 
 			return alquileres;
@@ -368,7 +371,7 @@ public class MySQL_DB implements IDAO {
 
 			persistentManager.close();
 		}
-		
+
 	}
 
 }
