@@ -10,7 +10,11 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.rmi.RemoteException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -30,6 +34,7 @@ import es.deusto.client.data.Videojuego;
 import es.deusto.server.dto.SocioDTO;
 
 import java.awt.Color;
+import javax.swing.JComboBox;
 
 public class VentanaConfirmacion extends JFrame {
 
@@ -141,11 +146,27 @@ public class VentanaConfirmacion extends JFrame {
 		lblFechaDevolucin.setForeground(Color.WHITE);;
 		background.add(lblFechaDevolucin);
 		
-		JLabel label_2 = new JLabel("" + a.getFecha_fin());
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(630,170,150,150);
+		background.add(comboBox);
+		
+		Date date = new Date();
+		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		
+		
+		for (int i = 0;i<8;i++) {
+			
+			LocalDate newDate = localDate.plusDays(i+1);
+			String str = newDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+			comboBox.addItem(str);
+			
+		}
+		
+		/*JLabel label_2 = new JLabel("" + a.getFecha_fin());
 		label_2.setBounds(630,170,500,150);
 		label_2.setFont(new Font("Times New Roman", Font.BOLD, 22));
 		label_2.setForeground(Color.WHITE);;
-		background.add(label_2);
+		background.add(label_2);*/
 		
 		JLabel lblMonedero = new JLabel("Monedero: ");
 		lblMonedero.setBounds(450,220,300,150);
@@ -253,6 +274,8 @@ public class VentanaConfirmacion extends JFrame {
 		getContentPane().add(background);
 		background.setBorder(new EmptyBorder(5, 5, 5, 5));
 		background.setLayout(new BorderLayout(0, 0));
+		
+		
 		
 	}
 	
