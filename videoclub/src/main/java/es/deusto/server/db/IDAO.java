@@ -9,6 +9,7 @@ import es.deusto.client.data.Socio;
 public interface IDAO {
 
 	public boolean insertarSocio(Socio s);
+	//public boolean deleteSocio(Socio s);
 	public boolean existeSocio(String nombreSocio);
 	public Socio inicioSesion(String nombreSocio, String password);
 	public boolean insertarAlquiler(Alquiler alquiler, String nombreUsuario);

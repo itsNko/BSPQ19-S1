@@ -32,30 +32,59 @@ public class MySQL_DB implements IDAO {
 
 	@Override
 	public boolean insertarSocio(Socio socio) {
+		boolean result = false;
 		try {
 			persistentManager = persistentManagerFactory.getPersistenceManager();
 			transaction = persistentManager.currentTransaction();
 			transaction.begin();
-
 
 			persistentManager.makePersistent(socio);
 
 			System.out.println("- Inserted into db: " + socio.getNombre());
 
 			transaction.commit();
-
-			return true;
+			
+			result = true;
 		} catch(Exception ex) {
 			System.err.println("* Exception inserting data into db: " + ex.getMessage());
-			return false;
 		} finally {		    
 			if (transaction.isActive()) {
 				transaction.rollback(); // Deshace los cambios en caso de que ocurra algún error
 			}
 
+			
 			persistentManager.close();
 		}
+		
+		return result;
 	}
+	
+//	@Override
+//	public boolean deleteSocio(Socio socio) {
+//		boolean result = false;
+//		try {
+//			persistentManager = persistentManagerFactory.getPersistenceManager();
+//			transaction = persistentManager.currentTransaction();
+//			transaction.begin();
+//
+//			persistentManager.deletePersistent(socio);
+//
+//			System.out.println("- Deleted from db: " + socio.getNombre());
+//
+//			transaction.commit();
+//
+//			result = true;
+//		} catch(Exception ex) {
+//			System.err.println("* Exception deleting data from db: " + ex.getMessage());
+//		} finally {		    
+//			if (transaction.isActive()) {
+//				transaction.rollback(); // Deshace los cambios en caso de que ocurra algún error
+//			}
+//
+//			persistentManager.close();
+//		}
+//		return result;
+//	}
 
 	@Override
 	public boolean existeSocio(String nombreSocio) {
