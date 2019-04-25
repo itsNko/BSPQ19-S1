@@ -31,6 +31,9 @@ public class MainDB {
 //			Socio s2 = new Socio("Prueba2", "2222222B", 10, "default-profile.png");
 //			Socio s3 = new Socio("Prueba3", "3333333C", 0, "default-profile.png");
 //
+			//Cuenta especial para el empleado
+//			Socio admin = new Socio("Administrador", "admin", 0 , "default-profile.png");
+			
 			Articulo art1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg");
 			Articulo art2 = new Pelicula("Harry Potter",5, "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg");
 			Articulo art3 = new Pelicula("Star Wars I", 6.25, "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, "starWars.jpg");
@@ -48,10 +51,14 @@ public class MainDB {
 //							persistentManager.makePersistent(s1);
 //							persistentManager.makePersistent(s2);
 //							persistentManager.makePersistent(s3);
+
+							//persistentManager.makePersistent(admin);
 //			
 //							System.out.println("- Inserted into db: " + s1.getNombre());
 //							System.out.println("- Inserted into db: " + s2.getNombre());
 //							System.out.println("- Inserted into db: " + s3.getNombre());
+							
+//							System.out.println("- Inserted into db: " + admin.getNombre());
 			
 							persistentManager.makePersistent(art1);
 							persistentManager.makePersistent(art2);
