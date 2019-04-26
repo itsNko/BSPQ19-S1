@@ -145,17 +145,30 @@ public class VentanaInicio extends JFrame {
 				}else {
 					socio = controllerRegistro.inicioSesion(nombreUsuario, pass);
 					// Comprobación de si existe un socio registrado con el nombre introducido. En caso afirmativo se comprueba también si la contraseña es correcta para ese socio
-					if(!socio.getNombre().equals("")) {
-						candadoVerde(candadoNegro, candadoRojo, candadoVerde);
-						System.out.println("Has iniciado sesión correctamente, bienvenido!");
-						textfield.setText(""); passwordField.setText("");
+					if(!socio.getNombre().equals("")) {	
+						//Condición para inicio de sesion como Empleado
+						if(socio.getNombre().equals("Administrador")) {
+							
+							candadoVerde(candadoNegro, candadoRojo, candadoVerde);
+							System.out.println("Bienvenido Administrador!");
+							textfield.setText(""); passwordField.setText("");
+							
+							JOptionPane.showMessageDialog(null, "Has iniciado sesión correctamente!!", "", JOptionPane.INFORMATION_MESSAGE);
+							candadoNegro(candadoNegro, candadoRojo, candadoVerde);
+							MenuEmpleado me = new MenuEmpleado(VentanaInicio.this, socio);
+							me.setVisible(true);
+							VentanaInicio.this.setVisible(false);
+						} else {
+							candadoVerde(candadoNegro, candadoRojo, candadoVerde);
+							System.out.println("Has iniciado sesión correctamente, bienvenido!");
+							textfield.setText(""); passwordField.setText("");
 
-						JOptionPane.showMessageDialog(null, "Has iniciado sesión correctamente!!", "", JOptionPane.INFORMATION_MESSAGE);
-						candadoNegro(candadoNegro, candadoRojo, candadoVerde);
-						MenuSocio ms = new MenuSocio(VentanaInicio.this, socio);
-						ms.setVisible(true);
-						VentanaInicio.this.setVisible(false);
-
+							JOptionPane.showMessageDialog(null, "Has iniciado sesión correctamente!!", "", JOptionPane.INFORMATION_MESSAGE);
+							candadoNegro(candadoNegro, candadoRojo, candadoVerde);
+							MenuSocio ms = new MenuSocio(VentanaInicio.this, socio);
+							ms.setVisible(true);
+							VentanaInicio.this.setVisible(false);
+						}
 					} else {
 						candadoRojo(candadoNegro, candadoRojo, candadoVerde);
 						JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos, vuelve a intentarlo.", "Login error", JOptionPane.ERROR_MESSAGE);

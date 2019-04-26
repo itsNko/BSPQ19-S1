@@ -33,7 +33,7 @@ public class VentanaDescuento extends JFrame {
 			e1.printStackTrace();
 		}
 		articulos = controllerListadoArticulos.listadoArticulos();
-		setTitle("Articulos donde es posible colocar descuentos");
+		setTitle("Lista de articulos");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

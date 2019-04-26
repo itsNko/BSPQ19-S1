@@ -72,7 +72,7 @@ public class MenuEmpleado extends JFrame {
 		ventanaInicio = ventanaAnterior;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1160, 540);
+		setBounds(100, 100, 960, 540);
 		final JLabel background;
 		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"menuprincipal.png");
 		Image im = img.getImage();
@@ -186,7 +186,7 @@ public class MenuEmpleado extends JFrame {
 				MenuEmpleado.this.setVisible(false);
 			}
 		});
-		btnDescuento.setBounds(590, 240, 170, 50);
+		btnDescuento.setBounds(735, 330, 170, 50);
 		background.add(btnDescuento);
 
 
