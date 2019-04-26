@@ -42,7 +42,7 @@ public class VentanaDescuento extends JFrame {
 		
 		setBounds(100, 100, 960, 540); // Cambiar
 		final JLabel background;
-		
+		//
 		//Descomentar cuando se empiece el diseño
 //		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"articulos.png");
 //		Image im = img.getImage();
