@@ -147,7 +147,7 @@ public class VentanaConfirmacion extends JFrame {
 		lblFechaDevolucin.setForeground(Color.WHITE);;
 		background.add(lblFechaDevolucin);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox comboBox = new JComboBox<String>();
 		comboBox.setBounds(630,170,150,150);
 		background.add(comboBox);
 		
@@ -163,8 +163,12 @@ public class VentanaConfirmacion extends JFrame {
 			
 		}
 		
-		TextField tf = null;
-		String itemSeleccionado = (String)comboBox.getSelectedItem();
+		//String itemSeleccionado = null;
+		
+	
+		
+	//	TextField tf = null;
+		//itemSeleccionado = (String)comboBox.getSelectedItem();
 		
 		/*JLabel label_2 = new JLabel("" + a.getFecha_fin());
 		label_2.setBounds(630,170,500,150);
@@ -203,6 +207,7 @@ public class VentanaConfirmacion extends JFrame {
 		bConfirmar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String itemSeleccionado = (String) comboBox.getSelectedItem();
 				if(a.getCoste() > controllerAlquiler.selectSocio(nombreUsuario).getMonedero()) {
 					JOptionPane.showMessageDialog(null, "No tiene suficiente dinero en el monedero, porfavor introduzca más para seguir con la compra",
 							"Saldo insuficiente", JOptionPane.ERROR_MESSAGE);
