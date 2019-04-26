@@ -153,8 +153,9 @@ public class VentanaConfirmacion extends JFrame {
 		
 		Date date = new Date();
 		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		String fechaInicio = localDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 		
-		
+	
 		for (int i = 0;i<8;i++) {
 			
 			LocalDate newDate = localDate.plusDays(i+1);
@@ -207,14 +208,13 @@ public class VentanaConfirmacion extends JFrame {
 		bConfirmar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String itemSeleccionado = (String) comboBox.getSelectedItem();
+				String fechaFin = (String) comboBox.getSelectedItem();
 				if(a.getCoste() > controllerAlquiler.selectSocio(nombreUsuario).getMonedero()) {
 					JOptionPane.showMessageDialog(null, "No tiene suficiente dinero en el monedero, porfavor introduzca más para seguir con la compra",
 							"Saldo insuficiente", JOptionPane.ERROR_MESSAGE);
 					MenuSocio.setVisible(true);
 					VentanaConfirmacion.this.dispose();
 				} else {
-					System.out.println("Fecha de devolución: " + itemSeleccionado);
 					int eleccion = JOptionPane.showConfirmDialog(null, "¿Esta seguro?");
 					if(eleccion == 0) {
 						//update monedero
@@ -230,7 +230,7 @@ public class VentanaConfirmacion extends JFrame {
 							v = (Videojuego)a1;
 							pv = false;
 							System.out.println(pv);
-							controllerAlquiler.insertarAlquiler(v.getNombre(),v.getPrecio(),v.getDescripcion(), v.getCategoria(),v.getFecha_lan(), v.getPuntuacion(),v.getCaratula(), a.getCoste(), s1.getNombre(), pv, itemSeleccionado);
+							controllerAlquiler.insertarAlquiler(v.getNombre(),v.getPrecio(),v.getDescripcion(), v.getCategoria(),v.getFecha_lan(), v.getPuntuacion(),v.getCaratula(), a.getCoste(), s1.getNombre(), pv, fechaFin, fechaInicio);
 
 						}else if(a1.getClassName().equals("Pelicula"))
 						{
@@ -238,7 +238,7 @@ public class VentanaConfirmacion extends JFrame {
 							pv = true;
 							System.out.println(pv);
 							System.out.println(p.getNombre() + "-" +p.getPrecio() + "-" +p.getSinopsis() + "-" +p.getGenero() + "-" +p.getFecha_estr() + "-" +p.getPuntuacion() + "-" +p.getCaratula() + "-" + a.getCoste() + "-" + s1.getNombre() + "-" + pv);
-							controllerAlquiler.insertarAlquiler(p.getNombre(),p.getPrecio(),p.getSinopsis(), p.getGenero(),p.getFecha_estr(), p.getPuntuacion(),p.getCaratula(), a.getCoste(), s1.getNombre(), pv, itemSeleccionado);
+							controllerAlquiler.insertarAlquiler(p.getNombre(),p.getPrecio(),p.getSinopsis(), p.getGenero(),p.getFecha_estr(), p.getPuntuacion(),p.getCaratula(), a.getCoste(), s1.getNombre(), pv, fechaFin, fechaInicio);
 
 						}
 						//List<Alquiler> alquileres = s1.getAlquileres();
