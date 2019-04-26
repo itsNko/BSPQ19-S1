@@ -1,5 +1,6 @@
 package es.deusto.client.gui;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -10,29 +11,31 @@ import java.io.File;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import es.deusto.client.controllers.ControllerListadoArticulos;
+import es.deusto.client.data.Articulo;
+import es.deusto.client.data.Pelicula;
 import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.SocioDTO;
 
 public class VentanaDescuento extends JFrame {
 
 	private JFrame MenuEmpleado;
-	ControllerListadoArticulos controllerListadoArticulos;
-	List<ArticuloDTO> articulos;
+	private JPanel panel; 
+	private JList<Articulo> listaArticulos;
+	private DefaultListModel<Articulo> modelo;
 	
-	public VentanaDescuento(final JFrame VentanaAnterior, final SocioDTO iniciado, final JLabel lblSaldo) {
+	public VentanaDescuento(final JFrame VentanaAnterior, final SocioDTO iniciado) {
 		MenuEmpleado = VentanaAnterior;
-		try {
-			controllerListadoArticulos = new ControllerListadoArticulos();
-		} catch (RemoteException e1) {
-			e1.printStackTrace();
-		}
-		articulos = controllerListadoArticulos.listadoArticulos();
+		
 		setTitle("Lista de articulos");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,20 +55,44 @@ public class VentanaDescuento extends JFrame {
 		getContentPane().add(background);
 		background.setLayout(null);
 		
-		JButton btnVolver = new JButton("");
+		
+		panel = new JPanel(); 
+		panel.setLayout(null);
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(10, 10, 935, 450);
+		
+		
+		
+		Pelicula p1 = new Pelicula("1", 2 , "", "", "", 0, "");
+		
+		modelo = new DefaultListModel<>();
+		
+		
+		
+		listaArticulos = new JList<>();
+		listaArticulos.setModel(modelo);
+		
+		JScrollPane barraDesplazamiento = new JScrollPane(listaArticulos); 
+		barraDesplazamiento.setBounds(10,30,200,110);
+		
+		
+		panel.add(listaArticulos);
+		panel.add(barraDesplazamiento);
+		background.add(panel);
+		
+		
+		
+		JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Volver");
 				MenuEmpleado.setVisible(true);
-				articulos.clear();
 				VentanaDescuento.this.dispose();
 			}
 		});
 		btnVolver.setBounds(780, 455, 140, 50);
 		background.add(btnVolver);
-		btnVolver.setOpaque(false);
-		btnVolver.setContentAreaFilled(false);
-		btnVolver.setBorderPainted(false);
+
 	}
 	
 	//Quitar cuando se empiece con el diseño

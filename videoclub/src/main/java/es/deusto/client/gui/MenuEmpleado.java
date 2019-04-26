@@ -181,7 +181,7 @@ public class MenuEmpleado extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				VentanaDescuento descuentos = new VentanaDescuento(MenuEmpleado.this, iniciado, lblSaldo);
+				VentanaDescuento descuentos = new VentanaDescuento(MenuEmpleado.this, iniciado);
 				descuentos.setVisible(true);
 				MenuEmpleado.this.setVisible(false);
 			}
