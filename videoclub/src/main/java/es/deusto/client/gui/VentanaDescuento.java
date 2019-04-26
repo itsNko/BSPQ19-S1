@@ -73,7 +73,7 @@ public class VentanaDescuento extends JFrame {
 		listaArticulos.setModel(modelo);
 		
 		JScrollPane barraDesplazamiento = new JScrollPane(listaArticulos); 
-		barraDesplazamiento.setBounds(10,30,200,110);
+		barraDesplazamiento.setBounds(925,0,10,110);
 		
 		
 		panel.add(listaArticulos);
