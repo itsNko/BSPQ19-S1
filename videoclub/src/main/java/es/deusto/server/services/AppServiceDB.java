@@ -46,19 +46,19 @@ public class AppServiceDB {
 	}
 	
 	
-	public boolean insertarAlquiler(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double coste, String nombreUsuario, boolean pv, String fechaFin)
+	public boolean insertarAlquiler(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double coste, String nombreUsuario, boolean pv, String fechaFin, String fechaInicio)
 	{
 		Articulo articulo;
 		Alquiler alquiler;
 		if(pv)
 		{
 			articulo = new Pelicula(nombre, precio, sinopsis, genero, fecha_estr, puntuacion, caratula);
-			alquiler = new Alquiler(articulo, coste, "fechaInicio", fechaFin ,true, articulo.getNombre()+"-Pelicula");
+			alquiler = new Alquiler(articulo, coste, fechaInicio, fechaFin ,true, articulo.getNombre()+"-Pelicula");
 
 		}else
 		{
 			articulo = new Videojuego(nombre, precio, sinopsis, genero, fecha_estr, puntuacion, caratula);
-			alquiler = new Alquiler(articulo, coste, "fechaInicio", fechaFin,true, articulo.getNombre()+"-Videojuego");
+			alquiler = new Alquiler(articulo, coste, fechaInicio, fechaFin,true, articulo.getNombre()+"-Videojuego");
 		}
 		return db.insertarAlquiler(alquiler, nombreUsuario);
 	}
