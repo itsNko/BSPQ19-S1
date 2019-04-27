@@ -18,6 +18,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
+import java.awt.Color;
 
 public class NuevoArticulo extends JFrame {
 
@@ -81,75 +82,105 @@ public class NuevoArticulo extends JFrame {
 		background.add(rdbtnVideojuego);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setForeground(Color.WHITE);
 		lblNombre.setBounds(95, 156, 90, 16);
 		background.add(lblNombre);
 		
 		textField = new JTextField();
-		textField.setBounds(209, 151, 130, 26);
+		textField.setBounds(220, 151, 130, 26);
 		background.add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblCartula = new JLabel("Carátula:");
 		lblCartula.setBounds(95, 198, 90, 16);
+		lblCartula.setForeground(Color.WHITE);
 		background.add(lblCartula);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(209, 193, 130, 26);
+		textField_1.setBounds(220, 193, 130, 26);
 		background.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblPrecio = new JLabel("Precio:");
 		lblPrecio.setBounds(95, 240, 90, 16);
+		lblPrecio.setForeground(Color.WHITE);
 		background.add(lblPrecio);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(209, 235, 130, 26);
+		textField_2.setBounds(220, 235, 130, 26);
 		background.add(textField_2);
 		textField_2.setColumns(10);
 		
 		JLabel lblPuntuacion = new JLabel("Puntuación:");
 		lblPuntuacion.setBounds(95, 280, 90, 16);
+		lblPuntuacion.setForeground(Color.WHITE);
 		background.add(lblPuntuacion);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(209, 273, 130, 26);
+		textField_3.setBounds(220, 273, 130, 26);
 		background.add(textField_3);
 		textField_3.setColumns(10);
 		
+		JLabel lblSinopsis = new JLabel("Sinopsis:");
+		lblSinopsis.setBounds(95, 348, 61, 16);
+		lblSinopsis.setForeground(Color.WHITE);
+		background.add(lblSinopsis);
+	
+		textField_4 = new JTextField();
+		textField_4.setBounds(220, 343, 130, 26);
+		background.add(textField_4);
+		textField_4.setColumns(10);
+	
+		JLabel lblGenero = new JLabel("Género:");
+		lblGenero.setBounds(95, 400, 61, 16);
+		lblGenero.setForeground(Color.WHITE);
+		background.add(lblGenero);
+	
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(220, 395, 140, 27);
+		background.add(comboBox);
+	
+		JLabel lblFechaEstreno = new JLabel("Fecha estreno:");
+		lblFechaEstreno.setBounds(95, 445, 110, 16);
+		lblFechaEstreno.setForeground(Color.WHITE);
+		background.add(lblFechaEstreno);
+	
+		textField_5 = new JTextField();
+		textField_5.setBounds(220, 440, 130, 26);
+		background.add(textField_5);
+		textField_5.setColumns(10);
+		
+		rdbtnPelcula.setSelected(true);
+		
+		rdbtnVideojuego.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			if (rdbtnVideojuego.isSelected()) {
+			rdbtnPelcula.setSelected(false);
+			rdbtnVideojuego.setSelected(true);
+			lblSinopsis.setText("Descripción");
+			lblGenero.setText("Categoría");
+			lblFechaEstreno.setText("Fecha lanzamiento");
+			
+			}
+			}
+		});
 		
 		rdbtnPelcula.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-		if (rdbtnPelcula.isSelected()) {
+				if(rdbtnPelcula.isSelected()) {
+					rdbtnVideojuego.setSelected(false);
+					lblGenero.setText("Género:");
+					lblSinopsis.setText("Sinopsis");
+					lblFechaEstreno.setText("Fecha de estreno:");
+				}
+				
+			}
 			
-			JLabel lblSinopsis = new JLabel("Sinopsis:");
-			lblSinopsis.setBounds(95, 348, 61, 16);
-			background.add(lblSinopsis);
-		
-			textField_4 = new JTextField();
-			textField_4.setBounds(209, 343, 130, 26);
-			background.add(textField_4);
-			textField_4.setColumns(10);
-		
-			JLabel lblGenero = new JLabel("Género:");
-			lblGenero.setBounds(95, 400, 61, 16);
-			background.add(lblGenero);
-		
-			JComboBox comboBox = new JComboBox();
-			comboBox.setBounds(209, 395, 140, 27);
-			background.add(comboBox);
-		
-			JLabel lblFechaEstreno = new JLabel("Fecha estreno:");
-			lblFechaEstreno.setBounds(95, 445, 110, 16);
-			background.add(lblFechaEstreno);
-		
-			textField_5 = new JTextField();
-			textField_5.setBounds(209, 440, 130, 26);
-			background.add(textField_5);
-			textField_5.setColumns(10);
-			}
-			}
 		});
+		
 	}
 	
 	private Image getScaledImage(Image srcImg, int w, int h){
