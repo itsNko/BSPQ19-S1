@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.rmi.RemoteException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -21,10 +23,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import es.deusto.client.controllers.ControllerListadoArticulos;
+import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Pelicula;
+import es.deusto.client.data.Videojuego;
 import es.deusto.server.dto.ArticuloDTO;
+import es.deusto.server.dto.PeliculaDTO;
 import es.deusto.server.dto.SocioDTO;
+import es.deusto.server.dto.VideojuegoDTO;
 
 public class VentanaDescuento extends JFrame {
 
@@ -33,7 +39,7 @@ public class VentanaDescuento extends JFrame {
 	private JList<Articulo> listaArticulos;
 	private DefaultListModel<Articulo> modelo;
 	
-	public VentanaDescuento(final JFrame VentanaAnterior, final SocioDTO iniciado) {
+	public VentanaDescuento(final JFrame VentanaAnterior , List<ArticuloDTO> articulos) {
 		MenuEmpleado = VentanaAnterior;
 		
 		setTitle("Lista de articulos");
@@ -56,32 +62,52 @@ public class VentanaDescuento extends JFrame {
 		background.setLayout(null);
 		
 		
-		panel = new JPanel(); 
-		panel.setLayout(null);
-		panel.setBackground(Color.WHITE);
-		panel.setBounds(10, 10, 935, 450);
+		int distancia = 128;
 		
+		for (int i = 0; i < articulos.size(); i++) {
+			JButton btnJuego = new JButton();
+			final Articulo a1 = getArticuloDeDTO(articulos.get(i));
+			btnJuego.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					Calendar fecha = new GregorianCalendar();
+					fecha.add(Calendar.MONTH, 1);
+					
+					int año = fecha.get(Calendar.YEAR);
+			        int mes = fecha.get(Calendar.MONTH);
+			        int dia = fecha.get(Calendar.DAY_OF_MONTH);
+			        
+			        String fechaIni = "" + dia +"/" + mes + "/"+ año +"";
+			        
+			        fecha.add(Calendar.DAY_OF_YEAR, 10);
+			        
+			        int añoF = fecha.get(Calendar.YEAR);
+			        int mesF = fecha.get(Calendar.MONTH);
+			        int diaF = fecha.get(Calendar.DAY_OF_MONTH);
+			        String fechaFin = "" + diaF +"/" + mesF + "/"+ añoF +"";
+					Alquiler a = new Alquiler(a1, a1.getPrecio() , fechaIni ,  fechaFin, false, a1.getNombre());
+
+					VentanaConfigurarDescuento confirm = new VentanaConfigurarDescuento(VentanaAnterior, VentanaDescuento.this, a, a1);
+					confirm.setVisible(true);
+					setVisible(false);
+				}
+			});
+			btnJuego.setBounds(distancia, 200, 87, 120);
+			background.add(btnJuego);
+			ImageIcon img1 = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+articulos.get(i).getCaratula());
+
+			Image image = img1.getImage();
+			image = getScaledImage(image, 87, 120);
+			ImageIcon finalImage = new ImageIcon(image);
+
+			btnJuego.setIcon(finalImage);
+			distancia = distancia+120;
+
+
+		}
 		
-		
-		Pelicula p1 = new Pelicula("1", 2 , "", "", "", 0, "");
-		
-		modelo = new DefaultListModel<>();
-		
-		
-		
-		listaArticulos = new JList<>();
-		listaArticulos.setModel(modelo);
-		
-		JScrollPane barraDesplazamiento = new JScrollPane(listaArticulos); 
-		barraDesplazamiento.setBounds(925,0,10,110);
-		
-		
-		panel.add(listaArticulos);
-		panel.add(barraDesplazamiento);
-		background.add(panel);
-		
-		
-		
+
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -93,6 +119,29 @@ public class VentanaDescuento extends JFrame {
 		btnVolver.setBounds(780, 455, 140, 50);
 		background.add(btnVolver);
 
+	}
+	
+	private Image getScaledImage(Image srcImg, int w, int h){
+		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2 = resizedImg.createGraphics();
+
+		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g2.drawImage(srcImg, 0, 0, w, h, null);
+		g2.dispose();
+
+		return resizedImg;
+	}
+	
+	public Articulo getArticuloDeDTO(ArticuloDTO artDTO) {
+		if(artDTO.getClassName().equals("VideojuegoDTO")) {
+			VideojuegoDTO juego = (VideojuegoDTO) artDTO;
+			return new Videojuego(juego.getNombre(), juego.getPrecio(), juego.getDescripcion(),
+					juego.getCategoria(), juego.getFecha_lan(), juego.getPuntuacion(), juego.getCaratula(), juego.getDescuento());
+		} else {
+			PeliculaDTO peli = (PeliculaDTO) artDTO;
+			return new Pelicula(peli.getNombre(), peli.getPrecio(), peli.getSinopsis(), peli.getGenero(), 
+					peli.getFecha_estr(), peli.getPuntuacion(), peli.getCaratula(), peli.getDescuento());
+		}
 	}
 	
 	//Quitar cuando se empiece con el diseño

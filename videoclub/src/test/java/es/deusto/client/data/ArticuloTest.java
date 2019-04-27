@@ -11,7 +11,7 @@ public class ArticuloTest {
 	
 	@Before
 	public void setUp() { 
-		v = new Videojuego("GTA", 7.5, "descripcion","categoria","fechalan",3.0,"caratula");
+		v = new Videojuego("GTA", 7.5, "descripcion","categoria","fechalan",3.0,"caratula",0);
 		
 	}
 	@Test

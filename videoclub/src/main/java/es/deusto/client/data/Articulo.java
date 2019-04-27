@@ -11,6 +11,7 @@ public abstract class Articulo {
 	private String caratula;
 	private double precio;
 	private int unidades;
+	private double porcentajeDescuento;
 	
 	public int getUnidades() {
 		return unidades;
@@ -20,11 +21,12 @@ public abstract class Articulo {
 		this.unidades = unidades;
 	}
 
-	public Articulo(String nombre, String caratula, double precio) {
+	public Articulo(String nombre, String caratula, double precio, double porcentajeDescuento) {
 		this.nombre = nombre;
 		this.caratula = caratula;
 		this.precio = precio;
 		this.unidades = 1;
+		this.porcentajeDescuento = porcentajeDescuento; 
 	}
 
 	public String getNombre() {
@@ -49,6 +51,14 @@ public abstract class Articulo {
 
 	public void setPrecio(double precio) {
 		this.precio = precio;
+	}
+	
+	public double getDescuento() {
+		return porcentajeDescuento;
+	}
+
+	public void setDescuento(double porcentajeDescuento) {
+		this.porcentajeDescuento = porcentajeDescuento;
 	}
 	
 	public abstract String getClassName();

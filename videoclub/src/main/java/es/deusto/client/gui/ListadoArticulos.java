@@ -145,11 +145,11 @@ public class ListadoArticulos extends JFrame {
 		if(artDTO.getClassName().equals("VideojuegoDTO")) {
 			VideojuegoDTO juego = (VideojuegoDTO) artDTO;
 			return new Videojuego(juego.getNombre(), juego.getPrecio(), juego.getDescripcion(),
-					juego.getCategoria(), juego.getFecha_lan(), juego.getPuntuacion(), juego.getCaratula());
+					juego.getCategoria(), juego.getFecha_lan(), juego.getPuntuacion(), juego.getCaratula(), juego.getDescuento());
 		} else {
 			PeliculaDTO peli = (PeliculaDTO) artDTO;
 			return new Pelicula(peli.getNombre(), peli.getPrecio(), peli.getSinopsis(), peli.getGenero(), 
-					peli.getFecha_estr(), peli.getPuntuacion(), peli.getCaratula());
+					peli.getFecha_estr(), peli.getPuntuacion(), peli.getCaratula(),peli.getDescuento());
 		}
 	}
 }

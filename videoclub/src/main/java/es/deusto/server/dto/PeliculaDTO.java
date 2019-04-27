@@ -11,8 +11,8 @@ public class PeliculaDTO extends ArticuloDTO implements Serializable {
 	private String fecha_estr;
 	private double puntuacion;
 	
-	public PeliculaDTO(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula) {
-		super(nombre, caratula, precio);
+	public PeliculaDTO(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double descuento) {
+		super(nombre, caratula, precio, descuento);
 		this.sinopsis = sinopsis;
 		this.genero = genero;
 		this.fecha_estr = fecha_estr;

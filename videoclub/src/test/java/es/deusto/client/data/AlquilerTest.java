@@ -12,7 +12,7 @@ public class AlquilerTest {
 	
 	@Before
 	public void setUp() {
-		a = new Pelicula("Pelicula A", 3.5, "Sinopsis", "Género", "20/10/2000", 6, "caratula.jpg");
+		a = new Pelicula("Pelicula A", 3.5, "Sinopsis", "Género", "20/10/2000", 6, "caratula.jpg", 0);
 		alq = new Alquiler(a, a.getPrecio(), "15/10/2014", "20/10/2014", true, a.getNombre() + "-Pelicula");
 	}
 	
@@ -35,7 +35,7 @@ public class AlquilerTest {
 	
 	@Test
 	public void setAlquiladoTest() {
-		Articulo a = new Videojuego("Pelicula B", 4, "Sinopsis 2", "Género", "20/10/2012", 8, "caratula2.jpg");
+		Articulo a = new Videojuego("Pelicula B", 4, "Sinopsis 2", "Género", "20/10/2012", 8, "caratula2.jpg",0);
 		alq.setAlquilado(a);
 		assertEquals(a, alq.getAlquilado());
 	}

@@ -91,12 +91,24 @@ public class MySQL_DB implements IDAO {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		//persistentManager.getFetchPlan().setMaxFetchDepth(1);
 
+		transaction = persistentManager.currentTransaction();
+
 		boolean existe = false;
 		try {
-			Socio socio = persistentManager.getObjectById(Socio.class, nombreSocio);
-			if(socio.getNombre().equals(nombreSocio)) {
-				existe = true;
+			System.out.println("* Retrieving an Extent for Socios.");
+
+			transaction.begin();
+			Extent<Socio> extent = persistentManager.getExtent(Socio.class, true);
+
+			for (Socio socio : extent) {
+				if(socio.getNombre().equals(nombreSocio)) {
+					existe = true;
+					break;
+				}
 			}
+
+
+			transaction.commit();
 		} catch (Exception ex) {
 			System.out.println("$ Error retrieving an extent: " + ex.getMessage());
 		} finally {
@@ -114,12 +126,25 @@ public class MySQL_DB implements IDAO {
 	public Socio inicioSesion(String nombreSocio, String password) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 
+		transaction = persistentManager.currentTransaction();
+
 		Socio s = null;
 		try {
-			Socio socio = persistentManager.getObjectById(Socio.class, nombreSocio);
-			if(socio.getPassword().equals(password)) {
-				s = socio;
+			System.out.println("* Retrieving an Extent for Socios.");
+
+			transaction.begin();
+			Extent<Socio> extent = persistentManager.getExtent(Socio.class, true);
+
+			for (Socio socio : extent) {
+				if(socio.getNombre().equals(nombreSocio)) {
+					if(socio.getPassword().equals(password)) {
+						s = socio;
+						break;
+					}
+				}
 			}
+
+			transaction.commit();
 		} catch (Exception ex) {
 			System.out.println("$ Error retrieving an extent: " + ex.getMessage());
 		} finally {

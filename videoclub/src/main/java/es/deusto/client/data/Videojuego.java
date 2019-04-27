@@ -13,8 +13,8 @@ public class Videojuego extends Articulo {
 	private String fecha_lan;
 	private double puntuacion;
 	
-	public Videojuego(String nombre, double precio, String descripcion, String categoria, String fecha_lan, double puntuacion, String caratula) {
-		super(nombre, caratula, precio);
+	public Videojuego(String nombre, double precio, String descripcion, String categoria, String fecha_lan, double puntuacion, String caratula, double descuento) {
+		super(nombre, caratula, precio, descuento);
 		this.descripcion = descripcion;
 		this.categoria = categoria;
 		this.fecha_lan = fecha_lan;
@@ -56,6 +56,11 @@ public class Videojuego extends Articulo {
 	@Override
 	public String getClassName() {
 		return "Videojuego";
+	}
+
+	public double getDescuento() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

@@ -9,11 +9,13 @@ public abstract class  ArticuloDTO implements Serializable {
 	private String nombre;
 	private String caratula;
 	private double precio;
+	private double descuento;
 	
-	public ArticuloDTO(String nombre, String caratula, double precio) {
+	public ArticuloDTO(String nombre, String caratula, double precio, double descuento) {
 		this.nombre = nombre;
 		this.caratula = caratula;
 		this.precio = precio;
+		this.descuento = descuento;
 	}
 
 	public String getNombre() {
@@ -38,6 +40,14 @@ public abstract class  ArticuloDTO implements Serializable {
 
 	public void setPrecio(double precio) {
 		this.precio = precio;
+	}
+	
+	public double getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(double descuento) {
+		this.descuento = descuento;
 	}
 	
 	public abstract String getClassName();

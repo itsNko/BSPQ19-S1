@@ -16,6 +16,6 @@ public class PeliculaAssembler {
 		System.out.println("* Assembling Pelicula ...");
 		
 		return new PeliculaDTO(peli.getNombre(), peli.getPrecio(), peli.getSinopsis(), peli.getGenero(), 
-				peli.getFecha_estr(), peli.getPuntuacion(), peli.getCaratula());
+				peli.getFecha_estr(), peli.getPuntuacion(), peli.getCaratula(), peli.getDescuento());
 	}
 }

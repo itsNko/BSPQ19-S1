@@ -230,7 +230,7 @@ public class VentanaConfirmacion extends JFrame {
 							v = (Videojuego)a1;
 							pv = false;
 							System.out.println(pv);
-							controllerAlquiler.insertarAlquiler(v.getNombre(),v.getPrecio(),v.getDescripcion(), v.getCategoria(),v.getFecha_lan(), v.getPuntuacion(),v.getCaratula(), a.getCoste(), s1.getNombre(), pv, fechaFin, fechaInicio);
+							controllerAlquiler.insertarAlquiler(v.getNombre(),v.getPrecio(),v.getDescripcion(), v.getCategoria(),v.getFecha_lan(), v.getPuntuacion(),v.getCaratula(), a.getCoste(), s1.getNombre(), pv, fechaFin, fechaInicio, v.getDescuento());
 
 						}else if(a1.getClassName().equals("Pelicula"))
 						{
@@ -238,7 +238,7 @@ public class VentanaConfirmacion extends JFrame {
 							pv = true;
 							System.out.println(pv);
 							System.out.println(p.getNombre() + "-" +p.getPrecio() + "-" +p.getSinopsis() + "-" +p.getGenero() + "-" +p.getFecha_estr() + "-" +p.getPuntuacion() + "-" +p.getCaratula() + "-" + a.getCoste() + "-" + s1.getNombre() + "-" + pv);
-							controllerAlquiler.insertarAlquiler(p.getNombre(),p.getPrecio(),p.getSinopsis(), p.getGenero(),p.getFecha_estr(), p.getPuntuacion(),p.getCaratula(), a.getCoste(), s1.getNombre(), pv, fechaFin, fechaInicio);
+							controllerAlquiler.insertarAlquiler(p.getNombre(),p.getPrecio(),p.getSinopsis(), p.getGenero(),p.getFecha_estr(), p.getPuntuacion(),p.getCaratula(), a.getCoste(), s1.getNombre(), pv, fechaFin, fechaInicio, p.getDescuento());
 
 						}
 						//List<Alquiler> alquileres = s1.getAlquileres();

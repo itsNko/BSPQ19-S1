@@ -17,11 +17,11 @@ public class ControllerAlquiler {
 	public ControllerAlquiler() throws RemoteException {
 	}
 
-	public boolean insertarAlquiler(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double coste, String nombreUsuario, boolean pv, String fechaFin, String fechaInicio) {
+	public boolean insertarAlquiler(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double coste, String nombreUsuario, boolean pv, String fechaFin, String fechaInicio, double descuento) {
 		boolean correcto;
 		try {
 			System.out.println("###ControllerAlquiler: ServiceLocator.getService().insertarAlquiler###");
-			correcto = rsl.getService().insertarAlquiler(nombre,precio,sinopsis,genero,fecha_estr,puntuacion, caratula, coste, nombreUsuario, pv, fechaFin, fechaInicio);
+			correcto = rsl.getService().insertarAlquiler(nombre,precio,sinopsis,genero,fecha_estr,puntuacion, caratula, coste, nombreUsuario, pv, fechaFin, fechaInicio, descuento);
 			System.out.println("###ControllerAlquiler: Se ha insertado alquiler correctamente###");
 
 			return correcto;

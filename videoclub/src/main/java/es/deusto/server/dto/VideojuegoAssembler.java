@@ -16,6 +16,6 @@ public class VideojuegoAssembler {
 		System.out.println("* Assembling Videojuego ...");
 		
 		return new VideojuegoDTO(juego.getNombre(), juego.getPrecio(), juego.getDescripcion(),
-				juego.getCategoria(), juego.getFecha_lan(), juego.getPuntuacion(), juego.getCaratula());
+				juego.getCategoria(), juego.getFecha_lan(), juego.getPuntuacion(), juego.getCaratula(), juego.getDescuento());
 	}
 }

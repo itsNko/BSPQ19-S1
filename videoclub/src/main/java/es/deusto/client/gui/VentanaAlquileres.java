@@ -111,7 +111,7 @@ public class VentanaAlquileres extends JFrame {
 			if(alquileres.get(i).isEnCurso()) {
 				titulo = alquileres.get(i).getAlquilado().getNombre();
 				fecha = "[" + alquileres.get(i).getFecha_inicio() + " - " + alquileres.get(i).getFecha_fin() + "]";
-				
+
 				JPanel jp = new JPanel(new GridLayout(0, 1));
 				jp.setOpaque(false);
 				JPanel caratula = new JPanel(new FlowLayout());
@@ -134,7 +134,7 @@ public class VentanaAlquileres extends JFrame {
 				image = getScaledImage(image, 87, 120);
 				ImageIcon finalImage = new ImageIcon(image);
 				caratulaLabel = new JLabel(finalImage);
-				
+
 				caratula.add(caratulaLabel);
 				info.add(label); info.add(label2);
 
@@ -144,7 +144,7 @@ public class VentanaAlquileres extends JFrame {
 			} else {
 				titulo = alquileres.get(i).getAlquilado().getNombre();
 				fecha = "[" + alquileres.get(i).getFecha_inicio() + " - " + alquileres.get(i).getFecha_fin() + "]";
-				
+
 				JPanel jp = new JPanel(new GridLayout(0, 1));
 				jp.setOpaque(false);
 				JPanel caratula = new JPanel(new FlowLayout());
@@ -167,7 +167,7 @@ public class VentanaAlquileres extends JFrame {
 				image = getScaledImage(image, 87, 120);
 				ImageIcon finalImage = new ImageIcon(image);
 				caratulaLabel = new JLabel(finalImage);
-				
+
 				caratula.add(caratulaLabel);
 				info.add(label); info.add(label2);
 

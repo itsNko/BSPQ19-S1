@@ -26,11 +26,11 @@ public class ArticuloAssembler {
 			if(v.getClassName().equals("Videojuego")) {
 				Videojuego juego = (Videojuego) v;
 				articulosDTO.add(new VideojuegoDTO(juego.getNombre(), juego.getPrecio(), juego.getDescripcion(),
-						juego.getCategoria(), juego.getFecha_lan(), juego.getPuntuacion(), juego.getCaratula()));
+						juego.getCategoria(), juego.getFecha_lan(), juego.getPuntuacion(), juego.getCaratula(), juego.getDescuento()));
 			} else {
 				Pelicula peli = (Pelicula) v;
 				articulosDTO.add(new PeliculaDTO(peli.getNombre(), peli.getPrecio(), peli.getSinopsis(), peli.getGenero(), 
-						peli.getFecha_estr(), peli.getPuntuacion(), peli.getCaratula()));
+						peli.getFecha_estr(), peli.getPuntuacion(), peli.getCaratula(), peli.getDescuento()));
 			}
 			
 		}
