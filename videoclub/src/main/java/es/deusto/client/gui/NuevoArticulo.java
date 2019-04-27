@@ -13,12 +13,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import es.deusto.client.controllers.ControllerAlquiler;
+import es.deusto.client.controllers.ControllerArticulos;
+import es.deusto.client.data.Pelicula;
 import es.deusto.server.dto.SocioDTO;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import java.awt.Color;
+import javax.swing.JButton;
 
 public class NuevoArticulo extends JFrame {
 
@@ -30,6 +34,7 @@ public class NuevoArticulo extends JFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	private ControllerArticulos controllerArticulos;
 
 	/**
 	 * Launch the application.
@@ -140,6 +145,11 @@ public class NuevoArticulo extends JFrame {
 		comboBox.setBounds(220, 395, 140, 27);
 		background.add(comboBox);
 	
+		comboBox.addItem("Terror");
+		comboBox.addItem("Acción");
+		comboBox.addItem("Aventuras");
+		comboBox.addItem("El que sea");
+	
 		JLabel lblFechaEstreno = new JLabel("Fecha estreno:");
 		lblFechaEstreno.setBounds(95, 445, 110, 16);
 		lblFechaEstreno.setForeground(Color.WHITE);
@@ -151,6 +161,8 @@ public class NuevoArticulo extends JFrame {
 		textField_5.setColumns(10);
 		
 		rdbtnPelcula.setSelected(true);
+		
+
 		
 		rdbtnVideojuego.addActionListener(new ActionListener() {
 			@Override
@@ -180,6 +192,30 @@ public class NuevoArticulo extends JFrame {
 			}
 			
 		});
+		
+		JButton btnAadir = new JButton("Añadir");
+		btnAadir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(rdbtnPelcula.isSelected()) {
+					String nombre = textField.getText();
+					String caratula = textField_1.getText();
+					double precio = Double.parseDouble(textField_2.getText());
+					double puntuacion = Double.parseDouble(textField_3.getText());
+					String sinpsis = textField_4.getText();
+					String fechaEstreno = textField_5.getText();
+					String genero = (String) comboBox.getSelectedItem();
+					Pelicula p1 = new Pelicula(nombre, precio, sinpsis, genero, fechaEstreno, puntuacion, caratula, 0);
+					
+					controllerArticulos.insertarPelicula(p1);
+					
+					
+				}
+			}
+		});
+		btnAadir.setBounds(590, 232, 117, 29);
+		background.add(btnAadir);
+		
+		
 		
 	}
 	

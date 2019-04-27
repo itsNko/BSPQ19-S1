@@ -4,6 +4,7 @@ import java.util.List;
 
 import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
+import es.deusto.client.data.Pelicula;
 import es.deusto.client.data.Socio;
 
 public interface IDAO {
@@ -13,6 +14,7 @@ public interface IDAO {
 	public boolean existeSocio(String nombreSocio);
 	public Socio inicioSesion(String nombreSocio, String password);
 	public boolean insertarAlquiler(Alquiler alquiler, String nombreUsuario);
+	public boolean insertarPelicula(Pelicula pelicula);
 	
 	public List<Articulo> listadoArticulos();
 	public Socio selectSocio(String nombreUsuario);

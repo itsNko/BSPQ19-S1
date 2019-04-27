@@ -80,5 +80,11 @@ public class AppServiceDB {
 	public boolean updateMonedero(String nombreUsuario, double monedero) {
 		return db.updateMonedero(nombreUsuario, monedero);
 	}
+	
+
+	public boolean insertarPelicula(Pelicula pelicula) {
+		
+		return db.insertarPelicula(pelicula);
+	}
 
 }

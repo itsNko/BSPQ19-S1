@@ -374,4 +374,33 @@ public class MySQL_DB implements IDAO {
 
 	}
 
+	@Override
+	public boolean insertarPelicula(Pelicula pelicula) {
+		boolean result = false;
+		try {
+			persistentManager = persistentManagerFactory.getPersistenceManager();
+			transaction = persistentManager.currentTransaction();
+			transaction.begin();
+
+			persistentManager.makePersistent(pelicula);
+
+			System.out.println("- Inserted into db: " + pelicula.getNombre());
+
+			transaction.commit();
+
+			result = true;
+		} catch(Exception ex) {
+			System.err.println("* Exception inserting data into db: " + ex.getMessage());
+		} finally {		    
+			if (transaction.isActive()) {
+				transaction.rollback(); // Deshace los cambios en caso de que ocurra algún error
+			}
+
+
+			persistentManager.close();
+		}
+
+		return result;
+
+}
 }

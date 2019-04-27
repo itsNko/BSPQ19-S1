@@ -6,6 +6,7 @@ import java.util.List;
 
 import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
+import es.deusto.client.data.Pelicula;
 import es.deusto.server.dto.AlquilerDTO;
 import es.deusto.client.data.Socio;
 import es.deusto.server.dto.ArticuloDTO;
@@ -24,4 +25,6 @@ public interface IServer extends Remote {
 	public List<ArticuloDTO> listadoArticulos() throws RemoteException;
 	public SocioDTO selectSocio(String nombreUsuario) throws RemoteException;
 	public boolean updateMonedero(String nombreUsuario, double monedero) throws RemoteException;
+	
+	public boolean insertarPelicula(Pelicula pelicula) throws RemoteException;
 }
