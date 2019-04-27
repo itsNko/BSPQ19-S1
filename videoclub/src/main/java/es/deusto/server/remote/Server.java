@@ -139,10 +139,10 @@ public class Server extends UnicastRemoteObject implements IServer {
 			return appService.insertarPelicula(pelicula);
 		}catch(Exception e)
 		{
-			System.err.println("$ Error al insertar alquiler "+ e.getMessage());
-			return false;
+			System.err.println("$ Error al insertar película "+ e.getMessage());
+			
 		}
-		
+		return false;
 	}
 
 }

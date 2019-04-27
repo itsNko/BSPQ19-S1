@@ -80,10 +80,12 @@ public class NuevoArticulo extends JFrame {
 		
 		JRadioButton rdbtnPelcula = new JRadioButton("Película");
 		rdbtnPelcula.setBounds(95, 85, 141, 23);
+		rdbtnPelcula.setForeground(Color.WHITE);
 		background.add(rdbtnPelcula);
 		
 		JRadioButton rdbtnVideojuego = new JRadioButton("Videojuego");
 		rdbtnVideojuego.setBounds(230, 85, 141, 23);
+		rdbtnVideojuego.setForeground(Color.WHITE);
 		background.add(rdbtnVideojuego);
 		
 		JLabel lblNombre = new JLabel("Nombre:");

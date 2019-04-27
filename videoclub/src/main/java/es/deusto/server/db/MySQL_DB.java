@@ -376,6 +376,7 @@ public class MySQL_DB implements IDAO {
 
 	@Override
 	public boolean insertarPelicula(Pelicula pelicula) {
+		System.out.println(pelicula.getNombre());
 		boolean result = false;
 		try {
 			persistentManager = persistentManagerFactory.getPersistenceManager();
