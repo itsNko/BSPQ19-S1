@@ -174,6 +174,9 @@ public class MenuSocio extends JFrame {
 		
 		if (iniciado.getNombre().equals("Administrador")) {
 			JButton btnDescuentos = new JButton("Descuentos");
+			btnDescuentos.setBounds(760, 300, 130, 50);
+			background.add(btnDescuentos);
+			
 			btnDescuentos.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					VentanaDescuento descuentos = new VentanaDescuento(MenuSocio.this, iniciado);
@@ -181,8 +184,31 @@ public class MenuSocio extends JFrame {
 					MenuSocio.this.setVisible(false);
 				}
 			});
-			btnDescuentos.setBounds(735, 300, 170, 50);
-			background.add(btnDescuentos);
+			
+			
+			JButton btnNuevoArticulo = new JButton("Añadir artículo");
+			btnNuevoArticulo.setBounds(625, 300, 130, 50);
+			background.add(btnNuevoArticulo);
+			
+			btnNuevoArticulo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					NuevoArticulo nuevoArticulo = new NuevoArticulo(MenuSocio.this);
+					nuevoArticulo.setVisible(true);
+				//	MenuSocio.this.setVisible(false);
+				}
+			});
+			
+			JButton btnStock = new JButton("Gestionar stock");
+			btnStock.setBounds(490, 300, 130, 50);
+			background.add(btnStock);
+			
+			btnStock.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					//NuevoArticulo nuevoArticulo = new NuevoArticulo(MenuSocio.this);
+					//nuevoArticulo.setVisible(true);
+					//MenuSocio.this.setVisible(false);
+				}
+			});
 		}
 		
 	
