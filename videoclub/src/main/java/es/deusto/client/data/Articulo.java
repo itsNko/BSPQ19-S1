@@ -10,11 +10,21 @@ public abstract class Articulo {
 	private String nombre;
 	private String caratula;
 	private double precio;
+	private int unidades;
 	
+	public int getUnidades() {
+		return unidades;
+	}
+
+	public void setUnidades(int unidades) {
+		this.unidades = unidades;
+	}
+
 	public Articulo(String nombre, String caratula, double precio) {
 		this.nombre = nombre;
 		this.caratula = caratula;
 		this.precio = precio;
+		this.unidades = 1;
 	}
 
 	public String getNombre() {
