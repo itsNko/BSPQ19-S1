@@ -67,7 +67,6 @@ public class MenuSocio extends JFrame {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-
 		setTitle("Menú principal");
 		ventanaInicio = ventanaAnterior;
 		setResizable(false);
@@ -141,6 +140,8 @@ public class MenuSocio extends JFrame {
 		btnRecargar.setOpaque(false);
 		btnRecargar.setContentAreaFilled(false);
 		btnRecargar.setBorderPainted(false);
+		
+
 
 		JButton btnDevolver = new JButton("");
 		btnDevolver.addActionListener(new ActionListener() {
@@ -169,6 +170,27 @@ public class MenuSocio extends JFrame {
 				MenuSocio.this.dispose();
 			}
 		});
+		
+		
+		if (iniciado.getNombre().equals("Administrador")) {
+			JButton btnDescuentos = new JButton("Descuentos");
+			btnDescuentos.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					VentanaDescuento descuentos = new VentanaDescuento(MenuSocio.this, iniciado);
+					descuentos.setVisible(true);
+					MenuSocio.this.setVisible(false);
+				}
+			});
+			btnDescuentos.setBounds(735, 300, 170, 50);
+			background.add(btnDescuentos);
+		}
+		
+	
+		//btnDescuentos.setOpaque(false);
+		//btnDescuentos.setContentAreaFilled(false);
+		//btnDescuentos.setBorderPainted(false);
+		
+		
 		btnSalir.setBounds(590, 430, 180, 55);
 		background.add(btnSalir);
 		btnSalir.setOpaque(false);
