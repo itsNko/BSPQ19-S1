@@ -152,9 +152,7 @@ public class VentanaConfigurarDescuento extends JFrame {
 //		background.add(lblPrecioDescontado);		
 //
 
-		double descuento = a1.getDescuento();
-		double preciofinal = a1.getPrecio() - ((a1.getPrecio()* descuento)/100);
-//
+		//
 //		JLabel lblResultado = new JLabel("" +  (a.getCoste() - ((a.getCoste()/100) * descuento1)) + "€" );
 //		lblResultado.setBounds(720,270,500,150);
 //		lblResultado.setFont(new Font("Times New Roman", Font.BOLD, 22));
@@ -174,6 +172,10 @@ public class VentanaConfigurarDescuento extends JFrame {
 							"Coloque un valor del 0-100", JOptionPane.ERROR_MESSAGE);
 		        	repaint();
 		        }
+				
+				double descuento = Double.parseDouble(txtAñadirDescuento.getText());
+				double preciofinal = (a1.getPrecio() - ((a1.getPrecio() * descuento)/100));
+
 				
 				if(descuento > 100) {
 					JOptionPane.showMessageDialog(null, "El descuento sobrepasa los limites",
