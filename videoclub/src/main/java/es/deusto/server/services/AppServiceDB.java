@@ -91,4 +91,8 @@ public class AppServiceDB {
 		return db.insertarPelicula(pelicula);
 	}
 
+	public boolean updatePrecio(String nombreArticulo, double precio) {
+		return db.updatePrecio(nombreArticulo, precio);
+	}
+
 }

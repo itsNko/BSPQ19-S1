@@ -208,31 +208,35 @@ public class VentanaConfigurarDescuento extends JFrame {
 						//update descuento y precio
 						System.out.println("updateDescuento");
 						System.out.println("updatePrecio");
-						controllerArticulos.updateDescuento(a1.getNombre(), descuento1);		
-						//s1.setMonedero(s1.getMonedero() - a.getCoste());
-						System.out.println("insertarDescuento");
-						Videojuego v;
-						Pelicula p;
-						boolean pv;
-						//String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double coste, String nombreUsuario, boolean pv
-						if(a1.getClassName().equals("Videojuego")) {
-							v = (Videojuego)a1;
-							pv = false;
-							System.out.println(pv);
-							controllerArticulos.updateDescuento(a1.getNombre(), descuento1);
-							
-						}else if(a1.getClassName().equals("Pelicula"))
-						{	
-							p = (Pelicula)a1;
-							pv = true;
-							System.out.println(pv);
-							//System.out.println(p.getNombre() + "-" +p.getPrecio() + "-" +p.getSinopsis() + "-" +p.getGenero() + "-" +p.getFecha_estr() + "-" +p.getPuntuacion() + "-" +p.getCaratula() + "-" + a.getCoste() + "-" + s1.getNombre() + "-" + pv);
-							controllerArticulos.updateDescuento(a1.getNombre(), descuento1);
-						}
+						controllerArticulos.updateDescuento(a1.getNombre(), descuento1);
+						controllerArticulos.updatePrecio(a1.getNombre(), preciofinal);
+						
+//						Videojuego v;
+//						Pelicula p;
+//						boolean pv;
+//
+//						if(a1.getClassName().equals("Videojuego")) {
+//							v = (Videojuego)a1;
+//							pv = false;
+//							System.out.println(pv);
+//							controllerArticulos.updateDescuento(a1.getNombre(), descuento1);
+//							
+//						}else if(a1.getClassName().equals("Pelicula"))
+//						{	
+//							p = (Pelicula)a1;
+//							pv = true;
+//							System.out.println(pv);
+//							controllerArticulos.updateDescuento(a1.getNombre(), descuento1);
+//						}
 						JOptionPane.showMessageDialog(null, "Aplicado descuento correctamente!", "Descuento aplicado con exito", JOptionPane.INFORMATION_MESSAGE);
 						MenuSocio.setVisible(true);
 						VentanaConfigurarDescuento.this.dispose();
-					} 
+					} else {
+						JOptionPane.showMessageDialog(null, "Cancelado", "Modificación cancelada", JOptionPane.ERROR_MESSAGE);
+						
+						MenuSocio.setVisible(true);
+						VentanaConfigurarDescuento.this.dispose();
+					}
 				}
 				repaint();
 

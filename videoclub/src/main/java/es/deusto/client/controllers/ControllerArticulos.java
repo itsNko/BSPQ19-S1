@@ -16,7 +16,7 @@ public class ControllerArticulos {
 	public boolean insertarPelicula(Pelicula pelicula) {
 		boolean correcto;
 		try {
-			System.out.println("###ControllerAlquiler: ServiceLocator.getService().insertarAlquiler###");
+			System.out.println("###ControllerArticulos: ServiceLocator.getService().insertarPelicula###");
 			correcto = rsl.getService().insertarPelicula(pelicula);
 			System.out.println("###ControllerAlquiler: Se ha insertado alquiler correctamente###");
 
@@ -31,10 +31,20 @@ public class ControllerArticulos {
 	
 	public boolean updateDescuento(String nombreArticulo, double descuento) {
 		try {
-			System.out.println("###ControllerDescuento: ServiceLocator.getService().updateDescuento###");
+			System.out.println("###ControllerArticulos: ServiceLocator.getService().updateDescuento###");
 			return rsl.getService().updateDescuento(nombreArticulo, descuento);
 		}catch(Exception e) {
 			System.err.println("$ Error al actualizar descuento " + e.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean updatePrecio(String nombreArticulo, double precio) {
+		try {
+			System.out.println("###ControllerArticulos: ServiceLocator.getService().updatePrecio###");
+			return rsl.getService().updatePrecio(nombreArticulo, precio);
+		}catch(Exception e) {
+			System.err.println("$ Error al actualizar precio " + e.getMessage());
 			return false;
 		}
 	}

@@ -155,4 +155,14 @@ public class Server extends UnicastRemoteObject implements IServer {
 		return false;
 	}
 
+	@Override
+	public boolean updatePrecio(String nombreArticulo, double precio) throws RemoteException {
+		try {
+			return appService.updatePrecio(nombreArticulo, precio);
+		}catch(Exception e) {
+			System.err.println("$ Error al actualizar precio " + e.getMessage());
+		}
+		return false;
+	}
+
 }
