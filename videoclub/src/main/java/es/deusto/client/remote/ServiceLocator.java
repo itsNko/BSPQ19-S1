@@ -6,7 +6,7 @@ public class ServiceLocator {
 	private IServer service;
 
 	public void setService(String ip, String port, String serverName) {
-		
+
 		try {		
 			String URL = "//" + ip + ":" + port + "/" + serverName;
 			System.out.println("###ServiceLocator: (IServer) lookup()###");

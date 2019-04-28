@@ -88,6 +88,8 @@ public class MenuSocio extends JFrame {
 		lblSaldo.setForeground(Color.WHITE);
 		lblSaldo.setBounds(125, 200, 300, 60);
 		background.add(lblSaldo);
+		
+		articulos = controllerListadoArticulos.listadoArticulos();
 
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -148,7 +150,13 @@ public class MenuSocio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Devolver artículos");
 				alquileres = controllerAlquileres.historialAlquileres(iniciado.getNombre());
-				if(!alquileres.isEmpty()) {
+				boolean temp = false;
+				for(int i = 0; i < alquileres.size(); i++) {
+					if(alquileres.get(i).isEnCurso()) {
+						temp = true;
+					}
+				}
+				if(temp) {
 					VentanaDevolucion vd = new VentanaDevolucion(MenuSocio.this, iniciado.getNombre(), alquileres);
 					vd.setVisible(true);
 					MenuSocio.this.setVisible(false);	
