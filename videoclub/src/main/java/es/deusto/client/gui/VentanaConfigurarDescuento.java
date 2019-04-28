@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -26,6 +27,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import es.deusto.client.controllers.ControllerAlquiler;
+import es.deusto.client.controllers.ControllerArticulos;
 import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Pelicula;
@@ -39,6 +42,7 @@ public class VentanaConfigurarDescuento extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFrame ventanaQueMeLlama;
+	private ControllerArticulos controllerArticulos;
 	
 	private Image getScaledImage(Image srcImg, int w, int h){
 		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
@@ -54,7 +58,11 @@ public class VentanaConfigurarDescuento extends JFrame {
 	public VentanaConfigurarDescuento(final JFrame MenuSocio, JFrame ventanaAnterior, final Alquiler a,Articulo a1) {
 		ventanaQueMeLlama = ventanaAnterior;
 
-		
+		try {
+			controllerArticulos = new ControllerArticulos();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
 		
 		setResizable(false);
 		setTitle("Confirmación de descuento");
@@ -167,6 +175,7 @@ public class VentanaConfigurarDescuento extends JFrame {
 //
 		String descuento = txtAñadirDescuento.getText();
 		double descuento1 = Double.parseDouble(descuento);
+		double preciofinal = a.getCoste() - ((a.getCoste()/100) * descuento1);
 //
 //		JLabel lblResultado = new JLabel("" +  (a.getCoste() - ((a.getCoste()/100) * descuento1)) + "€" );
 //		lblResultado.setBounds(720,270,500,150);
@@ -194,11 +203,12 @@ public class VentanaConfigurarDescuento extends JFrame {
 					MenuSocio.setVisible(true);
 					VentanaConfigurarDescuento.this.dispose();
 				} else {
-					int eleccion = JOptionPane.showConfirmDialog(null, "¿Esta seguro?");
+					int eleccion = JOptionPane.showConfirmDialog(null, "El precio final del producto será:"+ preciofinal +"¿Esta seguro?");
 					if(eleccion == 0) {
-						//update monedero
+						//update descuento y precio
 						System.out.println("updateDescuento");
-						//controllerAlquiler.updateMonedero(nombreUsuario, controllerAlquiler.selectSocio(nombreUsuario).getMonedero()-a.getCoste());
+						System.out.println("updatePrecio");
+						controllerArticulos.updateDescuento(a1.getNombre(), descuento1);		
 						//s1.setMonedero(s1.getMonedero() - a.getCoste());
 						System.out.println("insertarDescuento");
 						Videojuego v;
@@ -209,16 +219,15 @@ public class VentanaConfigurarDescuento extends JFrame {
 							v = (Videojuego)a1;
 							pv = false;
 							System.out.println(pv);
-							//controllerAlquiler.insertarAlquiler(v.getNombre(),v.getPrecio(),v.getDescripcion(), v.getCategoria(),v.getFecha_lan(), v.getPuntuacion(),v.getCaratula(), a.getCoste(), s1.getNombre(), pv, fechaFin, fechaInicio);
-
+							controllerArticulos.updateDescuento(a1.getNombre(), descuento1);
+							
 						}else if(a1.getClassName().equals("Pelicula"))
 						{	
 							p = (Pelicula)a1;
 							pv = true;
 							System.out.println(pv);
 							//System.out.println(p.getNombre() + "-" +p.getPrecio() + "-" +p.getSinopsis() + "-" +p.getGenero() + "-" +p.getFecha_estr() + "-" +p.getPuntuacion() + "-" +p.getCaratula() + "-" + a.getCoste() + "-" + s1.getNombre() + "-" + pv);
-							//controllerAlquiler.insertarAlquiler(p.getNombre(),p.getPrecio(),p.getSinopsis(), p.getGenero(),p.getFecha_estr(), p.getPuntuacion(),p.getCaratula(), a.getCoste(), s1.getNombre(), pv, fechaFin, fechaInicio);
-
+							controllerArticulos.updateDescuento(a1.getNombre(), descuento1);
 						}
 						JOptionPane.showMessageDialog(null, "Aplicado descuento correctamente!", "Descuento aplicado con exito", JOptionPane.INFORMATION_MESSAGE);
 						MenuSocio.setVisible(true);

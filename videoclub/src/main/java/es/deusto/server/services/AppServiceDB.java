@@ -82,9 +82,9 @@ public class AppServiceDB {
 	}
 	
 
-//	public boolean updateDescuento(String nombreArticulo, double descuento) {
-//		return db.updateMonedero(nombreArticulo, descuento);
-//	}
+	public boolean updateDescuento(String nombreArticulo, double descuento) {
+		return db.updateMonedero(nombreArticulo, descuento);
+	}
 
 	public boolean insertarPelicula(Pelicula pelicula) {
 		

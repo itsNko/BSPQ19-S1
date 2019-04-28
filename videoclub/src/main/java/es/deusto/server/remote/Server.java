@@ -132,15 +132,15 @@ public class Server extends UnicastRemoteObject implements IServer {
 		return false;
 	}
 	
-//	@Override
-//	public boolean updateDescuento(String nombreArticulo, double descuento) throws RemoteException {
-//		try {
-//			return appService.updateDescuento(nombreArticulo, descuento);
-//		}catch(Exception e) {
-//			System.err.println("$ Error al actualizar el monedero " + e.getMessage());
-//		}
-//		return false;
-//	}
+	@Override
+	public boolean updateDescuento(String nombreArticulo, double descuento) throws RemoteException {
+		try {
+			return appService.updateDescuento(nombreArticulo, descuento);
+		}catch(Exception e) {
+			System.err.println("$ Error al actualizar el monedero " + e.getMessage());
+		}
+		return false;
+	}
 
 	@Override
 	public boolean insertarPelicula(Pelicula pelicula) throws RemoteException {
