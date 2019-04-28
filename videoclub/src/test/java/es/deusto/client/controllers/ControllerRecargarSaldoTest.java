@@ -21,18 +21,18 @@ import es.deusto.server.remote.IServer;
 public class ControllerRecargarSaldoTest {
 
 	private ControllerRecargarSaldo crs;
-
+	private SocioDTO s;
+	
 	@Mock
 	private ServiceLocator rsl;
 	@Mock
 	private IServer server;
 
-	private SocioDTO s;
-
 	@Before
 	public void setUp() {
-		s = new SocioDTO("Pepe", "1111111A", 0.0, "imagenTest.jpg");
 		MockitoAnnotations.initMocks(this);
+		
+		s = new SocioDTO("Pepe", "1111111A", 0.0, "imagenTest.jpg");
 		try {
 			crs = new ControllerRecargarSaldo(rsl);
 		} catch (RemoteException e) {

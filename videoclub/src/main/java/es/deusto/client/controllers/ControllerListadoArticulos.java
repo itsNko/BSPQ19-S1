@@ -12,6 +12,11 @@ public class ControllerListadoArticulos {
 
 	public ControllerListadoArticulos() throws RemoteException {
 	}
+	
+	// Solo utilizar este constructor en los tests unitarios
+	public ControllerListadoArticulos(ServiceLocator rsl) throws RemoteException {
+		this.rsl = rsl;
+	}
 
 	public List<ArticuloDTO> listadoArticulos() {
 		try {

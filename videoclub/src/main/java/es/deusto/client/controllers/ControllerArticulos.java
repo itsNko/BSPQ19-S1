@@ -1,9 +1,7 @@
 package es.deusto.client.controllers;
 
 import java.rmi.RemoteException;
-import java.util.List;
 
-import es.deusto.client.data.Pelicula;
 import es.deusto.client.remote.ServiceLocator;
 
 public class ControllerArticulos {
@@ -11,6 +9,11 @@ public class ControllerArticulos {
 	private ServiceLocator rsl = ControllerRegistro.getRsl();
 	
 	public ControllerArticulos() throws RemoteException {
+	}
+	
+	// Solo utilizar este constructor en los tests unitarios
+	public ControllerArticulos(ServiceLocator rsl) throws RemoteException {
+		this.rsl = rsl;
 	}
 	
 	public boolean insertarPelicula(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double descuento) {
