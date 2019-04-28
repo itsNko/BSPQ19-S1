@@ -2,7 +2,6 @@ package es.deusto.client.controllers;
 
 import java.rmi.RemoteException;
 
-import es.deusto.client.data.Socio;
 import es.deusto.client.remote.ServiceLocator;
 import es.deusto.server.dto.SocioDTO;
 
@@ -13,6 +12,7 @@ public class ControllerRecargarSaldo {
 	public ControllerRecargarSaldo() throws RemoteException {
 	}
 	
+	// Solo utilizar este constructor en los tests unitarios
 	public ControllerRecargarSaldo(ServiceLocator rsl) throws RemoteException {
 		this.rsl = rsl;
 	}
@@ -36,9 +36,5 @@ public class ControllerRecargarSaldo {
 			System.err.println("$ Error al actualizar monedero " + e.getMessage());
 			return false;
 		}
-	}
-
-	public void exit(){
-		System.exit(0);
 	}
 }

@@ -52,10 +52,6 @@ public class ControllerRegistro {
 		}
 	}
 
-	public void exit(){
-		System.exit(0);
-	}
-
 	public static void main(String[] args) throws RemoteException {    	
 		new ControllerRegistro(args);
 	}

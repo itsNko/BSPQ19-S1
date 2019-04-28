@@ -48,8 +48,4 @@ public class ControllerArticulos {
 			return false;
 		}
 	}
-	
-	public void exit(){
-		System.exit(0);
-	}
 }
