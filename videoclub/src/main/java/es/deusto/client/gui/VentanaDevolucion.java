@@ -7,13 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import es.deusto.client.data.Alquiler;
+import es.deusto.server.dto.AlquilerDTO;
 import es.deusto.server.dto.SocioDTO;
 
 
@@ -53,7 +54,7 @@ public class VentanaDevolucion extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaDevolucion(JFrame ventanaAnterior, final SocioDTO s) {
+	public VentanaDevolucion(JFrame ventanaAnterior,final SocioDTO s, final List<AlquilerDTO> alquileres) {
 		ventanaQueMeLlama = ventanaAnterior;
 
 		setTitle("Devolución de artículos");
@@ -122,10 +123,10 @@ public class VentanaDevolucion extends JFrame {
 		//		}
 
 		int distancia = 128;
-		for (int i = 0; i < s.getAlquileres().size(); i++) {
-			if(s.getAlquileres().get(i).isEnCurso()) {
+		for (int i = 0; i < alquileres.size(); i++) {
+			if(alquileres.get(i).isEnCurso()) {
 				JButton btnArticulo = new JButton();
-				final Alquiler a = s.getAlquileres().get(i);
+				final AlquilerDTO a = alquileres.get(i);
 				btnArticulo.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -136,7 +137,7 @@ public class VentanaDevolucion extends JFrame {
 				});
 				btnArticulo.setBounds(distancia, 200, 87, 120);
 				background.add(btnArticulo);
-				ImageIcon img1 = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+s.getAlquileres().get(i).getAlquilado().getCaratula());
+				ImageIcon img1 = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+alquileres.get(i).getAlquilado().getCaratula());
 
 				Image image = img1.getImage();
 				image = getScaledImage(image, 87, 120);

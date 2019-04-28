@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import es.deusto.client.data.Alquiler;
+import es.deusto.server.dto.AlquilerDTO;
 import es.deusto.server.dto.SocioDTO;
 
 import java.awt.Color;
@@ -55,7 +55,7 @@ public class VentanaConfirmacionDevolucion extends JFrame {
 		return resizedImg;
 	}
 
-	public VentanaConfirmacionDevolucion(JFrame ventanaAnterior, JFrame menSocio, final Alquiler a, final SocioDTO s) {
+	public VentanaConfirmacionDevolucion(JFrame ventanaAnterior, JFrame menSocio, final AlquilerDTO a, final SocioDTO s) {
 		ventanaQueMeLlama = ventanaAnterior;
 		menuSocio = menSocio;
 

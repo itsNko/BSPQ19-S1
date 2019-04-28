@@ -147,14 +147,14 @@ public class MenuSocio extends JFrame {
 		btnDevolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Devolver artículos");
-				if(!alquileresEnCurso(iniciado)) {
-					JOptionPane.showMessageDialog(null, "No tienes alquileres en curso :(", "Error", JOptionPane.ERROR_MESSAGE);
-				} else {
-					VentanaDevolucion vd = new VentanaDevolucion(MenuSocio.this, iniciado);
+				alquileres = controllerAlquileres.historialAlquileres(iniciado.getNombre());
+				if(!alquileres.isEmpty()) {
+					VentanaDevolucion vd = new VentanaDevolucion(MenuSocio.this, iniciado, alquileres);
 					vd.setVisible(true);
-					MenuSocio.this.setVisible(false);
+					MenuSocio.this.setVisible(false);	
+				} else {
+					JOptionPane.showMessageDialog(null, "No tienes ningún alquiler en esta cuenta.", "Error", JOptionPane.ERROR_MESSAGE);
 				}
-
 			}
 		});
 		btnDevolver.setBounds(490, 240, 170, 50);
@@ -272,18 +272,18 @@ public class MenuSocio extends JFrame {
 	//
 	//	}
 
-	private boolean alquileresEnCurso(final SocioDTO iniciado) {
-		boolean result = false;
-
-		for(int i = 0; i < iniciado.getAlquileres().size(); i++) {
-			if(iniciado.getAlquileres().get(i).isEnCurso()) {
-				result = true;
-			} 
-		}
-
-
-		return result;
-
-	}
+//	private boolean alquileresEnCurso(final SocioDTO iniciado) {
+//		boolean result = false;
+//
+//		for(int i = 0; i < iniciado.getAlquileres().size(); i++) {
+//			if(iniciado.getAlquileres().get(i).isEnCurso()) {
+//				result = true;
+//			} 
+//		}
+//
+//
+//		return result;
+//
+//	}
 
 }
