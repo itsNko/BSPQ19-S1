@@ -6,6 +6,7 @@ import java.util.List;
 
 import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
+import es.deusto.client.data.Pelicula;
 import es.deusto.server.dto.AlquilerDTO;
 import es.deusto.client.data.Socio;
 import es.deusto.server.dto.ArticuloDTO;
@@ -88,6 +89,8 @@ public class Server extends UnicastRemoteObject implements IServer {
 			return false;
 		}
 	}
+	
+	
 
 	@Override
 	public List<ArticuloDTO> listadoArticulos() throws RemoteException {
@@ -138,5 +141,18 @@ public class Server extends UnicastRemoteObject implements IServer {
 //		}
 //		return false;
 //	}
+
+	@Override
+	public boolean insertarPelicula(Pelicula pelicula) throws RemoteException {
+		try
+		{
+			return appService.insertarPelicula(pelicula);
+		}catch(Exception e)
+		{
+			System.err.println("$ Error al insertar película "+ e.getMessage());
+			
+		}
+		return false;
+	}
 
 }
