@@ -91,24 +91,12 @@ public class MySQL_DB implements IDAO {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		//persistentManager.getFetchPlan().setMaxFetchDepth(1);
 
-		transaction = persistentManager.currentTransaction();
-
 		boolean existe = false;
 		try {
-			System.out.println("* Retrieving an Extent for Socios.");
-
-			transaction.begin();
-			Extent<Socio> extent = persistentManager.getExtent(Socio.class, true);
-
-			for (Socio socio : extent) {
-				if(socio.getNombre().equals(nombreSocio)) {
-					existe = true;
-					break;
-				}
+			Socio socio = persistentManager.getObjectById(Socio.class, nombreSocio);
+			if(socio.getNombre().equals(nombreSocio)) {
+				existe = true;
 			}
-
-
-			transaction.commit();
 		} catch (Exception ex) {
 			System.out.println("$ Error retrieving an extent: " + ex.getMessage());
 		} finally {
@@ -126,25 +114,12 @@ public class MySQL_DB implements IDAO {
 	public Socio inicioSesion(String nombreSocio, String password) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 
-		transaction = persistentManager.currentTransaction();
-
 		Socio s = null;
 		try {
-			System.out.println("* Retrieving an Extent for Socios.");
-
-			transaction.begin();
-			Extent<Socio> extent = persistentManager.getExtent(Socio.class, true);
-
-			for (Socio socio : extent) {
-				if(socio.getNombre().equals(nombreSocio)) {
-					if(socio.getPassword().equals(password)) {
-						s = socio;
-						break;
-					}
-				}
+			Socio socio = persistentManager.getObjectById(Socio.class, nombreSocio);
+			if(socio.getPassword().equals(password)) {
+				s = socio;
 			}
-
-			transaction.commit();
 		} catch (Exception ex) {
 			System.out.println("$ Error retrieving an extent: " + ex.getMessage());
 		} finally {
@@ -266,8 +241,8 @@ public class MySQL_DB implements IDAO {
 		}
 		return false;
 	}
-	
-	
+
+
 	public boolean updateDescuento(String nombreArticulo, double descuento) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		transaction = persistentManager.currentTransaction();
@@ -302,7 +277,7 @@ public class MySQL_DB implements IDAO {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public List<Alquiler> selectAlquilerPorSocio(String nombreUsuario) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
@@ -375,7 +350,7 @@ public class MySQL_DB implements IDAO {
 
 			List<Alquiler> alquileres = new ArrayList<Alquiler>();
 			alquileres = socio.getAlquileres();
-			
+
 			if(!(alquileres.isEmpty() || alquileres == null)) {
 				for(Alquiler alq : alquileres) {
 					partes = alq.getNombreArticulo().split("-");
@@ -439,7 +414,7 @@ public class MySQL_DB implements IDAO {
 
 		return result;
 
-}
+	}
 
 	@Override
 	public boolean updatePrecio(String nombreArticulo, double precio) {
