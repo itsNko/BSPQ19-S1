@@ -70,25 +70,8 @@ public class VentanaDescuento extends JFrame {
 			btnJuego.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					
-					Calendar fecha = new GregorianCalendar();
-					fecha.add(Calendar.MONTH, 1);
-					
-					int año = fecha.get(Calendar.YEAR);
-			        int mes = fecha.get(Calendar.MONTH);
-			        int dia = fecha.get(Calendar.DAY_OF_MONTH);
-			        
-			        String fechaIni = "" + dia +"/" + mes + "/"+ año +"";
-			        
-			        fecha.add(Calendar.DAY_OF_YEAR, 10);
-			        
-			        int añoF = fecha.get(Calendar.YEAR);
-			        int mesF = fecha.get(Calendar.MONTH);
-			        int diaF = fecha.get(Calendar.DAY_OF_MONTH);
-			        String fechaFin = "" + diaF +"/" + mesF + "/"+ añoF +"";
-					Alquiler a = new Alquiler(a1, a1.getPrecio() , fechaIni ,  fechaFin, false, a1.getNombre());
 
-					VentanaConfigurarDescuento confirm = new VentanaConfigurarDescuento(VentanaAnterior, VentanaDescuento.this, a, a1);
+					VentanaConfigurarDescuento confirm = new VentanaConfigurarDescuento(VentanaAnterior, VentanaDescuento.this, a1);
 					confirm.setVisible(true);
 					setVisible(false);
 				}

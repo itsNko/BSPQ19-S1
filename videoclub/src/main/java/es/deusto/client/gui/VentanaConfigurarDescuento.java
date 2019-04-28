@@ -55,7 +55,7 @@ public class VentanaConfigurarDescuento extends JFrame {
 		return resizedImg;
 	}
 	
-	public VentanaConfigurarDescuento(final JFrame MenuSocio, JFrame ventanaAnterior, final Alquiler a,Articulo a1) {
+	public VentanaConfigurarDescuento(final JFrame MenuSocio, JFrame ventanaAnterior,Articulo a1) {
 		ventanaQueMeLlama = ventanaAnterior;
 
 		try {
@@ -86,7 +86,7 @@ public class VentanaConfigurarDescuento extends JFrame {
 
 
 		JLabel imagen;
-		ImageIcon imge = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+a.getAlquilado().getCaratula());
+		ImageIcon imge = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+a1.getCaratula());
 		Image imgen = imge.getImage();
 		imgen = getScaledImage(imgen, 200, 270);
 		ImageIcon finalImgen = new ImageIcon(imgen);
@@ -102,7 +102,7 @@ public class VentanaConfigurarDescuento extends JFrame {
 		lblArtculo.setForeground(Color.WHITE);;
 		background.add(lblArtculo);
 
-		JLabel label = new JLabel("" + a.getAlquilado().getNombre());
+		JLabel label = new JLabel("" + a1.getNombre());
 		label.setBounds(540,70,500,150);
 		label.setFont(new Font("Times New Roman", Font.BOLD, 22));
 		label.setForeground(Color.WHITE);
@@ -114,33 +114,11 @@ public class VentanaConfigurarDescuento extends JFrame {
 		lblPrecio.setForeground(Color.WHITE);
 		background.add(lblPrecio);
 
-		JLabel label_1 = new JLabel("" + a.getCoste() + "€");
+		JLabel label_1 = new JLabel("" + a1.getPrecio() + "€");
 		label_1.setBounds(530,120,500,150);
 		label_1.setFont(new Font("Times New Roman", Font.BOLD, 22));
 		label_1.setForeground(Color.WHITE);
 		background.add(label_1);
-
-		JLabel lblFechaDevolucin = new JLabel("Fecha devolución: ");
-		lblFechaDevolucin.setBounds(450,170,300,150);
-		lblFechaDevolucin.setFont(new Font("Times New Roman", Font.BOLD, 22));
-		lblFechaDevolucin.setForeground(Color.WHITE);;
-		background.add(lblFechaDevolucin);
-
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setBounds(630,235,150,20);
-		background.add(comboBox);
-
-		Date date = new Date();
-		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-
-		for (int i = 0;i<8;i++) {
-
-			LocalDate newDate = localDate.plusDays(i+1);
-			String str = newDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-			comboBox.addItem(str);
-
-		}
 
 		//String itemSeleccionado = null;
 
@@ -161,7 +139,7 @@ public class VentanaConfigurarDescuento extends JFrame {
 		lblDescuento.setForeground(Color.WHITE);
 		background.add(lblDescuento);
 
-		JTextField txtAñadirDescuento = new JTextField("0");
+		JTextField txtAñadirDescuento = new JTextField("" + a1.getDescuento());
 		txtAñadirDescuento.setBounds(560,285,300,25);
 		txtAñadirDescuento.setFont(new Font("Times New Roman", Font.BOLD, 22));
 		background.add(txtAñadirDescuento);
@@ -173,9 +151,9 @@ public class VentanaConfigurarDescuento extends JFrame {
 //		lblPrecioDescontado.setForeground(Color.WHITE);
 //		background.add(lblPrecioDescontado);		
 //
-		String descuento = txtAñadirDescuento.getText();
-		double descuento1 = Double.parseDouble(descuento);
-		double preciofinal = a.getCoste() - ((a.getCoste()/100) * descuento1);
+
+		double descuento = a1.getDescuento();
+		double preciofinal = a1.getPrecio() - ((a1.getPrecio()* descuento)/100);
 //
 //		JLabel lblResultado = new JLabel("" +  (a.getCoste() - ((a.getCoste()/100) * descuento1)) + "€" );
 //		lblResultado.setBounds(720,270,500,150);
@@ -190,25 +168,25 @@ public class VentanaConfigurarDescuento extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-		            Double.parseDouble(descuento);
+		            Double.parseDouble(txtAñadirDescuento.getText());
 		        } catch (NumberFormatException excepcion) {
 		        	JOptionPane.showMessageDialog(null, "Error esto no es un porcentaje valido",
 							"Coloque un valor del 0-100", JOptionPane.ERROR_MESSAGE);
 		        	repaint();
 		        }
 				
-				if(descuento1 > 100) {
+				if(descuento > 100) {
 					JOptionPane.showMessageDialog(null, "El descuento sobrepasa los limites",
 							"Descuento superior al 100%", JOptionPane.ERROR_MESSAGE);
 					MenuSocio.setVisible(true);
 					VentanaConfigurarDescuento.this.dispose();
 				} else {
-					int eleccion = JOptionPane.showConfirmDialog(null, "El precio final del producto será:"+ preciofinal +"¿Esta seguro?");
+					int eleccion = JOptionPane.showConfirmDialog(null, "El precio final del producto será: "+ preciofinal +" ¿Esta seguro?");
 					if(eleccion == 0) {
 						//update descuento y precio
 						System.out.println("updateDescuento");
 						System.out.println("updatePrecio");
-						controllerArticulos.updateDescuento(a1.getNombre(), descuento1);
+						controllerArticulos.updateDescuento(a1.getNombre(), descuento);
 						controllerArticulos.updatePrecio(a1.getNombre(), preciofinal);
 						
 //						Videojuego v;
