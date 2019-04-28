@@ -16,6 +16,10 @@ public class ControllerAlquiler {
 
 	public ControllerAlquiler() throws RemoteException {
 	}
+	
+	public ControllerAlquiler(ServiceLocator rsl) throws RemoteException {
+		this.rsl = rsl;
+	}
 
 	public boolean insertarAlquiler(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double coste, String nombreUsuario, boolean pv, String fechaFin, String fechaInicio, double descuento) {
 		boolean correcto;
