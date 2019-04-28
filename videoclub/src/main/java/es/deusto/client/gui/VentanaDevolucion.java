@@ -54,7 +54,7 @@ public class VentanaDevolucion extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaDevolucion(JFrame ventanaAnterior,final SocioDTO s, final List<AlquilerDTO> alquileres) {
+	public VentanaDevolucion(JFrame ventanaAnterior,String nombreUsuario, final List<AlquilerDTO> alquileres) {
 		ventanaQueMeLlama = ventanaAnterior;
 
 		setTitle("Devolución de artículos");
@@ -130,7 +130,7 @@ public class VentanaDevolucion extends JFrame {
 				btnArticulo.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						VentanaConfirmacionDevolucion vcd = new VentanaConfirmacionDevolucion(VentanaDevolucion.this, ventanaQueMeLlama, a, s);
+						VentanaConfirmacionDevolucion vcd = new VentanaConfirmacionDevolucion(VentanaDevolucion.this, ventanaQueMeLlama, a, nombreUsuario);
 						vcd.setVisible(true);
 						VentanaDevolucion.this.setVisible(false);
 					}

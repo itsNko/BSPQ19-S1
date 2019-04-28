@@ -417,6 +417,40 @@ public class MySQL_DB implements IDAO {
 	}
 
 	@Override
+	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo) {
+		persistentManager = persistentManagerFactory.getPersistenceManager();
+		transaction = persistentManager.currentTransaction();
+		try {
+			transaction.begin();
+
+			Extent<Socio> extentSocios = persistentManager.getExtent(Socio.class, true);
+			for(Socio s: extentSocios)
+			{
+				if(s.getNombre().equals(nombreUsuario))
+				{
+					for(Alquiler a: s.getAlquileres())
+					{
+						if(a.getAlquilado().getNombre().equals(nombreArticulo))
+						{
+							a.setEnCurso(false);
+							transaction.commit();
+							return true;
+						}
+					}
+				}
+				
+			}
+			
+			
+			
+		} catch (Exception ex) {
+			System.err.println("* Exception: " + ex.getMessage());
+			return false;
+		}
+		return false;
+
+	}
+	@Override
 	public boolean updatePrecio(String nombreArticulo, double precio) {
 
 		persistentManager = persistentManagerFactory.getPersistenceManager();

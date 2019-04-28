@@ -18,8 +18,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import es.deusto.client.controllers.ControllerConfirmacionDevolucion;
 import es.deusto.server.dto.AlquilerDTO;
-import es.deusto.server.dto.SocioDTO;
 
 import java.awt.Color;
 
@@ -29,6 +29,7 @@ public class VentanaConfirmacionDevolucion extends JFrame {
 	private JPanel contentPane;
 	private JFrame ventanaQueMeLlama;
 	private JFrame menuSocio;
+	private ControllerConfirmacionDevolucion controllerConfirmacionDevolucion;
 
 
 	//	public static void main(String[] args) {
@@ -55,9 +56,14 @@ public class VentanaConfirmacionDevolucion extends JFrame {
 		return resizedImg;
 	}
 
-	public VentanaConfirmacionDevolucion(JFrame ventanaAnterior, JFrame menSocio, final AlquilerDTO a, final SocioDTO s) {
+	public VentanaConfirmacionDevolucion(JFrame ventanaAnterior, JFrame menSocio, final AlquilerDTO a, String nombreUsuario) {
 		ventanaQueMeLlama = ventanaAnterior;
 		menuSocio = menSocio;
+		try {
+			this.controllerConfirmacionDevolucion = new ControllerConfirmacionDevolucion();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		setResizable(false);
 		setTitle("Confirmación");
@@ -133,17 +139,12 @@ public class VentanaConfirmacionDevolucion extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int result = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres devolver el artículo seleccionado?");
 				if(result == 0) {
-					for(int i = 0; i < s.getAlquileres().size(); i++) {
-						if(s.getAlquileres().get(i).equals(a)) {
-							s.getAlquileres().get(i).setEnCurso(false);
-							break;
-						}
+					controllerConfirmacionDevolucion.devolverAlquiler(nombreUsuario, a.getAlquilado().getNombre());
 					}
 					
 					JOptionPane.showMessageDialog(null, "Se ha devuelto el árticulo correctamente!", "Devolución exitosa", JOptionPane.INFORMATION_MESSAGE);
 					menuSocio.setVisible(true);
 					VentanaConfirmacionDevolucion.this.dispose();
-				} 
 
 			}
 		});
