@@ -8,9 +8,13 @@ import es.deusto.server.dto.SocioDTO;
 
 public class ControllerRecargarSaldo {
 	
-	private static ServiceLocator rsl = ControllerRegistro.getRsl();
+	private ServiceLocator rsl = ControllerRegistro.getRsl();
 
 	public ControllerRecargarSaldo() throws RemoteException {
+	}
+	
+	public ControllerRecargarSaldo(ServiceLocator rsl) throws RemoteException {
+		this.rsl = rsl;
 	}
 	
 	public SocioDTO selectSocio(String nombreUsuario) {
