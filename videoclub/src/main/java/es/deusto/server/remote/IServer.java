@@ -29,7 +29,7 @@ public interface IServer extends Remote {
 
 	public boolean updateDescuento(String nombreArticulo, double monedero) throws RemoteException;
 
-	public boolean insertarPelicula(Pelicula pelicula) throws RemoteException;
+	public boolean insertarPelicula(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double descuento) throws RemoteException;
 	
 	public boolean updatePrecio(String nombreArticulo, double precio) throws RemoteException;
 	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo) throws RemoteException;

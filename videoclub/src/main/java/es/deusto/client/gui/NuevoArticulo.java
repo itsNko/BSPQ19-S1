@@ -203,12 +203,12 @@ public class NuevoArticulo extends JFrame {
 					String caratula = textField_1.getText();
 					double precio = Double.parseDouble(textField_2.getText());
 					double puntuacion = Double.parseDouble(textField_3.getText());
-					String sinpsis = textField_4.getText();
-					String fechaEstreno = textField_5.getText();
+					String sinopsis = textField_4.getText();
+					String fecha_estr = textField_5.getText();
 					String genero = (String) comboBox.getSelectedItem();
-					Pelicula p1 = new Pelicula(nombre, precio, sinpsis, genero, fechaEstreno, puntuacion, caratula, 0);
 					
-					controllerArticulos.insertarPelicula(p1);
+					
+					controllerArticulos.insertarPelicula(nombre, precio, sinopsis, genero, fecha_estr, puntuacion, caratula, 0);
 					
 					
 				}

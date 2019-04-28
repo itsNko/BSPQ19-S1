@@ -143,10 +143,10 @@ public class Server extends UnicastRemoteObject implements IServer {
 	}
 
 	@Override
-	public boolean insertarPelicula(Pelicula pelicula) throws RemoteException {
+	public boolean insertarPelicula(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double descuento) throws RemoteException {
 		try
 		{
-			return appService.insertarPelicula(pelicula);
+			return appService.insertarPelicula(nombre, precio, sinopsis, genero, fecha_estr, puntuacion, caratula, descuento);
 		}catch(Exception e)
 		{
 			System.err.println("$ Error al insertar película "+ e.getMessage());

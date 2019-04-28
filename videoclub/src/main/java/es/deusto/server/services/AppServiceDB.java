@@ -86,9 +86,9 @@ public class AppServiceDB {
 		return db.updateMonedero(nombreArticulo, descuento);
 	}
 
-	public boolean insertarPelicula(Pelicula pelicula) {
-		
-		return db.insertarPelicula(pelicula);
+	public boolean insertarPelicula(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double descuento) {
+		Pelicula p1 = new Pelicula(nombre, precio, sinopsis, genero, fecha_estr, puntuacion, caratula, descuento);
+		return db.insertarPelicula(p1);
 	}
 
 	public boolean updatePrecio(String nombreArticulo, double precio) {

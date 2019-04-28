@@ -13,11 +13,11 @@ public class ControllerArticulos {
 	public ControllerArticulos() throws RemoteException {
 	}
 	
-	public boolean insertarPelicula(Pelicula pelicula) {
+	public boolean insertarPelicula(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double descuento) {
 		boolean correcto;
 		try {
 			System.out.println("###ControllerArticulos: ServiceLocator.getService().insertarPelicula###");
-			correcto = rsl.getService().insertarPelicula(pelicula);
+			correcto = rsl.getService().insertarPelicula(nombre, precio, sinopsis, genero, fecha_estr, puntuacion, caratula, descuento);
 			System.out.println("###ControllerAlquiler: Se ha insertado alquiler correctamente###");
 
 			return correcto;
