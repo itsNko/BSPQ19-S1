@@ -6,16 +6,15 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,19 +26,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import es.deusto.client.controllers.ControllerAlquiler;
 import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Pelicula;
 import es.deusto.client.data.Videojuego;
-import es.deusto.server.dto.ArticuloDTO;
-import es.deusto.server.dto.SocioDTO;
 
 public class VentanaConfigurarDescuento extends JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFrame ventanaQueMeLlama;
-	private ControllerAlquiler controllerAlquiler;
 	
 	private Image getScaledImage(Image srcImg, int w, int h){
 		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
@@ -55,11 +54,7 @@ public class VentanaConfigurarDescuento extends JFrame {
 	public VentanaConfigurarDescuento(final JFrame MenuSocio, JFrame ventanaAnterior, final Alquiler a,Articulo a1) {
 		ventanaQueMeLlama = ventanaAnterior;
 
-		try {
-			controllerAlquiler = new ControllerAlquiler();
-		} catch (RemoteException e1) {
-			e1.printStackTrace();
-		}
+		
 		
 		setResizable(false);
 		setTitle("Confirmación de descuento");
@@ -123,13 +118,12 @@ public class VentanaConfigurarDescuento extends JFrame {
 		lblFechaDevolucin.setForeground(Color.WHITE);;
 		background.add(lblFechaDevolucin);
 
-		JComboBox comboBox = new JComboBox<String>();
-		comboBox.setBounds(630,170,150,150);
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setBounds(630,235,150,20);
 		background.add(comboBox);
 
 		Date date = new Date();
 		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		String fechaInicio = localDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
 
 		for (int i = 0;i<8;i++) {
@@ -159,33 +153,42 @@ public class VentanaConfigurarDescuento extends JFrame {
 		lblDescuento.setForeground(Color.WHITE);
 		background.add(lblDescuento);
 
-		JTextField txtAñadirDescuento = new JTextField("Añada aqui el porcentaje de descuento");
-		txtAñadirDescuento.setBounds(560,220,500,150);
+		JTextField txtAñadirDescuento = new JTextField("0");
+		txtAñadirDescuento.setBounds(560,285,300,25);
 		txtAñadirDescuento.setFont(new Font("Times New Roman", Font.BOLD, 22));
-		txtAñadirDescuento.setForeground(Color.WHITE);;
 		background.add(txtAñadirDescuento);
 
 
-		JLabel lblSaldo = new JLabel("Precio tras el descuento: ");
-		lblSaldo.setBounds(450,270,300,150);
-		lblSaldo.setFont(new Font("Times New Roman", Font.BOLD, 22));
-		lblSaldo.setForeground(Color.WHITE);
-		background.add(lblSaldo);		
-
-
-		JLabel label_4 = new JLabel("" +  (a.getCoste() - ((a.getCoste()/100) * Integer.parseInt(txtAñadirDescuento.getText()))) + "€" );
-		label_4.setBounds(600,270,500,150);
-		label_4.setFont(new Font("Times New Roman", Font.BOLD, 22));
-		label_4.setForeground(Color.WHITE);;
-		background.add(label_4);
+//		JLabel lblPrecioDescontado = new JLabel("Precio tras el descuento: ");
+//		lblPrecioDescontado.setBounds(450,270,300,150);
+//		lblPrecioDescontado.setFont(new Font("Times New Roman", Font.BOLD, 22));
+//		lblPrecioDescontado.setForeground(Color.WHITE);
+//		background.add(lblPrecioDescontado);		
+//
+		String descuento = txtAñadirDescuento.getText();
+		double descuento1 = Double.parseDouble(descuento);
+//
+//		JLabel lblResultado = new JLabel("" +  (a.getCoste() - ((a.getCoste()/100) * descuento1)) + "€" );
+//		lblResultado.setBounds(720,270,500,150);
+//		lblResultado.setFont(new Font("Times New Roman", Font.BOLD, 22));
+//		lblResultado.setForeground(Color.WHITE);;
+//		background.add(lblResultado);
 
 
 		JButton bConfirmar = new JButton("");
-		bConfirmar.addActionListener(new ActionListener() {
+		bConfirmar.addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String fechaFin = (String) comboBox.getSelectedItem();
-				if(a1.getDescuento() > 100) {
+				
+				try {
+		            Double.parseDouble(descuento);
+		        } catch (NumberFormatException excepcion) {
+		        	JOptionPane.showMessageDialog(null, "Error esto no es un porcentaje valido",
+							"Coloque un valor del 0-100", JOptionPane.ERROR_MESSAGE);
+		        	repaint();
+		        }
+				
+				if(descuento1 > 100) {
 					JOptionPane.showMessageDialog(null, "El descuento sobrepasa los limites",
 							"Descuento superior al 100%", JOptionPane.ERROR_MESSAGE);
 					MenuSocio.setVisible(true);
@@ -194,10 +197,10 @@ public class VentanaConfigurarDescuento extends JFrame {
 					int eleccion = JOptionPane.showConfirmDialog(null, "¿Esta seguro?");
 					if(eleccion == 0) {
 						//update monedero
-						System.out.println("updateMonedero");
+						System.out.println("updateDescuento");
 						//controllerAlquiler.updateMonedero(nombreUsuario, controllerAlquiler.selectSocio(nombreUsuario).getMonedero()-a.getCoste());
 						//s1.setMonedero(s1.getMonedero() - a.getCoste());
-						System.out.println("insertarAlquiler");
+						System.out.println("insertarDescuento");
 						Videojuego v;
 						Pelicula p;
 						boolean pv;

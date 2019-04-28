@@ -266,7 +266,43 @@ public class MySQL_DB implements IDAO {
 		}
 		return false;
 	}
-
+	
+//	
+//	public boolean updateDescuento(String nombreArticulo, double descuento) {
+//		persistentManager = persistentManagerFactory.getPersistenceManager();
+//		transaction = persistentManager.currentTransaction();
+//
+//		try {
+//			transaction.begin();
+//
+//			Extent<Articulo> e = persistentManager.getExtent(Articulo.class, true);
+//			Iterator<Articulo> iter = e.iterator();
+//			while (iter.hasNext()) 
+//			{
+//				Articulo s = (Articulo)iter.next();
+//				if (s.getNombre().equals(nombreArticulo))
+//				{
+//					System.out.println("- Data modified: " + s.getDescuento() +" -> "+descuento);
+//					s.setDescuento(descuento);
+//					transaction.commit();
+//					return true;
+//				}
+//			}
+//
+//
+//		} catch(Exception ex) {
+//			System.err.println("* Exception executing a query: " + ex.getMessage());
+//			return false;
+//		} finally {
+//			if (transaction.isActive()) {
+//				transaction.rollback();
+//			}
+//
+//			persistentManager.close();
+//		}
+//		return false;
+//	}
+//	
 	@Override
 	public List<Alquiler> selectAlquilerPorSocio(String nombreUsuario) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();

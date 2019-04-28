@@ -24,4 +24,6 @@ public interface IServer extends Remote {
 	public List<ArticuloDTO> listadoArticulos() throws RemoteException;
 	public SocioDTO selectSocio(String nombreUsuario) throws RemoteException;
 	public boolean updateMonedero(String nombreUsuario, double monedero) throws RemoteException;
+	
+	//public boolean updateDescuento(String nombreArticulo, double monedero) throws RemoteException;
 }
