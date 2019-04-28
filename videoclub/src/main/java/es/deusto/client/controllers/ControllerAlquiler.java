@@ -65,10 +65,5 @@ public class ControllerAlquiler {
 			return false;
 		}
 	}
-	
-
-	public void exit(){
-		System.exit(0);
-	}
 
 }

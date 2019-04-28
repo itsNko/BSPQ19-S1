@@ -21,9 +21,4 @@ public class ControllerListadoArticulos {
 			return null;
 		}
 	}
-
-	public void exit(){
-		System.exit(0);
-	}
-
 }
