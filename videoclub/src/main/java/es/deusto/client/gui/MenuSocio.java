@@ -149,7 +149,7 @@ public class MenuSocio extends JFrame {
 				System.out.println("Devolver artículos");
 				alquileres = controllerAlquileres.historialAlquileres(iniciado.getNombre());
 				if(!alquileres.isEmpty()) {
-					VentanaDevolucion vd = new VentanaDevolucion(MenuSocio.this, iniciado, alquileres);
+					VentanaDevolucion vd = new VentanaDevolucion(MenuSocio.this, iniciado.getNombre(), alquileres);
 					vd.setVisible(true);
 					MenuSocio.this.setVisible(false);	
 				} else {
