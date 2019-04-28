@@ -29,6 +29,16 @@ public class ControllerArticulos {
 
 }
 	
+	public boolean updateDescuento(String nombreArticulo, double descuento) {
+		try {
+			System.out.println("###ControllerRecargarSaldo: ServiceLocator.getService().updateMonedero###");
+			return rsl.getService().updateMonedero(nombreArticulo, descuento);
+		}catch(Exception e) {
+			System.err.println("$ Error al actualizar monedero " + e.getMessage());
+			return false;
+		}
+	}
+	
 	public void exit(){
 		System.exit(0);
 	}
