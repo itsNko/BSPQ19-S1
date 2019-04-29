@@ -122,7 +122,21 @@ public class MySQL_DBTest {
 
 		assertTrue(igual);
 	}
+	
+	@Test
+	public void testUpdatePrecio() {
+		double precio = 3;
+		assertTrue(db.updatePrecio(art1.getNombre(), precio));
 
+	}
+
+	@Test
+	public void testUpdateDescuento() {
+		double descuento = 20;
+		assertTrue(db.updateDescuento(art1.getNombre(), descuento));
+
+	}
+	
 	//	public void testListadoArticulosMal() {
 	//	}
 
