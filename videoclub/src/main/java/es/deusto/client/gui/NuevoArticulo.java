@@ -13,6 +13,7 @@ import java.rmi.RemoteException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import es.deusto.client.controllers.ControllerAlquiler;
 import es.deusto.client.controllers.ControllerArticulos;
@@ -36,6 +37,14 @@ public class NuevoArticulo extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private ControllerArticulos controllerArticulos;
+	
+	String nombre;
+	String caratula;
+	double precio;
+	double puntuacion;
+	String sinopsis;
+	String fecha_estr;
+	String genero;
 
 	/**
 	 * Launch the application.
@@ -206,29 +215,34 @@ public class NuevoArticulo extends JFrame {
 		btnAadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(rdbtnPelcula.isSelected()) {
-					String nombre = textField.getText();
-					String caratula = textField_1.getText();
-					double precio = Double.parseDouble(textField_2.getText());
-					double puntuacion = Double.parseDouble(textField_3.getText());
-					String sinopsis = textField_4.getText();
-					String fecha_estr = textField_5.getText();
-					String genero = (String) comboBox.getSelectedItem();
+					nombre = textField.getText();
+					caratula = textField_1.getText();
+					precio = Double.parseDouble(textField_2.getText());
+					puntuacion = Double.parseDouble(textField_3.getText());
+					sinopsis = textField_4.getText();
+					fecha_estr = textField_5.getText();
+					genero = (String) comboBox.getSelectedItem();
 					
-					System.out.println(nombre);
-					System.out.println(caratula);
-					System.out.println(precio);
-					System.out.println(puntuacion);
-					System.out.println(sinopsis);
-					System.out.println(fecha_estr);
-					System.out.println(genero);
 					
 					controllerArticulos.insertarPelicula(nombre, precio, sinopsis, genero, fecha_estr, puntuacion, caratula, 0);
+					JOptionPane.showMessageDialog(null, "Película añadida correctamente",
+							"OK", JOptionPane.OK_OPTION);
+					
+				} else if (rdbtnVideojuego.isSelected()){
+					nombre = textField.getText();
+					caratula = textField_1.getText();
+					precio = Double.parseDouble(textField_2.getText());
+					puntuacion = Double.parseDouble(textField_3.getText());
+					sinopsis = textField_4.getText();
+					fecha_estr = textField_5.getText();
+					genero = (String) comboBox.getSelectedItem();
 					
 					
-					
-					
+					controllerArticulos.insertarVideojuego(nombre, precio, sinopsis, genero, fecha_estr, puntuacion, caratula, 0);
+					JOptionPane.showMessageDialog(null, "Videojuego añadido correctamente",
+							"OK", JOptionPane.OK_OPTION);
+					}
 				}
-			}
 		});
 		btnAadir.setBounds(590, 232, 117, 29);
 		background.add(btnAadir);

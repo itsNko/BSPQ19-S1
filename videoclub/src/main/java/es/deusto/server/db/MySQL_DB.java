@@ -415,6 +415,37 @@ public class MySQL_DB implements IDAO {
 		return result;
 
 	}
+	
+	@Override
+	public boolean insertarVideojuego(Videojuego videojuego) {
+		System.out.println(videojuego.getNombre());
+		boolean result = false;
+		try {
+			persistentManager = persistentManagerFactory.getPersistenceManager();
+			transaction = persistentManager.currentTransaction();
+			transaction.begin();
+
+			persistentManager.makePersistent(videojuego);
+
+			System.out.println("- Inserted into db: " + videojuego.getNombre());
+
+			transaction.commit();
+
+			result = true;
+		} catch(Exception ex) {
+			System.err.println("* Exception inserting data into db: " + ex.getMessage());
+		} finally {		    
+			if (transaction.isActive()) {
+				transaction.rollback(); // Deshace los cambios en caso de que ocurra algún error
+			}
+
+
+			persistentManager.close();
+		}
+
+		return result;
+
+	}
 
 	@Override
 	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo) {
@@ -486,4 +517,6 @@ public class MySQL_DB implements IDAO {
 		}
 		return false;
 	}
+
+	
 }

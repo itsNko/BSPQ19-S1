@@ -155,6 +155,19 @@ public class Server extends UnicastRemoteObject implements IServer {
 		}
 		return false;
 	}
+	
+	@Override
+	public boolean insertarVideojuego(String nombre, double precio, String descripcion, String categoria, String fecha_lanz, double puntuacion, String caratula, double descuento) throws RemoteException {
+		try
+		{
+			return appService.insertarVideojuego(nombre, precio, descripcion, categoria, fecha_lanz, puntuacion, caratula, descuento);
+		}catch(Exception e)
+		{
+			System.err.println("$ Error al insertar videojuego "+ e.getMessage());
+			
+		}
+		return false;
+	}
 
 	@Override
 	public boolean updatePrecio(String nombreArticulo, double precio) throws RemoteException {

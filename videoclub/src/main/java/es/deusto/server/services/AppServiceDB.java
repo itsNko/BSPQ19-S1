@@ -90,6 +90,11 @@ public class AppServiceDB {
 		Pelicula p1 = new Pelicula(nombre, precio, sinopsis, genero, fecha_estr, puntuacion, caratula, descuento);
 		return db.insertarPelicula(p1);
 	}
+	
+	public boolean insertarVideojuego(String nombre, double precio, String descripcion, String categoria, String fecha_lanz, double puntuacion, String caratula, double descuento) {
+		Videojuego v1 = new Videojuego(nombre, precio, descripcion, categoria, fecha_lanz, puntuacion, caratula, descuento);
+		return db.insertarVideojuego(v1);
+	}
 
 	public boolean updatePrecio(String nombreArticulo, double precio) {
 		return db.updatePrecio(nombreArticulo, precio);
@@ -97,5 +102,7 @@ public class AppServiceDB {
 	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo) {
 		return db.devolverAlquiler(nombreUsuario, nombreArticulo);
 	}
+
+	
 
 }

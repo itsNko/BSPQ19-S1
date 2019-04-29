@@ -6,6 +6,7 @@ import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Pelicula;
 import es.deusto.client.data.Socio;
+import es.deusto.client.data.Videojuego;
 
 public interface IDAO {
 
@@ -15,6 +16,7 @@ public interface IDAO {
 	public Socio inicioSesion(String nombreSocio, String password);
 	public boolean insertarAlquiler(Alquiler alquiler, String nombreUsuario);
 	public boolean insertarPelicula(Pelicula pelicula);
+	public boolean insertarVideojuego(Videojuego videojuego);
 	
 	public List<Articulo> listadoArticulos();
 	public Socio selectSocio(String nombreUsuario);
@@ -25,5 +27,6 @@ public interface IDAO {
 	
 	public boolean updatePrecio(String nombreArticulo, double precio);
 	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo);
+
 	
 }

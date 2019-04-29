@@ -32,6 +32,22 @@ public class ControllerArticulos {
 
 }
 	
+	public boolean insertarVideojuego(String nombre, double precio, String descripcion, String categoria, String fecha_lanz, double puntuacion, String caratula, double descuento) {
+		boolean correcto;
+		try {
+			System.out.println("###ControllerArticulos: ServiceLocator.getService().insertarVideojuego###");
+			correcto = rsl.getService().insertarVideojuego(nombre, precio, descripcion, categoria, fecha_lanz, puntuacion, caratula, descuento);
+			System.out.println("###ControllerAlquiler: Se ha insertado el videojuego correctamente###");
+
+			return correcto;
+		}catch(Exception e) {
+			System.err.println("$ Error al insertar videojuego " + e.getMessage());
+			return false;
+
+		}
+
+}
+	
 	public boolean updateDescuento(String nombreArticulo, double descuento) {
 		try {
 			System.out.println("###ControllerArticulos: ServiceLocator.getService().updateDescuento###");
