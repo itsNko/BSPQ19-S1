@@ -16,6 +16,9 @@ public class ControllerRegistro {
 		System.out.println("###ControllerRegistro: Constructor --> ServiceLocator.setService()###");
 		rsl.setService(args[0], args[1], args[2]);
 	}
+	
+	public ControllerRegistro() throws RemoteException{
+	}
 
 	public boolean registro(String nombre, String pass, double monedero) {
 		boolean b;

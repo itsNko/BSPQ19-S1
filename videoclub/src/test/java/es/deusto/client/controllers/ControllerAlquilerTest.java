@@ -6,6 +6,9 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
@@ -56,7 +59,16 @@ public class ControllerAlquilerTest {
 	}
 
 	@Test
-	public void insertarAlquilerTest() {
+	public void constructorTest() {
+		try {
+			assertNotNull(new ControllerAlquiler());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void insertarAlquilerBienTest() {
 		try {
 			crs = new ControllerAlquiler(rsl);
 			
@@ -68,9 +80,25 @@ public class ControllerAlquilerTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void insertarAlquilerMalTest() {
+		try {
+			crs = new ControllerAlquiler(rsl);
+			
+			when(rsl.getService()).thenReturn(server);
+			when(rsl.getService().insertarAlquiler(nombre, precio, sinopsis, genero, fecha_estr, puntuacion, caratula, coste, nombreUsuario, pv, fechaFin, fechaInicio, descuento)).thenThrow(RemoteException.class);
+			
+			
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		assertFalse(crs.insertarAlquiler(nombre, precio, sinopsis, genero, fecha_estr, puntuacion, caratula, coste, nombreUsuario, pv, fechaFin, fechaInicio, descuento));
+	}
 		
 	@Test
-	public void selectSocioTest() {
+	public void selectSocioBienTest() {
 		try {
 			crs = new ControllerAlquiler(rsl);
 			
@@ -84,7 +112,30 @@ public class ControllerAlquilerTest {
 	}
 	
 	@Test
-	public void historialAlquileresTest() {
+	public void selectSocioMalTest() {
+		try {
+			crs = new ControllerAlquiler(rsl);
+			when(rsl.getService()).thenReturn(server);
+			when(rsl.getService().selectSocio(s.getNombre())).thenThrow(RemoteException.class);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		SocioDTO devuelto = crs.selectSocio(s.getNombre());
+		SocioDTO vacio = new SocioDTO("", "", 0, "");
+		
+		boolean igual = false;
+		if(devuelto.getNombre().equals(vacio.getNombre()) && devuelto.getPassword().equals(vacio.getPassword())
+				&& devuelto.getMonedero() == vacio.getMonedero() && devuelto.getImagen().equals(vacio.getImagen())) {
+			igual = true;
+		}
+
+		assertTrue(igual);
+
+	}
+	
+	@Test
+	public void historialAlquileresBienTest() {
 		try {
 			crs = new ControllerAlquiler(rsl);
 			
@@ -98,7 +149,22 @@ public class ControllerAlquilerTest {
 	}
 	
 	@Test
-	public void updateMonederoTest() {
+	public void historialAlquileresMalTest() {
+		try {
+			crs = new ControllerAlquiler(rsl);
+			
+			when(rsl.getService()).thenReturn(server);
+			when(rsl.getService().historialAlquileres(nombreUsuario)).thenThrow(RemoteException.class);
+
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		assertNull(crs.historialAlquileres(nombreUsuario));
+	}
+	
+	@Test
+	public void updateMonederoBienTest() {
 		try {
 			crs = new ControllerAlquiler(rsl);
 			
@@ -109,5 +175,20 @@ public class ControllerAlquilerTest {
 		}catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void updateMonederoMalTest() {
+		try {
+			crs = new ControllerAlquiler(rsl);
+			
+			when(rsl.getService()).thenReturn(server);
+			when(rsl.getService().updateMonedero(nombreUsuario, monedero)).thenThrow(RemoteException.class);
+			
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		assertFalse(crs.updateMonedero(nombreUsuario, monedero));
 	}
 }

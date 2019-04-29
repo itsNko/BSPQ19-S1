@@ -8,7 +8,10 @@ public class ControllerConfirmacionDevolucion {
 
 	private ServiceLocator rsl = ControllerRegistro.getRsl();
 
-	public void ControllerConfirmacionDevoluvcion() throws RemoteException {
+	public ControllerConfirmacionDevolucion() throws RemoteException {
+	}
+	public ControllerConfirmacionDevolucion(ServiceLocator rsl) throws RemoteException {
+		this.rsl = rsl;
 	}
 
 	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo) {
