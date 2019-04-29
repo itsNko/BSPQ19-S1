@@ -4,14 +4,24 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 
+import org.databene.contiperf.PerfTest;
+import org.databene.contiperf.Required;
+import org.databene.contiperf.junit.ContiPerfRule;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+
+import junit.framework.JUnit4TestAdapter;
 
 public class SocioTest {
 
 	private Socio s;
 	private ArrayList<Alquiler> alquileres;
+	
+	public static junit.framework.Test suite() {
+		return new JUnit4TestAdapter(SocioTest.class);
+	}
 	
 	@Before
 	public void setUp() { 
@@ -22,7 +32,11 @@ public class SocioTest {
 		s.setAlquileres(alquileres);
 	}
 	
-	@Test
+	@Rule 
+	public ContiPerfRule i = new ContiPerfRule();
+	@Test 
+    @PerfTest(invocations = 100, threads = 5)
+	@Required(max = 1500, average = 1000, throughput = 5)
 	public void testGetNombre() {
 		assertEquals("Lucas", s.getNombre());
 	}
