@@ -17,6 +17,8 @@ public class MySQL_DBTest {
 
 	private IDAO db;
 
+	Socio s = new Socio("Test1", "12345678A", 20.25, "imagenTest.png");
+
 	Articulo art1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
 	Articulo art2 = new Pelicula("Harry Potter",5, "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg",0);
 	Articulo art3 = new Pelicula("Star Wars I", 6.25, "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, "starWars.jpg",0);
@@ -32,8 +34,7 @@ public class MySQL_DBTest {
 
 	@Test
 	public void testInsertarSocioBien() {
-		Socio socio = new Socio("Test1", "12345678A", 20.25, "imagenTest.png");
-		assertTrue(db.insertarSocio(socio));
+		assertTrue(db.insertarSocio(s));
 	}
 
 	@Test
