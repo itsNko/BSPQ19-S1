@@ -1,5 +1,6 @@
 package es.deusto.client.gui;
 
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -76,7 +77,7 @@ public class VentanaConfigurarDescuento extends JFrame {
 		setContentPane(contentPane);
 
 		final JLabel background;
-		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"confirmarAlquiler.png");
+		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"confirmarDescuento.png");
 		Image im = img.getImage();
 		im = getScaledImage(im, 960, 540);
 		ImageIcon finalImg= new ImageIcon(im);
@@ -120,19 +121,6 @@ public class VentanaConfigurarDescuento extends JFrame {
 		label_1.setForeground(Color.WHITE);
 		background.add(label_1);
 
-		//String itemSeleccionado = null;
-
-
-
-		//	TextField tf = null;
-		//itemSeleccionado = (String)comboBox.getSelectedItem();
-
-		/*JLabel label_2 = new JLabel("" + a.getFecha_fin());
-		label_2.setBounds(630,170,500,150);
-		label_2.setFont(new Font("Times New Roman", Font.BOLD, 22));
-		label_2.setForeground(Color.WHITE);;
-		background.add(label_2);*/
-
 		JLabel lblDescuento = new JLabel("Descuento: ");
 		lblDescuento.setBounds(450,220,300,150);
 		lblDescuento.setFont(new Font("Times New Roman", Font.BOLD, 22));
@@ -145,36 +133,24 @@ public class VentanaConfigurarDescuento extends JFrame {
 		background.add(txtAñadirDescuento);
 
 
-//		JLabel lblPrecioDescontado = new JLabel("Precio tras el descuento: ");
-//		lblPrecioDescontado.setBounds(450,270,300,150);
-//		lblPrecioDescontado.setFont(new Font("Times New Roman", Font.BOLD, 22));
-//		lblPrecioDescontado.setForeground(Color.WHITE);
-//		background.add(lblPrecioDescontado);		
-//
-
-		//
-//		JLabel lblResultado = new JLabel("" +  (a.getCoste() - ((a.getCoste()/100) * descuento1)) + "€" );
-//		lblResultado.setBounds(720,270,500,150);
-//		lblResultado.setFont(new Font("Times New Roman", Font.BOLD, 22));
-//		lblResultado.setForeground(Color.WHITE);;
-//		background.add(lblResultado);
-
-
 		JButton bConfirmar = new JButton("");
 		bConfirmar.addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				double descuento = 0;
+				double preciofinal = 0;
+				
 				try {
-		            Double.parseDouble(txtAñadirDescuento.getText());
+		            descuento =  Double.parseDouble(txtAñadirDescuento.getText());      
 		        } catch (NumberFormatException excepcion) {
 		        	JOptionPane.showMessageDialog(null, "Error esto no es un porcentaje valido",
 							"Coloque un valor del 0-100", JOptionPane.ERROR_MESSAGE);
 		        	repaint();
 		        }
 				
-				double descuento = Double.parseDouble(txtAñadirDescuento.getText());
-				double preciofinal = (a1.getPrecio() - ((a1.getPrecio() * descuento)/100));
+				preciofinal = calcularPrecioDescontado(a1.getPrecio(), descuento);
+				
 
 				
 				if(descuento > 100) {
@@ -185,29 +161,14 @@ public class VentanaConfigurarDescuento extends JFrame {
 				} else {
 					int eleccion = JOptionPane.showConfirmDialog(null, "El precio final del producto será: "+ preciofinal +" ¿Esta seguro?");
 					if(eleccion == 0) {
+						
 						//update descuento y precio
 						System.out.println("updateDescuento");
 						System.out.println("updatePrecio");
+						
 						controllerArticulos.updateDescuento(a1.getNombre(), descuento);
 						controllerArticulos.updatePrecio(a1.getNombre(), preciofinal);
 						
-//						Videojuego v;
-//						Pelicula p;
-//						boolean pv;
-//
-//						if(a1.getClassName().equals("Videojuego")) {
-//							v = (Videojuego)a1;
-//							pv = false;
-//							System.out.println(pv);
-//							controllerArticulos.updateDescuento(a1.getNombre(), descuento1);
-//							
-//						}else if(a1.getClassName().equals("Pelicula"))
-//						{	
-//							p = (Pelicula)a1;
-//							pv = true;
-//							System.out.println(pv);
-//							controllerArticulos.updateDescuento(a1.getNombre(), descuento1);
-//						}
 						JOptionPane.showMessageDialog(null, "Aplicado descuento correctamente!", "Descuento aplicado con exito", JOptionPane.INFORMATION_MESSAGE);
 						MenuSocio.setVisible(true);
 						VentanaConfigurarDescuento.this.dispose();
@@ -252,5 +213,12 @@ public class VentanaConfigurarDescuento extends JFrame {
 		background.setLayout(new BorderLayout(0, 0));
 
 	}
+	
+	public double calcularPrecioDescontado(double precio, double descuento) {
+		double preciofinal = (precio - ((precio * descuento)/100));
+		return preciofinal;
+	}
+	
+	
 
 }

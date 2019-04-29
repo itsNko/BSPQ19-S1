@@ -1,5 +1,6 @@
 package es.deusto.client.gui;
 
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -49,14 +50,13 @@ public class VentanaDescuento extends JFrame {
 		setBounds(100, 100, 960, 540); // Cambiar
 		final JLabel background;
 
-		//Descomentar cuando se empiece el diseño
-//		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"articulos.png");
-//		Image im = img.getImage();
-//		im = getScaledImage(im, 960,540);
-//		ImageIcon finalImg= new ImageIcon(im);
-//		getContentPane().setLayout(null);
+		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"articulosAAplicarDescuento.png");
+		Image im = img.getImage();
+		im = getScaledImage(im, 960,540);
+		ImageIcon finalImg= new ImageIcon(im);
+		getContentPane().setLayout(null);
 		
-		background = new JLabel("", null, JLabel.CENTER);
+		background = new JLabel("", finalImg, JLabel.CENTER);
 		background.setBounds(0, 0, 960, 518);
 		getContentPane().add(background);
 		background.setLayout(null);
@@ -100,6 +100,9 @@ public class VentanaDescuento extends JFrame {
 			}
 		});
 		btnVolver.setBounds(780, 455, 140, 50);
+		btnVolver.setOpaque(false);
+		btnVolver.setContentAreaFilled(false);
+		btnVolver.setBorderPainted(false);
 		background.add(btnVolver);
 
 	}
@@ -125,8 +128,5 @@ public class VentanaDescuento extends JFrame {
 			return new Pelicula(peli.getNombre(), peli.getPrecio(), peli.getSinopsis(), peli.getGenero(), 
 					peli.getFecha_estr(), peli.getPuntuacion(), peli.getCaratula(), peli.getDescuento());
 		}
-	}
-	
-
-	
+	}	
 }
