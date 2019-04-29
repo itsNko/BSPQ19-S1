@@ -473,7 +473,6 @@ public class MySQL_DB implements IDAO {
 			}
 			
 			
-			
 		} catch (Exception ex) {
 			System.err.println("* Exception: " + ex.getMessage());
 			return false;
