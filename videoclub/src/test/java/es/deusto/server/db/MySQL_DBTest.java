@@ -5,11 +5,25 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import es.deusto.client.data.Articulo;
+import es.deusto.client.data.Pelicula;
 import es.deusto.client.data.Socio;
+import es.deusto.client.data.Videojuego;
 
 public class MySQL_DBTest {
 
 	private IDAO db;
+
+	Articulo art1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
+	Articulo art2 = new Pelicula("Harry Potter",5, "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg",0);
+	Articulo art3 = new Pelicula("Star Wars I", 6.25, "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, "starWars.jpg",0);
+
+	Articulo art4 = new Videojuego("Sonic", 5, "Descripcion de Sonic", "Plataformas","10/02/2004", 7, "sonic.JPG",0);
+	Articulo art5 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg",0);
+	Articulo art6 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","20/03/2015", 9, "GTAV.jpg",0);
 
 	@Before
 	public void setUp() {
@@ -49,7 +63,7 @@ public class MySQL_DBTest {
 		String nombreSocio = socio.getNombre(); String passSocio = socio.getPassword();
 		double monederoSocio = socio.getMonedero(); String imagenSocio = socio.getImagen();
 		db.insertarSocio(socio);
-		
+
 		Socio recuperado = db.inicioSesion(nombreSocio, passSocio);
 
 		boolean igual = false;
@@ -78,6 +92,38 @@ public class MySQL_DBTest {
 		assertTrue(distinto);
 
 	}
+
+	@Test
+	public void testListadoArticulosBien() {
+		List<Articulo> articulos = new ArrayList<Articulo>();
+		articulos.add(art1); articulos.add(art2); articulos.add(art3);
+		articulos.add(art4); articulos.add(art5); articulos.add(art6);
+
+		List<Articulo> articulosDB = db.listadoArticulos();
+
+		int cont = 0;
+		for(Articulo art : articulosDB) {
+			for(Articulo a : articulos) {
+				if(art.getNombre().equals(a.getNombre())
+						&& art.getPrecio() == a.getPrecio()
+						&& art.getCaratula().equals(a.getCaratula())
+						&& art.getUnidades() == a.getUnidades()
+						&& art.getDescuento() == a.getDescuento()) {
+					cont++;
+				}
+			}
+		}
+
+		boolean igual = false;
+		if(cont == articulosDB.size()) {
+			igual = true;
+		}
+
+		assertTrue(igual);
+	}
+
+	//	public void testListadoArticulosMal() {
+	//	}
 
 	//	@After
 	//	public void tearDown() {
