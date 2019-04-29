@@ -80,6 +80,7 @@ public class Server extends UnicastRemoteObject implements IServer {
 	@Override
 	public boolean insertarAlquiler(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double coste, String nombreUsuario, boolean pv, String fechaFin, String fechaInicio, double descuento) throws RemoteException
 	{
+		System.out.println("He pasado al Server.java");
 		try
 		{
 			return appService.insertarAlquiler(nombre, precio, sinopsis, genero, fecha_estr,puntuacion, caratula, coste, nombreUsuario,pv, fechaFin, fechaInicio, descuento);

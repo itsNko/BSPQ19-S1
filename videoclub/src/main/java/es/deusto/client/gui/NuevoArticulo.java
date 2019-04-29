@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.rmi.RemoteException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -61,6 +62,12 @@ public class NuevoArticulo extends JFrame {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setLocation(600, 400);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		try {
+			controllerArticulos = new ControllerArticulos();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
 		
 		setTitle("Añadir nuevo artículo");
 		menuSocio = ventanaAnterior;
@@ -207,8 +214,17 @@ public class NuevoArticulo extends JFrame {
 					String fecha_estr = textField_5.getText();
 					String genero = (String) comboBox.getSelectedItem();
 					
+					System.out.println(nombre);
+					System.out.println(caratula);
+					System.out.println(precio);
+					System.out.println(puntuacion);
+					System.out.println(sinopsis);
+					System.out.println(fecha_estr);
+					System.out.println(genero);
 					
 					controllerArticulos.insertarPelicula(nombre, precio, sinopsis, genero, fecha_estr, puntuacion, caratula, 0);
+					
+					
 					
 					
 				}

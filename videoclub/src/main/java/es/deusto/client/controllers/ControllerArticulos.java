@@ -21,7 +21,7 @@ public class ControllerArticulos {
 		try {
 			System.out.println("###ControllerArticulos: ServiceLocator.getService().insertarPelicula###");
 			correcto = rsl.getService().insertarPelicula(nombre, precio, sinopsis, genero, fecha_estr, puntuacion, caratula, descuento);
-			System.out.println("###ControllerAlquiler: Se ha insertado alquiler correctamente###");
+			System.out.println("###ControllerAlquiler: Se ha insertado la película correctamente###");
 
 			return correcto;
 		}catch(Exception e) {
