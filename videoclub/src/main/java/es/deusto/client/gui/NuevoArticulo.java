@@ -212,6 +212,7 @@ public class NuevoArticulo extends JFrame {
 		});
 		
 		JButton btnAadir = new JButton("Añadir");
+		background.add(btnAadir);
 		btnAadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(rdbtnPelcula.isSelected()) {
@@ -244,8 +245,19 @@ public class NuevoArticulo extends JFrame {
 					}
 				}
 		});
-		btnAadir.setBounds(590, 232, 117, 29);
-		background.add(btnAadir);
+		btnAadir.setBounds(442, 233, 117, 29);
+		
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.setBounds(442, 294, 117, 29);
+		background.add(btnVolver);
+		
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Volver");
+				ventanaAnterior.setVisible(true);
+				NuevoArticulo.this.dispose();
+			}
+		});
 		
 		
 		

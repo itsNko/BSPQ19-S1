@@ -213,9 +213,9 @@ public class MenuSocio extends JFrame {
 			
 			btnStock.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					//NuevoArticulo nuevoArticulo = new NuevoArticulo(MenuSocio.this);
-					//nuevoArticulo.setVisible(true);
-					//MenuSocio.this.setVisible(false);
+					VentanaStock ventanaStock = new VentanaStock(MenuSocio.this, articulos);
+					ventanaStock.setVisible(true);
+					MenuSocio.this.setVisible(false);
 				}
 			});
 		}
