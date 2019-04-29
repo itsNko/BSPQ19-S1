@@ -19,18 +19,15 @@ public class ControllerRegistro {
 	
 	public ControllerRegistro() throws RemoteException{
 	}
+	
+	public ControllerRegistro(ServiceLocator rsl) throws RemoteException {
+		ControllerRegistro.rsl = rsl;
+	}
 
 	public boolean registro(String nombre, String pass, double monedero) {
-		boolean b;
 		try {
 			System.out.println("###ControllerRegistro: ServiceLocator.getService().register###");
-			b = rsl.getService().registro(nombre, pass, monedero);
-			if(b) {
-				System.out.println("###ControllerRegistro: Se ha registrado correctamente###");
-			} else {
-				System.out.println("###ControllerRegistro: No se ha registrado correctamente###");
-			}
-			return b;
+			return rsl.getService().registro(nombre, pass, monedero);
 		} catch (Exception e){
 			System.err.println("$ Error al registrarse " + e.getMessage());
 			return false;
