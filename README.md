@@ -17,6 +17,7 @@ Para poder ejecutar el proyecto es necesario software adicional:
 - Java 12.
 - Apache Maven 3.6.0.
 - JUnit 4.11
+- MariaDB (o MySQL o equivalente)
 ```
 
 ### Instalación
@@ -25,14 +26,54 @@ Para compilar el proyecto es necesario introducir en la consola el siguiente com
 ```
 mvn compile
 ```
-Después, simplemente basta con ejecutar el código compilado utilizando el siguiente comando de Maven:
+
+Si ya tenías una versión anterior, ejecutamos el siguiente código para que se fuerce la compilación actualizada:
 ```
-mvn exec:java -D"exec.mainClass"="es.deusto.gui.VentanaInicio"
+mvn clean compile
+```
+
+### Configuración
+Es necesario configurar la base de datos que vayamos a utilizar en el archivo siguiente. Debemos crear un usuario con sus respectivos permisos para que el videoclub pueda acceder a la base de datos.
+
+```
+src/main/resources/datanucleus.properties
+```
+
+Para crear la primera vez la base de datos con las tablas necesarias, es necesario ejecutar el siguiente comando, siempre dentro de la carpeta del proyecto (donde se encuentra el archivo pom.xml):
+
+
+```
+mvn datanucleus:schema-create
+```
+
+Si ya tuviésemos una base de datos creada anteriormente con este nombre, la podemos borrar utilizando:
+
+```
+mvn datanucleus:schema-delete
+```
+
+Debido a que se utiliza RMI, es posible ubicar el servidor en otro ordenador diferente al cliente. Los archivos de configuración para la conexión se encuentran en el archivo pom.xml:
+
+```
+<server.IP>127.0.0.1</server.IP>
+<server.port>1099</server.port>
+```
+
+### Ejecución
+Finalmente, es necesario ejecutar el servidor y el cliente por separado.
+
+```
+mvn exec:java -Pserver
+```
+
+```
+mvn exec:java -Pclient
 ```
 
 
 ## Construido con
 * [Maven](https://maven.apache.org/) - Dependency Management
+
 
 ## Imágenes del proyecto
 ![alt text](https://i.imgur.com/kqREzOB.jpg)
