@@ -19,9 +19,9 @@ public class SocioTest {
 	private Socio s;
 	private ArrayList<Alquiler> alquileres;
 	
-	public static junit.framework.Test suite() {
-		return new JUnit4TestAdapter(SocioTest.class);
-	}
+//	public static junit.framework.Test suite() {
+//		return new JUnit4TestAdapter(SocioTest.class);
+//	}
 	
 	@Before
 	public void setUp() { 
@@ -32,11 +32,11 @@ public class SocioTest {
 		s.setAlquileres(alquileres);
 	}
 	
-	@Rule 
-	public ContiPerfRule i = new ContiPerfRule();
-	@Test 
-    @PerfTest(invocations = 100, threads = 5)
-	@Required(max = 1500, average = 1000, throughput = 5)
+//	@Rule 
+//	public ContiPerfRule i = new ContiPerfRule();
+//	@Test 
+//    @PerfTest(invocations = 100, threads = 5)
+//	@Required(max = 1500, average = 1000, throughput = 5)
 	public void testGetNombre() {
 		assertEquals("Lucas", s.getNombre());
 	}

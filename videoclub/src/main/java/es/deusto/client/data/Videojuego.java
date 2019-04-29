@@ -57,10 +57,5 @@ public class Videojuego extends Articulo {
 	public String getClassName() {
 		return "Videojuego";
 	}
-
-	public double getDescuento() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 	
 }
