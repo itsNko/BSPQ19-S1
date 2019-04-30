@@ -77,7 +77,7 @@ public class VentanaConfigurarDescuento extends JFrame {
 		setContentPane(contentPane);
 
 		final JLabel background;
-		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"confirmarDescuento.png");
+		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"configurarDescuento.png");
 		Image im = img.getImage();
 		im = getScaledImage(im, 960, 540);
 		ImageIcon finalImg= new ImageIcon(im);
