@@ -27,12 +27,12 @@ public class MainDB {
 			PersistenceManager persistentManager = persistentManagerFactory.getPersistenceManager();				
 			Transaction transaction = persistentManager.currentTransaction();
 			
-			Socio s1 = new Socio("Prueba1", "1111111A", 20.75, "default-profile.png");
-			Socio s2 = new Socio("Prueba2", "2222222B", 10, "default-profile.png");
-			Socio s3 = new Socio("Prueba3", "3333333C", 0, "default-profile.png");
-//
+			Socio s1 = new Socio("Prueba1", "1111111A", "Prueba", "Uno Nueva", "Dirección 1", 20.75, "default-profile.png");
+			Socio s2 = new Socio("Prueba2", "2222222B", "Prueba", "Dos Nueva", "Dirección 2", 10, "default-profile.png");
+			Socio s3 = new Socio("Prueba3", "3333333C", "Prueba", "Tres Nueva", "Dirección 3", 0, "default-profile.png");
+
 			//Cuenta especial para el empleado
-			Socio admin = new Socio("Administrador", "admin", 0 , "default-profile.png");
+			Socio admin = new Socio("Administrador", "admin", "Manolo", "García", "Dirección del administrador", 0 , "default-profile.png");
 			
 			Articulo art1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
 			Articulo art2 = new Pelicula("Harry Potter",5, "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg",0);

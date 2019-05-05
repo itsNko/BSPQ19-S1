@@ -25,7 +25,7 @@ public class SocioTest {
 	
 	@Before
 	public void setUp() { 
-		s = new Socio("Lucas", "12345678A", 7.5, "imagePrueba.jpg");
+		s = new Socio("Lucas", "12345678A", "Lucas", "Montolla Molinero", "Aveninda Miranda Num.1 3C",  7.5, "imagePrueba.jpg");
 		
 		alquileres = new ArrayList<Alquiler>();
 		alquileres.add(new Alquiler(new Pelicula("Pelicula A", 5, "Sinopsis", "Genero", "01/01/2019", 5.5, "caratula.jpg",0), 5, "01/03/2019", "10/03/2019", true, "Pelicula A"));

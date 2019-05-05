@@ -23,7 +23,7 @@ public class SocioAssemblerTest {
 	
 	@Test
 	public void socioAssembleTest() {
-		Socio socio = new Socio("Prueba", "1234", 5.5, "imagen.jpg");
+		Socio socio = new Socio("Prueba", "1234", "NombreCompleto", "Apellido1 Apellido2", "Direccion Prueba", 5.5, "imagen.jpg");
 		SocioDTO socioDTO = socAssem.assemble(socio);
 		
 		boolean igual = false;

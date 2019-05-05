@@ -32,7 +32,7 @@ public class AppServiceDB {
 	}
 
 	public boolean insertarSocio(String nombre, String pass, double monedero) {
-		Socio s = new Socio(nombre, pass, monedero, "default-profile.png");
+		Socio s = new Socio(nombre, pass, nombre, nombre, "-", monedero, "default-profile.png");
 		return db.insertarSocio(s);
 	}
 	

@@ -17,7 +17,7 @@ public class MySQL_DBTest {
 
 	private IDAO db;
 
-	Socio s = new Socio("Test1", "12345678A", 20.25, "imagenTest.png");
+	Socio s = new Socio("Test1", "12345678A", "Test", "Uno Nuevo", "Direccion Test1", 20.25, "imagenTest.png");
 
 	Articulo art1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
 	Articulo art2 = new Pelicula("Harry Potter",5, "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg",0);
@@ -42,28 +42,28 @@ public class MySQL_DBTest {
 
 	@Test
 	public void testInsertarSocioMal() {
-		Socio socio = new Socio("Test2", "12345678A", 20.25, "imagenTest.png");
+		Socio socio = new Socio("Test2", "12345678A", "Test", "Dos Nuevo", "Direccion Test2", 20.25, "imagenTest.png");
 		db.insertarSocio(socio);
 		assertFalse(db.insertarSocio(socio));
 	}
 
 	@Test
 	public void testExisteSocioBien() {
-		Socio socio = new Socio("Test3", "12345678A", 20.25, "imagenTest.png");
+		Socio socio = new Socio("Test3", "12345678A", "Test", "Tres Nuevo", "Direccion Test3", 20.25, "imagenTest.png");
 		db.insertarSocio(socio);
 		assertTrue(db.existeSocio(socio.getNombre()));
 	}
 
 	@Test
 	public void testExisteSocioMal() {
-		Socio socio = new Socio("Test4", "12345678A", 20.25, "imagenTest.png");
+		Socio socio = new Socio("Test4", "12345678A", "Test", "Cuatro Nuevo", "Direccion Test4", 20.25, "imagenTest.png");
 		db.insertarSocio(socio);
 		assertFalse(db.existeSocio("Test"));
 	}
 
 	@Test
 	public void testInicioSesionBien() {
-		Socio socio = new Socio("Test5", "12345678A", 20.25, "imagenTest.png");
+		Socio socio = new Socio("Test5", "12345678A", "Test", "Cinco Nuevo", "Direccion Test5", 20.25, "imagenTest.png");
 		String nombreSocio = socio.getNombre(); String passSocio = socio.getPassword();
 		double monederoSocio = socio.getMonedero(); String imagenSocio = socio.getImagen();
 		db.insertarSocio(socio);
@@ -82,7 +82,7 @@ public class MySQL_DBTest {
 
 	@Test
 	public void testInicioSesionMal() {
-		Socio socio = new Socio("Test6", "12345678A", 20.25, "imagenTest.png");
+		Socio socio = new Socio("Test6", "12345678A", "Test", "Seis Nuevo", "Direccion Test6", 20.25, "imagenTest.png");
 		String nombreSocio = "Prueba"; String passSocio = "1234";
 
 		db.insertarSocio(socio);
