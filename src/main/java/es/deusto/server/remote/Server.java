@@ -180,9 +180,9 @@ public class Server extends UnicastRemoteObject implements IServer {
 	}
 
 	@Override
-	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo) throws RemoteException {
+	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo, int valoracion) throws RemoteException {
 		try {
-			return appService.devolverAlquiler(nombreUsuario, nombreArticulo);
+			return appService.devolverAlquiler(nombreUsuario, nombreArticulo, valoracion);
 		}catch (Exception e) {
 			System.err.println("$ Error al devolver articulo "+ e.getMessage());
 		}

@@ -34,6 +34,6 @@ public interface IServer extends Remote {
 
 	
 	public boolean updatePrecio(String nombreArticulo, double precio) throws RemoteException;
-	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo) throws RemoteException;
+	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo, int valoracion) throws RemoteException;
 	
 }

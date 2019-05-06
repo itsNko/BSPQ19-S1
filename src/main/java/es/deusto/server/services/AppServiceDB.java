@@ -99,8 +99,8 @@ public class AppServiceDB {
 	public boolean updatePrecio(String nombreArticulo, double precio) {
 		return db.updatePrecio(nombreArticulo, precio);
 	}
-	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo) {
-		return db.devolverAlquiler(nombreUsuario, nombreArticulo);
+	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo, int valoracion) {
+		return db.devolverAlquiler(nombreUsuario, nombreArticulo, valoracion);
 	}
 
 	

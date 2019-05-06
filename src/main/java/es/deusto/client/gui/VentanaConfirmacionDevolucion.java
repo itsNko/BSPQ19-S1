@@ -9,9 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -133,13 +138,30 @@ public class VentanaConfirmacionDevolucion extends JFrame {
 		label_2.setForeground(Color.WHITE);;
 		background.add(label_2);
 
+		JLabel valoracionLabel = new JLabel("Valoración: ");
+		valoracionLabel.setBounds(450,220,500,150);
+		valoracionLabel.setFont(new Font("Times New Roman", Font.BOLD, 22));
+		valoracionLabel.setForeground(Color.WHITE);;
+		background.add(valoracionLabel);
+
+		JComboBox comboBox = new JComboBox<Integer>();
+		comboBox.setBounds(580,212,100,170);
+		background.add(comboBox);
+		
+		comboBox.addItem(1);
+		comboBox.addItem(2);
+		comboBox.addItem(3);
+		comboBox.addItem(4);
+		comboBox.addItem(5);
+
+		
 		JButton bConfirmar = new JButton("");
 		bConfirmar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int result = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres devolver el artículo seleccionado?");
 				if(result == 0) {
-					controllerConfirmacionDevolucion.devolverAlquiler(nombreUsuario, a.getAlquilado().getNombre());
+					controllerConfirmacionDevolucion.devolverAlquiler(nombreUsuario, a.getAlquilado().getNombre(), (int)comboBox.getSelectedItem());
 					}
 					
 					JOptionPane.showMessageDialog(null, "Se ha devuelto el árticulo correctamente!", "Devolución exitosa", JOptionPane.INFORMATION_MESSAGE);

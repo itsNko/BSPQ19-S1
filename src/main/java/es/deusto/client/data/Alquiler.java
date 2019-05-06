@@ -17,6 +17,7 @@ public class Alquiler {
 	private String fecha_fin;
 	private boolean enCurso;
 	private String nombreArticulo;
+	private double valoracion;
 	
 	public String getNombreArticulo() {
 		return nombreArticulo;
@@ -33,8 +34,16 @@ public class Alquiler {
 		this.fecha_fin = fecha_fin;
 		this.enCurso = enCurso;
 		this.nombreArticulo = nombreArticulo;
+		this.valoracion = 0.0;
 	}
 	
+	public double getValoracion() {
+		return valoracion;
+	}
+	
+	public void setValoracion(double valoracion) {
+		this.valoracion = valoracion;
+	}
 	public Articulo getAlquilado() {
 		return alquilado;
 	}

@@ -14,11 +14,11 @@ public class ControllerConfirmacionDevolucion {
 		this.rsl = rsl;
 	}
 
-	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo) {
+	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo, int valoracion) {
 		boolean correcto;
 		try {
 			System.out.println("###ControllerConfirmarDevolucion: ServiceLocator.getService().devolverAlquiler###");
-			correcto = rsl.getService().devolverAlquiler(nombreUsuario, nombreArticulo);
+			correcto = rsl.getService().devolverAlquiler(nombreUsuario, nombreArticulo, valoracion);
 			System.out.println("###ControllerConfirmarDevolucion: Se ha devuelto el alquiler correctamente###");
 
 			return correcto;
