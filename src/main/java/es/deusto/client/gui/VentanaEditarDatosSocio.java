@@ -23,6 +23,7 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 
 import javax.swing.JPasswordField;
+import java.awt.Color;
 
 public class VentanaEditarDatosSocio extends JFrame {
 
@@ -70,7 +71,6 @@ public class VentanaEditarDatosSocio extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setBounds(100, 100, 960, 540);
-
 		final JLabel background;
 		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"fondoEditarDatosSocio.png");
 		Image im = img.getImage();
@@ -82,39 +82,20 @@ public class VentanaEditarDatosSocio extends JFrame {
 		getContentPane().add(background);
 		background.setLayout(null);
 
-		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setBounds(94, 131, 62, 20);
-		background.add(lblPassword);
-
-		JLabel lblNewLabel = new JLabel("Nombre completo:");
-		lblNewLabel.setBounds(51, 70, 108, 14);
-		background.add(lblNewLabel);
-
-		textField = new JTextField();
-		textField.setBounds(166, 67, 143, 20);
-		background.add(textField);
-		textField.setColumns(10);
-
-		textField_1 = new JTextField();
-		textField_1.setBounds(166, 100, 143, 20);
-		background.add(textField_1);
-		textField_1.setColumns(10);
-
-		passwordField = new JPasswordField();
-		passwordField.setBounds(166, 131, 143, 20);
-		background.add(passwordField);
-
-		JButton btnVolver = new JButton("VOLVER");
+		JButton btnVolver = new JButton("");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ventanaQueMeLlama.setVisible(true);
 				VentanaEditarDatosSocio.this.dispose();
 			}
 		});
-		btnVolver.setBounds(33, 227, 89, 23);
+		btnVolver.setBounds(56, 442, 119, 47);
 		background.add(btnVolver);
+		btnVolver.setOpaque(false);
+		btnVolver.setContentAreaFilled(false);
+		btnVolver.setBorderPainted(false);
 
-		JButton btnNewButton = new JButton("GUARDAR");
+		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String nombreCompleto = textField.getText();
@@ -188,47 +169,54 @@ public class VentanaEditarDatosSocio extends JFrame {
 
 			}
 		});
-		btnNewButton.setBounds(418, 227, 94, 23);
+		btnNewButton.setBounds(753, 442, 153, 47);
 		background.add(btnNewButton);
+		btnNewButton.setOpaque(false);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
 
-		JLabel lblModificacinDeDatos = new JLabel("MODIFICACIÓN DE DATOS DE USUARIO");
-		lblModificacinDeDatos.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblModificacinDeDatos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModificacinDeDatos.setBounds(118, 11, 333, 14);
-		background.add(lblModificacinDeDatos);
+		textField = new JTextField();
+		textField.setBounds(360, 143, 143, 20);
+		textField.setColumns(10);
+		background.add(textField);
 
-		JLabel lblApellidos = new JLabel("Apellidos:");
-		lblApellidos.setBounds(94, 100, 62, 20);
-		background.add(lblApellidos);
+		textField_1 = new JTextField();
+		textField_1.setBounds(360, 197, 143, 20);
+		textField_1.setColumns(10);
+		background.add(textField_1);
 
-		JLabel lblDireccin = new JLabel("Direccion:");
-		lblDireccin.setBounds(94, 162, 70, 14);
-		background.add(lblDireccin);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(360, 252, 143, 20);
+		background.add(passwordField);
 
 		textField_3 = new JTextField();
-		textField_3.setBounds(166, 159, 143, 20);
-		background.add(textField_3);
+		textField_3.setBounds(360, 302, 143, 20);
 		textField_3.setColumns(10);
-
-		JLabel lblDatosAntiguos = new JLabel("DATOS ACTUALES:");
-		lblDatosAntiguos.setBounds(308, 45, 143, 14);
-		background.add(lblDatosAntiguos);
+		background.add(textField_3);
 
 		JLabel lblNewLabel_1 = new JLabel(iniciado.getNombreCompleto());
-		lblNewLabel_1.setBounds(353, 70, 169, 14);
+		lblNewLabel_1.setFont(new Font("Calibri", Font.PLAIN, 15));
 		background.add(lblNewLabel_1);
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setBounds(605, 146, 169, 14);
 
 		JLabel lblNewLabel_2 = new JLabel(iniciado.getApellidos());
-		lblNewLabel_2.setBounds(353, 103, 169, 14);
+		lblNewLabel_2.setFont(new Font("Calibri", Font.PLAIN, 15));
 		background.add(lblNewLabel_2);
+		lblNewLabel_2.setForeground(Color.WHITE);
+		lblNewLabel_2.setBounds(605, 200, 169, 14);
 
 		JLabel lblNewLabel_3 = new JLabel(iniciado.getPassword());
-		lblNewLabel_3.setBounds(353, 134, 169, 14);
+		lblNewLabel_3.setFont(new Font("Calibri", Font.PLAIN, 15));
 		background.add(lblNewLabel_3);
+		lblNewLabel_3.setForeground(Color.WHITE);
+		lblNewLabel_3.setBounds(605, 255, 169, 14);
 
 		JLabel label = new JLabel(iniciado.getDireccion());
-		label.setBounds(353, 162, 169, 14);
+		label.setFont(new Font("Calibri", Font.PLAIN, 15));
 		background.add(label);
+		label.setForeground(Color.WHITE);
+		label.setBounds(605, 305, 169, 14);
 	}
 
 	public boolean contieneLetrasYNumeros(String s) {
