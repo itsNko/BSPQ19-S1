@@ -498,7 +498,7 @@ public class MySQL_DB implements IDAO {
 				if (s.getNombre().equals(nombreArticulo))
 				{
 					System.out.println("- Data modified: " + s.getPrecio()+" -> "+ precio);
-					s.setDescuento(precio);
+					s.setPrecio(precio);
 					transaction.commit();
 					return true;
 				}
