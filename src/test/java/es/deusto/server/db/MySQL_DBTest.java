@@ -13,19 +13,21 @@ import es.deusto.client.data.Videojuego;
 public class MySQL_DBTest {
 
 	private IDAO db;
+	
+	private String datosNuevos = "NombreCompleto;Apellido1 Apellido2;1111111A;Nueva Direccion";
+	
+	private Socio s = new Socio("Test1", "12345678A", "Test", "Uno Nuevo", "Direccion Test1", 20.25, "imagenTest.png");
 
-	Socio s = new Socio("Test1", "12345678A", "Test", "Uno Nuevo", "Direccion Test1", 20.25, "imagenTest.png");
+//	private Articulo art1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
+//	private Articulo art2 = new Pelicula("Harry Potter",5, "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg",0);
+//	private Articulo art3 = new Pelicula("Star Wars I", 6.25, "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, "starWars.jpg",0);
+//
+//	private Articulo art4 = new Videojuego("Sonic", 5, "Descripcion de Sonic", "Plataformas","10/02/2004", 7, "sonic.JPG",0);
+//	private Articulo art5 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg",0);
+//	private Articulo art6 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","20/03/2015", 9, "GTAV.jpg",0);
 
-	Articulo art1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
-	Articulo art2 = new Pelicula("Harry Potter",5, "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg",0);
-	Articulo art3 = new Pelicula("Star Wars I", 6.25, "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, "starWars.jpg",0);
-
-	Articulo art4 = new Videojuego("Sonic", 5, "Descripcion de Sonic", "Plataformas","10/02/2004", 7, "sonic.JPG",0);
-	Articulo art5 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg",0);
-	Articulo art6 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","20/03/2015", 9, "GTAV.jpg",0);
-
-	Pelicula test1 = new Pelicula("Test1", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
-	Pelicula test2 = new Pelicula("Test2", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
+	private Pelicula test1 = new Pelicula("Test1", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
+	private Pelicula test2 = new Pelicula("Test2", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
 	
 	@Before
 	public void setUp() {
@@ -123,6 +125,9 @@ public class MySQL_DBTest {
 //		assertTrue(igual);
 //	}
 	
+//	public void testListadoArticulosMal() {
+//	}
+	
 	@Test
 	public void testUpdatePrecio() {
 		db.insertarPelicula(test1);
@@ -141,10 +146,10 @@ public class MySQL_DBTest {
 	
 	@Test
 	public void testUpdateDatosSocioBien() {
-		Socio socio = new Socio("Test7", "12345678A", "Test", "Dos Nuevo", "Direccion Test7", 20.25, "imagenTest.png");
+		Socio socio = new Socio("Test7", "12345678A", "Test", "Dos Nuevo", "Direccion Test", 20.25, "imagenTest.png");
 		db.insertarSocio(socio);
 		
-		boolean result = db.updateDatosSocio(socio.getNombre(), "NombreCompleto;Apellido1 Apellido2;1111111A;Nueva Direccion");
+		boolean result = db.updateDatosSocio(socio.getNombre(), datosNuevos);
 		
 		boolean result2 = false;
 		Socio s = db.selectSocio(socio.getNombre());
@@ -157,9 +162,82 @@ public class MySQL_DBTest {
 		assertTrue(result2);
 	}
 	
-	//	public void testListadoArticulosMal() {
-	//	}
-
+	@Test
+	public void testUpdateDatosSocioPrimerIf() {
+		Socio socio = new Socio("Test8", "12345678A", "Test", "Dos Nuevo", "Direccion Test", 20.25, "imagenTest.png");
+		db.insertarSocio(socio);
+		
+		String datosNuevos = " ;Apellido1 Apellido2;1111111A;Nueva Direccion";
+		boolean result = db.updateDatosSocio(socio.getNombre(), datosNuevos);
+		
+		boolean result2 = false;
+		Socio s = db.selectSocio(socio.getNombre());
+		if (s.getNombreCompleto().equals("Test") && s.getApellidos().equals("Apellido1 Apellido2") 
+				&& s.getPassword().equals("1111111A") && s.getDireccion().equals("Nueva Direccion")) {
+			result2 = true;
+		}
+		
+		assertTrue(result);
+		assertTrue(result2);
+	}
+	
+	@Test
+	public void testUpdateDatosSocioSegundoIf() {
+		Socio socio = new Socio("Test9", "12345678A", "Test", "Dos Nuevo", "Direccion Test", 20.25, "imagenTest.png");
+		db.insertarSocio(socio);
+		
+		String datosNuevos = "NombreCompleto; ;1111111A;Nueva Direccion";
+		boolean result = db.updateDatosSocio(socio.getNombre(), datosNuevos);
+		
+		boolean result2 = false;
+		Socio s = db.selectSocio(socio.getNombre());
+		if (s.getNombreCompleto().equals("NombreCompleto") && s.getApellidos().equals("Dos Nuevo") 
+				&& s.getPassword().equals("1111111A") && s.getDireccion().equals("Nueva Direccion")) {
+			result2 = true;
+		}
+		
+		assertTrue(result);
+		assertTrue(result2);
+	}
+	
+	@Test
+	public void testUpdateDatosSocioTercerIf() {
+		Socio socio = new Socio("Test10", "12345678A", "Test", "Dos Nuevo", "Direccion Test", 20.25, "imagenTest.png");
+		db.insertarSocio(socio);
+		
+		String datosNuevos = "NombreCompleto;Apellido1 Apellido2; ;Nueva Direccion";
+		boolean result = db.updateDatosSocio(socio.getNombre(), datosNuevos);
+		
+		boolean result2 = false;
+		Socio s = db.selectSocio(socio.getNombre());
+		if (s.getNombreCompleto().equals("NombreCompleto") && s.getApellidos().equals("Apellido1 Apellido2") 
+				&& s.getPassword().equals("12345678A") && s.getDireccion().equals("Nueva Direccion")) {
+			result2 = true;
+		}
+		
+		assertTrue(result);
+		assertTrue(result2);
+	}
+	
+	@Test
+	public void testUpdateDatosSocioCuartoIf() {
+		Socio socio = new Socio("Test11", "12345678A", "Test", "Dos Nuevo", "Direccion Test", 20.25, "imagenTest.png");
+		db.insertarSocio(socio);
+		
+		String datosNuevos = "NombreCompleto;Apellido1 Apellido2;1111111A; ";
+		boolean result = db.updateDatosSocio(socio.getNombre(), datosNuevos);
+		
+		boolean result2 = false;
+		Socio s = db.selectSocio(socio.getNombre());
+		if (s.getNombreCompleto().equals("NombreCompleto") && s.getApellidos().equals("Apellido1 Apellido2") 
+				&& s.getPassword().equals("1111111A") && s.getDireccion().equals("Direccion Test")) {
+			result2 = true;
+		}
+		
+		assertTrue(result);
+		assertTrue(result2);
+	}
+	
 	//	@After
 	//	public void tearDown() {
 	//		db.deleteSocio(s);

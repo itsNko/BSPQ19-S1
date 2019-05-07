@@ -92,7 +92,7 @@ public class AlquilerTest {
 	@Test
 	public void setValoracionTest() {
 		alq.setValoracion(1.0);
-		assertEquals(alq.hashCode(), 1.0, 0.0001);
+		assertEquals(alq.getValoracion(), 1.0, 0.0001);
 	}
 
 }
