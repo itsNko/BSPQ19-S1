@@ -26,9 +26,10 @@ public interface IDAO {
 	public List<Alquiler> historialAlquileres(String nombreSocio);
 	
 	public boolean updatePrecio(String nombreArticulo, double precio);
+
 	public boolean updateDescuento(String nombreArticulo, double descuento);
 	public boolean updateDatosSocio(String nombreSocio, String datosNuevos);
 	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo);
-
-	
+	public boolean updateDescuento(String nombreArticulo, double descuento);
+	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo, int valoracion);
 }

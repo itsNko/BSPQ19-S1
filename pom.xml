@@ -263,5 +263,4 @@
 			<url>http://www.datanucleus.org/downloads/maven2/</url>
 		</pluginRepository>
 	</pluginRepositories>
-
 </project>

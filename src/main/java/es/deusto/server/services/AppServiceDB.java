@@ -104,8 +104,8 @@ public class AppServiceDB {
 		return db.updateDatosSocio(nombreSocio, datosNuevos);
 	}
 	
-	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo) {
-		return db.devolverAlquiler(nombreUsuario, nombreArticulo);
+	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo, int valoracion) {
+		return db.devolverAlquiler(nombreUsuario, nombreArticulo, valoracion);
 	}
 
 }

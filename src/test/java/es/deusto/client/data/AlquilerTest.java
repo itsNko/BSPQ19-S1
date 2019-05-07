@@ -83,5 +83,16 @@ public class AlquilerTest {
 		alq.setEnCurso(false);
 		assertFalse(alq.isEnCurso());
 	}
+	
+	@Test
+	public void getValoracionTest() {
+		assertEquals(alq.getValoracion(), 0.0, 0.0001);
+	}
+	
+	@Test
+	public void setValoracionTest() {
+		alq.setValoracion(1.0);
+		assertEquals(alq.hashCode(), 1.0, 0.0001);
+	}
 
 }

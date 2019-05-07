@@ -487,7 +487,7 @@ public class MySQL_DB implements IDAO {
 	}
 
 	@Override
-	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo) {
+	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo, int valoracion) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		transaction = persistentManager.currentTransaction();
 		try {
@@ -503,6 +503,7 @@ public class MySQL_DB implements IDAO {
 						if(a.getAlquilado().getNombre().equals(nombreArticulo))
 						{
 							a.setEnCurso(false);
+							a.setValoracion(valoracion);
 							transaction.commit();
 							return true;
 						}
@@ -536,7 +537,7 @@ public class MySQL_DB implements IDAO {
 				if (s.getNombre().equals(nombreArticulo))
 				{
 					System.out.println("- Data modified: " + s.getPrecio()+" -> "+ precio);
-					s.setDescuento(precio);
+					s.setPrecio(precio);
 					transaction.commit();
 					return true;
 				}
