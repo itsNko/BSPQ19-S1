@@ -242,7 +242,6 @@ public class MySQL_DB implements IDAO {
 		return false;
 	}
 
-
 	public boolean updateDescuento(String nombreArticulo, double descuento) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		transaction = persistentManager.currentTransaction();
@@ -556,6 +555,5 @@ public class MySQL_DB implements IDAO {
 		}
 		return false;
 	}
-
 
 }

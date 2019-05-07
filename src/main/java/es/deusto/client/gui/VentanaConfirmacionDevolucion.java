@@ -78,7 +78,6 @@ public class VentanaConfirmacionDevolucion extends JFrame {
 		setBounds(100, 100, 962, 540);
 
 		contentPane = new JPanel();
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
 		final JLabel background;
@@ -87,7 +86,7 @@ public class VentanaConfirmacionDevolucion extends JFrame {
 		im = getScaledImage(im, 960, 540);
 		ImageIcon finalImg= new ImageIcon(im);
 		background = new JLabel("", finalImg, JLabel.CENTER);
-		background.setBounds(100,100,450, 300);
+		background.setBounds(0,0,956, 511);
 
 
 
@@ -143,18 +142,17 @@ public class VentanaConfirmacionDevolucion extends JFrame {
 		valoracionLabel.setFont(new Font("Times New Roman", Font.BOLD, 22));
 		valoracionLabel.setForeground(Color.WHITE);;
 		background.add(valoracionLabel);
-
-		JComboBox comboBox = new JComboBox<Integer>();
-		comboBox.setBounds(580,212,100,170);
-		background.add(comboBox);
 		
+		JComboBox<Integer> comboBox = new JComboBox<Integer>();
+		contentPane.add(comboBox);
+		comboBox.setBounds(568,287,49,20);
+
 		comboBox.addItem(1);
 		comboBox.addItem(2);
 		comboBox.addItem(3);
 		comboBox.addItem(4);
 		comboBox.addItem(5);
 
-		
 		JButton bConfirmar = new JButton("");
 		bConfirmar.addActionListener(new ActionListener() {
 			@Override
@@ -162,11 +160,11 @@ public class VentanaConfirmacionDevolucion extends JFrame {
 				int result = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres devolver el artículo seleccionado?");
 				if(result == 0) {
 					controllerConfirmacionDevolucion.devolverAlquiler(nombreUsuario, a.getAlquilado().getNombre(), (int)comboBox.getSelectedItem());
-					}
-					
-					JOptionPane.showMessageDialog(null, "Se ha devuelto el árticulo correctamente!", "Devolución exitosa", JOptionPane.INFORMATION_MESSAGE);
-					menuSocio.setVisible(true);
-					VentanaConfirmacionDevolucion.this.dispose();
+				}
+
+				JOptionPane.showMessageDialog(null, "Se ha devuelto el árticulo correctamente!", "Devolución exitosa", JOptionPane.INFORMATION_MESSAGE);
+				menuSocio.setVisible(true);
+				VentanaConfirmacionDevolucion.this.dispose();
 
 			}
 		});
@@ -187,6 +185,7 @@ public class VentanaConfirmacionDevolucion extends JFrame {
 				VentanaConfirmacionDevolucion.this.dispose();
 			}
 		});
+		contentPane.setLayout(null);
 		bCancelar.setBounds(80,452,142,50);
 		bCancelar.setFont(new Font("AppleGothic", Font.PLAIN, 22));
 		bCancelar.setForeground(Color.WHITE);

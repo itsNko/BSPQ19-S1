@@ -29,7 +29,5 @@ public interface IDAO {
 
 	public boolean updateDescuento(String nombreArticulo, double descuento);
 	public boolean updateDatosSocio(String nombreSocio, String datosNuevos);
-	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo);
-	public boolean updateDescuento(String nombreArticulo, double descuento);
 	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo, int valoracion);
 }
