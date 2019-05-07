@@ -15,7 +15,7 @@ public class SocioAssembler {
 	public SocioDTO assemble(Socio socio) {
 		System.out.println("* Assembling Socio ...");
 		
-		SocioDTO socioDTO = new SocioDTO(socio.getNombre(), socio.getPassword(), socio.getMonedero(), socio.getImagen());
+		SocioDTO socioDTO = new SocioDTO(socio.getNombre(), socio.getPassword(), socio.getNombreCompleto(), socio.getApellidos(), socio.getDireccion(), socio.getMonedero(), socio.getImagen());
 		socioDTO.setAlquileres(socio.getAlquileres());
 		
 		return socioDTO;

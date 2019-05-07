@@ -53,7 +53,7 @@ public class ControllerAlquilerTest {
 		alquilerDTO = new AlquilerDTO(null, coste, caratula, caratula, pv);
 		listaAlquilerDTO = new ArrayList<AlquilerDTO>();
 		listaAlquilerDTO.add(alquilerDTO);
-		s = new SocioDTO("Pepe", "1111111A", 0.0, "imagenTest.jpg");
+		s = new SocioDTO("Pepe", "1111111A", "Pepe", "Apellidos", "Direccion de Pepe", 0.0, "imagenTest.jpg");
 		MockitoAnnotations.initMocks(this);
 		
 	}
@@ -122,11 +122,13 @@ public class ControllerAlquilerTest {
 		}
 		
 		SocioDTO devuelto = crs.selectSocio(s.getNombre());
-		SocioDTO vacio = new SocioDTO("", "", 0, "");
+		SocioDTO vacio = new SocioDTO("", "", "", "", "", 0, "");
 		
 		boolean igual = false;
 		if(devuelto.getNombre().equals(vacio.getNombre()) && devuelto.getPassword().equals(vacio.getPassword())
-				&& devuelto.getMonedero() == vacio.getMonedero() && devuelto.getImagen().equals(vacio.getImagen())) {
+				&& devuelto.getNombreCompleto().equals(vacio.getNombreCompleto()) && devuelto.getApellidos().equals(vacio.getApellidos())
+				&& devuelto.getDireccion().equals(vacio.getDireccion()) && devuelto.getMonedero() == vacio.getMonedero() 
+				&& devuelto.getImagen().equals(vacio.getImagen())) {
 			igual = true;
 		}
 

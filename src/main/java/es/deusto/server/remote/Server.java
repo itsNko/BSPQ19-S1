@@ -4,11 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
-import es.deusto.client.data.Alquiler;
-import es.deusto.client.data.Articulo;
-import es.deusto.client.data.Pelicula;
 import es.deusto.server.dto.AlquilerDTO;
-import es.deusto.client.data.Socio;
 import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.SocioDTO;
 import es.deusto.server.services.AppServiceDB;
@@ -141,6 +137,16 @@ public class Server extends UnicastRemoteObject implements IServer {
 			System.err.println("$ Error al actualizar el monedero " + e.getMessage());
 		}
 		return false;
+	}
+	
+	@Override
+	public boolean updateDatosSocio(String nombreSocio, String datosNuevos) throws RemoteException {
+		try {
+			return appService.updateDatosSocio(nombreSocio, datosNuevos);
+		} catch(Exception e) {
+			System.err.println("$ Error al actualizar los datos de socio " + e.getMessage());
+			return false;
+		}
 	}
 
 	@Override

@@ -190,7 +190,7 @@ public class MySQL_DB implements IDAO {
 
 		try {
 			Socio socio = persistentManager.getObjectById(Socio.class, nombreUsuario);
-
+			
 			return socio;
 		} catch(Exception ex) {
 			System.err.println("* Exception executing a query: " + ex.getMessage());
@@ -276,6 +276,45 @@ public class MySQL_DB implements IDAO {
 			persistentManager.close();
 		}
 		return false;
+	}
+
+	public boolean updateDatosSocio(String nombreSocio, String datosNuevos) {
+		persistentManager = persistentManagerFactory.getPersistenceManager();
+		transaction = persistentManager.currentTransaction();
+
+		try {
+			Socio socio = persistentManager.getObjectById(Socio.class, nombreSocio);
+
+			String[] partes = datosNuevos.split(";");
+			if(!partes[0].equals(" ")) {
+				socio.setNombreCompleto(partes[0]);
+			}
+
+			if(!partes[1].equals(" ")) {
+				socio.setApellidos(partes[1]);
+			}
+
+			if(!partes[2].equals(" ")) {
+				socio.setPassword(partes[2]);
+			}
+
+			if(!partes[3].equals(" ")) {
+				socio.setDireccion(partes[3]);
+			}
+			
+			return true;
+
+		} catch(Exception ex) {
+			System.err.println("* Exception executing a query: " + ex.getMessage());
+			return false;
+		} finally {
+			if (transaction.isActive()) {
+				transaction.rollback();
+			}
+
+			persistentManager.close();
+		}
+
 	}
 
 	@Override
@@ -415,7 +454,7 @@ public class MySQL_DB implements IDAO {
 		return result;
 
 	}
-	
+
 	@Override
 	public boolean insertarVideojuego(Videojuego videojuego) {
 		System.out.println(videojuego.getNombre());
@@ -469,10 +508,10 @@ public class MySQL_DB implements IDAO {
 						}
 					}
 				}
-				
+
 			}
-			
-			
+
+
 		} catch (Exception ex) {
 			System.err.println("* Exception: " + ex.getMessage());
 			return false;
@@ -517,5 +556,5 @@ public class MySQL_DB implements IDAO {
 		return false;
 	}
 
-	
+
 }

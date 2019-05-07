@@ -59,6 +59,39 @@ public class SocioTest {
 	}
 	
 	@Test
+	public void testGetNombreCompleto() {
+		assertEquals("Lucas", s.getNombreCompleto());
+	}
+	
+	@Test
+	public void testSetNombreCompleto() {
+		s.setNombreCompleto("Lu");
+		assertEquals("Lu", s.getNombreCompleto());
+	}
+	
+	@Test
+	public void testGetApellidos() {
+		assertEquals("Montolla Molinero", s.getApellidos());
+	}
+	
+	@Test
+	public void testSetApellidos() {
+		s.setApellidos("Montolla");
+		assertEquals("Montolla", s.getApellidos());
+	}
+	
+	@Test
+	public void testGetDireccion() {
+		assertEquals("Aveninda Miranda Num.1 3C", s.getDireccion());
+	}
+	
+	@Test
+	public void testSetDireccion() {
+		s.setDireccion("Nueva direccion");
+		assertEquals("Nueva direccion", s.getDireccion());
+	}
+	
+	@Test
 	public void testGetMonedero() {
 		assertEquals(7.5, s.getMonedero(), 0);
 	}

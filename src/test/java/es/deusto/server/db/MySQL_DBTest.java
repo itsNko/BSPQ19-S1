@@ -5,9 +5,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Pelicula;
 import es.deusto.client.data.Socio;
@@ -27,8 +24,8 @@ public class MySQL_DBTest {
 	Articulo art5 = new Videojuego("Mario Bros", 4.75, "Descripcion de Mario", "Aventura","31/03/2008", 8.5, "mario.jpg",0);
 	Articulo art6 = new Videojuego("GTA V", 7, "Descripcion de GTA V", "Acción","20/03/2015", 9, "GTAV.jpg",0);
 
-	Pelicula test1 = new Pelicula("Prueba", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
-	Pelicula test2 = new Pelicula("Prueba2", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
+	Pelicula test1 = new Pelicula("Test1", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
+	Pelicula test2 = new Pelicula("Test2", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
 	
 	@Before
 	public void setUp() {
@@ -140,6 +137,24 @@ public class MySQL_DBTest {
 		double descuento = 20;
 		assertTrue(db.updateDescuento(test2.getNombre(), descuento));
 
+	}
+	
+	@Test
+	public void testUpdateDatosSocioBien() {
+		Socio socio = new Socio("Test7", "12345678A", "Test", "Dos Nuevo", "Direccion Test7", 20.25, "imagenTest.png");
+		db.insertarSocio(socio);
+		
+		boolean result = db.updateDatosSocio(socio.getNombre(), "NombreCompleto;Apellido1 Apellido2;1111111A;Nueva Direccion");
+		
+		boolean result2 = false;
+		Socio s = db.selectSocio(socio.getNombre());
+		if (s.getNombreCompleto().equals("NombreCompleto") && s.getApellidos().equals("Apellido1 Apellido2") 
+				&& s.getPassword().equals("1111111A") && s.getDireccion().equals("Nueva Direccion")) {
+			result2 = true;
+		}
+		
+		assertTrue(result);
+		assertTrue(result2);
 	}
 	
 	//	public void testListadoArticulosMal() {

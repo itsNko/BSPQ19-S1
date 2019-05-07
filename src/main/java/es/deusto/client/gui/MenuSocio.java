@@ -231,6 +231,18 @@ public class MenuSocio extends JFrame {
 		btnSalir.setOpaque(false);
 		btnSalir.setContentAreaFilled(false);
 		btnSalir.setBorderPainted(false);
+		
+		JButton btnEditarDatosSocio = new JButton("Modificar mis datos");
+		btnEditarDatosSocio.setBounds(590, 365, 200, 50);
+		background.add(btnEditarDatosSocio);
+		
+		btnEditarDatosSocio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaEditarDatosSocio veds = new VentanaEditarDatosSocio(MenuSocio.this, iniciado.getNombre(), controllerAlquileres);
+				veds.setVisible(true);
+				MenuSocio.this.setVisible(false);
+			}
+		});
 
 		final JLabel fotoPerfil;
 		ImageIcon defaultProfile = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"default-profile.png");

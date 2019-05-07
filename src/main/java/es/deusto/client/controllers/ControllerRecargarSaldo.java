@@ -24,7 +24,7 @@ public class ControllerRecargarSaldo {
 
 		}catch(Exception e) {
 			System.err.println("$ Error al seleccionar socio " + e.getMessage());
-			return new SocioDTO("", "", 0, "");
+			return new SocioDTO("", "", "", "", "", 0, "");
 		}
 	}
 	

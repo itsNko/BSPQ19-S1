@@ -17,6 +17,9 @@ public class SocioDTOTest {
 	private SocioDTO socio;
 	private String nombre = "nombre";
 	private String password = "password";
+	private String nombreCompleto = "NombreCompleto";
+	private String apellidos = "Apellidos";
+	private String direccion = "Direccion";
 	private double monedero = 0.0;
 	private String imagen = "imagen";
 	private List<Alquiler> lista;
@@ -30,7 +33,7 @@ public class SocioDTOTest {
 	
 	@Before
 	public void setUp() {
-		socio = new SocioDTO(nombre, password, monedero, imagen);
+		socio = new SocioDTO(nombre, password, nombreCompleto, apellidos, direccion, monedero, imagen);
 		alquiler = new Alquiler(alquilado, coste, fecha_inicio, fecha_fin, enCurso, nombreArticulo);
 		lista = new ArrayList<Alquiler>();
 		lista.add(alquiler);
@@ -38,7 +41,7 @@ public class SocioDTOTest {
 	
 	@Test
 	public void constructorTest(){
-		SocioDTO soc = new SocioDTO("","",0.0,"");
+		SocioDTO soc = new SocioDTO("","","", "", "", 0.0,"");
 		assertNotNull(soc);
 	}
 	
@@ -63,6 +66,39 @@ public class SocioDTOTest {
 	public void setPasswordTest() {
 		socio.setPassword("contrasenya");
 		assertEquals("contrasenya", socio.getPassword());
+	}
+	
+	@Test
+	public void testGetNombreCompleto() {
+		assertEquals(nombreCompleto, socio.getNombreCompleto());
+	}
+	
+	@Test
+	public void testSetNombreCompleto() {
+		socio.setNombreCompleto("Lu");
+		assertEquals("Lu", socio.getNombreCompleto());
+	}
+	
+	@Test
+	public void testGetApellidos() {
+		assertEquals(apellidos, socio.getApellidos());
+	}
+	
+	@Test
+	public void testSetApellidos() {
+		socio.setApellidos("Montolla");
+		assertEquals("Montolla", socio.getApellidos());
+	}
+	
+	@Test
+	public void testGetDireccion() {
+		assertEquals(direccion, socio.getDireccion());
+	}
+	
+	@Test
+	public void testSetDireccion() {
+		socio.setDireccion("Nueva direccion");
+		assertEquals("Nueva direccion", socio.getDireccion());
 	}
 	
 	@Test

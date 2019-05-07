@@ -26,6 +26,9 @@ public class ControllerRegistroTest {
 	private String[] args = {"127.0.0.1", "1099", "Server"};
 	private String nombre = "Prueba";
 	private String pass = "1234";
+	private String nombreCompleto = "NombreCompleto";
+	private String apellidos = "Apellidos";
+	private String direccion = "Direccion X";
 	private double monedero = 4.2;
 	private String imagen = "imagen.jpg";
 
@@ -107,7 +110,7 @@ public class ControllerRegistroTest {
 
 	@Test
 	public void inicioSesionBienTest() {
-		SocioDTO socio = new SocioDTO(nombre, pass, monedero, imagen);
+		SocioDTO socio = new SocioDTO(nombre, pass, nombreCompleto, apellidos, direccion, monedero, imagen);
 		try {
 			when(rsl.getService()).thenReturn(server);
 			when(rsl.getService().inicioSesion(nombre, pass)).thenReturn(socio);

@@ -35,17 +35,17 @@ public class AppServiceDB {
 		Socio s = new Socio(nombre, pass, nombre, nombre, "-", monedero, "default-profile.png");
 		return db.insertarSocio(s);
 	}
-	
+
 	public boolean existeSocio(String nombreSocio) {
 		return db.existeSocio(nombreSocio);
 	}
-	
+
 	public SocioDTO inicioSesion(String nombreSocio, String password) {
 		Socio socio = db.inicioSesion(nombreSocio, password);
 		return socioAssem.assemble(socio);
 	}
-	
-	
+
+
 	public boolean insertarAlquiler(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double coste, String nombreUsuario, boolean pv, String fechaFin, String fechaInicio, double descuento)
 	{
 		Articulo articulo;
@@ -62,11 +62,11 @@ public class AppServiceDB {
 		}
 		return db.insertarAlquiler(alquiler, nombreUsuario);
 	}
-	
+
 	public List<ArticuloDTO> listadoArticulos() {
 		return artAssem.assemble(db.listadoArticulos());
 	}
-	
+
 	public List<AlquilerDTO> historialAlquileres(String nombreSocio) {
 		List<Alquiler> alquileres = db.historialAlquileres(nombreSocio);
 
@@ -80,7 +80,7 @@ public class AppServiceDB {
 	public boolean updateMonedero(String nombreUsuario, double monedero) {
 		return db.updateMonedero(nombreUsuario, monedero);
 	}
-	
+
 
 	public boolean updateDescuento(String nombreArticulo, double descuento) {
 		return db.updateMonedero(nombreArticulo, descuento);
@@ -90,7 +90,7 @@ public class AppServiceDB {
 		Pelicula p1 = new Pelicula(nombre, precio, sinopsis, genero, fecha_estr, puntuacion, caratula, descuento);
 		return db.insertarPelicula(p1);
 	}
-	
+
 	public boolean insertarVideojuego(String nombre, double precio, String descripcion, String categoria, String fecha_lanz, double puntuacion, String caratula, double descuento) {
 		Videojuego v1 = new Videojuego(nombre, precio, descripcion, categoria, fecha_lanz, puntuacion, caratula, descuento);
 		return db.insertarVideojuego(v1);
@@ -99,10 +99,13 @@ public class AppServiceDB {
 	public boolean updatePrecio(String nombreArticulo, double precio) {
 		return db.updatePrecio(nombreArticulo, precio);
 	}
+
+	public boolean updateDatosSocio(String nombreSocio, String datosNuevos) {
+		return db.updateDatosSocio(nombreSocio, datosNuevos);
+	}
+	
 	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo) {
 		return db.devolverAlquiler(nombreUsuario, nombreArticulo);
 	}
-
-	
 
 }
