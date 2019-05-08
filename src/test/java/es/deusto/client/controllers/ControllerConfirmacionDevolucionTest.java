@@ -51,9 +51,9 @@ public class ControllerConfirmacionDevolucionTest {
 			crs = new ControllerConfirmacionDevolucion(rsl);
 			
 			when(rsl.getService()).thenReturn(server);
-			when(rsl.getService().devolverAlquiler(nombreUsuario, nombreArticulo)).thenReturn(true);
+			when(rsl.getService().devolverAlquiler(nombreUsuario, nombreArticulo,0)).thenReturn(true);
 			
-			assertTrue(crs.devolverAlquiler(nombreUsuario, nombreArticulo));
+			assertTrue(crs.devolverAlquiler(nombreUsuario, nombreArticulo,0));
 			
 		} catch (RemoteException e) {
 			e.printStackTrace();		
@@ -66,11 +66,11 @@ public class ControllerConfirmacionDevolucionTest {
 			crs = new ControllerConfirmacionDevolucion(rsl);
 			
 			when(rsl.getService()).thenReturn(server);
-			when(rsl.getService().devolverAlquiler(nombreUsuario, nombreArticulo)).thenThrow(RemoteException.class);
+			when(rsl.getService().devolverAlquiler(nombreUsuario, nombreArticulo,0)).thenThrow(RemoteException.class);
 						
 		} catch (RemoteException e) {
 			e.printStackTrace();		
 		}
-		assertFalse(crs.devolverAlquiler(nombreUsuario, nombreArticulo));
+		assertFalse(crs.devolverAlquiler(nombreUsuario, nombreArticulo,0));
 	}
 }
