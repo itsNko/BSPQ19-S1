@@ -1,6 +1,7 @@
 package es.deusto.server.db;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -29,9 +30,19 @@ public class MySQL_DBTest {
 	private Pelicula test1 = new Pelicula("Test1", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
 	private Pelicula test2 = new Pelicula("Test2", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
 	
+	private Socio socioUpdates;
+	
+	@BeforeClass
+	public static void init() {
+		IDAO db = new MySQL_DB();
+		Socio socioUpdates = new Socio("Test7", "12345678A", "Test", "Dos Nuevo", "Direccion Test", 20.25, "imagenTest.png");
+		db.insertarSocio(socioUpdates);
+	}
+	
 	@Before
 	public void setUp() {
 		db = new MySQL_DB();
+		socioUpdates = db.selectSocio("Test7");
 	}
 
 	@Test
@@ -146,13 +157,11 @@ public class MySQL_DBTest {
 	
 	@Test
 	public void testUpdateDatosSocioBien() {
-		Socio socio = new Socio("Test7", "12345678A", "Test", "Dos Nuevo", "Direccion Test", 20.25, "imagenTest.png");
-		db.insertarSocio(socio);
-		
-		boolean result = db.updateDatosSocio(socio.getNombre(), datosNuevos);
+		socioUpdates = db.selectSocio("Test7");
+		boolean result = db.updateDatosSocio(socioUpdates.getNombre(), datosNuevos);
 		
 		boolean result2 = false;
-		Socio s = db.selectSocio(socio.getNombre());
+		Socio s = db.selectSocio(socioUpdates.getNombre());
 		if (s.getNombreCompleto().equals("NombreCompleto") && s.getApellidos().equals("Apellido1 Apellido2") 
 				&& s.getPassword().equals("1111111A") && s.getDireccion().equals("Nueva Direccion")) {
 			result2 = true;
@@ -164,15 +173,12 @@ public class MySQL_DBTest {
 	
 	@Test
 	public void testUpdateDatosSocioPrimerIf() {
-		Socio socio = new Socio("Test8", "12345678A", "Test", "Dos Nuevo", "Direccion Test", 20.25, "imagenTest.png");
-		db.insertarSocio(socio);
-		
 		String datosNuevos = " ;Apellido1 Apellido2;1111111A;Nueva Direccion";
-		boolean result = db.updateDatosSocio(socio.getNombre(), datosNuevos);
+		boolean result = db.updateDatosSocio(socioUpdates.getNombre(), datosNuevos);
 		
 		boolean result2 = false;
-		Socio s = db.selectSocio(socio.getNombre());
-		if (s.getNombreCompleto().equals("Test") && s.getApellidos().equals("Apellido1 Apellido2") 
+		Socio s = db.selectSocio(socioUpdates.getNombre());
+		if (s.getNombreCompleto().equals(socioUpdates.getNombreCompleto()) && s.getApellidos().equals("Apellido1 Apellido2") 
 				&& s.getPassword().equals("1111111A") && s.getDireccion().equals("Nueva Direccion")) {
 			result2 = true;
 		}
@@ -183,15 +189,12 @@ public class MySQL_DBTest {
 	
 	@Test
 	public void testUpdateDatosSocioSegundoIf() {
-		Socio socio = new Socio("Test9", "12345678A", "Test", "Dos Nuevo", "Direccion Test", 20.25, "imagenTest.png");
-		db.insertarSocio(socio);
-		
 		String datosNuevos = "NombreCompleto; ;1111111A;Nueva Direccion";
-		boolean result = db.updateDatosSocio(socio.getNombre(), datosNuevos);
+		boolean result = db.updateDatosSocio(socioUpdates.getNombre(), datosNuevos);
 		
 		boolean result2 = false;
-		Socio s = db.selectSocio(socio.getNombre());
-		if (s.getNombreCompleto().equals("NombreCompleto") && s.getApellidos().equals("Dos Nuevo") 
+		Socio s = db.selectSocio(socioUpdates.getNombre());
+		if (s.getNombreCompleto().equals("NombreCompleto") && s.getApellidos().equals(socioUpdates.getApellidos()) 
 				&& s.getPassword().equals("1111111A") && s.getDireccion().equals("Nueva Direccion")) {
 			result2 = true;
 		}
@@ -202,16 +205,13 @@ public class MySQL_DBTest {
 	
 	@Test
 	public void testUpdateDatosSocioTercerIf() {
-		Socio socio = new Socio("Test10", "12345678A", "Test", "Dos Nuevo", "Direccion Test", 20.25, "imagenTest.png");
-		db.insertarSocio(socio);
-		
 		String datosNuevos = "NombreCompleto;Apellido1 Apellido2; ;Nueva Direccion";
-		boolean result = db.updateDatosSocio(socio.getNombre(), datosNuevos);
+		boolean result = db.updateDatosSocio(socioUpdates.getNombre(), datosNuevos);
 		
 		boolean result2 = false;
-		Socio s = db.selectSocio(socio.getNombre());
+		Socio s = db.selectSocio(socioUpdates.getNombre());
 		if (s.getNombreCompleto().equals("NombreCompleto") && s.getApellidos().equals("Apellido1 Apellido2") 
-				&& s.getPassword().equals("12345678A") && s.getDireccion().equals("Nueva Direccion")) {
+				&& s.getPassword().equals(socioUpdates.getPassword()) && s.getDireccion().equals("Nueva Direccion")) {
 			result2 = true;
 		}
 		
@@ -221,21 +221,39 @@ public class MySQL_DBTest {
 	
 	@Test
 	public void testUpdateDatosSocioCuartoIf() {
-		Socio socio = new Socio("Test11", "12345678A", "Test", "Dos Nuevo", "Direccion Test", 20.25, "imagenTest.png");
-		db.insertarSocio(socio);
-		
 		String datosNuevos = "NombreCompleto;Apellido1 Apellido2;1111111A; ";
-		boolean result = db.updateDatosSocio(socio.getNombre(), datosNuevos);
+		boolean result = db.updateDatosSocio(socioUpdates.getNombre(), datosNuevos);
 		
 		boolean result2 = false;
-		Socio s = db.selectSocio(socio.getNombre());
+		Socio s = db.selectSocio(socioUpdates.getNombre());
 		if (s.getNombreCompleto().equals("NombreCompleto") && s.getApellidos().equals("Apellido1 Apellido2") 
-				&& s.getPassword().equals("1111111A") && s.getDireccion().equals("Direccion Test")) {
+				&& s.getPassword().equals("1111111A") && s.getDireccion().equals(socioUpdates.getDireccion())) {
 			result2 = true;
 		}
 		
 		assertTrue(result);
 		assertTrue(result2);
+	}
+	
+	@Test
+	public void testBloquearMaquinaBien() {
+		boolean result = db.bloquearMaquina(socioUpdates.getNombre());
+		Socio t = db.selectSocio(socioUpdates.getNombre());
+		
+		assertTrue(result);
+		assertTrue(t.isBloquearMaquina());
+	}
+	
+	@Test
+	public void testBloquearMaquinaBien2() {
+		Socio t = new Socio("Test8", "12345678A", "Test", "Dos Nuevo", "Direccion Test", 20.25, "imagenTest.png");
+		t.setBloquearMaquina(true);
+		db.insertarSocio(t);
+		boolean result = db.bloquearMaquina(t.getNombre());
+		Socio t2 = db.selectSocio(t.getNombre());
+		
+		assertTrue(result);
+		assertFalse(t2.isBloquearMaquina());
 	}
 	
 	//	@After

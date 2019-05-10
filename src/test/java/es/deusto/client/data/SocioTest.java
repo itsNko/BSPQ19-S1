@@ -1,6 +1,6 @@
 package es.deusto.client.data;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
@@ -26,7 +26,7 @@ public class SocioTest {
 	@Before
 	public void setUp() { 
 		s = new Socio("Lucas", "12345678A", "Lucas", "Montolla Molinero", "Aveninda Miranda Num.1 3C",  7.5, "imagePrueba.jpg");
-		
+		s.setBloquearMaquina(false);
 		alquileres = new ArrayList<Alquiler>();
 		alquileres.add(new Alquiler(new Pelicula("Pelicula A", 5, "Sinopsis", "Genero", "01/01/2019", 5.5, "caratula.jpg",0), 5, "01/03/2019", "10/03/2019", true, "Pelicula A"));
 		s.setAlquileres(alquileres);
@@ -122,6 +122,17 @@ public class SocioTest {
 	public void testSetAlquileres() {
 		s.setAlquileres(alquileres);
 		assertEquals(alquileres, s.getAlquileres());
+	}
+	
+	@Test
+	public void testIsBloquearMaquina() {
+		assertFalse(s.isBloquearMaquina());
+	}
+	
+	@Test
+	public void testSetBloquearMaquina() {
+		s.setBloquearMaquina(true);
+		assertTrue(s.isBloquearMaquina());
 	}
 	
 	@After

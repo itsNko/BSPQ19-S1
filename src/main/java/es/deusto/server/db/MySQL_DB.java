@@ -100,10 +100,6 @@ public class MySQL_DB implements IDAO {
 		} catch (Exception ex) {
 			System.out.println("$ Error retrieving an extent: " + ex.getMessage());
 		} finally {
-			if (transaction != null && transaction.isActive()) {
-				transaction.rollback();
-			}
-
 			persistentManager.close();
 		}
 
@@ -123,10 +119,6 @@ public class MySQL_DB implements IDAO {
 		} catch (Exception ex) {
 			System.out.println("$ Error retrieving an extent: " + ex.getMessage());
 		} finally {
-			if (transaction != null && transaction.isActive()) {
-				transaction.rollback();
-			}
-
 			persistentManager.close();
 		}
 
@@ -186,8 +178,7 @@ public class MySQL_DB implements IDAO {
 	@Override
 	public Socio selectSocio(String nombreUsuario) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
-		transaction = persistentManager.currentTransaction();
-
+		
 		try {
 			Socio socio = persistentManager.getObjectById(Socio.class, nombreUsuario);
 
@@ -196,13 +187,8 @@ public class MySQL_DB implements IDAO {
 			System.err.println("* Exception executing a query: " + ex.getMessage());
 			return new Socio();
 		} finally {
-			if (transaction.isActive()) {
-				transaction.rollback();
-			}
-
 			persistentManager.close();
 		}
-
 
 	}
 
@@ -279,7 +265,6 @@ public class MySQL_DB implements IDAO {
 
 	public boolean updateDatosSocio(String nombreSocio, String datosNuevos) {
 		persistentManager = persistentManagerFactory.getPersistenceManager();
-		transaction = persistentManager.currentTransaction();
 
 		try {
 			Socio socio = persistentManager.getObjectById(Socio.class, nombreSocio);
@@ -307,10 +292,6 @@ public class MySQL_DB implements IDAO {
 			System.err.println("* Exception executing a query: " + ex.getMessage());
 			return false;
 		} finally {
-			if (transaction.isActive()) {
-				transaction.rollback();
-			}
-
 			persistentManager.close();
 		}
 
@@ -414,10 +395,6 @@ public class MySQL_DB implements IDAO {
 			System.err.println("* Exception retrieving alquileres: " + ex.getMessage());
 			return null;
 		} finally {		    
-			if (transaction.isActive()) {
-				transaction.rollback(); 
-			}
-
 			persistentManager.close();
 		}
 
@@ -574,10 +551,6 @@ public class MySQL_DB implements IDAO {
 			System.err.println("* Exception executing a query: " + ex.getMessage());
 			return false;
 		} finally {
-			if (transaction.isActive()) {
-				transaction.rollback();
-			}
-
 			persistentManager.close();
 		}
 

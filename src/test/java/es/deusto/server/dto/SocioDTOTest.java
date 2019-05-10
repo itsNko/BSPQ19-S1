@@ -1,7 +1,9 @@
 package es.deusto.server.dto;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +39,7 @@ public class SocioDTOTest {
 		alquiler = new Alquiler(alquilado, coste, fecha_inicio, fecha_fin, enCurso, nombreArticulo);
 		lista = new ArrayList<Alquiler>();
 		lista.add(alquiler);
+		socio.setBloquearMaquina(false);
 	}
 	
 	@Test
@@ -129,5 +132,15 @@ public class SocioDTOTest {
 		assertEquals("nombreArticulo", socio.getAlquileres().get(0).getNombreArticulo());
 	}
 
+	@Test
+	public void testIsBloquearMaquina() {
+		assertFalse(socio.isBloquearMaquina());
+	}
+	
+	@Test
+	public void testSetBloquearMaquina() {
+		socio.setBloquearMaquina(true);
+		assertTrue(socio.isBloquearMaquina());
+	}
 
 }
