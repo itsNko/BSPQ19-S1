@@ -195,4 +195,14 @@ public class Server extends UnicastRemoteObject implements IServer {
 		return false;
 	}
 
+	@Override
+	public boolean bloquearMaquina(String nombreAdmin) throws RemoteException {
+		try {
+			return appService.bloquearMaquina(nombreAdmin);
+		}catch (Exception e) {
+			System.err.println("$ Error al bloquear maquina "+ e.getMessage());
+			return false;
+		}
+	}
+
 }

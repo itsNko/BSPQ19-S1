@@ -190,7 +190,7 @@ public class MySQL_DB implements IDAO {
 
 		try {
 			Socio socio = persistentManager.getObjectById(Socio.class, nombreUsuario);
-			
+
 			return socio;
 		} catch(Exception ex) {
 			System.err.println("* Exception executing a query: " + ex.getMessage());
@@ -300,7 +300,7 @@ public class MySQL_DB implements IDAO {
 			if(!partes[3].equals(" ")) {
 				socio.setDireccion(partes[3]);
 			}
-			
+
 			return true;
 
 		} catch(Exception ex) {
@@ -554,6 +554,33 @@ public class MySQL_DB implements IDAO {
 			persistentManager.close();
 		}
 		return false;
+	}
+
+	@Override
+	public boolean bloquearMaquina(String nombreAdmin) {
+		persistentManager = persistentManagerFactory.getPersistenceManager();
+		transaction = persistentManager.currentTransaction();
+
+		try {
+			Socio socio = persistentManager.getObjectById(Socio.class, nombreAdmin);
+			if(socio.isBloquearMaquina()) {
+				socio.setBloquearMaquina(false);
+			} else {
+				socio.setBloquearMaquina(true);
+			}
+
+			return true;
+		} catch(Exception ex) {
+			System.err.println("* Exception executing a query: " + ex.getMessage());
+			return false;
+		} finally {
+			if (transaction.isActive()) {
+				transaction.rollback();
+			}
+
+			persistentManager.close();
+		}
+
 	}
 
 }

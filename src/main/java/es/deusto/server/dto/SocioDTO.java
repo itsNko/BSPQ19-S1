@@ -17,6 +17,7 @@ public class SocioDTO implements Serializable {
 	private double monedero;
 	private String imagen;
 	private List<Alquiler> alquileres;
+	private boolean bloquearMaquina;
 	
 	public SocioDTO(String nombre, String password, String nombreCompleto, String apellidos, String direccion, double monedero, String imagen) {
 		this.nombre = nombre;
@@ -26,6 +27,7 @@ public class SocioDTO implements Serializable {
 		this.direccion = direccion;
 		this.monedero = monedero;
 		this.imagen = imagen;
+		this.bloquearMaquina = false;
 	}
 
 	public String getNombre() {
@@ -90,4 +92,13 @@ public class SocioDTO implements Serializable {
 	public void setAlquileres(List<Alquiler> alquileres) {
 		this.alquileres = alquileres;
 	}
+
+	public boolean isBloquearMaquina() {
+		return bloquearMaquina;
+	}
+
+	public void setBloquearMaquina(boolean bloquearMaquina) {
+		this.bloquearMaquina = bloquearMaquina;
+	}
+	
 }

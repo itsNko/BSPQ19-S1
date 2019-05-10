@@ -17,6 +17,7 @@ public class Socio {
 	private double monedero;
 	private String imagen;
 	private List<Alquiler> alquileres;
+	private boolean bloquearMaquina;
 	
 	public Socio(String nombre, String password, String nombreCompleto, String apellidos, String direccion, double monedero, String imagen) {
 		this.nombre = nombre;
@@ -26,6 +27,7 @@ public class Socio {
 		this.direccion = direccion;
 		this.monedero = monedero;
 		this.imagen = imagen;
+		this.bloquearMaquina = false;
 	}
 	
 	public Socio() {
@@ -36,6 +38,7 @@ public class Socio {
 		this.direccion = "";
 		this.monedero = 0;
 		this.imagen = "";
+		this.bloquearMaquina = false;
 	}
 
 	public String getNombre() {
@@ -99,6 +102,14 @@ public class Socio {
 
 	public void setAlquileres(List<Alquiler> alquileres) {
 		this.alquileres = alquileres;
+	}
+
+	public boolean isBloquearMaquina() {
+		return bloquearMaquina;
+	}
+
+	public void setBloquearMaquina(boolean bloquearMaquina) {
+		this.bloquearMaquina = bloquearMaquina;
 	}
 	
 }

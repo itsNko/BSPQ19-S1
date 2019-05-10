@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.rmi.RemoteException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,6 +16,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import es.deusto.client.controllers.ControllerAlquiler;
+import es.deusto.client.controllers.ControllerListadoArticulos;
+import es.deusto.client.controllers.ControllerMenuSocio;
 import es.deusto.client.controllers.ControllerRegistro;
 import es.deusto.server.dto.SocioDTO;
 
@@ -29,9 +33,9 @@ public class VentanaInicio extends JFrame {
 	//	private ArrayList<Alquiler> alquileresPrueba = new ArrayList<Alquiler>();
 	@SuppressWarnings("unused")
 	private ControllerRegistro controllerRegistro;
+	private ControllerAlquiler controllerAlquileres;
 	private boolean registroCorrecto;
 	private SocioDTO socio;
-	private SocioDTO admin;
 
 	/**
 	 * Launch the application.
@@ -54,6 +58,13 @@ public class VentanaInicio extends JFrame {
 	 */
 	public VentanaInicio(ControllerRegistro controllerRegistro) {
 		this.controllerRegistro = controllerRegistro;
+
+		try {
+			this.controllerAlquileres = new ControllerAlquiler();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+
 		this.setVisible(true);
 
 		setTitle("Bienvenido al Videoclub");
@@ -116,7 +127,6 @@ public class VentanaInicio extends JFrame {
 		candadoRojo = new JLabel("", imagenCandadoR, JLabel.CENTER);
 		candadoRojo.setBounds(25,220,450, 300);
 
-
 		background.add(candadoNegro);
 		background.add(candadoVerde);
 		background.add(candadoRojo);
@@ -134,19 +144,24 @@ public class VentanaInicio extends JFrame {
 
 				String nombreUsuario = textfield.getText();
 				String pass = String.valueOf(passwordField.getPassword());
-				// Comprobación de si hay algún campo vacio
-				if(nombreUsuario.equals("") || pass.equals("") || nombreUsuario == null || pass == null) {
-					candadoRojo(candadoNegro, candadoRojo, candadoVerde);
 
-					JOptionPane.showMessageDialog(null, "Alguno de los campos está vacio, por favor introduce un nombre de usuario y contraseña correctos.", "Aviso", JOptionPane.WARNING_MESSAGE);
+				SocioDTO t = controllerAlquileres.selectSocio("Administrador");
 
-					candadoNegro(candadoNegro, candadoRojo, candadoVerde);
+				if(t.isBloquearMaquina()  && !nombreUsuario.equals(t.getNombre()) && !pass.equals(t.getPassword())) {
+					JOptionPane.showMessageDialog(null, "En estos momentos la maquina no esta activa debido a labores de mantenimiento, por favor vuelva a intentarlo en otro momento.", "Aviso", JOptionPane.WARNING_MESSAGE);
+				} else {
+					// Comprobación de si hay algún campo vacio
+					if(nombreUsuario.equals("") || pass.equals("") || nombreUsuario == null || pass == null) {
+						candadoRojo(candadoNegro, candadoRojo, candadoVerde);
 
-				}else {
-					socio = controllerRegistro.inicioSesion(nombreUsuario, pass);
-					// Comprobación de si existe un socio registrado con el nombre introducido. En caso afirmativo se comprueba también si la contraseña es correcta para ese socio
-					if(!socio.getNombre().equals("")) {	
-						
+						JOptionPane.showMessageDialog(null, "Alguno de los campos está vacio, por favor introduce un nombre de usuario y contraseña correctos.", "Aviso", JOptionPane.WARNING_MESSAGE);
+
+						candadoNegro(candadoNegro, candadoRojo, candadoVerde);
+
+					} else {
+						socio = controllerRegistro.inicioSesion(nombreUsuario, pass);
+						// Comprobación de si existe un socio registrado con el nombre introducido. En caso afirmativo se comprueba también si la contraseña es correcta para ese socio
+						if(!socio.getNombre().equals("")) {	
 							candadoVerde(candadoNegro, candadoRojo, candadoVerde);
 							System.out.println("Has iniciado sesión correctamente, bienvenido!");
 							textfield.setText(""); passwordField.setText("");
@@ -156,13 +171,15 @@ public class VentanaInicio extends JFrame {
 							MenuSocio ms = new MenuSocio(VentanaInicio.this, socio);
 							ms.setVisible(true);
 							VentanaInicio.this.setVisible(false);
-						
-					} else {
-						candadoRojo(candadoNegro, candadoRojo, candadoVerde);
-						JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos, vuelve a intentarlo.", "Login error", JOptionPane.ERROR_MESSAGE);
-						candadoNegro(candadoNegro, candadoRojo, candadoVerde);
+
+						} else {
+							candadoRojo(candadoNegro, candadoRojo, candadoVerde);
+							JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos, vuelve a intentarlo.", "Login error", JOptionPane.ERROR_MESSAGE);
+							candadoNegro(candadoNegro, candadoRojo, candadoVerde);
+						}
 					}
 				}
+
 			}
 		});
 		boton.setBounds(400,400,200,65);
@@ -181,6 +198,7 @@ public class VentanaInicio extends JFrame {
 
 				String nombreUsuario = textfield.getText();
 				String pass = String.valueOf(passwordField.getPassword());
+
 				boolean mayus = false;
 
 				// Comprobación de si la contraseña tiene al menos una mayúscula
@@ -246,6 +264,7 @@ public class VentanaInicio extends JFrame {
 					}
 
 				}
+
 
 
 			}

@@ -108,4 +108,7 @@ public class AppServiceDB {
 		return db.devolverAlquiler(nombreUsuario, nombreArticulo, valoracion);
 	}
 
+	public boolean bloquearMaquina(String nombreAdmin) {
+		return db.bloquearMaquina(nombreAdmin);
+	}
 }

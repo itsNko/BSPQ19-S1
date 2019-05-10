@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 
 import es.deusto.client.controllers.ControllerAlquiler;
 import es.deusto.client.controllers.ControllerListadoArticulos;
+import es.deusto.client.controllers.ControllerMenuSocio;
 import es.deusto.server.dto.AlquilerDTO;
 import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.SocioDTO;
@@ -33,8 +34,10 @@ public class MenuSocio extends JFrame {
 	private JFrame ventanaInicio;
 	private ControllerListadoArticulos controllerListadoArticulos;
 	private ControllerAlquiler controllerAlquileres;
+	private ControllerMenuSocio controllerMenuSocio;
 	private List<ArticuloDTO> articulos = new ArrayList<ArticuloDTO>();
 	private List<AlquilerDTO> alquileres = new ArrayList<AlquilerDTO>();
+	private boolean bloquearMaquina;
 
 
 	/**
@@ -64,6 +67,7 @@ public class MenuSocio extends JFrame {
 		try {
 			this.controllerListadoArticulos = new ControllerListadoArticulos();
 			this.controllerAlquileres = new ControllerAlquiler();
+			this.controllerMenuSocio = new ControllerMenuSocio();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -88,7 +92,7 @@ public class MenuSocio extends JFrame {
 		lblSaldo.setForeground(Color.WHITE);
 		lblSaldo.setBounds(125, 200, 300, 60);
 		background.add(lblSaldo);
-		
+
 		articulos = controllerListadoArticulos.listadoArticulos();
 
 		JButton btnNewButton = new JButton("");
@@ -142,8 +146,6 @@ public class MenuSocio extends JFrame {
 		btnRecargar.setOpaque(false);
 		btnRecargar.setContentAreaFilled(false);
 		btnRecargar.setBorderPainted(false);
-		
-
 
 		JButton btnDevolver = new JButton("");
 		btnDevolver.addActionListener(new ActionListener() {
@@ -179,7 +181,6 @@ public class MenuSocio extends JFrame {
 			}
 		});
 		
-		
 		if (iniciado.getNombre().equals("Administrador")) {
 			JButton btnDescuentos = new JButton("Descuentos");
 			btnDescuentos.addActionListener(new ActionListener() {
@@ -188,29 +189,29 @@ public class MenuSocio extends JFrame {
 					VentanaDescuento descuentos = new VentanaDescuento(MenuSocio.this, articulos);
 					descuentos.setVisible(true);
 					MenuSocio.this.setVisible(false);
-					
-					
+
+
 				}
 			});
 			btnDescuentos.setBounds(765, 300, 130, 50);
 			background.add(btnDescuentos);
-			
+
 			JButton btnNuevoArticulo = new JButton("Añadir artículo");
 			btnNuevoArticulo.setBounds(625, 300, 130, 50);
 			background.add(btnNuevoArticulo);
-			
+
 			btnNuevoArticulo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					NuevoArticulo nuevoArticulo = new NuevoArticulo(MenuSocio.this);
 					nuevoArticulo.setVisible(true);
-				//	MenuSocio.this.setVisible(false);
+					//	MenuSocio.this.setVisible(false);
 				}
 			});
-			
+
 			JButton btnStock = new JButton("Gestionar stock");
 			btnStock.setBounds(490, 300, 130, 50);
 			background.add(btnStock);
-			
+
 			btnStock.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					VentanaStock ventanaStock = new VentanaStock(MenuSocio.this, articulos);
@@ -218,24 +219,61 @@ public class MenuSocio extends JFrame {
 					MenuSocio.this.setVisible(false);
 				}
 			});
+			
+			bloquearMaquina = iniciado.isBloquearMaquina();
+
+			JLabel lblBloquear = new JLabel();
+			lblBloquear.setFont(new Font("AppleGothic", Font.PLAIN, 12));
+			lblBloquear.setForeground(Color.WHITE);
+			lblBloquear.setBounds(700, 45, 300, 60);
+			if(bloquearMaquina) {
+				lblBloquear.setText("Estado de la maquina cliente: Bloqueada");
+			} else {
+				lblBloquear.setText("Estado de la maquina cliente: Activa");
+			}
+			background.add(lblBloquear);
+
+			JButton btnBloquear = new JButton("B/D");
+			btnBloquear.setBounds(850, 25, 55, 25);
+			background.add(btnBloquear);
+
+			btnBloquear.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					boolean correcto = controllerMenuSocio.updateBloquearMaquina(iniciado.getNombre());
+					
+					SocioDTO t = controllerAlquileres.selectSocio(iniciado.getNombre());
+					if(correcto) {
+						if(t.isBloquearMaquina()) {
+							JOptionPane.showMessageDialog(null, "Se ha bloqueado la maquina cliente correctamente", "Bloquear maquina", JOptionPane.INFORMATION_MESSAGE);
+							lblBloquear.setText("Estado de la maquina cliente: Bloqueada");
+						} else {
+							JOptionPane.showMessageDialog(null, "Se ha desbloqueado la maquina cliente correctamente", "Desbloquear maquina", JOptionPane.INFORMATION_MESSAGE);
+							lblBloquear.setText("Estado de la maquina cliente: Activa");
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "No se ha podido realizar la accion correctamente, intentalo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			});
+
 		}
-		
-	
+
+
 		//btnDescuentos.setOpaque(false);
 		//btnDescuentos.setContentAreaFilled(false);
 		//btnDescuentos.setBorderPainted(false);
-		
-		
+
+
 		btnSalir.setBounds(590, 430, 180, 55);
 		background.add(btnSalir);
 		btnSalir.setOpaque(false);
 		btnSalir.setContentAreaFilled(false);
 		btnSalir.setBorderPainted(false);
-		
+
 		JButton btnEditarDatosSocio = new JButton("Modificar mis datos");
 		btnEditarDatosSocio.setBounds(590, 365, 200, 50);
 		background.add(btnEditarDatosSocio);
-		
+
 		btnEditarDatosSocio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaEditarDatosSocio veds = new VentanaEditarDatosSocio(MenuSocio.this, iniciado.getNombre(), controllerAlquileres);
@@ -292,18 +330,18 @@ public class MenuSocio extends JFrame {
 	//
 	//	}
 
-//	private boolean alquileresEnCurso(final SocioDTO iniciado) {
-//		boolean result = false;
-//
-//		for(int i = 0; i < iniciado.getAlquileres().size(); i++) {
-//			if(iniciado.getAlquileres().get(i).isEnCurso()) {
-//				result = true;
-//			} 
-//		}
-//
-//
-//		return result;
-//
-//	}
+	//	private boolean alquileresEnCurso(final SocioDTO iniciado) {
+	//		boolean result = false;
+	//
+	//		for(int i = 0; i < iniciado.getAlquileres().size(); i++) {
+	//			if(iniciado.getAlquileres().get(i).isEnCurso()) {
+	//				result = true;
+	//			} 
+	//		}
+	//
+	//
+	//		return result;
+	//
+	//	}
 
 }

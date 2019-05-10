@@ -17,6 +17,7 @@ public class SocioAssembler {
 		
 		SocioDTO socioDTO = new SocioDTO(socio.getNombre(), socio.getPassword(), socio.getNombreCompleto(), socio.getApellidos(), socio.getDireccion(), socio.getMonedero(), socio.getImagen());
 		socioDTO.setAlquileres(socio.getAlquileres());
+		socioDTO.setBloquearMaquina(socio.isBloquearMaquina());
 		
 		return socioDTO;
 	}
