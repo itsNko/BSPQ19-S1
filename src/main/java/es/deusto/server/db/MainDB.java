@@ -35,6 +35,10 @@ public class MainDB {
 			Socio admin = new Socio("Administrador", "admin", "Manolo", "García", "Dirección del administrador", 0 , "default-profile.png");
 			admin.setBloquearMaquina(true);
 			
+			//Cuenta especial para el director
+			Socio director = new Socio("Director", "direct", "Juanjo", "Lorenzo", "Director general",0, "default-profile.png");
+			director.setBloquearMaquina(true);
+			
 			Articulo art1 = new Pelicula("Los vengadores", 5.5, "Descripcion de Los Vengadores", "Acción","20/09/2014", 9, "vengadores.jpg",0);
 			Articulo art2 = new Pelicula("Harry Potter",5, "Descripcion de Harry Potter", "Acción","29/01/2009", 9, "harryPotter.jpg",0);
 			Articulo art3 = new Pelicula("Star Wars I", 6.25, "Descripcion de Star Wars I", "Ciencia ficción","13/06/2010", 9, "starWars.jpg",0);

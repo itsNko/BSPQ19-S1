@@ -181,7 +181,7 @@ public class MenuSocio extends JFrame {
 			}
 		});
 		
-		if (iniciado.getNombre().equals("Administrador")) {
+		if (iniciado.getNombre().equals("Administrador") || iniciado.getNombre().equals("Director")) {
 			JButton btnDescuentos = new JButton("Descuentos");
 			btnDescuentos.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {

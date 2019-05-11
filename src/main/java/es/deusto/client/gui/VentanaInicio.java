@@ -146,8 +146,9 @@ public class VentanaInicio extends JFrame {
 				String pass = String.valueOf(passwordField.getPassword());
 
 				SocioDTO t = controllerAlquileres.selectSocio("Administrador");
+				SocioDTO t1 = controllerAlquileres.selectSocio("Director");
 
-				if(t.isBloquearMaquina()  && !nombreUsuario.equals(t.getNombre()) && !pass.equals(t.getPassword())) {
+				if((t.isBloquearMaquina() && !nombreUsuario.equals(t.getNombre()) && !pass.equals(t.getPassword())) || (t1.isBloquearMaquina() && !nombreUsuario.equals(t1.getNombre()) && !pass.equals(t1.getPassword())) ) {
 					JOptionPane.showMessageDialog(null, "En estos momentos la maquina no esta activa debido a labores de mantenimiento, por favor vuelva a intentarlo en otro momento.", "Aviso", JOptionPane.WARNING_MESSAGE);
 				} else {
 					// Comprobación de si hay algún campo vacio
