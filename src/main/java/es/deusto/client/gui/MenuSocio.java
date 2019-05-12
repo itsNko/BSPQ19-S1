@@ -221,7 +221,7 @@ public class MenuSocio extends JFrame {
 			});
 			
 			JButton btnGuia = new JButton("Guia usuario");
-			btnGuia.setBounds(490, 300, 130, 50);
+			btnGuia.setBounds(490, 365, 130, 50);
 			background.add(btnGuia);
 			btnGuia.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -282,7 +282,7 @@ public class MenuSocio extends JFrame {
 		btnSalir.setBorderPainted(false);
 
 		JButton btnEditarDatosSocio = new JButton("Modificar mis datos");
-		btnEditarDatosSocio.setBounds(590, 365, 200, 50);
+		btnEditarDatosSocio.setBounds(625, 365, 200, 50);
 		background.add(btnEditarDatosSocio);
 
 		btnEditarDatosSocio.addActionListener(new ActionListener() {
