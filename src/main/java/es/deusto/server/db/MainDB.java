@@ -58,12 +58,14 @@ public class MainDB {
 							persistentManager.makePersistent(s3);
 
 							persistentManager.makePersistent(admin);
+							persistentManager.makePersistent(director);
 //			
 							System.out.println("- Inserted into db: " + s1.getNombre());
 							System.out.println("- Inserted into db: " + s2.getNombre());
 							System.out.println("- Inserted into db: " + s3.getNombre());
 							
 							System.out.println("- Inserted into db: " + admin.getNombre());
+							System.out.println("- Inserted into db: " + director.getNombre());
 			
 							persistentManager.makePersistent(art1);
 							persistentManager.makePersistent(art2);
