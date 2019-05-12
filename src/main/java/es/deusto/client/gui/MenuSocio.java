@@ -225,7 +225,7 @@ public class MenuSocio extends JFrame {
 			background.add(btnGuia);
 			btnGuia.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					VentanaGuia ventanaGuia = new VentanaGuia();
+					VentanaGuia ventanaGuia = new VentanaGuia(MenuSocio.this);
 					ventanaGuia.setVisible(true);
 					MenuSocio.this.setVisible(false);
 				}
