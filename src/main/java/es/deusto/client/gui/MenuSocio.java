@@ -220,6 +220,17 @@ public class MenuSocio extends JFrame {
 				}
 			});
 			
+			JButton btnGuia = new JButton("Guia usuario");
+			btnGuia.setBounds(490, 300, 130, 50);
+			background.add(btnGuia);
+			btnGuia.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					VentanaGuia ventanaGuia = new VentanaGuia();
+					ventanaGuia.setVisible(true);
+					MenuSocio.this.setVisible(false);
+				}
+			});
+			
 			bloquearMaquina = iniciado.isBloquearMaquina();
 
 			JLabel lblBloquear = new JLabel();

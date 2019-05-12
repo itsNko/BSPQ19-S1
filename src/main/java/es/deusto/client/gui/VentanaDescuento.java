@@ -47,7 +47,7 @@ public class VentanaDescuento extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		setBounds(100, 100, 960, 540); // Cambiar
+		setBounds(100, 100, 960, 540);
 		final JLabel background;
 
 		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"articulosAAplicarDescuento.png");
