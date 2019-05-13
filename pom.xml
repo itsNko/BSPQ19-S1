@@ -209,6 +209,7 @@
 								<argument>${server.IP}</argument>
 								<argument>${server.port}</argument>
 								<argument>${server.Name}</argument>
+								<argument>${server.paypal}</argument>
 							</arguments>
 						</configuration>
 					</plugin>
@@ -274,7 +275,7 @@
 							<arguments>
 								<argument>${server.IP}</argument>
 								<argument>${server.port}</argument>
-								<argument>${server.paypal}}</argument>
+								<argument>${server.paypal}</argument>
 							</arguments>
 						</configuration>
 					</plugin>
