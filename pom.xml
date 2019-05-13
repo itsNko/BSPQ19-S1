@@ -17,6 +17,7 @@
 		<server.IP>127.0.0.1</server.IP>
 		<server.port>1099</server.port>
 		<server.Name>Server</server.Name>
+		<server.paypal>PaypalServer</server.paypal>
 		<policy.file>${basedir}/src/main/resources/security/java.policy</policy.file>
 		<config.files.dir>${basedir}/src/main/resources</config.files.dir>
 	</properties>
@@ -137,7 +138,6 @@
 				<configuration>
 					<log4jConfiguration>${config.files.dir}/log4j.properties</log4jConfiguration>
 					<verbose>true</verbose>
-					<fork>false</fork>
 					<props>${config.files.dir}/datanucleus.properties</props>
 				</configuration>
 				<executions>
@@ -249,6 +249,39 @@
 				</plugins>
 			</build>
 		</profile>
+		
+			<!-- run as 'mvn exec:java -Ppaypal' -->
+		<profile>
+			<id>paypal</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2.1</version>
+						<configuration>
+							<mainClass>es.deusto.paypal.server.PayPalServer</mainClass>
+							<systemProperties>
+								<systemProperty>
+									<key>java.security.manager</key>
+									<value>java.rmi.RMISecurityManager</value>
+								</systemProperty>
+								<systemProperty>
+									<key>java.security.policy</key>
+									<value>${policy.file}</value>
+								</systemProperty>
+							</systemProperties>
+							<arguments>
+								<argument>${server.IP}</argument>
+								<argument>${server.port}</argument>
+								<argument>${server.paypal}}</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
 	</profiles>
 	<repositories>
 		<repository>
