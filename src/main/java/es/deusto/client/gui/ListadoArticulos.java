@@ -7,12 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -47,42 +49,8 @@ public class ListadoArticulos extends JFrame {
 	//		});
 	//	}
 
-	/**
-	 * Create the application.
-	 */
-	public ListadoArticulos(final JFrame VentanaAnterior, final SocioDTO iniciado, final JLabel lblSaldo, List<ArticuloDTO> articulos) {
-		MenuSocio = VentanaAnterior;
-		
-		setTitle("Artículos disponibles para alquilar");
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 960, 540);
-		final JLabel background;
-		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"articulos.png");
-		Image im = img.getImage();
-		im = getScaledImage(im, 960,540);
-		ImageIcon finalImg= new ImageIcon(im);
-		getContentPane().setLayout(null);
-		background = new JLabel("", finalImg, JLabel.CENTER);
-		background.setBounds(0, 0, 960, 518);
-		getContentPane().add(background);
-		background.setLayout(null);
-
-		JButton btnVolver = new JButton("");
-		btnVolver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Volver");
-				MenuSocio.setVisible(true);
-				articulos.clear();
-				ListadoArticulos.this.dispose();
-			}
-		});
-		btnVolver.setBounds(780, 455, 140, 50);
-		background.add(btnVolver);
-		btnVolver.setOpaque(false);
-		btnVolver.setContentAreaFilled(false);
-		btnVolver.setBorderPainted(false);
-
+	private void crearBotones(JLabel background, List<ArticuloDTO> articulos, JFrame VentanaAnterior, SocioDTO iniciado, JLabel lblSaldo)
+	{
 		int distancia = 128;
 		for (int i = 0; i < articulos.size(); i++) {
 
@@ -127,6 +95,100 @@ public class ListadoArticulos extends JFrame {
 
 
 		}
+	}
+	/**
+	 * Create the application.
+	 */
+	public ListadoArticulos(final JFrame VentanaAnterior, final SocioDTO iniciado, final JLabel lblSaldo, List<ArticuloDTO> articulos, List<ArticuloDTO> articulos2) {
+		MenuSocio = VentanaAnterior;
+		
+		setTitle("Artículos disponibles para alquilar");
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 960, 540);
+		final JLabel background;
+		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"articulos.png");
+		Image im = img.getImage();
+		im = getScaledImage(im, 960,540);
+		ImageIcon finalImg= new ImageIcon(im);
+		getContentPane().setLayout(null);
+		background = new JLabel("", finalImg, JLabel.CENTER);
+		background.setBounds(0, 0, 960, 518);
+		getContentPane().add(background);
+		background.setLayout(null);
+
+		JButton btnVolver = new JButton("");
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Volver");
+				MenuSocio.setVisible(true);
+				articulos.clear();
+				ListadoArticulos.this.dispose();
+			}
+		});
+		btnVolver.setBounds(780, 455, 140, 50);
+		background.add(btnVolver);
+		btnVolver.setOpaque(false);
+		btnVolver.setContentAreaFilled(false);
+		btnVolver.setBorderPainted(false);
+
+		JComboBox<String> comboBox = new JComboBox<String>();
+		background.add(comboBox);
+		comboBox.setBounds(568,287,49,20);
+
+		comboBox.addItem("Todo");
+		comboBox.addItem("Videojuegos");
+		comboBox.addItem("Películas");
+		
+		if(articulos2.size()==0)
+		{
+			crearBotones(background, articulos, VentanaAnterior,iniciado,lblSaldo);
+		}else
+		{
+			crearBotones(background, articulos2, VentanaAnterior, iniciado, lblSaldo);
+		}
+		articulos2.clear();
+		comboBox.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				System.out.println((String)comboBox.getSelectedItem());
+				if(((String)comboBox.getSelectedItem()).equals("Películas"))
+				{
+					for(ArticuloDTO a: articulos)
+					{
+						System.out.println(a.getClassName());
+						if(a.getClassName().equals("PeliculaDTO"))
+						{
+							System.out.println("añadido");
+							articulos2.add(a);
+						}
+					}
+					
+					ListadoArticulos ls = new ListadoArticulos(MenuSocio, iniciado, lblSaldo, articulos, articulos2);
+					ListadoArticulos.this.dispose();
+				}else if(((String)comboBox.getSelectedItem()).equals("Videojuegos"))
+				{
+					for(ArticuloDTO a : articulos)
+					{
+						if(a.getClassName().equals("VideojuegoDTO"))
+						{
+							articulos2.add(a);
+						}
+					}
+					ListadoArticulos ls = new ListadoArticulos(MenuSocio, iniciado, lblSaldo, articulos, articulos2);
+					ListadoArticulos.this.dispose();
+				}else
+				{
+					for(ArticuloDTO a : articulos)
+					{
+						articulos2.add(a);
+					}
+					ListadoArticulos ls = new ListadoArticulos(MenuSocio, iniciado, lblSaldo, articulos, articulos2);
+					ListadoArticulos.this.dispose();
+				}
+				
+			}
+			});
+
 
 	}
 

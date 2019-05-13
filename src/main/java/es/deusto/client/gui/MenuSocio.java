@@ -100,7 +100,8 @@ public class MenuSocio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Alquilar");
 				articulos = controllerListadoArticulos.listadoArticulos();
-				ListadoArticulos ls = new ListadoArticulos(MenuSocio.this, iniciado, lblSaldo, articulos);
+				List<ArticuloDTO> articulos2 = new ArrayList<ArticuloDTO>();
+				ListadoArticulos ls = new ListadoArticulos(MenuSocio.this, iniciado, lblSaldo, articulos, articulos2);
 				ls.setVisible(true);
 				MenuSocio.this.setVisible(false);
 			}
