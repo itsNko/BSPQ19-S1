@@ -1,0 +1,20 @@
+Guia de usuario
+							
+Esta es una guia para el control del sistema, aqui te informamos sobre el funcionamiento de cada uno de los botones disponibles en esta aplicacion.
+
+Botones:
+
+Login -> Si estas registrado y has colocado correctamente el usaurio y la clave te enviara al menu principal, en caso contrario te impedira entrar.
+
+Register -> Coloque primero el nombre y una clave valida y si no hay ninguna cuenta con el mismo nombre se creara una con la que podar acceder al menu principal.
+
+Alquiler -> Te enviara a la lista de articulos donde podras elegir el articulo, al seleccionar uno te envia a la confirmacion de los ajustes del alquiler del articulo. Al aceptar el articulo se colocara en tu lista de alquileres y se descontara el precio del articulo en el saldo.
+
+Devolver -> Si usted no tiene ningun articulo alquilado no podra acceder a esta funcion, en caso contrario de enviara a su lista de articulos alquilados en curso para que devuelva el que usted elija.
+
+Consultar alquileres -> Aqui podras ver los alquieleres que tengas en curso.
+
+Recargar saldo -> Podras elegir la cantidad de dinero que deseas ingresar a tu saldo actual, luego se te dara a elegir el metodo de pago, efectivo o PayPal.
+
+
+

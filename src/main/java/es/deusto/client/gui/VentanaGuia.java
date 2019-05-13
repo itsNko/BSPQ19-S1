@@ -55,15 +55,22 @@ public class VentanaGuia extends JFrame {
 		getContentPane().add(background);
 		background.setLayout(null);
 		
-		JTextArea areaTexto = new JTextArea(25,80);
+		JTextArea areaTexto = new JTextArea(25,75);
 		areaTexto.setLineWrap(true);
 		areaTexto.setWrapStyleWord(true);
 		areaTexto.setEditable(false);
 		
 		try {
-			FileReader f = new FileReader("."+File.separator+"src"+File.separator+"resources"+File.separator+"Prueba1.txt");
+			
+			FileReader f = new FileReader("."+File.separator+"src"+File.separator+"resources"+File.separator+"Guia.txt");
 			BufferedReader b = new BufferedReader(f);
-			areaTexto.setText(b.readLine());
+			String texto = b.readLine();
+			while(texto != null) {
+		          areaTexto.append(texto+"\n");
+		          texto = b.readLine();
+		      }
+		    b.close();
+			
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -74,7 +81,7 @@ public class VentanaGuia extends JFrame {
 		JScrollPane scroll = new JScrollPane(panel);
 		panel.setOpaque(false);
 		background.add(scroll);
-		scroll.setBounds(64, 60, 550, 360);
+		scroll.setBounds(50, 150, 850, 270);
 		scroll.setOpaque(false);
 		scroll.getViewport().setOpaque(false);
 			
