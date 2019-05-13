@@ -17,16 +17,15 @@ public class Server extends UnicastRemoteObject implements IServer {
 	private AppServiceDB appService;
 	
 
-	private Server() throws RemoteException {
-		super();
-		appService = new AppServiceDB();
+	private Server(String[] args) throws RemoteException {
+		appService = new AppServiceDB(args);
 	}
 
-	public static Server getInstance() {
+	public static Server getInstance(String[] args) {
 		synchronized(Server.class) {
 			if (INSTANCE == null) {
 				try {
-					INSTANCE = new Server();
+					INSTANCE = new Server(args);
 				} catch (Exception ex) {
 					System.err.println("# Error creating Server: " + ex);
 				}
@@ -201,6 +200,16 @@ public class Server extends UnicastRemoteObject implements IServer {
 			return appService.bloquearMaquina(nombreAdmin);
 		}catch (Exception e) {
 			System.err.println("$ Error al bloquear maquina "+ e.getMessage());
+			return false;
+		}
+	}
+
+	@Override
+	public boolean pagarPaypal(String nombre, String password, double cantidad) throws RemoteException {
+		try {
+			return appService.pagarPaypal(nombre, password, cantidad);
+		} catch (Exception e) {
+			System.err.println("$ Error al realizar el pago mediante PayPal "+ e.getMessage());
 			return false;
 		}
 	}

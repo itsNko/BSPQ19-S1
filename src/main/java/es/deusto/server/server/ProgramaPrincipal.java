@@ -8,7 +8,7 @@ import es.deusto.server.remote.Server;
 public class ProgramaPrincipal {
 
 		public static void main(String[] args) {
-			if (args.length != 3) {
+			if (args.length != 4) {
 				System.out.println("usage: java [policy] [codebase] server.Server [host] [port] [server]");
 				System.exit(0);
 			}
@@ -20,7 +20,7 @@ public class ProgramaPrincipal {
 			String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
 
 			try {		
-				IServer server = Server.getInstance();
+				IServer server = Server.getInstance(args);
 				Naming.rebind(name, server);
 				VentanaServer vs = new VentanaServer();
 				System.out.println("* Server '" + name + "' active and waiting...");

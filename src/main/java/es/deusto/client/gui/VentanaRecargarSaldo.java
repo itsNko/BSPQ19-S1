@@ -28,7 +28,8 @@ public class VentanaRecargarSaldo extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static double dinero = 0;
-	private JFrame ventanaRecargar;
+	private double cantidadQueSeRecarga = 0;
+	private JFrame ventanaMenuSocio;
 	JLabel lblSaldo = new JLabel(dinero+" €");
 	private ControllerRecargarSaldo controllerRecargarSaldo;
 
@@ -65,8 +66,8 @@ public class VentanaRecargarSaldo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaRecargarSaldo(JFrame ventanaAnterior, String nombreUsuario,final JLabel labelSaldo) {
-		ventanaRecargar = ventanaAnterior;
+	public VentanaRecargarSaldo(JFrame ventanaAnterior, String nombreUsuario, final JLabel labelSaldo) {
+		ventanaMenuSocio = ventanaAnterior;
 		try {
 			controllerRecargarSaldo = new ControllerRecargarSaldo();
 		} catch (RemoteException e1) {
@@ -105,9 +106,8 @@ public class VentanaRecargarSaldo extends JFrame {
 		botonVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Volver");
-				ventanaRecargar.setVisible(true);
+				ventanaMenuSocio.setVisible(true);
 				VentanaRecargarSaldo.this.dispose();
-				
 			}
 		});
 		botonVolver.setBounds(80,460,145,50);
@@ -121,6 +121,7 @@ public class VentanaRecargarSaldo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("5");
 				dinero = dinero + 5;
+				cantidadQueSeRecarga = cantidadQueSeRecarga + 5;
 				update();
 				
 			}
@@ -136,6 +137,7 @@ public class VentanaRecargarSaldo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("10");
 				dinero = dinero +10;
+				cantidadQueSeRecarga = cantidadQueSeRecarga + 10;
 				update();
 			}
 		});
@@ -150,6 +152,7 @@ public class VentanaRecargarSaldo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("20");
 				dinero = dinero + 20;
+				cantidadQueSeRecarga = cantidadQueSeRecarga + 20;
 				update();
 			}
 		});
@@ -164,6 +167,7 @@ public class VentanaRecargarSaldo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("50");
 				dinero = dinero + 50;
+				cantidadQueSeRecarga = cantidadQueSeRecarga + 50;
 				update();
 			}
 		});
@@ -177,14 +181,13 @@ public class VentanaRecargarSaldo extends JFrame {
 		JButton botonConfirmar = new JButton();
 		botonConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Confirmar");
+				System.out.println("Metodo de pago");
 				System.out.println(nombreUsuario);
 				System.out.println(dinero);
-				controllerRecargarSaldo.updateMonedero(nombreUsuario, dinero);			
-				labelSaldo.setText("Tu saldo actual es de "+controllerRecargarSaldo.selectSocio(nombreUsuario).getMonedero()+" €");
 				
-				VentanaRecargarSaldo.this.dispose();
-				ventanaRecargar.setVisible(true);
+				VentanaRecargarSaldo.this.setVisible(false);
+				VentanaMetodoPago vmp = new VentanaMetodoPago(VentanaRecargarSaldo.this, ventanaMenuSocio, nombreUsuario, dinero, cantidadQueSeRecarga, labelSaldo, controllerRecargarSaldo);
+				vmp.setVisible(true);
 			}
 		});
 		botonConfirmar.setBounds(735,460,145,50);

@@ -15,6 +15,8 @@ import es.deusto.server.dto.ArticuloAssembler;
 import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.SocioAssembler;
 import es.deusto.server.dto.SocioDTO;
+import es.deusto.server.gateway.IGatewayPago;
+import es.deusto.server.gateway.PayPalGateway;
 import es.deusto.server.db.IDAO;
 
 public class AppServiceDB {
@@ -23,12 +25,14 @@ public class AppServiceDB {
 	private ArticuloAssembler artAssem;
 	private SocioAssembler socioAssem;
 	private AlquilerAssembler alqAssem;
+	private IGatewayPago paypalGateway;
 
-	public AppServiceDB() throws RemoteException {
+	public AppServiceDB(String[] args) throws RemoteException {
 		db = new MySQL_DB();
 		artAssem = ArticuloAssembler.getInstance();
 		socioAssem = SocioAssembler.getInstance();
 		alqAssem = AlquilerAssembler.getInstance();
+		paypalGateway = new PayPalGateway(args[0], Integer.parseInt(args[1]), args[3]);
 	}
 
 	public boolean insertarSocio(String nombre, String pass, double monedero) {
@@ -110,5 +114,13 @@ public class AppServiceDB {
 
 	public boolean bloquearMaquina(String nombreAdmin) {
 		return db.bloquearMaquina(nombreAdmin);
+	}
+	
+	public boolean pagarPaypal(String nombre, String password, double cantidad) {
+		try {
+			return paypalGateway.pagar(nombre, password, cantidad);
+		} catch (RemoteException e) {
+			return false;
+		}
 	}
 }

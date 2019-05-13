@@ -38,4 +38,6 @@ public interface IServer extends Remote {
 	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo, int valoracion) throws RemoteException;
 	
 	public boolean bloquearMaquina(String nombreAdmin) throws RemoteException;
+	
+	public boolean pagarPaypal(String nombre, String password, double cantidad) throws RemoteException;
 }
