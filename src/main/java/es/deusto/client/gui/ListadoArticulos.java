@@ -165,6 +165,7 @@ public class ListadoArticulos extends JFrame {
 					
 					ListadoArticulos ls = new ListadoArticulos(MenuSocio, iniciado, lblSaldo, articulos, articulos2);
 					ListadoArticulos.this.dispose();
+					ls.setVisible(true);
 				}else if(((String)comboBox.getSelectedItem()).equals("Videojuegos"))
 				{
 					for(ArticuloDTO a : articulos)
@@ -176,6 +177,7 @@ public class ListadoArticulos extends JFrame {
 					}
 					ListadoArticulos ls = new ListadoArticulos(MenuSocio, iniciado, lblSaldo, articulos, articulos2);
 					ListadoArticulos.this.dispose();
+					ls.setVisible(true);
 				}else
 				{
 					for(ArticuloDTO a : articulos)
@@ -184,6 +186,7 @@ public class ListadoArticulos extends JFrame {
 					}
 					ListadoArticulos ls = new ListadoArticulos(MenuSocio, iniciado, lblSaldo, articulos, articulos2);
 					ListadoArticulos.this.dispose();
+					ls.setVisible(true);
 				}
 				
 			}
