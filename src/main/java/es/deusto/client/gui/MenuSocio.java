@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -182,6 +183,25 @@ public class MenuSocio extends JFrame {
 			}
 		});
 		
+		JButton btnGuia = new JButton("?");
+//		Font fuente = new Font("AppleGothic", 3, 10);
+//		btnGuia.setFont(fuente);
+		btnGuia.setBounds(5, 460, 45, 35);
+		background.add(btnGuia);
+		btnGuia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaGuia ventanaGuia;
+				try {
+					ventanaGuia = new VentanaGuia(MenuSocio.this);
+					ventanaGuia.setVisible(true);
+					MenuSocio.this.setVisible(false);
+				} catch (FileNotFoundException e1) {
+					System.out.println("Error");
+					e1.printStackTrace();
+				}
+			}
+		});
+		
 		if (iniciado.getNombre().equals("Administrador") || iniciado.getNombre().equals("Director")) {
 			JButton btnDescuentos = new JButton("Descuentos");
 			btnDescuentos.addActionListener(new ActionListener() {
@@ -221,16 +241,6 @@ public class MenuSocio extends JFrame {
 				}
 			});
 			
-			JButton btnGuia = new JButton("Guia usuario");
-			btnGuia.setBounds(490, 365, 130, 50);
-			background.add(btnGuia);
-			btnGuia.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					VentanaGuia ventanaGuia = new VentanaGuia(MenuSocio.this);
-					ventanaGuia.setVisible(true);
-					MenuSocio.this.setVisible(false);
-				}
-			});
 			
 			bloquearMaquina = iniciado.isBloquearMaquina();
 
