@@ -18,8 +18,13 @@ import es.deusto.client.data.Pelicula;
 import es.deusto.client.data.Socio;
 import es.deusto.client.data.Videojuego;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class MySQL_DB implements IDAO {
 
+	Logger logger = LoggerFactory.getLogger("ServerLog");
+	
 	PersistenceManagerFactory persistentManagerFactory;
 	PersistenceManager persistentManager;			
 	Transaction transaction;
@@ -29,15 +34,16 @@ public class MySQL_DB implements IDAO {
 		persistentManager = null;			
 		transaction = null;
 	}
-
+	
 	@Override
 	public boolean insertarSocio(Socio socio) {
+		logger.info("Se ha llamado a insertarSocio()");
 		boolean result = false;
 		try {
 			persistentManager = persistentManagerFactory.getPersistenceManager();
 			transaction = persistentManager.currentTransaction();
 			transaction.begin();
-
+			
 			persistentManager.makePersistent(socio);
 
 			System.out.println("- Inserted into db: " + socio.getNombre());
