@@ -1,5 +1,5 @@
-dist: xenial
 language: java
+dist: xenial
 jdk:
   - openjdk11
   - openjdk10
@@ -9,7 +9,7 @@ services:
   - xvfb
   - mysql
 before_install:
+  - rmiregistry -J-Djava.rmi.server.useCodebaseOnly=false &
   - mysql -u root -e "create database videoclubDB";
   - mysql -u root -e "CREATE USER 'spq'@'%' IDENTIFIED BY 'spq'";
   - mysql -u root -e "GRANT ALL ON videoclubDB.* TO 'spq'@'%'";
-  - rmiregistry -J-Djava.rmi.server.useCodebaseOnly=false &
