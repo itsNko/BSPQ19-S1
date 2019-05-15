@@ -8,9 +8,6 @@ jdk:
 services:
   - xvfb
   - mysql
-cache:
-  directories:
-    - "$HOME/.m2"
 before_install:
   - mysql -u root -e "create database videoclubDB";
   - mysql -u root -e "CREATE USER 'spq'@'%' IDENTIFIED BY 'spq'";
