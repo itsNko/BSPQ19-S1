@@ -8,6 +8,10 @@ jdk:
 services:
   - xvfb
   - mysql
+  
+cache:
+  directories:
+    - "$HOME/.m2"
 before_install:
   - rmiregistry -J-Djava.rmi.server.useCodebaseOnly=false &
   - mysql -u root -e "create database videoclubDB";
