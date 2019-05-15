@@ -17,7 +17,7 @@ import es.deusto.client.remote.ServiceLocator;
 import es.deusto.server.dto.SocioDTO;
 import es.deusto.server.remote.IServer;
 
-@RunWith(MockitoJUnitRunner.Silent.class) 
+@RunWith(MockitoJUnitRunner.class) 
 public class ControllerPayPalTest {
 
 	private ControllerPayPal cpp;
@@ -68,7 +68,7 @@ public class ControllerPayPalTest {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		assertFalse(cpp.pagarPayPal(s.getNombre(), s.getPassword(), 20));
+		assertFalse(cpp.pagarPayPal(s.getNombre(), s.getPassword(), 20.5));
 	}
 	
 }
