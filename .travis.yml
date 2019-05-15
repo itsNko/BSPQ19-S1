@@ -1,13 +1,10 @@
 dist: xenial
 language: java
 jdk:
+  - openjdk11
   - openjdk10
-  - oraclejdk8
   - openjdk8
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
+  - oraclejdk11
 services:
   - xvfb
   - mysql
