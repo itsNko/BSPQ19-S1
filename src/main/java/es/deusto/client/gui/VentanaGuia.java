@@ -54,7 +54,7 @@ public class VentanaGuia extends JFrame {
 		getContentPane().add(background);
 		background.setLayout(null);
 		
-		JTextArea areaTexto = new JTextArea(25,75);
+		JTextArea areaTexto = new JTextArea(25,65);
 		areaTexto.setLineWrap(true);
 		areaTexto.setWrapStyleWord(true);
 		areaTexto.setEditable(false);
@@ -79,16 +79,14 @@ public class VentanaGuia extends JFrame {
 		panel.add(areaTexto);
 		JScrollPane scroll = new JScrollPane(panel);
 		panel.setOpaque(false);
-		background.add(scroll);
-		scroll.setBounds(50, 150, 850, 270);
+		
+		scroll.setBounds(90, 125, 780, 285);
 		scroll.setOpaque(false);
 		scroll.getViewport().setOpaque(false);
-			
-		
-		
+		background.add(scroll);
 		
 			
-		JButton btnVolver = new JButton("Volver");
+		JButton btnVolver = new JButton("");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Volver");
@@ -97,9 +95,9 @@ public class VentanaGuia extends JFrame {
 			}
 		});
 		btnVolver.setBounds(780, 455, 140, 50);
-//		btnVolver.setOpaque(false);
-//		btnVolver.setContentAreaFilled(false);
-//		btnVolver.setBorderPainted(false);
+		btnVolver.setOpaque(false);
+		btnVolver.setContentAreaFilled(false);
+		btnVolver.setBorderPainted(false);
 		background.add(btnVolver);
 	}
 	
