@@ -8,7 +8,7 @@ El director tiene una visión general de su negocio mediante estadísticas del m
 Se realizará una conexión cliente-servidor mediante la tecnología RMI y una gestión de bases de datos usando JDO.
 
 ## Ejecución
-En las siguientes líneas se detalla los requisitos y necesidades para ejecutar el software, así como las instrucciones para realizarlo.
+En las siguientes líneas se detallan los requisitos y necesidades para ejecutar el software, así como las instrucciones para realizarlo.
 
 ### Prerrequisitos
 Para poder ejecutar el proyecto es necesario software adicional:
