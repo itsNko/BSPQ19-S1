@@ -277,6 +277,23 @@ public class MenuSocio extends JFrame {
 					}
 				}
 			});
+			
+			JButton btnEstadisticas = new JButton("Estadisticas");
+			btnEstadisticas.setBounds(485, 375, 117, 29);
+			background.add(btnEstadisticas);
+			
+			btnEstadisticas.addActionListener(new ActionListener() {
+
+				public void actionPerformed(ActionEvent e) {
+					VentanaEstadisticas ventanaEstadistica = new VentanaEstadisticas(MenuSocio.this);
+					ventanaEstadistica.setVisible(true);
+					MenuSocio.this.setVisible(false);
+					
+				}
+				
+				
+				
+			});
 
 		}
 
