@@ -17,7 +17,7 @@ import es.deusto.client.remote.ServiceLocator;
 import es.deusto.server.dto.SocioDTO;
 import es.deusto.server.remote.IServer;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.Silent.class) 
 public class ControllerPayPalTest {
 
 	private ControllerPayPal cpp;

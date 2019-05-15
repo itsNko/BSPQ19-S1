@@ -58,8 +58,10 @@ public class Socio {
 		return nombre;
 	}
 
+	
 	/**
 	 * Actualiza el atributo nombre del Socio con el valor que se introduce por parametro.
+	 * @param nombre
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
