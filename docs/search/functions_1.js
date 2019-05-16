@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['bloquearmaquina',['bloquearMaquina',['../interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o.html#a45cf535d7992afcdf52a1d2b3efe9d1f',1,'es.deusto.server.db.IDAO.bloquearMaquina()'],['../classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b.html#a55faf265407ccfeac4078b95991d6a2f',1,'es.deusto.server.db.MySQL_DB.bloquearMaquina()'],['../interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server.html#adaf581e514d28fa130d44aceaf2fcc07',1,'es.deusto.server.remote.IServer.bloquearMaquina()'],['../classes_1_1deusto_1_1server_1_1remote_1_1_server.html#ae03d92a9f36e32fe68553bfc8506efec',1,'es.deusto.server.remote.Server.bloquearMaquina()'],['../classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b.html#ad5abb10d1ef40b2ec6a00db392bce459',1,'es.deusto.server.services.AppServiceDB.bloquearMaquina()']]]
+];
