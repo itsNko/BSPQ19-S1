@@ -2,6 +2,9 @@ package es.deusto.client.controllers;
 
 import java.rmi.RemoteException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import es.deusto.client.remote.ServiceLocator;
 
 /**
@@ -11,6 +14,7 @@ import es.deusto.client.remote.ServiceLocator;
 public class ControllerMenuSocio {
 
 	private ServiceLocator rsl = ControllerRegistro.getRsl();
+	Logger logger = LoggerFactory.getLogger("ClientLog");
 
 	/**
 	 * Constructor vacio ControllerMenuSocio
@@ -36,9 +40,11 @@ public class ControllerMenuSocio {
 	 */
 	public boolean updateBloquearMaquina(String nombreAdmin) {
 		try {
+			logger.info("###ControllerMenuSocio: ServiceLocator.getService().updateBloquearMaquina###");
 			return rsl.getService().bloquearMaquina(nombreAdmin);
 		} catch (RemoteException e) {
-			System.err.println("$ Error al bloquear la maquina " + e.getMessage());
+			logger.error("$ Error al bloquear la maquina " + e.getMessage());
+			//System.err.println("$ Error al bloquear la maquina " + e.getMessage());
 			return false;
 		}
 		

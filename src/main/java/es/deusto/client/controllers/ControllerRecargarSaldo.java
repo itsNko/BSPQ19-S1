@@ -2,6 +2,9 @@ package es.deusto.client.controllers;
 
 import java.rmi.RemoteException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import es.deusto.client.remote.ServiceLocator;
 import es.deusto.server.dto.SocioDTO;
 
@@ -12,6 +15,7 @@ import es.deusto.server.dto.SocioDTO;
 public class ControllerRecargarSaldo {
 	
 	private ServiceLocator rsl = ControllerRegistro.getRsl();
+	Logger logger = LoggerFactory.getLogger("ClientLog");
 
 	/**
 	 * Constructor vacio ControllerRecargarSaldo
@@ -37,11 +41,13 @@ public class ControllerRecargarSaldo {
 	 */
 	public SocioDTO selectSocio(String nombreUsuario) {
 		try {
-			System.out.println("###ControllerRecargarSaldo: ServiceLocator.getService().selectSocio###");
+			logger.info("###ControllerRecargarSaldo: ServiceLocator.getService().selectSocio###");
+			//System.out.println("###ControllerRecargarSaldo: ServiceLocator.getService().selectSocio###");
 			return rsl.getService().selectSocio(nombreUsuario);
 
 		}catch(Exception e) {
-			System.err.println("$ Error al seleccionar socio " + e.getMessage());
+			logger.error("$ Error al seleccionar socio " + e.getMessage());
+			//System.err.println("$ Error al seleccionar socio " + e.getMessage());
 			return new SocioDTO("", "", "", "", "", 0, "");
 		}
 	}
@@ -55,10 +61,12 @@ public class ControllerRecargarSaldo {
 	 */
 	public boolean updateMonedero(String nombreUsuario, double monedero) {
 		try {
-			System.out.println("###ControllerRecargarSaldo: ServiceLocator.getService().updateMonedero###");
+			logger.info("###ControllerRecargarSaldo: ServiceLocator.getService().updateMonedero###");
+			//System.out.println("###ControllerRecargarSaldo: ServiceLocator.getService().updateMonedero###");
 			return rsl.getService().updateMonedero(nombreUsuario, monedero);
 		}catch(Exception e) {
-			System.err.println("$ Error al actualizar monedero " + e.getMessage());
+			logger.error("$ Error al actualizar monedero " + e.getMessage());
+			//System.err.println("$ Error al actualizar monedero " + e.getMessage());
 			return false;
 		}
 	}

@@ -2,6 +2,9 @@ package es.deusto.client.controllers;
 
 import java.rmi.RemoteException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import es.deusto.client.remote.ServiceLocator;
 
 /**
@@ -11,6 +14,7 @@ import es.deusto.client.remote.ServiceLocator;
 public class ControllerEditarDatosSocio {
 
 	private ServiceLocator rsl = ControllerRegistro.getRsl();
+	Logger logger = LoggerFactory.getLogger("ClientLog");
 
 	/**
 	 * Constructor vacio ControllerEditarDatosSocio
@@ -36,9 +40,11 @@ public class ControllerEditarDatosSocio {
 	 */
 	public boolean updateDatosSocio(String nombreSocio, String datosNuevos) {
 		try {
+			logger.info("###ControllerEditarDatosSocio: ServiceLocator.getService().updateDatosSocio###");
 			return rsl.getService().updateDatosSocio(nombreSocio, datosNuevos);
 		}catch(Exception e) {
-			System.err.println("$ Error al insertar película " + e.getMessage());
+			logger.error("$ Error al insertar película " + e.getMessage());
+			//System.err.println("$ Error al insertar película " + e.getMessage());
 			return false;
 
 		}

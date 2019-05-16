@@ -3,6 +3,9 @@ package es.deusto.client.controllers;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Socio;
@@ -17,6 +20,7 @@ import es.deusto.server.dto.SocioDTO;
 public class ControllerAlquiler {
 
 	private ServiceLocator rsl = ControllerRegistro.getRsl();
+	Logger logger = LoggerFactory.getLogger("ClientLog");
 
 	/**
 	 * Constructor vacio ControllerAlquiler
@@ -54,13 +58,15 @@ public class ControllerAlquiler {
 	public boolean insertarAlquiler(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double coste, String nombreUsuario, boolean pv, String fechaFin, String fechaInicio, double descuento) {
 		boolean correcto;
 		try {
-			System.out.println("###ControllerAlquiler: ServiceLocator.getService().insertarAlquiler###");
+			logger.info("###ControllerAlquiler: ServiceLocator.getService().insertarAlquiler###");
+			//System.out.println("###ControllerAlquiler: ServiceLocator.getService().insertarAlquiler###");
 			correcto = rsl.getService().insertarAlquiler(nombre,precio,sinopsis,genero,fecha_estr,puntuacion, caratula, coste, nombreUsuario, pv, fechaFin, fechaInicio, descuento);
-			System.out.println("###ControllerAlquiler: Se ha insertado alquiler correctamente###");
-
+			//System.out.println("###ControllerAlquiler: Se ha insertado alquiler correctamente###");
+			logger.info("###ControllerAlquiler: Se ha insertado alquiler correctamente###");
 			return correcto;
 		}catch(Exception e) {
-			System.err.println("$ Error al insertar alquiler " + e.getMessage());
+			logger.error("$ Error al insertar alquiler " + e.getMessage());
+			//System.err.println("$ Error al insertar alquiler " + e.getMessage());
 			return false;
 
 		}
@@ -73,11 +79,13 @@ public class ControllerAlquiler {
 	 */
 	public SocioDTO selectSocio(String nombreUsuario) {
 		try {
-			System.out.println("###ControllerAlquiler: ServiceLocator.getService().selectSocio###");
+			//System.out.println("###ControllerAlquiler: ServiceLocator.getService().selectSocio###");
+			logger.info("###ControllerAlquiler: ServiceLocator.getService().selectSocio###");
 			return rsl.getService().selectSocio(nombreUsuario);
 
 		}catch(Exception e) {
-			System.err.println("$ Error al seleccionar socio " + e.getMessage());
+			//System.err.println("$ Error al seleccionar socio " + e.getMessage());
+			logger.error("$ Error al seleccionar socio " + e.getMessage());
 			return new SocioDTO("", "", "", "", "", 0, "");
 		}
 	}
@@ -89,9 +97,11 @@ public class ControllerAlquiler {
 	 */
 	public List<AlquilerDTO> historialAlquileres(String nombreSocio) {
 		try {
+			logger.info("###ControllerAlquiler: ServiceLocator.getService().historialAlquileres###");
 			return rsl.getService().historialAlquileres(nombreSocio); 
 		} catch(Exception e) {
-			System.err.println("$ Error al devolver historial de alquileres " + e.getMessage());
+			logger.error("$ Error al devolver historial de alquileres " + e.getMessage());
+			//System.err.println("$ Error al devolver historial de alquileres " + e.getMessage());
 			return null;
 		}
 	}
@@ -106,10 +116,12 @@ public class ControllerAlquiler {
 	 */
 	public boolean updateMonedero(String nombreUsuario, double monedero) {
 		try {
-			System.out.println("###ControllerRecargarSaldo: ServiceLocator.getService().updateMonedero###");
+			logger.info("###ControllerRecargarSaldo: ServiceLocator.getService().updateMonedero###");
+			//System.out.println("###ControllerRecargarSaldo: ServiceLocator.getService().updateMonedero###");
 			return rsl.getService().updateMonedero(nombreUsuario, monedero);
 		}catch(Exception e) {
-			System.err.println("$ Error al actualizar monedero " + e.getMessage());
+			logger.error("$ Error al actualizar monedero " + e.getMessage());
+			//System.err.println("$ Error al actualizar monedero " + e.getMessage());
 			return false;
 		}
 	}
