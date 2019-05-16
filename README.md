@@ -1,3 +1,5 @@
+# MANUAL
+
 # Sistema de gestión de un videoclub [![Build Status](https://travis-ci.com/BSPQ18-19/BSPQ19-S1.svg?branch=master)](https://travis-ci.com/BSPQ18-19/BSPQ19-S1)
 
 Proyecto software para la gestión de un videoclub desarrollado en Java.
