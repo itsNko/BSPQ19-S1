@@ -35,7 +35,7 @@ mvn clean compile
 ```
 
 ### Configuración
-Es necesario configurar la base de datos que vayamos a utilizar en el archivo siguiente. Debemos crear un usuario con sus respectivos permisos para que el videoclub pueda acceder a la base de datos.
+Es necesario configurar la base de datos que vayamos a utilizar en el archivo siguiente. Debemos crear un usuario con sus respectivos permisos para que el videoclub pueda acceder a la base de datos. En nuestro caso de ejemplo, el usuario es 'spq' y la contraseña es 'spq', el nombre de la BD es 'videoclubDB'.
 
 ```
 src/main/resources/datanucleus.properties
@@ -62,7 +62,11 @@ Debido a que se utiliza RMI, es posible ubicar el servidor en otro ordenador dif
 ```
 
 ### Ejecución
-Finalmente, es necesario ejecutar el servidor y el cliente por separado.
+Finalmente, es necesario ejecutar el servidor y el cliente por separado. Además de ejecutar el servidor de PayPal si se quiere realizar pagos por este método de pago.
+
+```
+mvn exec:java -Ppaypal
+```
 
 ```
 mvn exec:java -Pserver
