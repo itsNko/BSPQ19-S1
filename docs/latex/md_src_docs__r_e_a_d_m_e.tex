@@ -1,0 +1,98 @@
+\section*{Sistema de gestión de un videoclub \href{https://travis-ci.com/BSPQ18-19/BSPQ19-S1}{\texttt{ }}}
+
+Proyecto software para la gestión de un videoclub desarrollado en Java. Permite a usuarios, empleados y el director del videoclub realizar las acciones que deban llevar a cabo. Los clientes pueden hacerse socios del videoclub para poder alquilar artículos (películas y videojuegos), además de recibir ofertas. Los empleados pueden gestionar los datos de los artículos y ver el listado de alquileres en todo momento. El director tiene una visión general de su negocio mediante estadísticas del mismo. Se realizará una conexión cliente-\/servidor mediante la tecnología R\+MI y una gestión de bases de datos usando J\+DO.
+
+\subsection*{Ejecución}
+
+En las siguientes líneas se detallan los requisitos y necesidades para ejecutar el software, así como las instrucciones para realizarlo.
+
+\subsubsection*{Prerrequisitos}
+
+Para poder ejecutar el proyecto es necesario software adicional\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{- Java 12.}
+\DoxyCodeLine{- Apache Maven 3.6.0.}
+\DoxyCodeLine{- JUnit 4.11}
+\DoxyCodeLine{- MariaDB (o MySQL o equivalente)}
+\end{DoxyCode}
+
+
+\subsubsection*{Instalación}
+
+Para compilar el proyecto es necesario introducir en la consola el siguiente comando una vez te encuentres en el directorio del proyecto (desde el directorio donde se encuentra el archivo pom.\+xml)\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mvn compile}
+\end{DoxyCode}
+
+
+Si ya tenías una versión anterior, ejecutamos el siguiente código para que se fuerce la compilación actualizada\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mvn clean compile}
+\end{DoxyCode}
+
+
+\subsubsection*{Configuración}
+
+Es necesario configurar la base de datos que vayamos a utilizar en el archivo siguiente. Debemos crear un usuario con sus respectivos permisos para que el videoclub pueda acceder a la base de datos.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{src/main/resources/datanucleus.properties}
+\end{DoxyCode}
+
+
+Para crear la primera vez la base de datos con las tablas necesarias, es necesario ejecutar el siguiente comando, siempre dentro de la carpeta del proyecto (donde se encuentra el archivo pom.\+xml)\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mvn datanucleus:schema-create}
+\end{DoxyCode}
+
+
+Si ya tuviésemos una base de datos creada anteriormente con este nombre, la podemos borrar utilizando\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mvn datanucleus:schema-delete}
+\end{DoxyCode}
+
+
+Debido a que se utiliza R\+MI, es posible ubicar el servidor en otro ordenador diferente al cliente. Los archivos de configuración para la conexión se encuentran en el archivo pom.\+xml\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<server.IP>127.0.0.1</server.IP>}
+\DoxyCodeLine{<server.port>1099</server.port>}
+\end{DoxyCode}
+
+
+\subsubsection*{Ejecución}
+
+Finalmente, es necesario ejecutar el servidor y el cliente por separado.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mvn exec:java -Pserver}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mvn exec:java -Pclient}
+\end{DoxyCode}
+
+
+\subsection*{Construido con}
+
+
+\begin{DoxyItemize}
+\item \href{https://maven.apache.org/}{\texttt{ Maven}} -\/ Dependency Management
+\end{DoxyItemize}
+
+\subsection*{Imágenes del proyecto}
+
+    

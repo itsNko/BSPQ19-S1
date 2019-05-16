@@ -1,0 +1,362 @@
+\hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b}{}\section{es.\+deusto.\+server.\+services.\+App\+Service\+DB Class Reference}
+\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b}\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a409668aba7daa8751863e3cf0fd4b809}{App\+Service\+DB}} (String\mbox{[}$\,$\mbox{]} args)  throws Remote\+Exception 
+\item 
+boolean \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a7fde38ff7e7e24adfd572d3044c0cb18}{insertar\+Socio}} (String nombre, String pass, double monedero)
+\item 
+boolean \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_acc18376b7ef7057ec88bb3321f0195f0}{existe\+Socio}} (String nombre\+Socio)
+\item 
+\mbox{\hyperlink{classes_1_1deusto_1_1server_1_1dto_1_1_socio_d_t_o}{Socio\+D\+TO}} \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a05bb94be097db4d37ed29533ffef22bd}{inicio\+Sesion}} (String nombre\+Socio, String password)
+\item 
+boolean \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a1d8255fd9345da3dac1396df7ce42468}{insertar\+Alquiler}} (String nombre, double precio, String sinopsis, String genero, String fecha\+\_\+estr, double puntuacion, String caratula, double coste, String nombre\+Usuario, boolean pv, String fecha\+Fin, String fecha\+Inicio, double descuento)
+\item 
+List$<$ \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1dto_1_1_articulo_d_t_o}{Articulo\+D\+TO}} $>$ \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_ad5b41086b12914887243cf56ebae5bb5}{listado\+Articulos}} ()
+\item 
+List$<$ \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1dto_1_1_alquiler_d_t_o}{Alquiler\+D\+TO}} $>$ \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a362c47422ee87ea594ccf6c7884ce053}{historial\+Alquileres}} (String nombre\+Socio)
+\item 
+\mbox{\hyperlink{classes_1_1deusto_1_1server_1_1dto_1_1_socio_d_t_o}{Socio\+D\+TO}} \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_ad57719d5fdb8d08686570dff17edb8a0}{select\+Socio}} (String nombre\+Usuario)
+\item 
+boolean \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_acc1227082742b137a82096bca5b6945c}{update\+Monedero}} (String nombre\+Usuario, double monedero)
+\item 
+boolean \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a4839aca5b2ad04a8fc7616d1b96532e2}{update\+Descuento}} (String nombre\+Articulo, double descuento)
+\item 
+boolean \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_aae9559c56b0372139a47e7f647794ac2}{insertar\+Pelicula}} (String nombre, double precio, String sinopsis, String genero, String fecha\+\_\+estr, double puntuacion, String caratula, double descuento)
+\item 
+boolean \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a1e98f1cd6fde7ae6aaef7c90ebef4849}{insertar\+Videojuego}} (String nombre, double precio, String descripcion, String categoria, String fecha\+\_\+lanz, double puntuacion, String caratula, double descuento)
+\item 
+boolean \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_aa379ab9cb99ad97983c8c9e02204b129}{update\+Precio}} (String nombre\+Articulo, double precio)
+\item 
+boolean \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_aad5d78a40512a94a4ef5f6203810899b}{update\+Datos\+Socio}} (String nombre\+Socio, String datos\+Nuevos)
+\item 
+boolean \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_ab32c2158089cff61db88b11619cce7f9}{devolver\+Alquiler}} (String nombre\+Usuario, String nombre\+Articulo, int valoracion)
+\item 
+boolean \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_ad5abb10d1ef40b2ec6a00db392bce459}{bloquear\+Maquina}} (String nombre\+Admin)
+\item 
+boolean \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_afc5b3243a3f9470c30aa88a034322233}{pagar\+Paypal}} (String nombre, String password, double cantidad)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Clase del \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b}{App\+Service\+DB}}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a409668aba7daa8751863e3cf0fd4b809}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a409668aba7daa8751863e3cf0fd4b809}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!AppServiceDB@{AppServiceDB}}
+\index{AppServiceDB@{AppServiceDB}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{AppServiceDB()}{AppServiceDB()}}
+{\footnotesize\ttfamily es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+App\+Service\+DB (\begin{DoxyParamCaption}\item[{String \mbox{[}$\,$\mbox{]}}]{args }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+Constructor del \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b}{App\+Service\+DB}}. 
+\begin{DoxyParams}{Parameters}
+{\em args} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Remote\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_ad5abb10d1ef40b2ec6a00db392bce459}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_ad5abb10d1ef40b2ec6a00db392bce459}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!bloquearMaquina@{bloquearMaquina}}
+\index{bloquearMaquina@{bloquearMaquina}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{bloquearMaquina()}{bloquearMaquina()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+bloquear\+Maquina (\begin{DoxyParamCaption}\item[{String}]{nombre\+Admin }\end{DoxyParamCaption})}
+
+Llama al metodo de base de datos que actualiza el estado de la maquina para clientes. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Admin} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_ab32c2158089cff61db88b11619cce7f9}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_ab32c2158089cff61db88b11619cce7f9}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!devolverAlquiler@{devolverAlquiler}}
+\index{devolverAlquiler@{devolverAlquiler}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{devolverAlquiler()}{devolverAlquiler()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+devolver\+Alquiler (\begin{DoxyParamCaption}\item[{String}]{nombre\+Usuario,  }\item[{String}]{nombre\+Articulo,  }\item[{int}]{valoracion }\end{DoxyParamCaption})}
+
+Llama al metodo de base de datos que actualiza el estado de un alquiler y le asigna una valoracion. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Usuario} & \\
+\hline
+{\em nombre\+Articulo} & \\
+\hline
+{\em valoracion} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_acc18376b7ef7057ec88bb3321f0195f0}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_acc18376b7ef7057ec88bb3321f0195f0}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!existeSocio@{existeSocio}}
+\index{existeSocio@{existeSocio}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{existeSocio()}{existeSocio()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+existe\+Socio (\begin{DoxyParamCaption}\item[{String}]{nombre\+Socio }\end{DoxyParamCaption})}
+
+Llama al metodo de base de datos para comprobar si existe un socio. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Socio} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si existe socio y en caso contrario false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a362c47422ee87ea594ccf6c7884ce053}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a362c47422ee87ea594ccf6c7884ce053}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!historialAlquileres@{historialAlquileres}}
+\index{historialAlquileres@{historialAlquileres}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{historialAlquileres()}{historialAlquileres()}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classes_1_1deusto_1_1server_1_1dto_1_1_alquiler_d_t_o}{Alquiler\+D\+TO}}$>$ es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+historial\+Alquileres (\begin{DoxyParamCaption}\item[{String}]{nombre\+Socio }\end{DoxyParamCaption})}
+
+Llama al metodo de base de datos que recupera el historial de alquileres de un socio. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Socio} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista de Alquiler\+D\+TO en caso de que no haya saltado ninguna excepcion, en caso contrario null 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a05bb94be097db4d37ed29533ffef22bd}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a05bb94be097db4d37ed29533ffef22bd}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!inicioSesion@{inicioSesion}}
+\index{inicioSesion@{inicioSesion}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{inicioSesion()}{inicioSesion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1dto_1_1_socio_d_t_o}{Socio\+D\+TO}} es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+inicio\+Sesion (\begin{DoxyParamCaption}\item[{String}]{nombre\+Socio,  }\item[{String}]{password }\end{DoxyParamCaption})}
+
+Llama al metodo de base de datos para realizar el proceso de inicio de sesion. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Socio} & \\
+\hline
+{\em password} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Socio\+D\+TO con los datos del socio que ha iniciado sesion en caso de hacerlo correctamente. En caso contrario, un Socio\+D\+TO vacio 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a1d8255fd9345da3dac1396df7ce42468}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a1d8255fd9345da3dac1396df7ce42468}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!insertarAlquiler@{insertarAlquiler}}
+\index{insertarAlquiler@{insertarAlquiler}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{insertarAlquiler()}{insertarAlquiler()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+insertar\+Alquiler (\begin{DoxyParamCaption}\item[{String}]{nombre,  }\item[{double}]{precio,  }\item[{String}]{sinopsis,  }\item[{String}]{genero,  }\item[{String}]{fecha\+\_\+estr,  }\item[{double}]{puntuacion,  }\item[{String}]{caratula,  }\item[{double}]{coste,  }\item[{String}]{nombre\+Usuario,  }\item[{boolean}]{pv,  }\item[{String}]{fecha\+Fin,  }\item[{String}]{fecha\+Inicio,  }\item[{double}]{descuento }\end{DoxyParamCaption})}
+
+Llama al metodo de base de datos que inserta un nuevo alquiler. 
+\begin{DoxyParams}{Parameters}
+{\em nombre} & \\
+\hline
+{\em precio} & \\
+\hline
+{\em sinopsis} & \\
+\hline
+{\em genero} & \\
+\hline
+{\em fecha\+\_\+estr} & \\
+\hline
+{\em puntuacion} & \\
+\hline
+{\em caratula} & \\
+\hline
+{\em coste} & \\
+\hline
+{\em nombre\+Usuario} & \\
+\hline
+{\em pv} & \\
+\hline
+{\em fecha\+Fin} & \\
+\hline
+{\em fecha\+Inicio} & \\
+\hline
+{\em descuento} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepción y false en caso contrario 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_aae9559c56b0372139a47e7f647794ac2}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_aae9559c56b0372139a47e7f647794ac2}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!insertarPelicula@{insertarPelicula}}
+\index{insertarPelicula@{insertarPelicula}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{insertarPelicula()}{insertarPelicula()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+insertar\+Pelicula (\begin{DoxyParamCaption}\item[{String}]{nombre,  }\item[{double}]{precio,  }\item[{String}]{sinopsis,  }\item[{String}]{genero,  }\item[{String}]{fecha\+\_\+estr,  }\item[{double}]{puntuacion,  }\item[{String}]{caratula,  }\item[{double}]{descuento }\end{DoxyParamCaption})}
+
+Llama al metodo de base de datos que inserta una pelicula en la base de datos. 
+\begin{DoxyParams}{Parameters}
+{\em nombre} & \\
+\hline
+{\em precio} & \\
+\hline
+{\em sinopsis} & \\
+\hline
+{\em genero} & \\
+\hline
+{\em fecha\+\_\+estr} & \\
+\hline
+{\em puntuacion} & \\
+\hline
+{\em caratula} & \\
+\hline
+{\em descuento} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a7fde38ff7e7e24adfd572d3044c0cb18}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a7fde38ff7e7e24adfd572d3044c0cb18}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!insertarSocio@{insertarSocio}}
+\index{insertarSocio@{insertarSocio}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{insertarSocio()}{insertarSocio()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+insertar\+Socio (\begin{DoxyParamCaption}\item[{String}]{nombre,  }\item[{String}]{pass,  }\item[{double}]{monedero }\end{DoxyParamCaption})}
+
+Llama al metodo de base de datos para insertar un nuevo socio. 
+\begin{DoxyParams}{Parameters}
+{\em nombre} & \\
+\hline
+{\em pass} & \\
+\hline
+{\em monedero} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a1e98f1cd6fde7ae6aaef7c90ebef4849}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a1e98f1cd6fde7ae6aaef7c90ebef4849}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!insertarVideojuego@{insertarVideojuego}}
+\index{insertarVideojuego@{insertarVideojuego}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{insertarVideojuego()}{insertarVideojuego()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+insertar\+Videojuego (\begin{DoxyParamCaption}\item[{String}]{nombre,  }\item[{double}]{precio,  }\item[{String}]{descripcion,  }\item[{String}]{categoria,  }\item[{String}]{fecha\+\_\+lanz,  }\item[{double}]{puntuacion,  }\item[{String}]{caratula,  }\item[{double}]{descuento }\end{DoxyParamCaption})}
+
+Llama al metodo de base de datos que inserta un videojuego en la base de datos. 
+\begin{DoxyParams}{Parameters}
+{\em nombre} & \\
+\hline
+{\em precio} & \\
+\hline
+{\em descripcion} & \\
+\hline
+{\em categoria} & \\
+\hline
+{\em fecha\+\_\+lanz} & \\
+\hline
+{\em puntuacion} & \\
+\hline
+{\em caratula} & \\
+\hline
+{\em descuento} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_ad5b41086b12914887243cf56ebae5bb5}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_ad5b41086b12914887243cf56ebae5bb5}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!listadoArticulos@{listadoArticulos}}
+\index{listadoArticulos@{listadoArticulos}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{listadoArticulos()}{listadoArticulos()}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classes_1_1deusto_1_1server_1_1dto_1_1_articulo_d_t_o}{Articulo\+D\+TO}}$>$ es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+listado\+Articulos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Llama al metodo de base de datos que recupera el listado de articulos almacenados en la base de datos. \begin{DoxyReturn}{Returns}
+Lista de Articulo\+D\+TO en caso de que no haya saltado ninguna excepcion, en caso contrario null 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_afc5b3243a3f9470c30aa88a034322233}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_afc5b3243a3f9470c30aa88a034322233}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!pagarPaypal@{pagarPaypal}}
+\index{pagarPaypal@{pagarPaypal}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{pagarPaypal()}{pagarPaypal()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+pagar\+Paypal (\begin{DoxyParamCaption}\item[{String}]{nombre,  }\item[{String}]{password,  }\item[{double}]{cantidad }\end{DoxyParamCaption})}
+
+Llama al metodo del gateway\+Paypal para acceder a la funcionalidad que proporciona el servidor de Pay\+Pal. 
+\begin{DoxyParams}{Parameters}
+{\em nombre} & \\
+\hline
+{\em password} & \\
+\hline
+{\em cantidad} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_ad57719d5fdb8d08686570dff17edb8a0}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_ad57719d5fdb8d08686570dff17edb8a0}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!selectSocio@{selectSocio}}
+\index{selectSocio@{selectSocio}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{selectSocio()}{selectSocio()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1dto_1_1_socio_d_t_o}{Socio\+D\+TO}} es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+select\+Socio (\begin{DoxyParamCaption}\item[{String}]{nombre\+Usuario }\end{DoxyParamCaption})}
+
+Llama al metodo de base de datos que recupera un socio. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Usuario} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Socio\+D\+TO con sus datos si existe en la BD y en caso contrario un Socio\+D\+TO vacio 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_aad5d78a40512a94a4ef5f6203810899b}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_aad5d78a40512a94a4ef5f6203810899b}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!updateDatosSocio@{updateDatosSocio}}
+\index{updateDatosSocio@{updateDatosSocio}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{updateDatosSocio()}{updateDatosSocio()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+update\+Datos\+Socio (\begin{DoxyParamCaption}\item[{String}]{nombre\+Socio,  }\item[{String}]{datos\+Nuevos }\end{DoxyParamCaption})}
+
+Llama al metodo de base de datos que actualiza varios atributos de un socio. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Socio} & \\
+\hline
+{\em datos\+Nuevos} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a4839aca5b2ad04a8fc7616d1b96532e2}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_a4839aca5b2ad04a8fc7616d1b96532e2}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!updateDescuento@{updateDescuento}}
+\index{updateDescuento@{updateDescuento}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{updateDescuento()}{updateDescuento()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+update\+Descuento (\begin{DoxyParamCaption}\item[{String}]{nombre\+Articulo,  }\item[{double}]{descuento }\end{DoxyParamCaption})}
+
+Llama al metodo de base de datos que actualiza el valor del atributo descuento de un articulo. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Articulo} & \\
+\hline
+{\em descuento} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_acc1227082742b137a82096bca5b6945c}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_acc1227082742b137a82096bca5b6945c}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!updateMonedero@{updateMonedero}}
+\index{updateMonedero@{updateMonedero}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{updateMonedero()}{updateMonedero()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+update\+Monedero (\begin{DoxyParamCaption}\item[{String}]{nombre\+Usuario,  }\item[{double}]{monedero }\end{DoxyParamCaption})}
+
+Llama al metodo de base de datos que actualiza el valor del atributo monedero de un socio. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Usuario} & \\
+\hline
+{\em monedero} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_aa379ab9cb99ad97983c8c9e02204b129}\label{classes_1_1deusto_1_1server_1_1services_1_1_app_service_d_b_aa379ab9cb99ad97983c8c9e02204b129}} 
+\index{es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}!updatePrecio@{updatePrecio}}
+\index{updatePrecio@{updatePrecio}!es.deusto.server.services.AppServiceDB@{es.deusto.server.services.AppServiceDB}}
+\subsubsection{\texorpdfstring{updatePrecio()}{updatePrecio()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+services.\+App\+Service\+D\+B.\+update\+Precio (\begin{DoxyParamCaption}\item[{String}]{nombre\+Articulo,  }\item[{double}]{precio }\end{DoxyParamCaption})}
+
+Llama al metodo de base de datos que actualiza el atributo precio de un articulo. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Articulo} & \\
+\hline
+{\em precio} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/es/deusto/server/services/\mbox{\hyperlink{_app_service_d_b_8java}{App\+Service\+D\+B.\+java}}\end{DoxyCompactItemize}

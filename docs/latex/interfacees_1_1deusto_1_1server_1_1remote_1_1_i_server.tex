@@ -1,0 +1,223 @@
+\hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server}{}\section{es.\+deusto.\+server.\+remote.\+I\+Server Interface Reference}
+\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server}\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+Inheritance diagram for es.\+deusto.\+server.\+remote.\+I\+Server\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a9a2ee16746baf359dc7ac1fc4437eee8}{say\+Hello}} ()  throws Remote\+Exception
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_ac293a07e02b5c832d25954fbbec4d92c}{registro}} (String nombre, String pass, double monedero)  throws Remote\+Exception
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a9c3a20fd809291100bd8c3259a857d2b}{existe\+Socio}} (String nombre\+Socio)  throws Remote\+Exception
+\item 
+\mbox{\hyperlink{classes_1_1deusto_1_1server_1_1dto_1_1_socio_d_t_o}{Socio\+D\+TO}} \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a0815847d37ff0d87f0c2bdd8202b48bb}{inicio\+Sesion}} (String nombre\+Socio, String password)  throws Remote\+Exception
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_adc798ebfbd387dc7ef9c8d86a37eb3bb}{insertar\+Alquiler}} (String nombre, double precio, String sinopsis, String genero, String fecha\+\_\+estr, double puntuacion, String caratula, double coste, String nombre\+Usuario, boolean pv, String fecha\+Fin, String fecha\+Inicio, double descuento)  throws Remote\+Exception
+\item 
+List$<$ \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1dto_1_1_alquiler_d_t_o}{Alquiler\+D\+TO}} $>$ \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_ab6d4eec966b0e54e1b82c037dee7da23}{historial\+Alquileres}} (String nombre\+Socio)  throws Remote\+Exception
+\item 
+List$<$ \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1dto_1_1_articulo_d_t_o}{Articulo\+D\+TO}} $>$ \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_ac764551111551c2b167bf3d0fb53fc7b}{listado\+Articulos}} ()  throws Remote\+Exception
+\item 
+\mbox{\hyperlink{classes_1_1deusto_1_1server_1_1dto_1_1_socio_d_t_o}{Socio\+D\+TO}} \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a5268c08f2dd59d8ebc3864f7345c12f3}{select\+Socio}} (String nombre\+Usuario)  throws Remote\+Exception
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_aaba707260bfdd38c477bea520a440119}{update\+Monedero}} (String nombre\+Usuario, double monedero)  throws Remote\+Exception
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_ae6b1019df65fbd61a4f35981b883116f}{update\+Descuento}} (String nombre\+Articulo, double descuento)  throws Remote\+Exception
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a585b4e8eb577808d6b7f0b47d0f7b724}{update\+Datos\+Socio}} (String nombre\+Socio, String datos\+Nuevos)  throws Remote\+Exception
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_aef2c6618c8d38cbd221c290875f37e69}{insertar\+Pelicula}} (String nombre, double precio, String sinopsis, String genero, String fecha\+\_\+estr, double puntuacion, String caratula, double descuento)  throws Remote\+Exception
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a41c5cae2283787ff002699c2ff1d5877}{insertar\+Videojuego}} (String nombre, double precio, String descripcion, String categoria, String fecha\+\_\+lanz, double puntuacion, String caratula, double descuento)  throws Remote\+Exception
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a1debc07cec3cad9a483dee4dfa79af72}{update\+Precio}} (String nombre\+Articulo, double precio)  throws Remote\+Exception
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a145e3b64f34bedd019267417d8efcc64}{devolver\+Alquiler}} (String nombre\+Usuario, String nombre\+Articulo, int valoracion)  throws Remote\+Exception
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_adaf581e514d28fa130d44aceaf2fcc07}{bloquear\+Maquina}} (String nombre\+Admin)  throws Remote\+Exception
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_ae5fa0451aba57506212a5bd3674c060a}{pagar\+Paypal}} (String nombre, String password, double cantidad)  throws Remote\+Exception
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_adaf581e514d28fa130d44aceaf2fcc07}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_adaf581e514d28fa130d44aceaf2fcc07}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!bloquearMaquina@{bloquearMaquina}}
+\index{bloquearMaquina@{bloquearMaquina}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{bloquearMaquina()}{bloquearMaquina()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+remote.\+I\+Server.\+bloquear\+Maquina (\begin{DoxyParamCaption}\item[{String}]{nombre\+Admin }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_ae03d92a9f36e32fe68553bfc8506efec}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a145e3b64f34bedd019267417d8efcc64}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a145e3b64f34bedd019267417d8efcc64}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!devolverAlquiler@{devolverAlquiler}}
+\index{devolverAlquiler@{devolverAlquiler}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{devolverAlquiler()}{devolverAlquiler()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+remote.\+I\+Server.\+devolver\+Alquiler (\begin{DoxyParamCaption}\item[{String}]{nombre\+Usuario,  }\item[{String}]{nombre\+Articulo,  }\item[{int}]{valoracion }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_a980cae19c411c05bc1d1b9ec93e0083a}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a9c3a20fd809291100bd8c3259a857d2b}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a9c3a20fd809291100bd8c3259a857d2b}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!existeSocio@{existeSocio}}
+\index{existeSocio@{existeSocio}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{existeSocio()}{existeSocio()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+remote.\+I\+Server.\+existe\+Socio (\begin{DoxyParamCaption}\item[{String}]{nombre\+Socio }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_aba00b1ee900945e8004bc285d00a8c95}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_ab6d4eec966b0e54e1b82c037dee7da23}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_ab6d4eec966b0e54e1b82c037dee7da23}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!historialAlquileres@{historialAlquileres}}
+\index{historialAlquileres@{historialAlquileres}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{historialAlquileres()}{historialAlquileres()}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classes_1_1deusto_1_1server_1_1dto_1_1_alquiler_d_t_o}{Alquiler\+D\+TO}}$>$ es.\+deusto.\+server.\+remote.\+I\+Server.\+historial\+Alquileres (\begin{DoxyParamCaption}\item[{String}]{nombre\+Socio }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_a6aba80b9dc49313f765f5720aa4ae2a7}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a0815847d37ff0d87f0c2bdd8202b48bb}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a0815847d37ff0d87f0c2bdd8202b48bb}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!inicioSesion@{inicioSesion}}
+\index{inicioSesion@{inicioSesion}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{inicioSesion()}{inicioSesion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1dto_1_1_socio_d_t_o}{Socio\+D\+TO}} es.\+deusto.\+server.\+remote.\+I\+Server.\+inicio\+Sesion (\begin{DoxyParamCaption}\item[{String}]{nombre\+Socio,  }\item[{String}]{password }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_a9202d46c169e1920b585990f1adba486}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_adc798ebfbd387dc7ef9c8d86a37eb3bb}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_adc798ebfbd387dc7ef9c8d86a37eb3bb}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!insertarAlquiler@{insertarAlquiler}}
+\index{insertarAlquiler@{insertarAlquiler}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{insertarAlquiler()}{insertarAlquiler()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+remote.\+I\+Server.\+insertar\+Alquiler (\begin{DoxyParamCaption}\item[{String}]{nombre,  }\item[{double}]{precio,  }\item[{String}]{sinopsis,  }\item[{String}]{genero,  }\item[{String}]{fecha\+\_\+estr,  }\item[{double}]{puntuacion,  }\item[{String}]{caratula,  }\item[{double}]{coste,  }\item[{String}]{nombre\+Usuario,  }\item[{boolean}]{pv,  }\item[{String}]{fecha\+Fin,  }\item[{String}]{fecha\+Inicio,  }\item[{double}]{descuento }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_ae4892ba5e855e921d156a4b49562424c}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_aef2c6618c8d38cbd221c290875f37e69}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_aef2c6618c8d38cbd221c290875f37e69}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!insertarPelicula@{insertarPelicula}}
+\index{insertarPelicula@{insertarPelicula}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{insertarPelicula()}{insertarPelicula()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+remote.\+I\+Server.\+insertar\+Pelicula (\begin{DoxyParamCaption}\item[{String}]{nombre,  }\item[{double}]{precio,  }\item[{String}]{sinopsis,  }\item[{String}]{genero,  }\item[{String}]{fecha\+\_\+estr,  }\item[{double}]{puntuacion,  }\item[{String}]{caratula,  }\item[{double}]{descuento }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_a826b0343cb4dd20617cb7ee299de4171}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a41c5cae2283787ff002699c2ff1d5877}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a41c5cae2283787ff002699c2ff1d5877}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!insertarVideojuego@{insertarVideojuego}}
+\index{insertarVideojuego@{insertarVideojuego}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{insertarVideojuego()}{insertarVideojuego()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+remote.\+I\+Server.\+insertar\+Videojuego (\begin{DoxyParamCaption}\item[{String}]{nombre,  }\item[{double}]{precio,  }\item[{String}]{descripcion,  }\item[{String}]{categoria,  }\item[{String}]{fecha\+\_\+lanz,  }\item[{double}]{puntuacion,  }\item[{String}]{caratula,  }\item[{double}]{descuento }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_a406e093c958d4b85be33d55f79b9879e}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_ac764551111551c2b167bf3d0fb53fc7b}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_ac764551111551c2b167bf3d0fb53fc7b}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!listadoArticulos@{listadoArticulos}}
+\index{listadoArticulos@{listadoArticulos}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{listadoArticulos()}{listadoArticulos()}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classes_1_1deusto_1_1server_1_1dto_1_1_articulo_d_t_o}{Articulo\+D\+TO}}$>$ es.\+deusto.\+server.\+remote.\+I\+Server.\+listado\+Articulos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_af92422f6c88a176f9f424f3d9016ee00}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_ae5fa0451aba57506212a5bd3674c060a}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_ae5fa0451aba57506212a5bd3674c060a}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!pagarPaypal@{pagarPaypal}}
+\index{pagarPaypal@{pagarPaypal}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{pagarPaypal()}{pagarPaypal()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+remote.\+I\+Server.\+pagar\+Paypal (\begin{DoxyParamCaption}\item[{String}]{nombre,  }\item[{String}]{password,  }\item[{double}]{cantidad }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_a31c17e7534d892c61a2ac36c87e08dbc}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_ac293a07e02b5c832d25954fbbec4d92c}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_ac293a07e02b5c832d25954fbbec4d92c}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!registro@{registro}}
+\index{registro@{registro}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{registro()}{registro()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+remote.\+I\+Server.\+registro (\begin{DoxyParamCaption}\item[{String}]{nombre,  }\item[{String}]{pass,  }\item[{double}]{monedero }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_abd8ccf5305f02831be069dd3b53a3b5d}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a9a2ee16746baf359dc7ac1fc4437eee8}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a9a2ee16746baf359dc7ac1fc4437eee8}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!sayHello@{sayHello}}
+\index{sayHello@{sayHello}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{sayHello()}{sayHello()}}
+{\footnotesize\ttfamily String es.\+deusto.\+server.\+remote.\+I\+Server.\+say\+Hello (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_a37ccd2be0b3fbf0a80b356f132eca048}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a5268c08f2dd59d8ebc3864f7345c12f3}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a5268c08f2dd59d8ebc3864f7345c12f3}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!selectSocio@{selectSocio}}
+\index{selectSocio@{selectSocio}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{selectSocio()}{selectSocio()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1dto_1_1_socio_d_t_o}{Socio\+D\+TO}} es.\+deusto.\+server.\+remote.\+I\+Server.\+select\+Socio (\begin{DoxyParamCaption}\item[{String}]{nombre\+Usuario }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_ab26aaf2d539feae12e21a4f6328886a4}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a585b4e8eb577808d6b7f0b47d0f7b724}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a585b4e8eb577808d6b7f0b47d0f7b724}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!updateDatosSocio@{updateDatosSocio}}
+\index{updateDatosSocio@{updateDatosSocio}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{updateDatosSocio()}{updateDatosSocio()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+remote.\+I\+Server.\+update\+Datos\+Socio (\begin{DoxyParamCaption}\item[{String}]{nombre\+Socio,  }\item[{String}]{datos\+Nuevos }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_a3e84eab9962a99fa99c02de1000a102a}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_ae6b1019df65fbd61a4f35981b883116f}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_ae6b1019df65fbd61a4f35981b883116f}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!updateDescuento@{updateDescuento}}
+\index{updateDescuento@{updateDescuento}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{updateDescuento()}{updateDescuento()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+remote.\+I\+Server.\+update\+Descuento (\begin{DoxyParamCaption}\item[{String}]{nombre\+Articulo,  }\item[{double}]{descuento }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_a376610f3c51b4e545c1618f5e0f32171}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_aaba707260bfdd38c477bea520a440119}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_aaba707260bfdd38c477bea520a440119}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!updateMonedero@{updateMonedero}}
+\index{updateMonedero@{updateMonedero}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{updateMonedero()}{updateMonedero()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+remote.\+I\+Server.\+update\+Monedero (\begin{DoxyParamCaption}\item[{String}]{nombre\+Usuario,  }\item[{double}]{monedero }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_af6936fcce306cd9c8881f81375631a46}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a1debc07cec3cad9a483dee4dfa79af72}\label{interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server_a1debc07cec3cad9a483dee4dfa79af72}} 
+\index{es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}!updatePrecio@{updatePrecio}}
+\index{updatePrecio@{updatePrecio}!es.deusto.server.remote.IServer@{es.deusto.server.remote.IServer}}
+\subsubsection{\texorpdfstring{updatePrecio()}{updatePrecio()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+remote.\+I\+Server.\+update\+Precio (\begin{DoxyParamCaption}\item[{String}]{nombre\+Articulo,  }\item[{double}]{precio }\end{DoxyParamCaption}) throws Remote\+Exception}
+
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1remote_1_1_server_a48e59414c1c8e7b69f7f795b61bd5311}{es.\+deusto.\+server.\+remote.\+Server}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/es/deusto/server/remote/\mbox{\hyperlink{_i_server_8java}{I\+Server.\+java}}\end{DoxyCompactItemize}

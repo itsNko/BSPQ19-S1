@@ -1,0 +1,353 @@
+\hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o}{}\section{es.\+deusto.\+server.\+db.\+I\+D\+AO Interface Reference}
+\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o}\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+Inheritance diagram for es.\+deusto.\+server.\+db.\+I\+D\+AO\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a4b6652c5bec131e374c2243b579ea4cf}{insertar\+Socio}} (\mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_socio}{Socio}} s)
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a376e9e8f235b13262d5b63541aeb3fd1}{existe\+Socio}} (String nombre\+Socio)
+\item 
+\mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_socio}{Socio}} \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a5ec0443a5c196f3545f89c3716450e42}{inicio\+Sesion}} (String nombre\+Socio, String password)
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a3a79fb98127799a4f66c0a90006b0311}{insertar\+Alquiler}} (\mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_alquiler}{Alquiler}} alquiler, String nombre\+Usuario)
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_ad193e4bfd067962ac138c13af0b786b4}{insertar\+Pelicula}} (\mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_pelicula}{Pelicula}} pelicula)
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a6c40abe1ba302500ec0070a50c234ecf}{insertar\+Videojuego}} (\mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_videojuego}{Videojuego}} videojuego)
+\item 
+List$<$ \mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_articulo}{Articulo}} $>$ \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a7c573cd5b9d26960fc8eeeec4db1e5e5}{listado\+Articulos}} ()
+\item 
+\mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_socio}{Socio}} \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_ab8bc0f83a9306dbd0f98601420cac890}{select\+Socio}} (String nombre\+Usuario)
+\item 
+List$<$ \mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_alquiler}{Alquiler}} $>$ \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_ab8723905772b63f54902859f45bd121b}{select\+Alquiler\+Por\+Socio}} (String nombre\+Usuario)
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a59a5efa0070985e6baa0d2890b9ac266}{update\+Monedero}} (String nombre\+Usuario, Double monedero)
+\item 
+List$<$ \mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_alquiler}{Alquiler}} $>$ \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a693bc26b74c79a8e02bcfc4ca472f078}{historial\+Alquileres}} (String nombre\+Socio)
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_ae00eb9c5a9caa20fc72cad7b8054ce17}{update\+Precio}} (String nombre\+Articulo, double precio)
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_acacb303b116d7f8f53b5b60f3e647203}{update\+Descuento}} (String nombre\+Articulo, double descuento)
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a1e999400f9494d0860c70338fa87271b}{update\+Datos\+Socio}} (String nombre\+Socio, String datos\+Nuevos)
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a8aaee8580b14a10dfa8e495d1c3cd15d}{devolver\+Alquiler}} (String nombre\+Usuario, String nombre\+Articulo, int valoracion)
+\item 
+boolean \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a45cf535d7992afcdf52a1d2b3efe9d1f}{bloquear\+Maquina}} (String nombre\+Admin)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interfaz \mbox{\hyperlink{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o}{I\+D\+AO}}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a45cf535d7992afcdf52a1d2b3efe9d1f}\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a45cf535d7992afcdf52a1d2b3efe9d1f}} 
+\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}!bloquearMaquina@{bloquearMaquina}}
+\index{bloquearMaquina@{bloquearMaquina}!es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+\subsubsection{\texorpdfstring{bloquearMaquina()}{bloquearMaquina()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+db.\+I\+D\+A\+O.\+bloquear\+Maquina (\begin{DoxyParamCaption}\item[{String}]{nombre\+Admin }\end{DoxyParamCaption})}
+
+Actualiza el estado de la maquina de los clientes en la base de datos. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Admin} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b_a55faf265407ccfeac4078b95991d6a2f}{es.\+deusto.\+server.\+db.\+My\+S\+Q\+L\+\_\+\+DB}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a8aaee8580b14a10dfa8e495d1c3cd15d}\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a8aaee8580b14a10dfa8e495d1c3cd15d}} 
+\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}!devolverAlquiler@{devolverAlquiler}}
+\index{devolverAlquiler@{devolverAlquiler}!es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+\subsubsection{\texorpdfstring{devolverAlquiler()}{devolverAlquiler()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+db.\+I\+D\+A\+O.\+devolver\+Alquiler (\begin{DoxyParamCaption}\item[{String}]{nombre\+Usuario,  }\item[{String}]{nombre\+Articulo,  }\item[{int}]{valoracion }\end{DoxyParamCaption})}
+
+Actualiza el estado de un alquiler determinado en la base de datos. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Usuario} & \\
+\hline
+{\em nombre\+Articulo} & \\
+\hline
+{\em valoracion} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b_ab767d728176cb3c56ef6a7a3b787bff0}{es.\+deusto.\+server.\+db.\+My\+S\+Q\+L\+\_\+\+DB}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a376e9e8f235b13262d5b63541aeb3fd1}\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a376e9e8f235b13262d5b63541aeb3fd1}} 
+\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}!existeSocio@{existeSocio}}
+\index{existeSocio@{existeSocio}!es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+\subsubsection{\texorpdfstring{existeSocio()}{existeSocio()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+db.\+I\+D\+A\+O.\+existe\+Socio (\begin{DoxyParamCaption}\item[{String}]{nombre\+Socio }\end{DoxyParamCaption})}
+
+Comprueba si en la base de datos existe un socio con ese nombre o no. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Socio} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si el socio existe y en caso contrario false 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b_a96e7c2f7a533e8d9d4802ac1ee54dfdf}{es.\+deusto.\+server.\+db.\+My\+S\+Q\+L\+\_\+\+DB}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a693bc26b74c79a8e02bcfc4ca472f078}\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a693bc26b74c79a8e02bcfc4ca472f078}} 
+\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}!historialAlquileres@{historialAlquileres}}
+\index{historialAlquileres@{historialAlquileres}!es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+\subsubsection{\texorpdfstring{historialAlquileres()}{historialAlquileres()}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_alquiler}{Alquiler}}$>$ es.\+deusto.\+server.\+db.\+I\+D\+A\+O.\+historial\+Alquileres (\begin{DoxyParamCaption}\item[{String}]{nombre\+Socio }\end{DoxyParamCaption})}
+
+Recupera todos los alquileres vinculados a un determinado Socio de la base de datos. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Socio} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista de alquileres en caso de que no haya saltado ninguna excepcion, en caso contrario null 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b_a8759ef6481a9fbab8ee3cad5a99abbc9}{es.\+deusto.\+server.\+db.\+My\+S\+Q\+L\+\_\+\+DB}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a5ec0443a5c196f3545f89c3716450e42}\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a5ec0443a5c196f3545f89c3716450e42}} 
+\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}!inicioSesion@{inicioSesion}}
+\index{inicioSesion@{inicioSesion}!es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+\subsubsection{\texorpdfstring{inicioSesion()}{inicioSesion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_socio}{Socio}} es.\+deusto.\+server.\+db.\+I\+D\+A\+O.\+inicio\+Sesion (\begin{DoxyParamCaption}\item[{String}]{nombre\+Socio,  }\item[{String}]{password }\end{DoxyParamCaption})}
+
+Comprueba que existe un socio con ese nombre y contraseña. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Socio} & \\
+\hline
+{\em password} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Socio\+D\+TO con los datos del socio que ha iniciado sesion en caso de hacerlo correctamente. En caso contrario, un Socio\+D\+TO vacio 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b_a2af44018d93fc4b14ddbb3e4bdd8bf05}{es.\+deusto.\+server.\+db.\+My\+S\+Q\+L\+\_\+\+DB}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a3a79fb98127799a4f66c0a90006b0311}\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a3a79fb98127799a4f66c0a90006b0311}} 
+\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}!insertarAlquiler@{insertarAlquiler}}
+\index{insertarAlquiler@{insertarAlquiler}!es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+\subsubsection{\texorpdfstring{insertarAlquiler()}{insertarAlquiler()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+db.\+I\+D\+A\+O.\+insertar\+Alquiler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_alquiler}{Alquiler}}}]{alquiler,  }\item[{String}]{nombre\+Usuario }\end{DoxyParamCaption})}
+
+Introduce un nuevo alquiler en la base de datos. 
+\begin{DoxyParams}{Parameters}
+{\em alquiler} & \\
+\hline
+{\em nombre\+Usuario} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b_aa72369de0326a5904e3e9c83a3bff777}{es.\+deusto.\+server.\+db.\+My\+S\+Q\+L\+\_\+\+DB}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_ad193e4bfd067962ac138c13af0b786b4}\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_ad193e4bfd067962ac138c13af0b786b4}} 
+\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}!insertarPelicula@{insertarPelicula}}
+\index{insertarPelicula@{insertarPelicula}!es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+\subsubsection{\texorpdfstring{insertarPelicula()}{insertarPelicula()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+db.\+I\+D\+A\+O.\+insertar\+Pelicula (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_pelicula}{Pelicula}}}]{pelicula }\end{DoxyParamCaption})}
+
+Introduce una nueva pelicula en la base de datos. 
+\begin{DoxyParams}{Parameters}
+{\em pelicula} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b_aa78bfb2d1799dcaafbe2d47ded3d137c}{es.\+deusto.\+server.\+db.\+My\+S\+Q\+L\+\_\+\+DB}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a4b6652c5bec131e374c2243b579ea4cf}\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a4b6652c5bec131e374c2243b579ea4cf}} 
+\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}!insertarSocio@{insertarSocio}}
+\index{insertarSocio@{insertarSocio}!es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+\subsubsection{\texorpdfstring{insertarSocio()}{insertarSocio()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+db.\+I\+D\+A\+O.\+insertar\+Socio (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_socio}{Socio}}}]{s }\end{DoxyParamCaption})}
+
+Introduce un socio nuevo en la base datos en caso de que no exista. 
+\begin{DoxyParams}{Parameters}
+{\em s} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b_a0959c3a64f052449cb5d79444a2d0900}{es.\+deusto.\+server.\+db.\+My\+S\+Q\+L\+\_\+\+DB}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a6c40abe1ba302500ec0070a50c234ecf}\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a6c40abe1ba302500ec0070a50c234ecf}} 
+\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}!insertarVideojuego@{insertarVideojuego}}
+\index{insertarVideojuego@{insertarVideojuego}!es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+\subsubsection{\texorpdfstring{insertarVideojuego()}{insertarVideojuego()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+db.\+I\+D\+A\+O.\+insertar\+Videojuego (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_videojuego}{Videojuego}}}]{videojuego }\end{DoxyParamCaption})}
+
+Introduce un nuevo videojuego en la base de datos. 
+\begin{DoxyParams}{Parameters}
+{\em videojuego} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b_a2da5706482d7ada9b3b1479fc172f956}{es.\+deusto.\+server.\+db.\+My\+S\+Q\+L\+\_\+\+DB}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a7c573cd5b9d26960fc8eeeec4db1e5e5}\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a7c573cd5b9d26960fc8eeeec4db1e5e5}} 
+\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}!listadoArticulos@{listadoArticulos}}
+\index{listadoArticulos@{listadoArticulos}!es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+\subsubsection{\texorpdfstring{listadoArticulos()}{listadoArticulos()}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_articulo}{Articulo}}$>$ es.\+deusto.\+server.\+db.\+I\+D\+A\+O.\+listado\+Articulos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Recupera el listado de articulos completo de la base de datos. \begin{DoxyReturn}{Returns}
+Lista de articulos en caso de que no haya saltado ninguna excepcion, en caso contrario null 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b_a96de9a556e05d6e04a2cb4553674a3ff}{es.\+deusto.\+server.\+db.\+My\+S\+Q\+L\+\_\+\+DB}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_ab8723905772b63f54902859f45bd121b}\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_ab8723905772b63f54902859f45bd121b}} 
+\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}!selectAlquilerPorSocio@{selectAlquilerPorSocio}}
+\index{selectAlquilerPorSocio@{selectAlquilerPorSocio}!es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+\subsubsection{\texorpdfstring{selectAlquilerPorSocio()}{selectAlquilerPorSocio()}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_alquiler}{Alquiler}}$>$ es.\+deusto.\+server.\+db.\+I\+D\+A\+O.\+select\+Alquiler\+Por\+Socio (\begin{DoxyParamCaption}\item[{String}]{nombre\+Usuario }\end{DoxyParamCaption})}
+
+Recupera los alquileres existentes en la base de datos para un socio determinado. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Usuario} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista de alquileres en caso de que no haya saltado ninguna excepcion, en caso contrario null 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b_a0b29a31e081a796511d06da22eece230}{es.\+deusto.\+server.\+db.\+My\+S\+Q\+L\+\_\+\+DB}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_ab8bc0f83a9306dbd0f98601420cac890}\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_ab8bc0f83a9306dbd0f98601420cac890}} 
+\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}!selectSocio@{selectSocio}}
+\index{selectSocio@{selectSocio}!es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+\subsubsection{\texorpdfstring{selectSocio()}{selectSocio()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classes_1_1deusto_1_1client_1_1data_1_1_socio}{Socio}} es.\+deusto.\+server.\+db.\+I\+D\+A\+O.\+select\+Socio (\begin{DoxyParamCaption}\item[{String}]{nombre\+Usuario }\end{DoxyParamCaption})}
+
+Recupera un socio de la base de datos si existe uno con el nombre que se pasa como parametro 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Usuario} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Socio\+D\+TO con sus datos si existe en la BD y en caso contrario un Socio\+D\+TO vacio 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b_a36eec47b7d590c9dd37aec41af2033db}{es.\+deusto.\+server.\+db.\+My\+S\+Q\+L\+\_\+\+DB}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a1e999400f9494d0860c70338fa87271b}\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a1e999400f9494d0860c70338fa87271b}} 
+\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}!updateDatosSocio@{updateDatosSocio}}
+\index{updateDatosSocio@{updateDatosSocio}!es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+\subsubsection{\texorpdfstring{updateDatosSocio()}{updateDatosSocio()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+db.\+I\+D\+A\+O.\+update\+Datos\+Socio (\begin{DoxyParamCaption}\item[{String}]{nombre\+Socio,  }\item[{String}]{datos\+Nuevos }\end{DoxyParamCaption})}
+
+Actualiza uno o varios atributos de un socio determinado en la base de datos. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Socio} & \\
+\hline
+{\em datos\+Nuevos} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b_aa2865a9bd2ac6181664979c3a61615e1}{es.\+deusto.\+server.\+db.\+My\+S\+Q\+L\+\_\+\+DB}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_acacb303b116d7f8f53b5b60f3e647203}\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_acacb303b116d7f8f53b5b60f3e647203}} 
+\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}!updateDescuento@{updateDescuento}}
+\index{updateDescuento@{updateDescuento}!es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+\subsubsection{\texorpdfstring{updateDescuento()}{updateDescuento()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+db.\+I\+D\+A\+O.\+update\+Descuento (\begin{DoxyParamCaption}\item[{String}]{nombre\+Articulo,  }\item[{double}]{descuento }\end{DoxyParamCaption})}
+
+Actualiza el atributo descuento de un articulo determinado en la base de datos. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Articulo} & \\
+\hline
+{\em descuento} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b_ad2208a15e02b51a82e8cbd9afd4ea939}{es.\+deusto.\+server.\+db.\+My\+S\+Q\+L\+\_\+\+DB}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a59a5efa0070985e6baa0d2890b9ac266}\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_a59a5efa0070985e6baa0d2890b9ac266}} 
+\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}!updateMonedero@{updateMonedero}}
+\index{updateMonedero@{updateMonedero}!es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+\subsubsection{\texorpdfstring{updateMonedero()}{updateMonedero()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+db.\+I\+D\+A\+O.\+update\+Monedero (\begin{DoxyParamCaption}\item[{String}]{nombre\+Usuario,  }\item[{Double}]{monedero }\end{DoxyParamCaption})}
+
+Actualiza el atributo monedero de un socio determinado en la base de datos. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Usuario} & \\
+\hline
+{\em monedero} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b_a202f75db3e7f693f85af3fa38d7f1939}{es.\+deusto.\+server.\+db.\+My\+S\+Q\+L\+\_\+\+DB}}.
+
+\mbox{\Hypertarget{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_ae00eb9c5a9caa20fc72cad7b8054ce17}\label{interfacees_1_1deusto_1_1server_1_1db_1_1_i_d_a_o_ae00eb9c5a9caa20fc72cad7b8054ce17}} 
+\index{es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}!updatePrecio@{updatePrecio}}
+\index{updatePrecio@{updatePrecio}!es.deusto.server.db.IDAO@{es.deusto.server.db.IDAO}}
+\subsubsection{\texorpdfstring{updatePrecio()}{updatePrecio()}}
+{\footnotesize\ttfamily boolean es.\+deusto.\+server.\+db.\+I\+D\+A\+O.\+update\+Precio (\begin{DoxyParamCaption}\item[{String}]{nombre\+Articulo,  }\item[{double}]{precio }\end{DoxyParamCaption})}
+
+Actualiza el atributo precio de un articulo determinado en la base de datos. 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Articulo} & \\
+\hline
+{\em precio} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si no ha saltado ninguna excepcion y en caso contrario false 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classes_1_1deusto_1_1server_1_1db_1_1_my_s_q_l___d_b_ab906a09145b0248413b7f17342f15bd2}{es.\+deusto.\+server.\+db.\+My\+S\+Q\+L\+\_\+\+DB}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/es/deusto/server/db/\mbox{\hyperlink{_i_d_a_o_8java}{I\+D\+A\+O.\+java}}\end{DoxyCompactItemize}
