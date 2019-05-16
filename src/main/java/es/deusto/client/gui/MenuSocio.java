@@ -282,7 +282,7 @@ public class MenuSocio extends JFrame {
 			});
 			
 			JButton btnEstadisticas = new JButton("Estadisticas");
-			btnEstadisticas.setBounds(485, 375, 117, 29);
+			btnEstadisticas.setBounds(490, 365, 130, 50);
 			background.add(btnEstadisticas);
 			
 			btnEstadisticas.addActionListener(new ActionListener() {
