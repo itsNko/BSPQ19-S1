@@ -18,25 +18,22 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import es.deusto.client.controllers.ControllerAlquiler;
 import es.deusto.client.controllers.ControllerRecargarSaldo;
-import es.deusto.server.dto.SocioDTO;
 
+/**
+ * Clase de la ventana VentanaRecargarSaldo.
+ */
 public class VentanaRecargarSaldo extends JFrame {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
+	
 	private static double dinero = 0;
 	private double cantidadQueSeRecarga = 0;
 	private JFrame ventanaMenuSocio;
 	JLabel lblSaldo = new JLabel(dinero+" €");
 	private ControllerRecargarSaldo controllerRecargarSaldo;
 
-	/**
-	 * Launch the application.
-	 * @return 
-	 */
+	
 //	public static void main(String[] args) {
 //		EventQueue.invokeLater(new Runnable() {
 //			public void run() {
@@ -63,8 +60,12 @@ public class VentanaRecargarSaldo extends JFrame {
 
 		return resizedImg;
 	}
+	
 	/**
-	 * Create the frame.
+	 * Constructor de la ventana VentanaRecargarSaldo.
+	 * @param ventanaAnterior
+	 * @param nombreUsuario
+	 * @param labelSaldo
 	 */
 	public VentanaRecargarSaldo(JFrame ventanaAnterior, String nombreUsuario, final JLabel labelSaldo) {
 		ventanaMenuSocio = ventanaAnterior;

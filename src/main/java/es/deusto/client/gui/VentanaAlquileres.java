@@ -19,29 +19,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JScrollPane;
 
-import es.deusto.client.controllers.ControllerAlquiler;
-import es.deusto.client.controllers.ControllerListadoArticulos;
-import es.deusto.client.data.Alquiler;
 import es.deusto.server.dto.AlquilerDTO;
 import es.deusto.server.dto.SocioDTO;
 
 import java.awt.Graphics2D;
 
+/**
+ * Clase de la ventana VentanaAlquileres.
+ */
 public class VentanaAlquileres extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
 	private JFrame ventanaQueMeLlama;
 
-	/**
-	 * Launch the application.
-	 */
+	
 //	public static void main(String[] args) {
 //		EventQueue.invokeLater(new Runnable() {
 //			public void run() {
@@ -67,7 +63,10 @@ public class VentanaAlquileres extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Constructor de la ventana VentanaAlquileres.
+	 * @param ventanaAnterior
+	 * @param iniciado
+	 * @param alquileres
 	 */
 	public VentanaAlquileres(JFrame ventanaAnterior, SocioDTO iniciado, List<AlquilerDTO> alquileres) {
 		ventanaQueMeLlama = ventanaAnterior;

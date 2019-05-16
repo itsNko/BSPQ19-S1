@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -27,15 +26,15 @@ import es.deusto.server.dto.PeliculaDTO;
 import es.deusto.server.dto.SocioDTO;
 import es.deusto.server.dto.VideojuegoDTO;
 
+/**
+ * Clase de la ventana ListadoArticulos.
+ */
 public class ListadoArticulos extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
 	private JFrame MenuSocio;
 
-	/**
-	 * Launch the application.
-	 */
 	//	public static void main(String[] args) {
 	//		EventQueue.invokeLater(new Runnable() {
 	//			public void run() {
@@ -49,6 +48,15 @@ public class ListadoArticulos extends JFrame {
 	//		});
 	//	}
 
+	
+	/**
+	 * Crea tantos botones como articulos haya en la lista y se añaden al background.
+	 * @param background
+	 * @param articulos
+	 * @param VentanaAnterior
+	 * @param iniciado
+	 * @param lblSaldo
+	 */
 	private void crearBotones(JLabel background, List<ArticuloDTO> articulos, JFrame VentanaAnterior, SocioDTO iniciado, JLabel lblSaldo)
 	{
 		int distancia = 128;
@@ -96,8 +104,14 @@ public class ListadoArticulos extends JFrame {
 
 		}
 	}
+	
 	/**
-	 * Create the application.
+	 * Constructor de la ventana ListadoArticulos
+	 * @param VentanaAnterior
+	 * @param iniciado
+	 * @param lblSaldo
+	 * @param articulos
+	 * @param articulos2
 	 */
 	public ListadoArticulos(final JFrame VentanaAnterior, final SocioDTO iniciado, final JLabel lblSaldo, List<ArticuloDTO> articulos, List<ArticuloDTO> articulos2) {
 		MenuSocio = VentanaAnterior;
@@ -206,6 +220,12 @@ public class ListadoArticulos extends JFrame {
 		return resizedImg;
 	}
 	
+	
+	/**
+	 * Devuelve un nuevo Articulo creado con los atributos del ArticuloDTO introducido por parametro.
+	 * @param artDTO
+	 * @return Articulo
+	 */
 	public Articulo getArticuloDeDTO(ArticuloDTO artDTO) {
 		if(artDTO.getClassName().equals("VideojuegoDTO")) {
 			VideojuegoDTO juego = (VideojuegoDTO) artDTO;

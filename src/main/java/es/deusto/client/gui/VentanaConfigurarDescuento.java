@@ -7,20 +7,14 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.rmi.RemoteException;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -28,18 +22,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import es.deusto.client.controllers.ControllerAlquiler;
 import es.deusto.client.controllers.ControllerArticulos;
-import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
-import es.deusto.client.data.Pelicula;
-import es.deusto.client.data.Videojuego;
 
+/**
+ * Clase de la ventana VentanaConfigurarDescuento.
+ */
 public class VentanaConfigurarDescuento extends JFrame {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFrame ventanaQueMeLlama;
@@ -56,6 +46,12 @@ public class VentanaConfigurarDescuento extends JFrame {
 		return resizedImg;
 	}
 	
+	/**
+	 * Constructor de la ventana VentanaConfigurarDescuento.
+	 * @param MenuSocio
+	 * @param ventanaAnterior
+	 * @param a1
+	 */
 	public VentanaConfigurarDescuento(final JFrame MenuSocio, JFrame ventanaAnterior,Articulo a1) {
 		ventanaQueMeLlama = ventanaAnterior;
 
@@ -214,11 +210,16 @@ public class VentanaConfigurarDescuento extends JFrame {
 
 	}
 	
+	
+	/**
+	 * Calcula el precio final utilizando el precio actual y el descuento.
+	 * @param precio
+	 * @param descuento
+	 * @return precio final tras aplicarle el descuento.
+	 */
 	public double calcularPrecioDescontado(double precio, double descuento) {
 		double preciofinal = (precio - ((precio * descuento)/100));
 		return preciofinal;
 	}
 	
-	
-
 }

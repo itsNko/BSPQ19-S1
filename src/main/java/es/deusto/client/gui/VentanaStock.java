@@ -1,6 +1,5 @@
 package es.deusto.client.gui;
 
-import java.awt.EventQueue;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -8,8 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -18,25 +15,27 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
-import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Pelicula;
 import es.deusto.client.data.Videojuego;
 import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.PeliculaDTO;
-import es.deusto.server.dto.SocioDTO;
 import es.deusto.server.dto.VideojuegoDTO;
 import javax.swing.JTextArea;
-import java.awt.Color;
 
+/**
+ * Clase de la ventana VentanaStock.
+ */
 public class VentanaStock extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JFrame frame;
 
-	
-
 	/**
-	 * Create the application.
+	 * Constructor de la ventana VentanaStock.
+	 * @param VentanaAnterior
+	 * @param articulos
 	 */
 	public VentanaStock(final JFrame VentanaAnterior, List<ArticuloDTO> articulos) {
 		
@@ -86,8 +85,6 @@ public class VentanaStock extends JFrame {
 			final Articulo a1 = getArticuloDeDTO(articulos.get(i));
 			textArea.append("El artículo " + a1.getNombre() + " tiene un stock de "+a1.getUnidades()+" unidades.\n\n");
 		}
-
-		int distancia = 128;
 		
 
 	}
@@ -103,6 +100,11 @@ public class VentanaStock extends JFrame {
 		return resizedImg;
 	}
 	
+	/**
+	 * Devuelve un nuevo Articulo creado con los atributos del ArticuloDTO introducido por parametro.
+	 * @param artDTO
+	 * @return Articulo
+	 */
 	public Articulo getArticuloDeDTO(ArticuloDTO artDTO) {
 		if(artDTO.getClassName().equals("VideojuegoDTO")) {
 			VideojuegoDTO juego = (VideojuegoDTO) artDTO;

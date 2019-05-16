@@ -1,6 +1,5 @@
 package es.deusto.client.gui;
 
-import java.awt.EventQueue;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -23,17 +22,22 @@ import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.PeliculaDTO;
 import es.deusto.server.dto.VideojuegoDTO;
 
+/**
+ * Clase de la ventana VentanaEstadisticas.
+ */
 public class VentanaEstadisticas extends JFrame{
+
+	private static final long serialVersionUID = 1L;
 
 	private JFrame frame;
 
-
 	/**
-	 * Create the application.
+	 * Constructor de la ventana VentanaEstadisticas.
+	 * @param VentanaAnterior
 	 */
 	public VentanaEstadisticas(JFrame VentanaAnterior) {
-frame = VentanaAnterior;
-		
+		frame = VentanaAnterior;
+
 		setTitle("Estadísticas");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,24 +66,24 @@ frame = VentanaAnterior;
 		btnVolver.setOpaque(false);
 		btnVolver.setContentAreaFilled(false);
 		btnVolver.setBorderPainted(false);
-		
+
 		JTextArea textArea = new JTextArea();
 		textArea.setOpaque(false);
 		textArea.setBounds(100, 142, 760, 260);
 		//background.add(textArea);
-		
+
 		JScrollPane sp = new JScrollPane(textArea);
 		background.add(sp);
 		sp.setOpaque(false);
 		sp.setBounds(100, 142, 760, 260);
-		
+
 		/*for (int i = 0; i < articulos.size(); i++) {
 			final Articulo a1 = getArticuloDeDTO(articulos.get(i));
 			textArea.append("El artículo " + a1.getNombre() + " tiene un stock de "+a1.getUnidades()+" unidades.\n\n");
 		}*/
 
 		int distancia = 128;
-		
+
 
 	}
 
@@ -93,7 +97,12 @@ frame = VentanaAnterior;
 
 		return resizedImg;
 	}
-	
+
+	/**
+	 * Devuelve un nuevo Articulo creado con los atributos del ArticuloDTO introducido por parametro.
+	 * @param artDTO
+	 * @return Articulo
+	 */
 	public Articulo getArticuloDeDTO(ArticuloDTO artDTO) {
 		if(artDTO.getClassName().equals("VideojuegoDTO")) {
 			VideojuegoDTO juego = (VideojuegoDTO) artDTO;

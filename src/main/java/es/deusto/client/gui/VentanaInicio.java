@@ -17,14 +17,15 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import es.deusto.client.controllers.ControllerAlquiler;
-import es.deusto.client.controllers.ControllerListadoArticulos;
-import es.deusto.client.controllers.ControllerMenuSocio;
 import es.deusto.client.controllers.ControllerRegistro;
 import es.deusto.server.dto.SocioDTO;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Clase de la ventana VentanaInicio.
+ */
 public class VentanaInicio extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -37,9 +38,7 @@ public class VentanaInicio extends JFrame {
 	private boolean registroCorrecto;
 	private SocioDTO socio;
 
-	/**
-	 * Launch the application.
-	 */
+
 	//	public static void main(String[] args) {
 	//		EventQueue.invokeLater(new Runnable() {
 	//			public void run() {
@@ -54,7 +53,8 @@ public class VentanaInicio extends JFrame {
 	//	}
 
 	/**
-	 * Create the frame.
+	 * Constructor de la ventana VentanaInicio.
+	 * @param controllerRegistro
 	 */
 	public VentanaInicio(ControllerRegistro controllerRegistro) {
 		this.controllerRegistro = controllerRegistro;
@@ -291,17 +291,24 @@ public class VentanaInicio extends JFrame {
 		candadoRojo.setVisible(true);
 		candadoVerde.setVisible(false);
 	}
+	
 	private void candadoVerde(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde ) {
 		candadoNegro.setVisible(false);
 		candadoRojo.setVisible(false);
 		candadoVerde.setVisible(true);
 	}
+	
 	private void candadoNegro(JLabel candadoNegro,JLabel candadoRojo,JLabel candadoVerde ) {
 		candadoNegro.setVisible(true);
 		candadoRojo.setVisible(false);
 		candadoVerde.setVisible(false);
 	}
 
+	/**
+	 * Comprueba si la cadena de caracteres contiene tanto letras como numeros.
+	 * @param s
+	 * @return true si contiene letras y numeros, false en caso negativo.
+	 */
 	public boolean contieneLetrasYNumeros(String s) {
 		String n = ".*[0-9].*";
 		String l = ".*[A-Z].*";

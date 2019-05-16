@@ -28,6 +28,10 @@ import es.deusto.server.dto.SocioDTO;
 import java.awt.Color;
 import java.awt.Font;
 
+
+/**
+ * Clase de la ventana MenuSocio.
+ */
 public class MenuSocio extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -40,10 +44,7 @@ public class MenuSocio extends JFrame {
 	private List<AlquilerDTO> alquileres = new ArrayList<AlquilerDTO>();
 	private boolean bloquearMaquina;
 
-
-	/**
-	 * Launch the application.
-	 */
+	
 	//	public static void main(String[] args) {
 	//		EventQueue.invokeLater(new Runnable() {
 	//			public void run() {
@@ -57,9 +58,11 @@ public class MenuSocio extends JFrame {
 	//		});
 	//	}
 
+	
 	/**
-	 * Create the application.
-	 * @param iniciado 
+	 * Constructor de la ventana MenuSocio.
+	 * @param ventanaAnterior
+	 * @param iniciado
 	 */
 	public MenuSocio(JFrame ventanaAnterior, final SocioDTO iniciado) {
 

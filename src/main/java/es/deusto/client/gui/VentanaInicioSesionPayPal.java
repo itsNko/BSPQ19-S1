@@ -19,6 +19,9 @@ import javax.swing.SwingConstants;
 import es.deusto.client.controllers.ControllerPayPal;
 import es.deusto.client.controllers.ControllerRecargarSaldo;
 
+/**
+ * Clase de la ventana VentanaInicioSesionPayPal.
+ */
 public class VentanaInicioSesionPayPal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -46,8 +49,17 @@ public class VentanaInicioSesionPayPal extends JFrame {
 	//		});
 	//	}
 
+	
 	/**
-	 * Create the frame.
+	 * Constructor de la ventana VentanaInicioSesionPayPal.
+	 * @param ventanaAnterior
+	 * @param menuSocio
+	 * @param ventanaRecargarSaldo
+	 * @param nombreSocio
+	 * @param cantidad
+	 * @param cantidadQueSeRecarga
+	 * @param lblSaldo
+	 * @param crs
 	 */
 	public VentanaInicioSesionPayPal(JFrame ventanaAnterior, JFrame menuSocio, JFrame ventanaRecargarSaldo, String nombreSocio, double cantidad, double cantidadQueSeRecarga, JLabel lblSaldo, ControllerRecargarSaldo crs) {
 		ventanaQueMeLlama = ventanaAnterior;

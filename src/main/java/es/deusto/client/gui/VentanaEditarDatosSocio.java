@@ -16,7 +16,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -25,6 +24,9 @@ import java.awt.RenderingHints;
 import javax.swing.JPasswordField;
 import java.awt.Color;
 
+/**
+ * Clase de la ventana VentanaEditarDatosSocio.
+ */
 public class VentanaEditarDatosSocio extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -38,9 +40,7 @@ public class VentanaEditarDatosSocio extends JFrame {
 	private boolean modificacionCorrecta = false;
 	private JPasswordField passwordField;
 
-	//		/**
-	//		 * Launch the application.
-	//		 */
+	
 	//		public static void main(String[] args) {
 	//			EventQueue.invokeLater(new Runnable() {
 	//				public void run() {
@@ -54,8 +54,12 @@ public class VentanaEditarDatosSocio extends JFrame {
 	//			});
 	//		}
 
+	
 	/**
-	 * Create the frame.
+	 * Constructor de la ventana VentanaEditarDatosSocio
+	 * @param ventanaAnterior
+	 * @param nombreIniciado
+	 * @param controllerAlquileres
 	 */
 	public VentanaEditarDatosSocio(JFrame ventanaAnterior, String nombreIniciado, ControllerAlquiler controllerAlquileres) {
 		ventanaQueMeLlama = ventanaAnterior;
@@ -219,6 +223,11 @@ public class VentanaEditarDatosSocio extends JFrame {
 		label.setBounds(605, 305, 169, 14);
 	}
 
+	/**
+	 * Comprueba si la cadena de caracteres contiene tanto letras como numeros.
+	 * @param s
+	 * @return true si contiene letras y numeros, false en caso negativo.
+	 */
 	public boolean contieneLetrasYNumeros(String s) {
 		String n = ".*[0-9].*";
 		String l = ".*[A-Z].*";

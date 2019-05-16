@@ -9,10 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -28,6 +24,9 @@ import es.deusto.server.dto.AlquilerDTO;
 
 import java.awt.Color;
 
+/**
+ * Clase de la ventana VentanaConfirmacionDevolucion.
+ */
 public class VentanaConfirmacionDevolucion extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -61,6 +60,13 @@ public class VentanaConfirmacionDevolucion extends JFrame {
 		return resizedImg;
 	}
 
+	/**
+	 * Constructor de la ventana VentanaConfirmacionDevolucion.
+	 * @param ventanaAnterior
+	 * @param menSocio
+	 * @param a
+	 * @param nombreUsuario
+	 */
 	public VentanaConfirmacionDevolucion(JFrame ventanaAnterior, JFrame menSocio, final AlquilerDTO a, String nombreUsuario) {
 		ventanaQueMeLlama = ventanaAnterior;
 		menuSocio = menSocio;

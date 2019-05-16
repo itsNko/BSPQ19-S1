@@ -13,6 +13,9 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Clase de la ventana VentanaMetodoPago.
+ */
 public class VentanaMetodoPago extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -20,9 +23,7 @@ public class VentanaMetodoPago extends JFrame {
 	private JPanel contentPane;
 	private JFrame ventanaQueMeLlama;
 
-//	/**
-//	 * Launch the application.
-//	 */
+
 //	public static void main(String[] args) {
 //		EventQueue.invokeLater(new Runnable() {
 //			public void run() {
@@ -37,7 +38,14 @@ public class VentanaMetodoPago extends JFrame {
 //	}
 
 	/**
-	 * Create the frame.
+	 * Constructor de la ventana VentanaMetodoPago.
+	 * @param ventanaAnterior
+	 * @param menuSocio
+	 * @param nombreSocio
+	 * @param cantidad
+	 * @param cantidadQueSeRecarga
+	 * @param lblSaldo
+	 * @param crs
 	 */
 	public VentanaMetodoPago(JFrame ventanaAnterior, JFrame menuSocio, String nombreSocio, double cantidad, double cantidadQueSeRecarga, JLabel lblSaldo, ControllerRecargarSaldo crs) {
 		ventanaQueMeLlama = ventanaAnterior;

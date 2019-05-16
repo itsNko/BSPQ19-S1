@@ -15,18 +15,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import es.deusto.server.dto.AlquilerDTO;
-import es.deusto.server.dto.SocioDTO;
 
-
+/**
+ * Clase de la ventana VentanaDevolucion.
+ */
 public class VentanaDevolucion extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
 	private JFrame ventanaQueMeLlama;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	//	public static void main(String[] args) {
 	//		EventQueue.invokeLater(new Runnable() {
 	//			public void run() {
@@ -52,7 +51,10 @@ public class VentanaDevolucion extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Constructor de la ventana VentanaDevolucion.
+	 * @param ventanaAnterior
+	 * @param nombreUsuario
+	 * @param alquileres
 	 */
 	public VentanaDevolucion(JFrame ventanaAnterior,String nombreUsuario, final List<AlquilerDTO> alquileres) {
 		ventanaQueMeLlama = ventanaAnterior;

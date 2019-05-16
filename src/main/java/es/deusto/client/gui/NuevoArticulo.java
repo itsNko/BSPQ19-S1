@@ -1,6 +1,5 @@
 package es.deusto.client.gui;
 
-import java.awt.EventQueue;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -15,21 +14,21 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import es.deusto.client.controllers.ControllerAlquiler;
 import es.deusto.client.controllers.ControllerArticulos;
-import es.deusto.client.data.Pelicula;
-import es.deusto.server.dto.SocioDTO;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import java.awt.Color;
 import javax.swing.JButton;
 
+/**
+ * Clase de la ventana NuevoArticulo.
+ */
 public class NuevoArticulo extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JFrame frame;
-	private JFrame menuSocio;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -46,9 +45,8 @@ public class NuevoArticulo extends JFrame {
 	String fecha_estr;
 	String genero;
 
-	/**
-	 * Launch the application.
-	 */
+	
+	
 	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -62,9 +60,10 @@ public class NuevoArticulo extends JFrame {
 		});
 	}*/
 
+	
 	/**
-	 * Create the application.
-	 * @param iniciado 
+	 * Constructor de la ventana NuevoArticulo.
+	 * @param ventanaAnterior
 	 */
 	public NuevoArticulo(JFrame ventanaAnterior) {
 		frame = new JFrame();
@@ -79,7 +78,6 @@ public class NuevoArticulo extends JFrame {
 		}
 		
 		setTitle("Añadir nuevo artículo");
-		menuSocio = ventanaAnterior;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 960, 540);
@@ -159,7 +157,7 @@ public class NuevoArticulo extends JFrame {
 		lblGenero.setForeground(Color.WHITE);
 		background.add(lblGenero);
 	
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setBounds(220, 395, 140, 27);
 		background.add(comboBox);
 	

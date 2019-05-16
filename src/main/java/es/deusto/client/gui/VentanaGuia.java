@@ -21,7 +21,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+/**
+ * Clase de la ventana VentanaGuia.
+ */
 public class VentanaGuia extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private JFrame MenuSocio;
 	
@@ -36,6 +41,11 @@ public class VentanaGuia extends JFrame {
 		return resizedImg;
 	}
 	
+	/**
+	 * Constructor de la ventana VentanaGuia.
+	 * @param VentanaAnterior
+	 * @throws FileNotFoundException
+	 */
 	public VentanaGuia(final JFrame VentanaAnterior) throws FileNotFoundException {
 		MenuSocio = VentanaAnterior;
 		

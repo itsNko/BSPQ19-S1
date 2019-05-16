@@ -1,7 +1,5 @@
 package es.deusto.client.gui;
 
-
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -9,37 +7,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.rmi.RemoteException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
-import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
-import es.deusto.client.controllers.ControllerListadoArticulos;
-import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Pelicula;
 import es.deusto.client.data.Videojuego;
 import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.PeliculaDTO;
-import es.deusto.server.dto.SocioDTO;
 import es.deusto.server.dto.VideojuegoDTO;
 
+/**
+ * Clase de la ventana VentanaDescuento.
+ */
 public class VentanaDescuento extends JFrame {
 
-	private JFrame MenuEmpleado;
-	private JPanel panel; 
-	private JList<Articulo> listaArticulos;
-	private DefaultListModel<Articulo> modelo;
+	private static final long serialVersionUID = 1L;
 	
+	private JFrame MenuEmpleado;
+	
+	/**
+	 * Constructor de la ventana VentanaDescuento.
+	 * @param VentanaAnterior
+	 * @param articulos
+	 */
 	public VentanaDescuento(final JFrame VentanaAnterior , List<ArticuloDTO> articulos) {
 		MenuEmpleado = VentanaAnterior;
 		
@@ -118,6 +113,11 @@ public class VentanaDescuento extends JFrame {
 		return resizedImg;
 	}
 	
+	/**
+	 * Devuelve un nuevo Articulo creado con los atributos del ArticuloDTO introducido por parametro.
+	 * @param artDTO
+	 * @return Articulo
+	 */
 	public Articulo getArticuloDeDTO(ArticuloDTO artDTO) {
 		if(artDTO.getClassName().equals("VideojuegoDTO")) {
 			VideojuegoDTO juego = (VideojuegoDTO) artDTO;
