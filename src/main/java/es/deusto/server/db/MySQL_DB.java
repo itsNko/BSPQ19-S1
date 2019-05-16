@@ -21,29 +21,36 @@ import es.deusto.client.data.Videojuego;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Clase MySQL_DB.
+ */
 public class MySQL_DB implements IDAO {
 
-	Logger logger = LoggerFactory.getLogger("ServerLog");
-	
 	PersistenceManagerFactory persistentManagerFactory;
 	PersistenceManager persistentManager;			
 	Transaction transaction;
 
+	Logger logger = LoggerFactory.getLogger("ServerLog");
+
+	/**
+	 * Constructor de la clase MySQL_DB.
+	 */
 	public MySQL_DB() {
 		persistentManagerFactory = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		persistentManager = null;			
 		transaction = null;
+		logger.info("MySQL_DB - Constructor");
 	}
-	
+
 	@Override
 	public boolean insertarSocio(Socio socio) {
-		logger.info("Se ha llamado a insertarSocio()");
+		logger.info("MySQL_DB - insertarSocio()");
 		boolean result = false;
 		try {
 			persistentManager = persistentManagerFactory.getPersistenceManager();
 			transaction = persistentManager.currentTransaction();
 			transaction.begin();
-			
+
 			persistentManager.makePersistent(socio);
 
 			System.out.println("- Inserted into db: " + socio.getNombre());
@@ -52,7 +59,7 @@ public class MySQL_DB implements IDAO {
 
 			result = true;
 		} catch(Exception ex) {
-			System.err.println("* Exception inserting data into db: " + ex.getMessage());
+			logger.error("MySQL_DB - insertarSocio() : Error -> " + ex.getMessage());
 		} finally {		    
 			if (transaction.isActive()) {
 				transaction.rollback(); // Deshace los cambios en caso de que ocurra algún error
@@ -94,6 +101,7 @@ public class MySQL_DB implements IDAO {
 
 	@Override
 	public boolean existeSocio(String nombreSocio) {
+		logger.info("MySQL_DB - existeSocio()");
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		//persistentManager.getFetchPlan().setMaxFetchDepth(1);
 
@@ -103,8 +111,9 @@ public class MySQL_DB implements IDAO {
 			if(socio.getNombre().equals(nombreSocio)) {
 				existe = true;
 			}
+			logger.info("MySQL_DB - existeSocio() : OK");
 		} catch (Exception ex) {
-			System.out.println("$ Error retrieving an extent: " + ex.getMessage());
+			logger.error("MySQL_DB - existeSocio() : Error -> " + ex.getMessage());
 		} finally {
 			persistentManager.close();
 		}
@@ -114,6 +123,7 @@ public class MySQL_DB implements IDAO {
 
 	@Override
 	public Socio inicioSesion(String nombreSocio, String password) {
+		logger.info("MySQL_DB - inicioSesion()");
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 
 		Socio s = null;
@@ -122,8 +132,10 @@ public class MySQL_DB implements IDAO {
 			if(socio.getPassword().equals(password)) {
 				s = socio;
 			}
+
+			logger.info("MySQL_DB - inicioSesion() : OK");
 		} catch (Exception ex) {
-			System.out.println("$ Error retrieving an extent: " + ex.getMessage());
+			logger.error("MySQL_DB - inicioSesion() : Error -> " + ex.getMessage());
 		} finally {
 			persistentManager.close();
 		}
@@ -136,8 +148,8 @@ public class MySQL_DB implements IDAO {
 	}
 
 	@Override
-	public boolean insertarAlquiler(Alquiler alquiler, String nombreUsuario)
-	{
+	public boolean insertarAlquiler(Alquiler alquiler, String nombreUsuario) {
+		logger.info("MySQL_DB - insertarAlquiler()");
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		transaction = persistentManager.currentTransaction();
 
@@ -147,18 +159,14 @@ public class MySQL_DB implements IDAO {
 			alquiler.setAlquilado(articulo);
 			Extent<Socio> e = persistentManager.getExtent(Socio.class, true);
 			Iterator<Socio> iter = e.iterator();
-			while (iter.hasNext()) 
-			{
+			while (iter.hasNext()) {
 				Socio s = (Socio)iter.next();
-				if (s.getNombre().equals(nombreUsuario))
-				{
-					if(s.getAlquileres() == null || s.getAlquileres().isEmpty())
-					{
+				if (s.getNombre().equals(nombreUsuario)) {
+					if(s.getAlquileres() == null || s.getAlquileres().isEmpty()) {
 						List<Alquiler> a2 = new ArrayList<Alquiler>();
 						a2.add(alquiler);
 						s.setAlquileres(a2);
-					}else
-					{
+					} else {
 						List<Alquiler> a =s.getAlquileres();
 						a.add(alquiler);
 
@@ -168,9 +176,10 @@ public class MySQL_DB implements IDAO {
 
 			}	
 			transaction.commit();
+			logger.info("MySQL_DB - insertarAlquiler() : OK");
 			return true;
 		} catch(Exception ex) {
-			System.err.println("* Exception inserting data into db: " + ex.getMessage());
+			logger.error("MySQL_DB - insertarAlquiler() : Error -> " + ex.getMessage());
 			return false;
 		} finally {		    
 			if (transaction.isActive()) {
@@ -183,14 +192,16 @@ public class MySQL_DB implements IDAO {
 
 	@Override
 	public Socio selectSocio(String nombreUsuario) {
+		logger.info("MySQL_DB - selectSocio()");
 		persistentManager = persistentManagerFactory.getPersistenceManager();
-		
+
 		try {
 			Socio socio = persistentManager.getObjectById(Socio.class, nombreUsuario);
 
+			logger.info("MySQL_DB - selectSocio() : OK");
 			return socio;
 		} catch(Exception ex) {
-			System.err.println("* Exception executing a query: " + ex.getMessage());
+			logger.error("MySQL_DB - selectSocio() : Error -> " + ex.getMessage());
 			return new Socio();
 		} finally {
 			persistentManager.close();
@@ -200,6 +211,7 @@ public class MySQL_DB implements IDAO {
 
 	@Override
 	public boolean updateMonedero(String nombreUsuario, Double monedero) {
+		logger.info("MySQL_DB - updateMonedero()");
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		transaction = persistentManager.currentTransaction();
 
@@ -208,21 +220,19 @@ public class MySQL_DB implements IDAO {
 
 			Extent<Socio> e = persistentManager.getExtent(Socio.class, true);
 			Iterator<Socio> iter = e.iterator();
-			while (iter.hasNext()) 
-			{
+			while (iter.hasNext()) {
 				Socio s = (Socio)iter.next();
-				if (s.getNombre().equals(nombreUsuario))
-				{
+				if (s.getNombre().equals(nombreUsuario)) {
 					System.out.println("- Data modified: " + s.getMonedero() +" -> "+monedero);
 					s.setMonedero(monedero);
 					transaction.commit();
+					logger.info("MySQL_DB - updateMonedero() : OK");
 					return true;
 				}
 			}
-
-
+			
 		} catch(Exception ex) {
-			System.err.println("* Exception executing a query: " + ex.getMessage());
+			logger.error("MySQL_DB - updateMonedero() : Error -> " + ex.getMessage());
 			return false;
 		} finally {
 			if (transaction.isActive()) {
@@ -235,6 +245,7 @@ public class MySQL_DB implements IDAO {
 	}
 
 	public boolean updateDescuento(String nombreArticulo, double descuento) {
+		logger.info("MySQL_DB - updateDescuento()");
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		transaction = persistentManager.currentTransaction();
 
@@ -243,21 +254,20 @@ public class MySQL_DB implements IDAO {
 
 			Extent<Articulo> e = persistentManager.getExtent(Articulo.class, true);
 			Iterator<Articulo> iter = e.iterator();
-			while (iter.hasNext()) 
-			{
+			while (iter.hasNext()) {
 				Articulo s = (Articulo)iter.next();
-				if (s.getNombre().equals(nombreArticulo))
-				{
+				if (s.getNombre().equals(nombreArticulo)) {
 					System.out.println("- Data modified: " + s.getDescuento() +" -> "+descuento);
 					s.setDescuento(descuento);
 					transaction.commit();
+					logger.info("MySQL_DB - updateDescuento() : OK");
 					return true;
 				}
 			}
 
 
 		} catch(Exception ex) {
-			System.err.println("* Exception executing a query: " + ex.getMessage());
+			logger.error("MySQL_DB - updateDescuento() : Error -> " + ex.getMessage());
 			return false;
 		} finally {
 			if (transaction.isActive()) {
@@ -270,6 +280,7 @@ public class MySQL_DB implements IDAO {
 	}
 
 	public boolean updateDatosSocio(String nombreSocio, String datosNuevos) {
+		logger.info("MySQL_DB - updateDatosSocio()");
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 
 		try {
@@ -292,10 +303,11 @@ public class MySQL_DB implements IDAO {
 				socio.setDireccion(partes[3]);
 			}
 
+			logger.info("MySQL_DB - updateDatosSocio() : OK");
 			return true;
 
 		} catch(Exception ex) {
-			System.err.println("* Exception executing a query: " + ex.getMessage());
+			logger.error("MySQL_DB - updateDatosSocio() : Error -> " + ex.getMessage());
 			return false;
 		} finally {
 			persistentManager.close();
@@ -305,6 +317,7 @@ public class MySQL_DB implements IDAO {
 
 	@Override
 	public List<Alquiler> selectAlquilerPorSocio(String nombreUsuario) {
+		logger.info("MySQL_DB - selectAlquilerPorSocio()");
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		transaction = persistentManager.currentTransaction();
 		try {
@@ -314,9 +327,10 @@ public class MySQL_DB implements IDAO {
 					"SELECT * FROM ALQUILER WHERE ALQUILERES_NOMBRE_OWN = '" + nombreUsuario + "'");
 			query.setClass(Alquiler.class);
 			List<Alquiler> alquileres = (List<Alquiler>) new ArrayList<Alquiler>();
+			logger.info("MySQL_DB - selectAlquilerPorSocio() : OK");
 			return alquileres;
 		} catch (Exception ex) {
-			System.err.println("* Exception: " + ex.getMessage());
+			logger.error("MySQL_DB - selectAlquilerPorSocio() : Error -> " + ex.getMessage());
 			return null;
 		}
 
@@ -324,6 +338,7 @@ public class MySQL_DB implements IDAO {
 
 	@Override
 	public List<Articulo> listadoArticulos() {
+		logger.info("MySQL_DB - listadoArticulos()");
 		try {
 			persistentManager = persistentManagerFactory.getPersistenceManager();
 			transaction = persistentManager.currentTransaction();	
@@ -347,10 +362,12 @@ public class MySQL_DB implements IDAO {
 			{
 				System.out.println(a.getPrecio());
 			}
+
+			logger.info("MySQL_DB - listadoArticulos() : OK");
 			return articulos;
 
 		} catch(Exception ex) {
-			System.err.println("* Exception retrieving articulos: " + ex.getMessage());
+			logger.error("MySQL_DB - listadoArticulos() : Error -> " + ex.getMessage());
 			return null;
 
 		} finally {		    
@@ -364,7 +381,7 @@ public class MySQL_DB implements IDAO {
 
 	@Override
 	public List<Alquiler> historialAlquileres(String nombreSocio) {
-
+		logger.info("MySQL_DB - historialAlquileres()");
 		try {
 			persistentManager = persistentManagerFactory.getPersistenceManager();
 
@@ -396,9 +413,10 @@ public class MySQL_DB implements IDAO {
 				}
 			}
 
+			logger.info("MySQL_DB - historialAlquileres() : OK");
 			return alquileres;
 		} catch(Exception ex) {
-			System.err.println("* Exception retrieving alquileres: " + ex.getMessage());
+			logger.error("MySQL_DB - historialAlquileres() : Error -> " + ex.getMessage());
 			return null;
 		} finally {		    
 			persistentManager.close();
@@ -408,6 +426,7 @@ public class MySQL_DB implements IDAO {
 
 	@Override
 	public boolean insertarPelicula(Pelicula pelicula) {
+		logger.info("MySQL_DB - insertarPelicula()");
 		System.out.println(pelicula.getNombre());
 		boolean result = false;
 		try {
@@ -422,8 +441,9 @@ public class MySQL_DB implements IDAO {
 			transaction.commit();
 
 			result = true;
+			logger.info("MySQL_DB - insertarPelicula() : OK");
 		} catch(Exception ex) {
-			System.err.println("* Exception inserting data into db: " + ex.getMessage());
+			logger.error("MySQL_DB - insertarPelicula() : Error -> " + ex.getMessage());
 		} finally {		    
 			if (transaction.isActive()) {
 				transaction.rollback(); // Deshace los cambios en caso de que ocurra algún error
@@ -439,6 +459,7 @@ public class MySQL_DB implements IDAO {
 
 	@Override
 	public boolean insertarVideojuego(Videojuego videojuego) {
+		logger.info("MySQL_DB - insertarVideojuego()");
 		System.out.println(videojuego.getNombre());
 		boolean result = false;
 		try {
@@ -453,8 +474,9 @@ public class MySQL_DB implements IDAO {
 			transaction.commit();
 
 			result = true;
+			logger.info("MySQL_DB - insertarVideojuego() : OK");
 		} catch(Exception ex) {
-			System.err.println("* Exception inserting data into db: " + ex.getMessage());
+			logger.error("MySQL_DB - insertarVideojuego() : Error -> " + ex.getMessage());
 		} finally {		    
 			if (transaction.isActive()) {
 				transaction.rollback(); // Deshace los cambios en caso de que ocurra algún error
@@ -470,23 +492,21 @@ public class MySQL_DB implements IDAO {
 
 	@Override
 	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo, int valoracion) {
+		logger.info("MySQL_DB - devolverAlquiler()");
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		transaction = persistentManager.currentTransaction();
 		try {
 			transaction.begin();
 
 			Extent<Socio> extentSocios = persistentManager.getExtent(Socio.class, true);
-			for(Socio s: extentSocios)
-			{
-				if(s.getNombre().equals(nombreUsuario))
-				{
-					for(Alquiler a: s.getAlquileres())
-					{
-						if(a.getAlquilado().getNombre().equals(nombreArticulo))
-						{
+			for(Socio s: extentSocios) {
+				if(s.getNombre().equals(nombreUsuario))	{
+					for(Alquiler a: s.getAlquileres()) {
+						if(a.getAlquilado().getNombre().equals(nombreArticulo)) {
 							a.setEnCurso(false);
 							a.setValoracion(valoracion);
 							transaction.commit();
+							logger.info("MySQL_DB - devolverAlquiler() : OK");
 							return true;
 						}
 					}
@@ -496,7 +516,7 @@ public class MySQL_DB implements IDAO {
 
 
 		} catch (Exception ex) {
-			System.err.println("* Exception: " + ex.getMessage());
+			logger.error("MySQL_DB - devolverAlquiler() : Error -> " + ex.getMessage());
 			return false;
 		}
 		return false;
@@ -504,7 +524,7 @@ public class MySQL_DB implements IDAO {
 	}
 	@Override
 	public boolean updatePrecio(String nombreArticulo, double precio) {
-
+		logger.info("MySQL_DB - updatePrecio()");
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		transaction = persistentManager.currentTransaction();
 
@@ -521,13 +541,13 @@ public class MySQL_DB implements IDAO {
 					System.out.println("- Data modified: " + s.getPrecio()+" -> "+ precio);
 					s.setPrecio(precio);
 					transaction.commit();
+					logger.info("MySQL_DB - updatePrecio() : OK");
 					return true;
 				}
 			}
 
-
 		} catch(Exception ex) {
-			System.err.println("* Exception executing a query: " + ex.getMessage());
+			logger.error("MySQL_DB - updatePrecio() : Error -> " + ex.getMessage());
 			return false;
 		} finally {
 			if (transaction.isActive()) {
@@ -541,6 +561,7 @@ public class MySQL_DB implements IDAO {
 
 	@Override
 	public boolean bloquearMaquina(String nombreAdmin) {
+		logger.info("MySQL_DB - bloquearMaquina()");
 		persistentManager = persistentManagerFactory.getPersistenceManager();
 		transaction = persistentManager.currentTransaction();
 
@@ -552,9 +573,10 @@ public class MySQL_DB implements IDAO {
 				socio.setBloquearMaquina(true);
 			}
 
+			logger.info("MySQL_DB - bloquearMaquina() : OK");
 			return true;
 		} catch(Exception ex) {
-			System.err.println("* Exception executing a query: " + ex.getMessage());
+			logger.error("MySQL_DB - bloquearMaquina() : Error -> " + ex.getMessage());
 			return false;
 		} finally {
 			persistentManager.close();
