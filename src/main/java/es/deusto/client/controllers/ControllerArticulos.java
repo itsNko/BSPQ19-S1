@@ -4,18 +4,43 @@ import java.rmi.RemoteException;
 
 import es.deusto.client.remote.ServiceLocator;
 
+/**
+ * clase ControllerArticulos
+ *
+ */
 public class ControllerArticulos {
 	
 	private ServiceLocator rsl = ControllerRegistro.getRsl();
 	
+	/**
+	 * Constructor vacio ControllerArticulos
+	 * @throws RemoteException
+	 */
 	public ControllerArticulos() throws RemoteException {
 	}
 	
-	// Solo utilizar este constructor en los tests unitarios
+	/**
+	 * Constructor ControllerArticulos
+	 * Solo se usa en los tests unitarios
+	 * @param rsl
+	 * @throws RemoteException
+	 */
 	public ControllerArticulos(ServiceLocator rsl) throws RemoteException {
 		this.rsl = rsl;
 	}
 	
+	/**
+	 * Metodo para insertar una nueva pelicula, llama al metodo de la clase Server
+	 * @param nombre
+	 * @param precio
+	 * @param sinopsis
+	 * @param genero
+	 * @param fecha_estr
+	 * @param puntuacion
+	 * @param caratula
+	 * @param descuento
+	 * @return true si se hace correctamente el metodo, false si se da Exception e
+	 */
 	public boolean insertarPelicula(String nombre, double precio, String sinopsis, String genero, String fecha_estr, double puntuacion, String caratula, double descuento) {
 		boolean correcto;
 		try {
@@ -32,6 +57,18 @@ public class ControllerArticulos {
 
 }
 	
+	/**
+	 * Metodo para insertar un nuevo videojuego, llama al metodo de la clase Server
+	 * @param nombre
+	 * @param precio
+	 * @param descripcion
+	 * @param categoria
+	 * @param fecha_lanz
+	 * @param puntuacion
+	 * @param caratula
+	 * @param descuento
+	 * @return true si se hace correctamente, false tras Exception e
+	 */
 	public boolean insertarVideojuego(String nombre, double precio, String descripcion, String categoria, String fecha_lanz, double puntuacion, String caratula, double descuento) {
 		boolean correcto;
 		try {
@@ -48,6 +85,14 @@ public class ControllerArticulos {
 
 }
 	
+	/**
+	 * Metodo para actualizar el valor del descuento de un articulo
+	 * Se le pasa el nombre del articulo al que se le quiere actualizar
+	 * el descuento y el valor del descuento nuevo, llama al metodo de la clase Server
+	 * @param nombreArticulo
+	 * @param descuento
+	 * @return true si se hace correctamente, false si se da Exception e
+	 */
 	public boolean updateDescuento(String nombreArticulo, double descuento) {
 		try {
 			System.out.println("###ControllerArticulos: ServiceLocator.getService().updateDescuento###");
@@ -58,6 +103,14 @@ public class ControllerArticulos {
 		}
 	}
 	
+	/**
+	 * Metodo para actualizar el valor del precio de un articulo
+	 * se le pasa el nombre del articulo al que se le quiere actualizar
+	 * el precio y el valor del precio nuevo, llama al metodo de la clase Server
+	 * @param nombreArticulo
+	 * @param precio
+	 * @return true si se hace correctamente, false si se da Exception e
+	 */
 	public boolean updatePrecio(String nombreArticulo, double precio) {
 		try {
 			System.out.println("###ControllerArticulos: ServiceLocator.getService().updatePrecio###");
