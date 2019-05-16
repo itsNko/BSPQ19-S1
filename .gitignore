@@ -13,6 +13,7 @@ hs_err_pid*
 ##########################
 target/
 log/
+docs/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
