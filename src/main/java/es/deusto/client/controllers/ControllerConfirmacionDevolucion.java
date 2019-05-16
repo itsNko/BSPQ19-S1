@@ -2,6 +2,9 @@ package es.deusto.client.controllers;
 
 import java.rmi.RemoteException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import es.deusto.client.remote.ServiceLocator;
 
 /**
@@ -11,7 +14,7 @@ import es.deusto.client.remote.ServiceLocator;
 public class ControllerConfirmacionDevolucion {
 
 	private ServiceLocator rsl = ControllerRegistro.getRsl();
-
+	Logger logger = LoggerFactory.getLogger("ClientLog");
 	/**
 	 * Constructor vacio ControllerConfirmacionDevolucion
 	 * @throws RemoteException
@@ -37,13 +40,16 @@ public class ControllerConfirmacionDevolucion {
 	public boolean devolverAlquiler(String nombreUsuario, String nombreArticulo, int valoracion) {
 		boolean correcto;
 		try {
-			System.out.println("###ControllerConfirmarDevolucion: ServiceLocator.getService().devolverAlquiler###");
+			logger.info("###ControllerConfirmarDevolucion: ServiceLocator.getService().devolverAlquiler###");
+			//System.out.println("###ControllerConfirmarDevolucion: ServiceLocator.getService().devolverAlquiler###");
 			correcto = rsl.getService().devolverAlquiler(nombreUsuario, nombreArticulo, valoracion);
-			System.out.println("###ControllerConfirmarDevolucion: Se ha devuelto el alquiler correctamente###");
+			logger.info("###ControllerConfirmarDevolucion: Se ha devuelto el alquiler correctamente###");
+			//System.out.println("###ControllerConfirmarDevolucion: Se ha devuelto el alquiler correctamente###");
 
 			return correcto;
 		}catch(Exception e) {
-			System.err.println("$ Error al devolver alquiler " + e.getMessage());
+			logger.error("$ Error al devolver alquiler " + e.getMessage());
+			//System.err.println("$ Error al devolver alquiler " + e.getMessage());
 			return false;
 
 		}
