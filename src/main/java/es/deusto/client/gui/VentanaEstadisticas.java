@@ -1,18 +1,25 @@
 package es.deusto.client.gui;
 
+import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -38,6 +45,9 @@ public class VentanaEstadisticas extends JFrame{
 	 * @param VentanaAnterior
 	 */
 	public VentanaEstadisticas(JFrame VentanaAnterior, List<AlquilerDTO> alquileres) {
+		
+		Font fuente = new Font("Times New Roman", Font.BOLD, 16);
+		Font fuente2 = new Font("Times New Roman", Font.PLAIN, 14);
 		frame = VentanaAnterior;
 
 		setTitle("Estadísticas");
@@ -45,7 +55,7 @@ public class VentanaEstadisticas extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 540);
 		final JLabel background;
-		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"articulos.png");
+		ImageIcon img = new ImageIcon("."+File.separator+"src"+File.separator+"resources"+File.separator+"estadisticas.png");
 		Image im = img.getImage();
 		im = getScaledImage(im, 960,540);
 		ImageIcon finalImg= new ImageIcon(im);
@@ -54,8 +64,37 @@ public class VentanaEstadisticas extends JFrame{
 		background.setBounds(0, 0, 960, 518);
 		getContentPane().add(background);
 		background.setLayout(null);
+		
+		
+		
+		String texto = "";
+		int contador = 0;
+		HashMap<String, Integer> hmap = new HashMap<String, Integer>();
+		
+		boolean repetido = false;
+		for(int i = 0; i < alquileres.size(); i++) {
+			String titulo = alquileres.get(i).getAlquilado().getNombre();
+			contador = 0;
+			if(hmap.get(titulo)== null) {
+				for(int j = 0;j<alquileres.size();j++) {
+					if (titulo == alquileres.get(j).getAlquilado().getNombre()) {
+						contador++;
+					}	
+				}
+				hmap.put(titulo, contador);
+			}	
+			
+		}
+		Set set = hmap.entrySet();
+	      Iterator iterator = set.iterator();
+	      while(iterator.hasNext()) {
+	         Map.Entry mentry = (Map.Entry)iterator.next();
+	         System.out.print("El artículo "+ mentry.getKey() + " ha sido alquilado "+mentry.getValue()+" veces.\n");
+	         texto = texto + "El artículo "+ mentry.getKey() + " ha sido alquilado "+mentry.getValue()+" veces.\n";
+	      }
+		
 
-		JButton btnVolver = new JButton("");
+		JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Volver");
@@ -65,14 +104,13 @@ public class VentanaEstadisticas extends JFrame{
 		});
 		btnVolver.setBounds(780, 455, 140, 50);
 		background.add(btnVolver);
-		btnVolver.setOpaque(false);
-		btnVolver.setContentAreaFilled(false);
-		btnVolver.setBorderPainted(false);
 
 		JTextArea textArea = new JTextArea();
 		textArea.setOpaque(false);
 		textArea.setBounds(100, 142, 760, 260);
+		textArea.setEditable(false);
 		//background.add(textArea);
+		textArea.setText(texto);
 
 		JScrollPane sp = new JScrollPane(textArea);
 		background.add(sp);
