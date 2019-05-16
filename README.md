@@ -77,7 +77,7 @@ mvn exec:java -Pclient
 ```
 
 
-Si se utiliza un ordenador con Windows, simplemente basta con ejecutar el archivo 'registry.bat'. Para UNIX (Linux o macOS es necesario ejecutar este comando desde la consola:
+Si se utiliza un ordenador con Windows, simplemente basta con ejecutar el archivo 'registry.bat'. Para UNIX (tanto Linux o macOS) es necesario ejecutar este comando desde la consola:
 
 ```
 rmiregistry -J-Djava.rmi.server.useCodebaseOnly=false &
