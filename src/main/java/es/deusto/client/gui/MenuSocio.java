@@ -288,7 +288,7 @@ public class MenuSocio extends JFrame {
 			btnEstadisticas.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent e) {
-					VentanaEstadisticas ventanaEstadistica = new VentanaEstadisticas(MenuSocio.this);
+					VentanaEstadisticas ventanaEstadistica = new VentanaEstadisticas(MenuSocio.this, alquileres);
 					ventanaEstadistica.setVisible(true);
 					MenuSocio.this.setVisible(false);
 					
