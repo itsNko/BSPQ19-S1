@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ import javax.swing.JTextArea;
 import es.deusto.client.data.Articulo;
 import es.deusto.client.data.Pelicula;
 import es.deusto.client.data.Videojuego;
+import es.deusto.server.dto.AlquilerDTO;
 import es.deusto.server.dto.ArticuloDTO;
 import es.deusto.server.dto.PeliculaDTO;
 import es.deusto.server.dto.VideojuegoDTO;
@@ -35,7 +37,7 @@ public class VentanaEstadisticas extends JFrame{
 	 * Constructor de la ventana VentanaEstadisticas.
 	 * @param VentanaAnterior
 	 */
-	public VentanaEstadisticas(JFrame VentanaAnterior) {
+	public VentanaEstadisticas(JFrame VentanaAnterior, List<AlquilerDTO> alquileres) {
 		frame = VentanaAnterior;
 
 		setTitle("Estadísticas");
