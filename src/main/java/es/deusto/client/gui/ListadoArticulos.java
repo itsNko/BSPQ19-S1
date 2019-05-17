@@ -148,7 +148,7 @@ public class ListadoArticulos extends JFrame {
 
 		JComboBox<String> comboBox = new JComboBox<String>();
 		background.add(comboBox);
-		comboBox.setBounds(568,287,49,20);
+		comboBox.setBounds(750,50,100,30);
 
 		comboBox.addItem("Todo");
 		comboBox.addItem("Videojuegos");
