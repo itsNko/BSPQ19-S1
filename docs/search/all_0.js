@@ -10,6 +10,8 @@ var searchData=
   ['alquilerassemblevideojuegotest',['AlquilerAssembleVideoJuegoTest',['../classes_1_1deusto_1_1server_1_1dto_1_1_alquiler_assembler_test.html#a4b9ade20f051da34c217eaa7f15d9824',1,'es::deusto::server::dto::AlquilerAssemblerTest']]],
   ['alquilerdto',['AlquilerDTO',['../classes_1_1deusto_1_1server_1_1dto_1_1_alquiler_d_t_o.html',1,'es.deusto.server.dto.AlquilerDTO'],['../classes_1_1deusto_1_1server_1_1dto_1_1_alquiler_d_t_o.html#aa488aa0095e5e2cabcbbe16c9f6db2e9',1,'es.deusto.server.dto.AlquilerDTO.AlquilerDTO()']]],
   ['alquilerdto_2ejava',['AlquilerDTO.java',['../_alquiler_d_t_o_8java.html',1,'']]],
+  ['alquilerdtotest',['AlquilerDTOTest',['../classes_1_1deusto_1_1server_1_1dto_1_1_alquiler_d_t_o_test.html',1,'es::deusto::server::dto']]],
+  ['alquilerdtotest_2ejava',['AlquilerDTOTest.java',['../_alquiler_d_t_o_test_8java.html',1,'']]],
   ['alquilertest',['AlquilerTest',['../classes_1_1deusto_1_1client_1_1data_1_1_alquiler_test.html',1,'es::deusto::client::data']]],
   ['alquilertest_2ejava',['AlquilerTest.java',['../_alquiler_test_8java.html',1,'']]],
   ['app',['App',['../classes_1_1deusto_1_1client_1_1app_1_1_app.html',1,'es::deusto::client::app']]],
@@ -26,6 +28,8 @@ var searchData=
   ['articuloassemblevideojuegotest',['ArticuloAssembleVideojuegoTest',['../classes_1_1deusto_1_1server_1_1dto_1_1_articulo_assembler_test.html#a6e2f09e134a6641c6eb2f44b867eba7f',1,'es::deusto::server::dto::ArticuloAssemblerTest']]],
   ['articulodto',['ArticuloDTO',['../classes_1_1deusto_1_1server_1_1dto_1_1_articulo_d_t_o.html',1,'es.deusto.server.dto.ArticuloDTO'],['../classes_1_1deusto_1_1server_1_1dto_1_1_articulo_d_t_o.html#a89818e8393a667a135cb35317aa7e906',1,'es.deusto.server.dto.ArticuloDTO.ArticuloDTO()']]],
   ['articulodto_2ejava',['ArticuloDTO.java',['../_articulo_d_t_o_8java.html',1,'']]],
+  ['articulodtotest',['ArticuloDTOTest',['../classes_1_1deusto_1_1server_1_1dto_1_1_articulo_d_t_o_test.html',1,'es::deusto::server::dto']]],
+  ['articulodtotest_2ejava',['ArticuloDTOTest.java',['../_articulo_d_t_o_test_8java.html',1,'']]],
   ['articulotest',['ArticuloTest',['../classes_1_1deusto_1_1client_1_1data_1_1_articulo_test.html',1,'es::deusto::client::data']]],
   ['articulotest_2ejava',['ArticuloTest.java',['../_articulo_test_8java.html',1,'']]],
   ['assemble',['assemble',['../classes_1_1deusto_1_1server_1_1dto_1_1_alquiler_assembler.html#aab2b9908ded052aa9016385f580e40ed',1,'es.deusto.server.dto.AlquilerAssembler.assemble()'],['../classes_1_1deusto_1_1server_1_1dto_1_1_articulo_assembler.html#af2594684f9946fb999618bcccd58f9f1',1,'es.deusto.server.dto.ArticuloAssembler.assemble()'],['../classes_1_1deusto_1_1server_1_1dto_1_1_pelicula_assembler.html#aabdb7cc7d778e515c72925693160b3b4',1,'es.deusto.server.dto.PeliculaAssembler.assemble()'],['../classes_1_1deusto_1_1server_1_1dto_1_1_socio_assembler.html#a8788f14abfb08165ad8478c3a7418571',1,'es.deusto.server.dto.SocioAssembler.assemble()'],['../classes_1_1deusto_1_1server_1_1dto_1_1_videojuego_assembler.html#a657fb0ec5c9768db84b6978ee8289fc4',1,'es.deusto.server.dto.VideojuegoAssembler.assemble()']]]

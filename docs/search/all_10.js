@@ -16,7 +16,7 @@ var searchData=
   ['ventanadevolucion_2ejava',['VentanaDevolucion.java',['../_ventana_devolucion_8java.html',1,'']]],
   ['ventanaeditardatossocio',['VentanaEditarDatosSocio',['../classes_1_1deusto_1_1client_1_1gui_1_1_ventana_editar_datos_socio.html',1,'es.deusto.client.gui.VentanaEditarDatosSocio'],['../classes_1_1deusto_1_1client_1_1gui_1_1_ventana_editar_datos_socio.html#a2352603aa3af5d459c544700323b5b9d',1,'es.deusto.client.gui.VentanaEditarDatosSocio.VentanaEditarDatosSocio()']]],
   ['ventanaeditardatossocio_2ejava',['VentanaEditarDatosSocio.java',['../_ventana_editar_datos_socio_8java.html',1,'']]],
-  ['ventanaestadisticas',['VentanaEstadisticas',['../classes_1_1deusto_1_1client_1_1gui_1_1_ventana_estadisticas.html',1,'es.deusto.client.gui.VentanaEstadisticas'],['../classes_1_1deusto_1_1client_1_1gui_1_1_ventana_estadisticas.html#aea94dd496636331fe4e5c507fc86e9f8',1,'es.deusto.client.gui.VentanaEstadisticas.VentanaEstadisticas()']]],
+  ['ventanaestadisticas',['VentanaEstadisticas',['../classes_1_1deusto_1_1client_1_1gui_1_1_ventana_estadisticas.html',1,'es.deusto.client.gui.VentanaEstadisticas'],['../classes_1_1deusto_1_1client_1_1gui_1_1_ventana_estadisticas.html#aa8a081ec7e7d326cbe10837bf7ad5279',1,'es.deusto.client.gui.VentanaEstadisticas.VentanaEstadisticas()']]],
   ['ventanaestadisticas_2ejava',['VentanaEstadisticas.java',['../_ventana_estadisticas_8java.html',1,'']]],
   ['ventanaguia',['VentanaGuia',['../classes_1_1deusto_1_1client_1_1gui_1_1_ventana_guia.html',1,'es.deusto.client.gui.VentanaGuia'],['../classes_1_1deusto_1_1client_1_1gui_1_1_ventana_guia.html#aa88aea5fa0905b6cb4a629132b0c23bc',1,'es.deusto.client.gui.VentanaGuia.VentanaGuia()']]],
   ['ventanaguia_2ejava',['VentanaGuia.java',['../_ventana_guia_8java.html',1,'']]],
@@ -46,6 +46,8 @@ var searchData=
   ['videojuegoassembler_2ejava',['VideojuegoAssembler.java',['../_videojuego_assembler_8java.html',1,'']]],
   ['videojuegodto',['VideojuegoDTO',['../classes_1_1deusto_1_1server_1_1dto_1_1_videojuego_d_t_o.html',1,'es.deusto.server.dto.VideojuegoDTO'],['../classes_1_1deusto_1_1server_1_1dto_1_1_videojuego_d_t_o.html#a066a00876e21fd3bd06eb82b6cfb8d0b',1,'es.deusto.server.dto.VideojuegoDTO.VideojuegoDTO()']]],
   ['videojuegodto_2ejava',['VideojuegoDTO.java',['../_videojuego_d_t_o_8java.html',1,'']]],
+  ['videojuegodtotest',['VideojuegoDTOTest',['../classes_1_1deusto_1_1server_1_1dto_1_1_videojuego_d_t_o_test.html',1,'es::deusto::server::dto']]],
+  ['videojuegodtotest_2ejava',['VideojuegoDTOTest.java',['../_videojuego_d_t_o_test_8java.html',1,'']]],
   ['videojuegotest',['VideojuegoTest',['../classes_1_1deusto_1_1client_1_1data_1_1_videojuego_test.html',1,'es::deusto::client::data']]],
   ['videojuegotest_2ejava',['VideojuegoTest.java',['../_videojuego_test_8java.html',1,'']]]
 ];

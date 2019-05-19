@@ -18,7 +18,7 @@ var searchData=
   ['ipaypalserver_2ejava',['IPayPalServer.java',['../_i_pay_pal_server_8java.html',1,'']]],
   ['isbloquearmaquina',['isBloquearMaquina',['../classes_1_1deusto_1_1client_1_1data_1_1_socio.html#adfbff36ef58c4373f4a31bc4e780c842',1,'es.deusto.client.data.Socio.isBloquearMaquina()'],['../classes_1_1deusto_1_1server_1_1dto_1_1_socio_d_t_o.html#a5e1acb06533d9c944e0e30c8f6b846fe',1,'es.deusto.server.dto.SocioDTO.isBloquearMaquina()']]],
   ['isencurso',['isEnCurso',['../classes_1_1deusto_1_1client_1_1data_1_1_alquiler.html#a2434d8d455e7606807226168efe55c35',1,'es.deusto.client.data.Alquiler.isEnCurso()'],['../classes_1_1deusto_1_1server_1_1dto_1_1_alquiler_d_t_o.html#ad6e596042f9fb361495a4f5475c77554',1,'es.deusto.server.dto.AlquilerDTO.isEnCurso()']]],
-  ['isencursotest',['isEnCursoTest',['../classes_1_1deusto_1_1client_1_1data_1_1_alquiler_test.html#a8abd20e1c46c0d37d251b3b5b6110cee',1,'es::deusto::client::data::AlquilerTest']]],
+  ['isencursotest',['isEnCursoTest',['../classes_1_1deusto_1_1client_1_1data_1_1_alquiler_test.html#a8abd20e1c46c0d37d251b3b5b6110cee',1,'es.deusto.client.data.AlquilerTest.isEnCursoTest()'],['../classes_1_1deusto_1_1server_1_1dto_1_1_alquiler_d_t_o_test.html#ada1c959d6a42358f3a35f9d6d9e8ec3c',1,'es.deusto.server.dto.AlquilerDTOTest.isEnCursoTest()']]],
   ['iserver',['IServer',['../interfacees_1_1deusto_1_1server_1_1remote_1_1_i_server.html',1,'es::deusto::server::remote']]],
   ['iserver_2ejava',['IServer.java',['../_i_server_8java.html',1,'']]]
 ];

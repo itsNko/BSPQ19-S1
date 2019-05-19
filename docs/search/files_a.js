@@ -23,5 +23,6 @@ var searchData=
   ['videojuego_2ejava',['Videojuego.java',['../_videojuego_8java.html',1,'']]],
   ['videojuegoassembler_2ejava',['VideojuegoAssembler.java',['../_videojuego_assembler_8java.html',1,'']]],
   ['videojuegodto_2ejava',['VideojuegoDTO.java',['../_videojuego_d_t_o_8java.html',1,'']]],
+  ['videojuegodtotest_2ejava',['VideojuegoDTOTest.java',['../_videojuego_d_t_o_test_8java.html',1,'']]],
   ['videojuegotest_2ejava',['VideojuegoTest.java',['../_videojuego_test_8java.html',1,'']]]
 ];

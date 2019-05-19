@@ -23,5 +23,6 @@ var searchData=
   ['videojuego',['Videojuego',['../classes_1_1deusto_1_1client_1_1data_1_1_videojuego.html',1,'es::deusto::client::data']]],
   ['videojuegoassembler',['VideojuegoAssembler',['../classes_1_1deusto_1_1server_1_1dto_1_1_videojuego_assembler.html',1,'es::deusto::server::dto']]],
   ['videojuegodto',['VideojuegoDTO',['../classes_1_1deusto_1_1server_1_1dto_1_1_videojuego_d_t_o.html',1,'es::deusto::server::dto']]],
+  ['videojuegodtotest',['VideojuegoDTOTest',['../classes_1_1deusto_1_1server_1_1dto_1_1_videojuego_d_t_o_test.html',1,'es::deusto::server::dto']]],
   ['videojuegotest',['VideojuegoTest',['../classes_1_1deusto_1_1client_1_1data_1_1_videojuego_test.html',1,'es::deusto::client::data']]]
 ];

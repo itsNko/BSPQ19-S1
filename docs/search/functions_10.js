@@ -7,7 +7,7 @@ var searchData=
   ['ventanadescuento',['VentanaDescuento',['../classes_1_1deusto_1_1client_1_1gui_1_1_ventana_descuento.html#a2bb7545dd5900527e55d52abccb3202c',1,'es::deusto::client::gui::VentanaDescuento']]],
   ['ventanadevolucion',['VentanaDevolucion',['../classes_1_1deusto_1_1client_1_1gui_1_1_ventana_devolucion.html#ae9d4bd6937c4cf48f2a9ff0f7680a8bb',1,'es::deusto::client::gui::VentanaDevolucion']]],
   ['ventanaeditardatossocio',['VentanaEditarDatosSocio',['../classes_1_1deusto_1_1client_1_1gui_1_1_ventana_editar_datos_socio.html#a2352603aa3af5d459c544700323b5b9d',1,'es::deusto::client::gui::VentanaEditarDatosSocio']]],
-  ['ventanaestadisticas',['VentanaEstadisticas',['../classes_1_1deusto_1_1client_1_1gui_1_1_ventana_estadisticas.html#aea94dd496636331fe4e5c507fc86e9f8',1,'es::deusto::client::gui::VentanaEstadisticas']]],
+  ['ventanaestadisticas',['VentanaEstadisticas',['../classes_1_1deusto_1_1client_1_1gui_1_1_ventana_estadisticas.html#aa8a081ec7e7d326cbe10837bf7ad5279',1,'es::deusto::client::gui::VentanaEstadisticas']]],
   ['ventanaguia',['VentanaGuia',['../classes_1_1deusto_1_1client_1_1gui_1_1_ventana_guia.html#aa88aea5fa0905b6cb4a629132b0c23bc',1,'es::deusto::client::gui::VentanaGuia']]],
   ['ventanainicio',['VentanaInicio',['../classes_1_1deusto_1_1client_1_1gui_1_1_ventana_inicio.html#a33f182305480b08b08d9fc24734c0d10',1,'es::deusto::client::gui::VentanaInicio']]],
   ['ventanainiciosesionpaypal',['VentanaInicioSesionPayPal',['../classes_1_1deusto_1_1client_1_1gui_1_1_ventana_inicio_sesion_pay_pal.html#a25efd8dcf1fc7212b038a64c81e7701f',1,'es::deusto::client::gui::VentanaInicioSesionPayPal']]],

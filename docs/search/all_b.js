@@ -19,6 +19,8 @@ var searchData=
   ['peliculaassembler_2ejava',['PeliculaAssembler.java',['../_pelicula_assembler_8java.html',1,'']]],
   ['peliculadto',['PeliculaDTO',['../classes_1_1deusto_1_1server_1_1dto_1_1_pelicula_d_t_o.html',1,'es.deusto.server.dto.PeliculaDTO'],['../classes_1_1deusto_1_1server_1_1dto_1_1_pelicula_d_t_o.html#a17befc89b5876632d67c2ded3c40ae4c',1,'es.deusto.server.dto.PeliculaDTO.PeliculaDTO()']]],
   ['peliculadto_2ejava',['PeliculaDTO.java',['../_pelicula_d_t_o_8java.html',1,'']]],
+  ['peliculadtotest',['PeliculaDTOTest',['../classes_1_1deusto_1_1server_1_1dto_1_1_pelicula_d_t_o_test.html',1,'es::deusto::server::dto']]],
+  ['peliculadtotest_2ejava',['PeliculaDTOTest.java',['../_pelicula_d_t_o_test_8java.html',1,'']]],
   ['peliculatest',['PeliculaTest',['../classes_1_1deusto_1_1client_1_1data_1_1_pelicula_test.html',1,'es::deusto::client::data']]],
   ['peliculatest_2ejava',['PeliculaTest.java',['../_pelicula_test_8java.html',1,'']]],
   ['programaprincipal',['ProgramaPrincipal',['../classes_1_1deusto_1_1server_1_1server_1_1_programa_principal.html',1,'es::deusto::server::server']]],
