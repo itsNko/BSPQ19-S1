@@ -40,7 +40,7 @@ public class ControllerPayPal {
 	 * @param nombrePaypal
 	 * @param password
 	 * @param cantidad
-	 * @return true si se hace correctamente\nfalse si se da Exception
+	 * @return true si se hace correctamente \n false si se da Exception
 	 */
 	public boolean pagarPayPal(String nombrePaypal, String password, double cantidad) {
 		try {
