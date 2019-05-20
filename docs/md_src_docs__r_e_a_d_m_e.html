@@ -99,13 +99,14 @@ $(document).ready(function(){initNavTree('md_src_docs__r_e_a_d_m_e.html','');});
 <div class="fragment"><div class="line">- Java 12.</div><div class="line">- Apache Maven 3.6.0.</div><div class="line">- JUnit 4.11</div><div class="line">- MariaDB (o MySQL o equivalente)</div></div><!-- fragment --><h3>Instalación</h3>
 <p>Para compilar el proyecto es necesario introducir en la consola el siguiente comando una vez te encuentres en el directorio del proyecto (desde el directorio donde se encuentra el archivo pom.xml):</p>
 <div class="fragment"><div class="line">mvn compile</div></div><!-- fragment --><p>Si ya tenías una versión anterior, ejecutamos el siguiente código para que se fuerce la compilación actualizada: </p><div class="fragment"><div class="line">mvn clean compile</div></div><!-- fragment --><h3>Configuración</h3>
-<p>Es necesario configurar la base de datos que vayamos a utilizar en el archivo siguiente. Debemos crear un usuario con sus respectivos permisos para que el videoclub pueda acceder a la base de datos.</p>
+<p>Es necesario configurar la base de datos que vayamos a utilizar en el archivo siguiente. Debemos crear un usuario con sus respectivos permisos para que el videoclub pueda acceder a la base de datos. En nuestro caso de ejemplo, el usuario es 'spq' y la contraseña es 'spq', el nombre de la BD es 'videoclubDB'.</p>
 <div class="fragment"><div class="line">src/main/resources/datanucleus.properties</div></div><!-- fragment --><p>Para crear la primera vez la base de datos con las tablas necesarias, es necesario ejecutar el siguiente comando, siempre dentro de la carpeta del proyecto (donde se encuentra el archivo pom.xml):</p>
 <div class="fragment"><div class="line">mvn datanucleus:schema-create</div></div><!-- fragment --><p>Si ya tuviésemos una base de datos creada anteriormente con este nombre, la podemos borrar utilizando:</p>
 <div class="fragment"><div class="line">mvn datanucleus:schema-delete</div></div><!-- fragment --><p>Debido a que se utiliza RMI, es posible ubicar el servidor en otro ordenador diferente al cliente. Los archivos de configuración para la conexión se encuentran en el archivo pom.xml:</p>
 <div class="fragment"><div class="line">&lt;server.IP&gt;127.0.0.1&lt;/server.IP&gt;</div><div class="line">&lt;server.port&gt;1099&lt;/server.port&gt;</div></div><!-- fragment --><h3>Ejecución</h3>
-<p>Finalmente, es necesario ejecutar el servidor y el cliente por separado.</p>
-<div class="fragment"><div class="line">mvn exec:java -Pserver</div></div><!-- fragment --><div class="fragment"><div class="line">mvn exec:java -Pclient</div></div><!-- fragment --><h2>Construido con</h2>
+<p>Finalmente, es necesario ejecutar el servidor y el cliente por separado. Además de ejecutar el servidor de PayPal si se quiere realizar pagos por este método de pago.</p>
+<div class="fragment"><div class="line">mvn exec:java -Ppaypal</div></div><!-- fragment --><div class="fragment"><div class="line">mvn exec:java -Pserver</div></div><!-- fragment --><div class="fragment"><div class="line">mvn exec:java -Pclient</div></div><!-- fragment --><p>Si se utiliza un ordenador con Windows, simplemente basta con ejecutar el archivo 'registry.bat'. Para UNIX (tanto Linux o macOS) es necesario ejecutar este comando desde la consola:</p>
+<div class="fragment"><div class="line">rmiregistry -J-Djava.rmi.server.useCodebaseOnly=false &amp;</div></div><!-- fragment --><h2>Construido con</h2>
 <ul>
 <li><a href="https://maven.apache.org/">Maven</a> - Dependency Management</li>
 </ul>
