@@ -1,60 +1,87 @@
+package es.deusto.server.dto;
+
+import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
-
-import es.deusto.client.data.Alquiler;
-import es.deusto.client.data.Pelicula;
-import es.deusto.server.dto.AlquilerAssembler;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 import es.deusto.client.data.Alquiler;
 import es.deusto.client.data.Pelicula;
 import es.deusto.client.data.Videojuego;
-import es.deusto.server.dto.AlquilerAssembler;
-import es.deusto.server.dto.AlquilerDTO;
-import es.deusto.server.dto.PeliculaAssembler;
-import es.deusto.server.dto.PeliculaDTO;
-import es.deusto.server.dto.VideojuegoAssembler;
-import es.deusto.server.dto.VideojuegoDTO;
 
-import java.util.Arrays;
+import static org.junit.Assert.*;
 import java.util.List;
 
 public class AlquilerAssemblerTest {
 
+    private AlquilerAssembler alquilerAssembler;
+    private PeliculaAssembler peliculaAssembler;
+    private VideojuegoAssembler videojuegoAssembler;
+
+    @Before
+    public void setUp() {
+        alquilerAssembler = AlquilerAssembler.getInstance();
+        peliculaAssembler = PeliculaAssembler.getInstance();
+        videojuegoAssembler = VideojuegoAssembler.getInstance();
+    }
+
     @Test
-    public void AssebleTest() {
-        // Create sample Alquiler objects
-        Pelicula pelicula1 = new Pelicula("The Avengers");
-        Alquiler alquiler1 = new Alquiler(pelicula1, 10.0, "2022-01-01", "2022-01-07", true);
-        Alquiler alquiler2 = new Alquiler(new Videojuego("FIFA 22"), 15.0, "2022-02-01", "2022-02-07", false);
+    public void testAssemble() {
+        // Prepare test data
+        Pelicula pelicula = new Pelicula("Articulo-Pelicula", 10.0, "Some sinopsis", "Some genre", "2022-01-01", 8.0,
+                "Some caratula", 0.0);
+        Alquiler alquilerPelicula = new Alquiler(pelicula, 10.0, "2022-01-01", "2022-01-02", true, "Articulo-Pelicula");
 
-        // Create a list of Alquiler objects
-        List<Alquiler> alquileres = Arrays.asList(alquiler1, alquiler2);
+        Videojuego videojuego = new Videojuego("Articulo-Videojuego", 20.0, "Some description", "Some category",
+                "2022-01-01", 9.0, "Some caratula", 0.0);
+        Alquiler alquilerVideojuego = new Alquiler(videojuego, 20.0, "2022-01-01", "2022-01-02", false,
+                "Articulo-Videojuego");
 
-        // Call the assemble method
-        List<AlquilerDTO> alquileresDTO = AlquilerAssembler.getInstance().assemble(alquileres);
+        List<Alquiler> alquileres = List.of(alquilerPelicula, alquilerVideojuego);
 
-        // Assert the size of the returned list
-        assertEquals(2, alquileresDTO.size());
+        // Execute the method
+        List<AlquilerDTO> alquileresDTO = alquilerAssembler.assemble(alquileres);
 
-        // Assert the properties of the first AlquilerDTO object
-        AlquilerDTO alquilerDTO1 = alquileresDTO.get(0);
-        assertEquals("The Avengers", alquilerDTO1.getAlquilado().getNombre());
-        assertEquals(10.0, alquilerDTO1.getCoste(), 0.01);
-        assertEquals("2022-01-01", alquilerDTO1.getFecha_inicio());
-        assertEquals("2022-01-07", alquilerDTO1.getFecha_fin());
-        assertTrue(alquilerDTO1.isEnCurso());
+        // Verify the result
+        assertEquals(alquileres.size(), alquileresDTO.size());
 
-        // Assert the properties of the second AlquilerDTO object
-        AlquilerDTO alquilerDTO2 = alquileresDTO.get(1);
-        assertEquals("FIFA 22", alquilerDTO2.getAlquilado().getNombre());
-        assertEquals(15.0, alquilerDTO2.getCoste(), 0.01);
-        assertEquals("2022-02-01", alquilerDTO2.getFecha_inicio());
-        assertEquals("2022-02-07", alquilerDTO2.getFecha_fin());
-        assertFalse(alquilerDTO2.isEnCurso());
+        for (int i = 0; i < alquileres.size(); i++) {
+            Alquiler alquiler = alquileres.get(i);
+            AlquilerDTO alquilerDTO = alquileresDTO.get(i);
+
+            assertEquals(alquiler.getAlquilado().getNombre(), alquilerDTO.getAlquilado().getNombre());
+            assertEquals(alquiler.getCoste(), alquilerDTO.getCoste(), 0.001);
+            assertEquals(alquiler.getFecha_inicio(), alquilerDTO.getFecha_inicio());
+            assertEquals(alquiler.getFecha_fin(), alquilerDTO.getFecha_fin());
+            assertEquals(alquiler.isEnCurso(), alquilerDTO.isEnCurso());
+        }
+    }
+
+    @Test
+    public void testAssembleWithNullInput() {
+        // Execute the method with null input
+        List<AlquilerDTO> alquileresDTO = alquilerAssembler.assemble(null);
+
+        // Verify the result
+        assertTrue(alquileresDTO.isEmpty());
+    }
+
+    @Test
+    public void testAssembleWithVideojuego() {
+        // Prepare test data
+        Videojuego videojuego = new Videojuego("Articulo-Videojuego", 20.0, "Some description", "Some category",
+                "2022-01-01", 9.0, "Some caratula", 0.0);
+        Alquiler alquilerVideojuego = new Alquiler(videojuego, 20.0, "2022-01-01", "2022-01-02", false,
+                "Articulo-Videojuego");
+
+        // Execute the method
+        List<AlquilerDTO> alquileresDTO = alquilerAssembler.assemble(List.of(alquilerVideojuego));
+
+        // Verify the result
+        assertEquals(1, alquileresDTO.size());
+        AlquilerDTO alquilerDTO = alquileresDTO.get(0);
+        assertEquals(videojuego.getNombre(), alquilerDTO.getAlquilado().getNombre());
+        assertEquals(20.0, alquilerDTO.getCoste(), 0.001);
+        assertEquals("2022-01-01", alquilerDTO.getFecha_inicio());
+        assertEquals("2022-01-02", alquilerDTO.getFecha_fin());
+        assertFalse(alquilerDTO.isEnCurso());
     }
 }
