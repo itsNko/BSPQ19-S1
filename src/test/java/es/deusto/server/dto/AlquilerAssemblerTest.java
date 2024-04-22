@@ -26,7 +26,7 @@ import java.util.List;
 public class AlquilerAssemblerTest {
 
     @Test
-    public void testAssemble() {
+    public void AssebleTest() {
         // Create sample Alquiler objects
         Pelicula pelicula1 = new Pelicula("The Avengers");
         Alquiler alquiler1 = new Alquiler(pelicula1, 10.0, "2022-01-01", "2022-01-07", true);
