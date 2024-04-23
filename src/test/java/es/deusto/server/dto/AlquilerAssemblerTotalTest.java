@@ -12,7 +12,7 @@ import java.util.List;
 
 public class AlquilerAssemblerTotalTest {
 
-    private AlquilerAssembler alquilerAssembler, patata;
+    private AlquilerAssembler alquilerAssembler;
 
     @Before
     public void setUp() {
