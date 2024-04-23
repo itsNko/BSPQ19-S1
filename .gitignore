@@ -11,7 +11,9 @@ hs_err_pid*
 ##########################
 ## Maven
 ##########################
-target/
+target/*
+!target/jacoco.exec
+!target/site/jacoco/*
 log/
 pom.xml.tag
 pom.xml.releaseBackup
