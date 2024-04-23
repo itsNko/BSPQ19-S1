@@ -13,14 +13,10 @@ import java.util.List;
 public class AlquilerAssemblerTotalTest {
 
     private AlquilerAssembler alquilerAssembler;
-    private PeliculaAssembler peliculaAssembler;
-    private VideojuegoAssembler videojuegoAssembler;
 
     @Before
     public void setUp() {
         alquilerAssembler = AlquilerAssembler.getInstance();
-        peliculaAssembler = PeliculaAssembler.getInstance();
-        videojuegoAssembler = VideojuegoAssembler.getInstance();
     }
 
     @Test
