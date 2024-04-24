@@ -123,9 +123,6 @@
 					<source>1.8</source>
 					<target>1.8</target>
 					<encoding>UTF-8</encoding>
-					<includes>
-						<include>src\main\java\es\deusto</include>
-					</includes>
 				</configuration>
 			</plugin>
 			<plugin>
