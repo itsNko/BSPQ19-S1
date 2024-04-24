@@ -124,7 +124,7 @@
 					<target>1.8</target>
 					<encoding>UTF-8</encoding>
 					<includes>
-						<include>src/test/java/es/deusto</include>
+						<include>src\main\java\es\deusto</include>
 					</includes>
 				</configuration>
 			</plugin>
